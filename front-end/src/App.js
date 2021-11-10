@@ -11,6 +11,7 @@ import BookPage from './components/Bookpage';
 import PodcastPage from './components/Podcastpage';
 import MotivationalSpeechPage from './components/MotivationalSpeechpage';
 import DetailPage from './components/Detailpage';
+import AboutPage from './components/Aboutpage';
 import NotFound from './components/NotFound';
 
 import useToken from './components/useToken';
@@ -36,6 +37,7 @@ function App() {
               <Route exact path="/podcasts/:id/" component={DetailPage}/>
               <Route exact path="/motivational-speeches/" component={MotivationalSpeechPage} />
               <Route exact path="/motivational-speeches/:id/" component={DetailPage}/>
+              <Route exact path="/about/" component={AboutPage} />
               <Route exact path="/:id/" component={DetailPage}/>
               <Route path="*" component={NotFound} />  
             </Switch>
