@@ -24,6 +24,9 @@ function Navbar({ deleteToken }) {
           <a className="nav-item-link" href="/motivational-speeches/">Motivational Speeches</a>
         </li>
         <li className="nav-item">
+          <a className="nav-item-link" href="/about/">About</a>
+        </li>
+        <li className="nav-item">
           <div className="nav-item-link " onClick={()=> {logoutUser()}}>Logout</div>
         </li>
       </ul>
