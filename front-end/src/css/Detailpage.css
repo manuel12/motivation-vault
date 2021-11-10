@@ -1,0 +1,34 @@
+.container {
+  min-height: 1000px;
+  margin: 0 100px 0 100px;
+}
+
+.heading {
+  font-size: 3rem;
+  margin: 15px 0 15px 0;
+}
+
+.author-container {
+  margin: 15px 0 15px 0;
+}
+
+
+.image {
+  max-height: 500px;
+  min-width: 50%;
+  display: inline-block;
+  margin: 15px 0 15px 0;
+  /* float: left; */
+}
+
+.value-container {
+  width: 50%;
+  /* float: right; */
+}
+
+.paragraph-container {
+  margin: 15px 0 15px 0;
+  display: block;
+  width: 50%;
+}
+
