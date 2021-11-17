@@ -1,5 +1,8 @@
 from rest_framework import viewsets
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
@@ -15,26 +18,34 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
 
 
-class ResourceAPIView(generics.ListAPIView):
-    queryset = models.Resource.objects.all()
-    serializer_class = serializers.ResourceSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
+class ResourceListView(APIView):
+    permission_classes = [AllowAny]
 
-    def get_queryset(self):
-        print(f'User: {self.request.user}')
-        queryset = self.queryset
-        queryset = queryset.all()
+    def get(self, request, format=None):
+        resource = models.Resource.objects.all()
+        serializer = serializers.ResourceSerializer(resource, many=True)
+        return Response(serializer.data)
 
-        make_backup(queryset)
-        return queryset
+    def post(self, request, format=None):
+        response = {'message': 'You cannot create from the resource class directly. '
+        'You must create an instance of a subclass like Book, Podcast, PodcastEpisode '
+        'or Motivational Speech.'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ResourceDetailAPIView(generics.RetrieveAPIView):
-    queryset = models.Resource.objects.all()
-    serializer_class = serializers.ResourceSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
+class ResourceDetailView(APIView):
+    permission_classes = [AllowAny]
+
+    def get_object(self, pk):
+        try:
+            return models.Resource.objects.get(pk=pk)
+        except models.Resource.DoesNotExist:
+            return
+
+    def get(self, request, pk, format=None):
+        resource = self.get_object(pk)
+        serializer = serializers.ResourceSerializer(resource)
+        return Response(serializer.data)
 
 
 class BookAPIView(generics.ListAPIView):
@@ -99,12 +110,14 @@ class CommentsAPIView(generics.ListAPIView):
     # authentication_classes = (TokenAuthentication, )
     permission_classes = (AllowAny, )
 
+    def get(self, request, format=None):
+        comments = models.Comment.objects.filter(user=request.user)
+        serializer = serializers.CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
 
 class RatingsAPIView(generics.ListAPIView):
     queryset = models.Rating.objects.all()
     serializer_class = serializers.RatingSerializer
     # authentication_classes = (TokenAuthentication, )
     permission_classes = (AllowAny, )
-
-
-    
