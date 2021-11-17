@@ -13,7 +13,6 @@ import MotivationalSpeechPage from './components/MotivationalSpeechpage';
 import DetailPage from './components/Detailpage';
 import AboutPage from './components/Aboutpage';
 import NotFound from './components/NotFound';
-
 import useToken from './components/useToken';
 
 function App() {    

@@ -18,6 +18,17 @@ class Resource(models.Model):
     def __str__(self):
         return self.title
 
+    def get_comments(self):
+        comments = []
+        resource_comments = Comment.objects.filter(resource=self)
+        for comment in resource_comments:
+          self.append({
+            'user': comment.user.username,
+            'text': comment.text,
+            'date': comment.date_created
+          })
+        return comments
+
     def num_ratings(self):
         ratings = Rating.objects.filter(resource=self)
         return len(ratings)
