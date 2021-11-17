@@ -50,8 +50,8 @@ function Auth({ setToken }) {
 
       
           {isLoginView ?  
-            <button onClick={loginClicked}>Login</button> : 
-            <button onClick={registerClicked}>Register</button>}
+            <button id="submitButton" onClick={loginClicked}>Login</button> : 
+            <button id="submitButton" onClick={registerClicked}>Register</button>}
         
 
         {isLoginView ? 
