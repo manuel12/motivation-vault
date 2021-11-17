@@ -5,13 +5,10 @@ function Comment(props) {
     return (
       <div className="comment-container">
         <div>
-          <strong>
-            {props.get_username}
-          </strong> 
-          - {props.get_datetime}
+          <strong>{props.user}</strong> - {props.date}
         </div>
         <div>{props.text}</div> 
-        <hr></hr>
+        <br/>
       </div>
     )
 }
