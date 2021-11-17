@@ -17,7 +17,8 @@ class UserSerializer(serializers.ModelSerializer):
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Resource
-        fields = ('id', 'title', 'author', 'description', 'imageURL', 'value_one', 'value_two', 'value_three')
+        fields = ('id', 'title', 'author', 'description', 'imageURL',
+          'value_one', 'value_two', 'value_three', 'get_comments', 'num_ratings', 'avg_rating')
 
 
 class BookSerializer(serializers.ModelSerializer):
