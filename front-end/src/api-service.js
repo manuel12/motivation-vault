@@ -42,5 +42,17 @@ export class API {
     .then( resp => options.setResourceFunc(resp)) 
     .catch( error => console.log(error))
   }
+
+  static createResource(options) {
+    return fetch(`http://127.0.0.1:8000/api/`, {
+      method: 'POST',
+      headers:
+      {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${ options.token}`
+      },
+      body: JSON.stringify(options.body)
+    }).then(resp => resp.json())
+  }
 }
 
