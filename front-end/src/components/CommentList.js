@@ -4,14 +4,26 @@ import "../css/CommentList.css"
 function CommentList(props) {
 
   return (
-    <div className="comment-list-container">
+    <div
+      className="comment-list-container"
+      date-test="comment-section">
+
       <h3><u>Comments</u></h3>
-      {props.comments.map((comment) =>(
+
+      <input
+        className="add-comment"
+        type="text"
+        placeholder="Write a comment..."
+        date-test="comment-input"/>
+
+      <br/>
+
+      {props.comments && props.comments.map((comment) =>(
         <div>
-          <Comment 
+          <Comment
             key={comment.id}
-            get_username={comment.get_username}
-            get_datetime={comment.get_datetime}
+            user={comment.user}
+            date={comment.date}
             text={comment.text}
           />
         </div>
@@ -21,4 +33,3 @@ function CommentList(props) {
 }
 
 export default CommentList;
-
