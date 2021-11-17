@@ -5,12 +5,9 @@ import "../css/Detailpage.css"
 import CommentList from './CommentList';
 import { useCookies } from 'react-cookie';
 
-function DetailPage(props) {
-  console.log(props)
-  
+function DetailPage() {
   const { id } = useParams()
   let [resource, setResource] = useState([]);
-  let [comments, setComments] = useState([]);
 
   const [token] = useCookies(['mr-token']);
 
@@ -20,15 +17,7 @@ function DetailPage(props) {
       setResourceFunc: setResource, 
       id: id,
       token: token})
-    }, [id])
-
-  useEffect(() => {
-    API.fetchResource({
-      resource: 'comments', 
-      setResourceFunc: setComments, 
-      id: null,
-      comment: comments})
-    }, [id])
+    },[id, token])
   
   return (
     <div className="container">
@@ -52,7 +41,7 @@ function DetailPage(props) {
       </div>
       <h3>Description</h3>
       <p className="paragraph-container">{resource.description}</p>
-      <CommentList comments={comments}/>
+      <CommentList comments={resource.get_comments}/>
     </div>
   )
 }
