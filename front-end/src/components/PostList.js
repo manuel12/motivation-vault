@@ -12,6 +12,7 @@ function PostList(props) {
         author={resource.author}
         description={resource.description}
         imageURL={resource.imageURL}
+        rating={resource.avg_rating}
         />
       ))}
     </div>
