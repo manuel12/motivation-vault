@@ -1,0 +1,18 @@
+.ratings-container {
+  margin: 10px 0;
+}
+
+
+.ratings-container .fa-star {
+  font-size: 1.4rem;
+}
+
+.orange {
+  color: orange;
+  cursor: pointer;
+}
+
+.white {
+  color: white;
+  cursor: pointer;
+}
