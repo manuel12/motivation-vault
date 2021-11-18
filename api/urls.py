@@ -6,7 +6,7 @@ router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
-	path('', views.ResourceListView.as_view()),
+  path('', views.ResourceListView.as_view()),
   path('<int:pk>/', views.ResourceDetailView.as_view()),
 
   path('books/', views.BookAPIView.as_view()),
