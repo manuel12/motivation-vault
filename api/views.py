@@ -8,7 +8,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
 from resources import models
 from api import serializers
-from .utils import make_backup
 
 # Create your views here.
 
