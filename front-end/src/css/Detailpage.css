@@ -22,12 +22,17 @@
 }
 
 .value-container {
-  width: 50%;
+  width: 70%;
 }
+
+li {
+  margin: 15px 0;
+}
+
 
 .paragraph-container {
   margin: 15px 0 15px 0;
   display: block;
-  width: 50%;
+  width: 70%;
 }
 
