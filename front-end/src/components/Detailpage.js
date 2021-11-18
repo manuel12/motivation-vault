@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { API } from '../api-service';
-import "../css/Detailpage.css"
-import CommentList from './CommentList';
 import { useCookies } from 'react-cookie';
+import { API } from '../api-service';
+import CommentList from './CommentList';
+import Ratings from './Ratings';
+import "../css/Detailpage.css"
+
 
 function DetailPage() {
   const { id } = useParams()
   let [resource, setResource] = useState([]);
-
-  const [token] = useCookies(['mr-token']);
+  let [token] = useCookies(['mr-token']);
 
   useEffect(() => {
     API.fetchResource({
@@ -18,7 +19,7 @@ function DetailPage() {
       id: id,
       token: token})
     },[id, token])
-  
+
   return (
     <div className="container">
       <h1 className="heading">
@@ -27,6 +28,9 @@ function DetailPage() {
       <div className="author-container">
         By <strong>{resource.author}</strong>
       </div>
+      <Ratings
+        rating={resource.avg_rating}
+        num_ratings={resource.num_ratings}/>
       <img 
         src={resource.imageURL}
         className="image"
