@@ -6,7 +6,7 @@ function CommentList(props) {
   return (
     <div
       className="comment-list-container"
-      date-test="comment-section">
+      data-test="comment-section">
 
       <h3><u>Comments</u></h3>
 
@@ -14,7 +14,7 @@ function CommentList(props) {
         className="add-comment"
         type="text"
         placeholder="Write a comment..."
-        date-test="comment-input"/>
+        data-test="comment-input"/>
 
       <br/>
 
