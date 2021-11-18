@@ -13,36 +13,36 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         Token.objects.create(user=user)
         return user
+        
 
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Resource
-        fields = ('id', 'title', 'author', 'description', 'imageURL',
-          'value_one', 'value_two', 'value_three', 'get_comments', 'num_ratings', 'avg_rating')
+        fields = ('id', 'title', 'author', 'description', 'imageURL', 'value_one', 'value_two', 'value_three', 'get_comments', 'num_ratings', 'avg_rating')
 
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Book
-        fields = ('id', 'title', 'subtitle', 'author', 'description', 'isbn', 'imageURL') 
+        fields = ('id', 'title', 'subtitle', 'author', 'description', 'isbn', 'imageURL', 'avg_rating') 
 
 
 class PodcastSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Podcast
-        fields = ('id', 'title', 'author', 'description', 'website_url', 'youtube_url', 'imageURL')
+        fields = ('id', 'title', 'author', 'description', 'website_url', 'youtube_url', 'imageURL', 'avg_rating')
 
 
 class PodcastEpisodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PodcastEpisode
-        fields = ('id', 'title', 'author', 'description', 'youtube_episode_url', 'spotify_episode_url', 'imageURL')
+        fields = ('id', 'title', 'author', 'description', 'youtube_episode_url', 'spotify_episode_url', 'imageURL', 'avg_rating')
 
 
 class MotivationalSpeechSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.MotivationalSpeech
-        fields = ('id', 'title', 'author', 'description', 'youtube_url', 'imageURL')
+        fields = ('id', 'title', 'author', 'description', 'youtube_url', 'imageURL', 'avg_rating')
 
 
 class CommentSerializer(serializers.ModelSerializer):
