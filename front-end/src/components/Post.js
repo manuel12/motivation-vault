@@ -1,12 +1,13 @@
+import Ratings from './Ratings';
 import "../css/Post.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar} from '@fortawesome/free-solid-svg-icons';
+
 
 function Post(props) {
-    console.log(props.rating)
 
     return (
-      <div className="post-container">
+      <div
+        className="post-container"
+        data-test="post-container">
         <a href={`http://localhost:3000/${props.id}/`} className="container-link">
           <div className="image-container">
             <img src={props.imageURL} className="image" alt=""></img>
@@ -16,19 +17,8 @@ function Post(props) {
             <div className="author-text-container">
               by <h5 className="author-name">{props.author}</h5>
             </div>
-
-            <div className="ratings-container">
-              <FontAwesomeIcon icon={faStar}
-                className={props.rating > 0 ? 'orange' : 'white'}/>
-              <FontAwesomeIcon icon={faStar}
-                className={props.rating > 1 ? 'orange' : 'white'}/>
-              <FontAwesomeIcon icon={faStar}
-                className={props.rating > 2 ? 'orange' : 'white'}/>
-              <FontAwesomeIcon icon={faStar}
-                className={props.rating > 3 ? 'orange' : 'white'}/>
-              <FontAwesomeIcon icon={faStar}
-                className={props.rating > 4 ? 'orange' : 'white'}/>
-            </div>
+            <Ratings
+              rating={props.rating}/>
             <p className="description-container">{
               props.description &&
               props.description.length > 300 ?
