@@ -7,6 +7,10 @@ name = "pypi"
 django = "==2.2.6"
 djangorestframework = "==3.10.3"
 django-cors-headers = "*"
+dj-database-url = "*"
+dj-static = "*"
+static3 = "*"
+gunicorn = "*"
 
 [dev-packages]
 
