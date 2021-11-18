@@ -26,7 +26,7 @@ export class API {
     if(options.id) {
       url = `http://127.0.0.1:8000/api/${options.id}/`
     } else {
-      url =  options.resource == 'home' ? 
+      url =  options.resource === 'home' ?
         `http://127.0.0.1:8000/api/` :
         `http://127.0.0.1:8000/api/${options.resource}/` 
     }
