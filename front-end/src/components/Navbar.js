@@ -19,6 +19,12 @@ function Navbar({ deleteToken }) {
         <li className="nav-item">
           <a
             className="nav-item-link"
+            href="/add/"
+            data-test="add-link">Add+</a>
+        </li>
+        <li className="nav-item">
+          <a
+            className="nav-item-link"
             href="/books/"
             data-test="books-link">Books</a>
         </li>
@@ -27,6 +33,12 @@ function Navbar({ deleteToken }) {
             className="nav-item-link"
             href="/podcasts/"
             data-test="podcasts-link">Podcasts</a>
+        </li>
+        <li className="nav-item">
+          <a
+            className="nav-item-link"
+            href="/podcasts-episodes/"
+            data-test="podcasts-link">Podcasts Episodes</a>
         </li>
         <li className="nav-item">
           <a
