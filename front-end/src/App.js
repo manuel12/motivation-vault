@@ -7,8 +7,10 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 
 import HomePage from './components/Homepage';
+import AddPage from './components/Addpage';
 import BookPage from './components/Bookpage';
 import PodcastPage from './components/Podcastpage';
+import PodcastEpisodePage from './components/PodcastEpisodepage';
 import MotivationalSpeechPage from './components/MotivationalSpeechpage';
 import DetailPage from './components/Detailpage';
 import AboutPage from './components/Aboutpage';
@@ -30,10 +32,12 @@ function App() {
           <Router>
             <Switch>
               <Route exact path="/"  component={HomePage} />
+              <Route exact path="/add/"  component={AddPage} />
               <Route exact path="/books/" component={BookPage} />
               <Route exact path="/books/:id/" component={DetailPage}/>
               <Route exact path="/podcasts/" component={PodcastPage} />
               <Route exact path="/podcasts/:id/" component={DetailPage}/>
+              <Route exact path="/podcasts-episodes/" component={PodcastEpisodePage} />
               <Route exact path="/motivational-speeches/" component={MotivationalSpeechPage} />
               <Route exact path="/motivational-speeches/:id/" component={DetailPage}/>
               <Route exact path="/about/" component={AboutPage} />
