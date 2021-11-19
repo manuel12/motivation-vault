@@ -4,8 +4,6 @@ import { API  } from '../api-service';
 import { useCookies } from 'react-cookie';
 
 function HomePage(props) {
- //alert('On Homepage')
-  
   let [resources, setResources] = useState([]);
   const [token] = useCookies(['mr-token']);
 
