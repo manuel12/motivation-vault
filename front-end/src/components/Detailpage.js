@@ -45,7 +45,8 @@ function DetailPage() {
       </div>
       <h3>Description</h3>
       <p className="paragraph-container">{resource.description}</p>
-      <CommentList comments={resource.get_comments}/>
+      <CommentList
+        comments={resource.get_comments}/>
     </div>
   )
 }
