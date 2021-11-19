@@ -11,7 +11,7 @@ function MotivationalSpeechPage() {
     API.fetchResource({
       resource: 'motivational-speeches', 
       setResourceFunc: setResources,
-      token: token})
+      token: {token}})
   }, [token])
 
   return (
