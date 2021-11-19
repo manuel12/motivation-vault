@@ -45,8 +45,8 @@ class Book(Resource):
 
 
 class Podcast(Resource):
-	website_url = models.URLField(max_length=200)
-	youtube_url = models.URLField(max_length=200)
+    website_url = models.URLField(max_length=200)
+    youtube_url = models.URLField(max_length=200)
 
 
 class PodcastEpisode(Resource):
@@ -71,6 +71,10 @@ class Comment(models.Model):
 
     def get_datetime(self):
         return self.date_created.strftime('%Y/%m/%d %H:%M:%S')
+
+    class Meta:
+        ordering = ['-date_created']
+
 
 
 class Rating(models.Model):
