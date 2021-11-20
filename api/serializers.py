@@ -36,7 +36,7 @@ class PodcastSerializer(serializers.ModelSerializer):
 class PodcastEpisodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PodcastEpisode
-        fields = ('id', 'title', 'author', 'description', 'youtube_episode_url', 'spotify_episode_url', 'imageURL', 'avg_rating')
+        fields = ('id', 'title', 'author', 'from_podcast', 'description', 'youtube_episode_url', 'spotify_episode_url', 'imageURL', 'avg_rating')
 
 
 class MotivationalSpeechSerializer(serializers.ModelSerializer):
