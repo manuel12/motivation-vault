@@ -9,9 +9,6 @@ function CommentList(props) {
   useEffect(() => setComments(props.comments), [props.comments])
 
   const submitClicked = () => {
-    const commentInput = document.getElementsByClassName('add-comment')[0];
-    commentInput.value = ''
-
     if(commentText) {
       const newComment = {
         'user': 'Manuel',
@@ -24,6 +21,7 @@ function CommentList(props) {
       setCommentText('');
     }
   }
+
   return (
     <div
       className="comment-list-container"
@@ -34,6 +32,7 @@ function CommentList(props) {
       <input
         className="add-comment"
         type="text"
+        value={commentText}
         placeholder="Write a comment..."
         onChange={ evt => {
           setCommentText(evt.target.value)
