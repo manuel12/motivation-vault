@@ -1,3 +1,5 @@
+from django.http.response import Http404
+from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -17,8 +19,8 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
 
 
-class ResourceListView(APIView):
-    permission_classes = [AllowAny]
+class ResourceList(APIView):
+    permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
         resource = models.Resource.objects.all()
@@ -32,8 +34,8 @@ class ResourceListView(APIView):
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ResourceDetailView(APIView):
-    permission_classes = [AllowAny]
+class ResourceDetail(APIView):
+    permission_classes = (AllowAny,)
 
     def get_object(self, pk):
         try:
@@ -47,60 +49,154 @@ class ResourceDetailView(APIView):
         return Response(serializer.data)
 
 
-class BookAPIView(generics.ListAPIView):
-    queryset = models.Book.objects.all()
-    serializer_class = serializers.BookSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
-
-
-class BookDetailAPIView(generics.RetrieveAPIView):
-    queryset = models.Book.objects.all()
-    serializer_class = serializers.BookSerializer
-    # authentication_classes = (TokenAuthentication, )
+class BookList(APIView):
+    """
+    List all books, or create a new book.
+    """
     permission_classes = (AllowAny,)
 
+    def get(self, request, format=None):
+        books = models.Book.objects.all()
+        serializer = serializers.BookSerializer(books, many=True)
+        return Response(serializer.data)
 
-class PodcastAPIView(generics.ListAPIView):
-    queryset = models.Podcast.objects.all()
-    serializer_class = serializers.PodcastSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
+    def post(self, request, format=None):
+        serializer = serializers.BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PodcastDetailAPIView(generics.RetrieveAPIView):
-    queryset = models.Podcast.objects.all()
-    serializer_class = serializers.PodcastSerializer
-    # authentication_classes = (TokenAuthentication, )
+class BookDetail(APIView):
+    """
+    Retrieve, update or delete a book instance.
+    """
     permission_classes = (AllowAny,)
 
+    def get_object(self, pk):
+      try:
+          return models.Book.objects.get(pk=pk)
+      except models.Book.DoesNotExist:
+          raise Http404
 
-class PodcastEpisodeAPIView(generics.ListAPIView):
-    queryset = models.PodcastEpisode.objects.all()
-    serializer_class = serializers.PodcastEpisodeSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
-
-
-class PodcastEpisodeDetailAPIView(generics.RetrieveAPIView):
-    queryset = models.PodcastEpisode.objects.all()
-    serializer_class = serializers.PodcastEpisodeSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
+    def get(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = serializers.BookSerializer(snippet)
+        return Response(serializer.data)
 
 
-class MotivationalSpeechAPIView(generics.ListAPIView):
-    queryset = models.MotivationalSpeech.objects.all()
-    serializer_class = serializers.MotivationalSpeechSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
-
-
-class MotivationalSpeechDetailAPIView(generics.RetrieveAPIView):
-    queryset = models.MotivationalSpeech.objects.all()
-    serializer_class = serializers.MotivationalSpeechSerializer
-    # authentication_classes = (TokenAuthentication, )
+class PodcastList(APIView):
+    """
+    List all podcasts, or create a new podcast.
+    """
     permission_classes = (AllowAny,)
+
+    def get(self, request, format=None):
+        podcasts = models.Podcast.objects.all()
+        serializer = serializers.PodcastSerializer(podcasts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = serializers.PodcastSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PodcastDetail(APIView):
+    """
+    Retrieve, update or delete a podcast instance.
+    """
+    permission_classes = (AllowAny,)
+
+    def get_object(self, pk):
+      try:
+          return models.Podcast.objects.get(pk=pk)
+      except models.Podcast.DoesNotExist:
+          raise Http404
+
+    def get(self, request, pk, format=None):
+        podcast = self.get_object(pk)
+        serializer = serializers.PodcastSerializer(podcast)
+        return Response(serializer.data)
+
+
+class PodcastEpisodeList(APIView):
+    """
+    List all podcasts episodes, or create a new podcast episode.
+    """
+    permission_classes = (AllowAny,)
+
+    def get(self, request, format=None):
+        podcast_episodes = models.PodcastEpisode.objects.all()
+        serializer = serializers.PodcastEpisodeSerializer(podcast_episodes, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        print(request.data)
+        serializer = serializers.PodcastEpisodeSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PodcastEpisodeDetail(APIView):
+    """
+    Retrieve, update or delete a podcast episode instance.
+    """
+    permission_classes = (AllowAny,)
+
+    def get_object(self, pk):
+      try:
+          return models.PodcastEpisode.objects.get(pk=pk)
+      except models.PodcastEpisode.DoesNotExist:
+          raise Http404
+
+    def get(self, request, pk, format=None):
+        podcast_episodes = self.get_object(pk)
+        serializer = serializers.PodcastEpisodeSerializer(podcast_episodes)
+        return Response(serializer.data)
+
+
+class MotivationalSpeechList(APIView):
+    """
+    List all motivational speeches, or create a new motivational speech.
+    """
+    permission_classes = (AllowAny,)
+
+    def get(self, request, format=None):
+        motivational_speeches = models.MotivationalSpeech.objects.all()
+        serializer = serializers.MotivationalSpeechSerializer(motivational_speeches, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = serializers.MotivationalSpeechSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MotivationalSpeechDetail(APIView):
+    """
+    Retrieve, update or delete a motivational speech instance.
+    """
+    permission_classes = (AllowAny,)
+
+    def get_object(self, pk):
+      try:
+          return models.MotivationalSpeech.objects.get(pk=pk)
+      except models.MotivationalSpeech.DoesNotExist:
+          raise Http404
+
+    def get(self, request, pk, format=None):
+        motivational_speech = self.get_object(pk)
+        serializer = serializers.MotivationalSpeechSerializer(motivational_speech)
+        return Response(serializer.data)
 
 
 class CommentsAPIView(generics.ListAPIView):
