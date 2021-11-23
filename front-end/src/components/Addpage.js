@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import AddBookForm from './AddbookForm';
-import AddPodcastForm from './AddpodcastForm';
-import AddPodcastEpisodeForm from './AddpodcastEpisodeForm';
-import AddMotivationalSpeechForm from './AddMotivationalSpeechForm';
+import AddResourceForm from './AddResourceForm';
 import '../css/Addpage.css';
 
 function AddPage() {
@@ -10,8 +7,9 @@ function AddPage() {
 
   const selectResourceType = (e) => {
     const selectedIndex = e.target.selectedIndex;
-    const selectedOption = e.target.options[selectedIndex].text;
+    const selectedOption = e.target.options[selectedIndex].value;
     setResourceType(selectedOption)
+    console.log(`selectedOption: ${selectedOption}`)
   }
 
   const submitClicked = () => {
@@ -28,23 +26,32 @@ function AddPage() {
         id="resources"
         data-test="select-resource-type">
         <option value="">Select resource type</option>
-        <option value="Book">Book</option>
-        <option value="Podcast">Podcast</option>
-        <option value="Podcast-Episode">Podcast Episode</option>
-        <option value="Motivational-Speech">Motivational Speech</option>
+        <option value="book">Book</option>
+        <option value="podcast">Podcast</option>
+        <option value="podcast-episode">Podcast Episode</option>
+        <option value="motivational-speech">Motivational Speech</option>
       </select>
 
-      {resourceType === 'Book' && <div>
-        <AddBookForm submitClicked={submitClicked}/>
+
+      {resourceType === 'book' && <div>
+        <AddResourceForm
+          resourceType={resourceType}
+          submitClicked={submitClicked}/>
       </div>}
-      {resourceType === 'Podcast' &&  <div>
-        <AddPodcastForm submitClicked={submitClicked}/>
+      {resourceType === 'podcast' &&  <div>
+        <AddResourceForm
+          resourceType={resourceType}
+          submitClicked={submitClicked}/>
       </div>}
-      {resourceType === 'Podcast Episode' &&  <div>
-        <AddPodcastEpisodeForm submitClicked={submitClicked}/>
+      {resourceType === 'podcast-episode' &&  <div>
+        <AddResourceForm
+          resourceType={resourceType}
+          submitClicked={submitClicked}/>
       </div>}
-      {resourceType === 'Motivational Speech' && <div>
-        <AddMotivationalSpeechForm submitClicked={submitClicked}/>
+      {resourceType === 'motivational-speech' && <div>
+        <AddResourceForm
+          resourceType={resourceType}
+         submitClicked={submitClicked}/>
       </div>}
 
       
