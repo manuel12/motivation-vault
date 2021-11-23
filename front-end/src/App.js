@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './css/App.css';
 
 import Auth from './components/Auth';
 import Header from './components/Header';
@@ -16,6 +15,7 @@ import DetailPage from './components/Detailpage';
 import AboutPage from './components/Aboutpage';
 import NotFound from './components/NotFound';
 import useToken from './components/useToken';
+import './css/App.css';
 
 function App() {    
   const {token, setToken, deleteToken} = useToken()
