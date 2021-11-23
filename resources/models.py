@@ -29,6 +29,9 @@ class Resource(models.Model):
           })
         return comments
 
+    class Meta:
+        ordering = ['-id']
+
     def num_ratings(self):
         ratings = Rating.objects.filter(resource=self)
         return len(ratings)
@@ -74,7 +77,6 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-
 
 
 class Rating(models.Model):
