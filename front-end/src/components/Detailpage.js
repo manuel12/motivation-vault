@@ -37,7 +37,7 @@ function DetailPage() {
         <p className="paragraph-container">{resource.description}</p>
       </div>
 
-      <ValueSection 
+      <ValueSection
         resource={resource}/>
       <CommentSection
         resourceId={id}
