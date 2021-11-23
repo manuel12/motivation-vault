@@ -49,7 +49,7 @@ export class API {
       headers:
       {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${ options.token}`
+        'Authorization': `Token ${options.token}`
       },
       body: JSON.stringify(options.body)
     }).then(resp => resp.json())
