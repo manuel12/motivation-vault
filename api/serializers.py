@@ -48,7 +48,7 @@ class MotivationalSpeechSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Comment
-        fields = ('id', 'get_username', 'text', 'get_datetime')
+        fields = ('id', 'resource', 'user', 'get_username', 'text', 'get_datetime')
 
 
 class RatingSerializer(serializers.ModelSerializer):
