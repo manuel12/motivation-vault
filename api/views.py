@@ -1,5 +1,4 @@
 from django.http.response import Http404
-from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -135,9 +134,7 @@ class PodcastEpisodeList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        print(request.data)
         serializer = serializers.PodcastEpisodeSerializer(data=request.data)
-        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -199,16 +196,30 @@ class MotivationalSpeechDetail(APIView):
         return Response(serializer.data)
 
 
-class CommentsAPIView(generics.ListAPIView):
-    queryset = models.Comment.objects.all()
-    serializer_class = serializers.CommentSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
+class CommentList(APIView):
+    """
+    List all comments, create a new comment, or delete all comments.
+    """
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         comments = models.Comment.objects.filter(user=request.user)
         serializer = serializers.CommentSerializer(comments, many=True)
         return Response(serializer.data)
+
+    def post(self, request, format=None):
+        request.data['user'] = request.user.pk
+        serializer = serializers.CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request):
+        comments = models.Comment.objects.all()
+        comments.delete()
+        return Response('Comments deleted!', status=status.HTTP_204_NO_CONTENT)
 
 
 class RatingsAPIView(generics.ListAPIView):
