@@ -15,13 +15,13 @@ urlpatterns = [
   path('podcasts/', views.PodcastList.as_view()),
   path('podcasts/<int:pk>/', views.PodcastDetail.as_view()),
   
-  path('podcasts-episodes/', views.PodcastEpisodeList.as_view()),
-  path('podcasts-episodes/<int:pk>/', views.PodcastEpisodeDetail.as_view()),
+  path('podcast-episodes/', views.PodcastEpisodeList.as_view()),
+  path('podcast-episodes/<int:pk>/', views.PodcastEpisodeDetail.as_view()),
 
   path('motivational-speeches/', views.MotivationalSpeechList.as_view()),
   path('motivational-speeches/<int:pk>/', views.MotivationalSpeechDetail.as_view()),
 
-  path('comments/', views.CommentsAPIView.as_view()),
+  path('comments/', views.CommentList.as_view()),
   path('ratings/', views.RatingsAPIView.as_view()),
 ]
 
