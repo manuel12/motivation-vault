@@ -5,13 +5,12 @@ The API Resource is an application that hosts optimistic, inspiring, motivationa
 
 ## Installation - Django
 
-   For installing the Django application run:
-
-     python -m pip install -r requirements.txt --upgrade pip
-
-   For installing the Python virtual environment  run:
+   For installing the Django application clone the repository and run:
 
      pipenv install
+
+   This will install the virtual enviroments and all dependencies.
+
 
    Run migrations: 
 	
@@ -21,6 +20,12 @@ The API Resource is an application that hosts optimistic, inspiring, motivationa
    Create superuser:
 
     python manage.py createsuperuser
+    
+   Now you can start server...
+   
+    python manage.py runserver
+   
+   ...and visit http://localhost:8000/api/
 
 ## Installation - React
 For installing the React application go to the front-end folder and run:
