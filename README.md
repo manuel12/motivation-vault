@@ -30,12 +30,6 @@ For installing the React application go to the front-end folder and run:
   And after install is finished run:
 
     npm start
-
-## Running tests
-
-For running the end-to-end tests run:
-
-    npm test:run
     
 ## Uses
 
