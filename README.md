@@ -9,7 +9,11 @@ The API Resource is an application that hosts optimistic, inspiring, motivationa
 
      pipenv install
 
-   This will install the virtual enviroments and all dependencies.
+   This will install the virtual environment and all dependencies.
+   
+   Now start the virtual envrironment shell:
+    
+     pipenv shell
 
 
    Run migrations: 
