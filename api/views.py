@@ -1,3 +1,4 @@
+import re
 from django.http.response import Http404
 from rest_framework import viewsets
 from rest_framework import generics
@@ -200,11 +201,11 @@ class CommentList(APIView):
     """
     List all comments, create a new comment, or delete all comments.
     """
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated,)
+    #authentication_classes = (TokenAuthentication, )
+    permission_classes = (AllowAny,) # IsAuthenticated,)
 
     def get(self, request, format=None):
-        comments = models.Comment.objects.filter(user=request.user)
+        comments = models.Comment.objects.all()
         serializer = serializers.CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
@@ -222,8 +223,28 @@ class CommentList(APIView):
         return Response('Comments deleted!', status=status.HTTP_204_NO_CONTENT)
 
 
-class RatingsAPIView(generics.ListAPIView):
-    queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
-    # authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny, )
+class RatingList(APIView):
+    """
+    List all ratings, or create a new rating.
+    """
+    #authentication_classes = (TokenAuthentication, )
+    permission_classes = (AllowAny
+      #IsAuthenticated
+    ,)
+
+    def get(self, request, format=None):
+        ratings = models.Rating.objects.all() 
+        serializer = serializers.RatingSerializer(ratings, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        rating_data = {
+          'user': 1, #request.user.pk,
+          'resource': request.data['resource'],
+          'stars': int(request.data['stars'])
+        }
+        serializer = serializers.RatingSerializer(data=rating_data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
