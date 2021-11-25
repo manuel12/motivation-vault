@@ -15,43 +15,46 @@ class UserSerializer(serializers.ModelSerializer):
         return user
         
 
+base_fields = ('id', 'title', 'author', 'description', 'imageURL')
+ratings_fields = ('avg_rating', 'num_ratings')
+
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Resource
-        fields = ('id', 'title', 'author', 'description', 'imageURL', 'value_one', 'value_two', 'value_three', 'get_comments', 'num_ratings', 'avg_rating')
+        fields = base_fields + ('value_one', 'value_two', 'value_three', 'get_comments') + ratings_fields
 
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Book
-        fields = ('id', 'title', 'subtitle', 'author', 'description', 'isbn', 'imageURL', 'avg_rating') 
+        fields = base_fields + ('subtitle', 'isbn') + ratings_fields 
 
 
 class PodcastSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Podcast
-        fields = ('id', 'title', 'author', 'description', 'website_url', 'youtube_url', 'imageURL', 'avg_rating')
+        fields = base_fields + ('website_url', 'youtube_url') + ratings_fields
 
 
 class PodcastEpisodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PodcastEpisode
-        fields = ('id', 'title', 'author', 'from_podcast', 'description', 'youtube_episode_url', 'spotify_episode_url', 'imageURL', 'avg_rating')
+        fields = base_fields + ('from_podcast', 'youtube_episode_url', 'spotify_episode_url') + ratings_fields
 
 
 class MotivationalSpeechSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.MotivationalSpeech
-        fields = ('id', 'title', 'author', 'description', 'youtube_url', 'imageURL', 'avg_rating')
+        fields = base_fields + ('youtube_url',) + ratings_fields 
 
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Comment
-        fields = ('id', 'resource', 'user', 'get_username', 'text', 'get_datetime')
+        fields = ('id', 'resource', 'text', 'get_username', 'get_datetime')
 
 
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Rating
-        fields = ('id', 'resource', 'user', 'stars')
+        fields = ('id', 'resource', 'user', 'stars', 'get_resource_title', 'get_username')
