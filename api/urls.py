@@ -22,7 +22,7 @@ urlpatterns = [
   path('motivational-speeches/<int:pk>/', views.MotivationalSpeechDetail.as_view()),
 
   path('comments/', views.CommentList.as_view()),
-  path('ratings/', views.RatingsAPIView.as_view()),
+  path('ratings/', views.RatingList.as_view()),
 ]
 
 urlpatterns += router.urls
