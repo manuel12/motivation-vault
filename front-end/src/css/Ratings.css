@@ -2,17 +2,31 @@
   margin: 10px 0;
 }
 
-
 .ratings-container .fa-star {
   font-size: 1.4rem;
 }
 
 .orange {
   color: orange;
-  cursor: pointer;
 }
 
 .white {
+  display: none;
   color: white;
+  cursor: none;
+}
+
+.num-ratings {
+  color: rgb(105, 105, 105);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0 5px;
+  display: inline;
+}
+
+.add-rating {
+  display: inline;
   cursor: pointer;
+  color: red;
+  size: 1.3rem;
 }
