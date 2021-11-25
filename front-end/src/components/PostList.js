@@ -13,6 +13,7 @@ function PostList(props) {
         description={resource.description}
         imageURL={resource.imageURL}
         rating={resource.avg_rating}
+        numRatings={resource.num_ratings}
         />
       ))}
     </div>
