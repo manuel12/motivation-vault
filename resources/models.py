@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+import resources
+
 # Create your models here.
 
 class Resource(models.Model):
@@ -69,8 +71,7 @@ class Comment(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
 
     def get_username(self):
-        user = User.objects.get(id=self.user.id)
-        return user.username
+        return self.user.username
 
     def get_datetime(self):
         return self.date_created.strftime('%Y/%m/%d %H:%M:%S')
@@ -85,6 +86,13 @@ class Rating(models.Model):
     stars = models.IntegerField(validators=[MinValueValidator(1),
                                             MaxValueValidator(5)])
 
+    def get_resource_title(self):
+        return self.resource.title
+
+    def get_username(self):
+        return self.user.username
+
     class Meta:
         unique_together = (('user', 'resource'),)
         index_together = (('user', 'resource'),)
+
