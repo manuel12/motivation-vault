@@ -201,8 +201,8 @@ class CommentList(APIView):
     """
     List all comments, create a new comment, or delete all comments.
     """
-    #authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny,) # IsAuthenticated,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = ( IsAuthenticated,)
 
     def get(self, request, format=None):
         comments = models.Comment.objects.all()
@@ -210,8 +210,12 @@ class CommentList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        request.data['user'] = request.user.pk
-        serializer = serializers.CommentSerializer(data=request.data)
+        comment_data = {
+          'user': request.user.pk,
+          'resource': request.data['resource'],
+          'text': request.data['text'],
+        }
+        serializer = serializers.CommentSerializer(data=comment_data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
