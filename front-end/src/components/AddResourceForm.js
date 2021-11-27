@@ -154,8 +154,6 @@ function AddResourceForm(props) {
       if (props.resourceType === "motivational-speech") {
         newResource["youtube_url"] = youtubeUrl;
       }
-
-      console.log(newResource);
       
       const resourcePlural = props.resourceType === 'motivational-speech' 
         ? `${props.resourceType}es` : `${props.resourceType}s`;
