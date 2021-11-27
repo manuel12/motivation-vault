@@ -9,7 +9,6 @@ function AddPage() {
     const selectedIndex = e.target.selectedIndex;
     const selectedOption = e.target.options[selectedIndex].value;
     setResourceType(selectedOption)
-    console.log(`selectedOption: ${selectedOption}`)
   }
 
   const submitClicked = () => {
