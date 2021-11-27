@@ -13,7 +13,7 @@ function CommentSection(props) {
       const newComment = {
         'resource': props.resourceId,
         'text': commentText,
-        'date': new Date().toISOString()
+        'date': new Date().toISOString(),
       }
 
       fetch(`http://127.0.0.1:8000/api/comments/`, {
@@ -26,6 +26,7 @@ function CommentSection(props) {
       })
       .then( (resp) => resp.json())
       .then( (resp) => {
+
         newComment['user'] = resp['get_username']
 
         const updatedComments = [newComment, ...comments];
