@@ -11,7 +11,6 @@ function PodcastEpisodePage() {
       setResourceFunc: setResources})
   }, [])
 
-  console.log(resources)
   return (
     <div>
       <PostList resources={resources}/>
