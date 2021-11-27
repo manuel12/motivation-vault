@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { API } from '../api-service';
 import CommentSection from './CommentSection';
-import Ratings from './Ratings';
+import Rating from './Ratings';
 import ValueSection from './ValueSection';
 import "../css/Detailpage.css"
 
@@ -26,9 +26,11 @@ function DetailPage() {
         <div className="author-container">
           By <strong>{resource.author}</strong>
         </div>
-        <Ratings
-          rating={resource.avg_rating}
-          num_ratings={resource.num_ratings}/>
+        <Rating
+          resourceId={resource.id}
+          avgRating={resource.avg_rating}
+          numRatings={resource.num_ratings}
+          addRatingBtn={true}/>
         <img 
           src={resource.imageURL}
           className="image"
