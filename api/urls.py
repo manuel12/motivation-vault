@@ -23,6 +23,8 @@ urlpatterns = [
 
   path('comments/', views.CommentList.as_view()),
   path('ratings/', views.RatingList.as_view()),
+
+  path('delete-test-data/', views.delete_test_data)
 ]
 
 urlpatterns += router.urls
