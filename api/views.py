@@ -1,7 +1,6 @@
-import re
 from django.http.response import Http404
 from rest_framework import viewsets
-from rest_framework import generics
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -202,7 +201,7 @@ class CommentList(APIView):
     List all comments, create a new comment, or delete all comments.
     """
     authentication_classes = (TokenAuthentication, )
-    permission_classes = ( IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         comments = models.Comment.objects.all()
@@ -231,10 +230,8 @@ class RatingList(APIView):
     """
     List all ratings, or create a new rating.
     """
-    #authentication_classes = (TokenAuthentication, )
-    permission_classes = (AllowAny
-      #IsAuthenticated
-    ,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         ratings = models.Rating.objects.all() 
@@ -242,13 +239,45 @@ class RatingList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        rating_data = {
-          'user': 1, #request.user.pk,
-          'resource': request.data['resource'],
-          'stars': int(request.data['stars'])
-        }
-        serializer = serializers.RatingSerializer(data=rating_data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if 'stars' in request.data:
+            user = User.objects.get(pk=request.user.pk)
+            resource = models.Resource.objects.get(pk=request.data['resource'])
+            stars = int(request.data['stars'])
+
+            try:
+                rating = models.Rating.objects.get(user=user.pk, resource=resource.pk)
+                rating.stars = stars
+                rating.clean_fields()
+                rating.save()
+
+                serializer = serializers.RatingSerializer(rating, many=False)
+                response = {'message': 'Rating updated', 'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
+            except:
+                rating = models.Rating.objects.create(user=user, resource=resource, stars=stars)
+                rating.clean_fields()
+
+                serializer = serializers.RatingSerializer(rating, many=False)
+                response = {'message': 'Rating created', 'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
+        else:
+            response = {'message': 'You need to provide stars', 'data': request.data}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+
+def delete_test_data(request):
+    """
+    Delete all resources, comments and ratins created by tests.
+    """
+    test_resources = models.Resource.objects.filter(title='Test Title')
+    for resource in test_resources:
+        resource.delete()
+
+    test_comments = models.Resource.objects.filter(title='[Test comment]')
+    for comments in test_comments:
+        comments.delete()
+
+    return Response('Resource and comments deleted!', status=status.HTTP_204_NO_CONTENT)
