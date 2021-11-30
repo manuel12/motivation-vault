@@ -18,7 +18,7 @@ function Post(props) {
               by <h5 className="author-name">{props.author}</h5>
             </div>
             <Ratings
-              rating={props.rating}
+              avgRating={props.avgRating}
               numRatings={props.numRatings}/>
             <p className="description-container">{
               props.description &&
