@@ -10,6 +10,7 @@ function Input(props) {
         id={props.item?.toLowerCase()} 
         type={props.itemType}
         placeholder={props?.item}
+        defaultValue={props?.defaultValue}
         value={props.value}
         onChange={props.onChange}
         data-test={props?.dataAttr}/> 
