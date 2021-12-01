@@ -38,7 +38,6 @@ function AddResourceForm(props) {
   let [podcastError, setPodcastError] = useState("");
   let [youtubeEpisodeUrlError, setYoutubeEpisodeUrlError] = useState("");
   let [spotifyEpisodeUrlError, setSpotifyEpisodeUrlError] = useState("");
-  
 
   const validate = () => {
     let validInput = true;
@@ -154,9 +153,11 @@ function AddResourceForm(props) {
       if (props.resourceType === "motivational-speech") {
         newResource["youtube_url"] = youtubeUrl;
       }
-      
-      const resourcePlural = props.resourceType === 'motivational-speech' 
-        ? `${props.resourceType}es` : `${props.resourceType}s`;
+
+      const resourcePlural =
+        props.resourceType === "motivational-speech"
+          ? `${props.resourceType}es`
+          : `${props.resourceType}s`;
 
       fetch(`http://127.0.0.1:8000/api/${resourcePlural}/`, {
         method: "POST",
@@ -165,11 +166,11 @@ function AddResourceForm(props) {
         },
         body: JSON.stringify(newResource),
       })
-        .then( (resp) => resp.json())
-        .then( (resp) => {
+        .then((resp) => resp.json())
+        .then((resp) => {
           console.log(resp);
         })
-        .catch( (error) => console.log(error));
+        .catch((error) => console.log(error));
 
       setTitle("");
       setAuthor("");
@@ -188,8 +189,8 @@ function AddResourceForm(props) {
       setValueOne("");
       setValueTwo("");
       setValueThree("");
-      
-      props.submitClicked()
+
+      props.submitClicked();
     }
   };
 
@@ -284,10 +285,9 @@ function AddResourceForm(props) {
 
       {props.resourceType === "podcast-episode" && (
         <React.Fragment>
-          {podcastError ? 
-            <label data-test="select-podcast-error">
-              *{podcastError}
-            </label> : null}
+          {podcastError ? (
+            <label data-test="select-podcast-error">*{podcastError}</label>
+          ) : null}
           <select
             name="select-podcast"
             id="select-podcast"
