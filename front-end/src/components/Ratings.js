@@ -1,35 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import "../css/Ratings.css";
 
 function Ratings(props) {
   let [showNumberInput, setShowNumberInput] = useState(false);
-  let [rating, setRating] = useState(1);
+  let [rating, setRating] = useState(-1);
+  let [ratingInputError, setRatingInputError] = useState(false);
+
+  useEffect(() => setRating(props.avgRating), [props.avgRating]);
 
   const handleClick = () => {
     setShowNumberInput(true);
   };
 
   const handleSubmitRating = () => {
-    const newRating = {
-      resource: props.resourceId,
-      stars: rating,
-    };
+    if (rating >= 1 && rating <= 5) {
+      const newRating = {
+        resource: props.resourceId,
+        stars: rating,
+      };
 
-    fetch(`http://127.0.0.1:8000/api/ratings/`, {
-      method: "POST",
+      fetch(`http://127.0.0.1:8000/api/ratings/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token 51d55878caa6db7066be358ad1cd51eb90d88897`,
+        },
+        body: JSON.stringify(newRating),
+      })
+        .then((resp) => resp.json())
+        .then((resp) => {
+          console.log(resp);
+          getDetails();
+        })
+        .catch((error) => console.warn(error));
+      setShowNumberInput(false);
+    } else {
+      setRatingInputError(true);
+    }
+  };
+
+  const getDetails = () => {
+    fetch(`http://127.0.0.1:8000/api/${props.resourceId}/`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token 51d55878caa6db7066be358ad1cd51eb90d88897`,
       },
-      body: JSON.stringify(newRating),
     })
       .then((resp) => resp.json())
-      .then((resp) => {
-        console.log(resp);
-      })
-      .catch((error) => console.warn(error));
+      .then((resp) => props.updateResource(resp))
+      .catch((error) => console.log(error));
   };
 
   let avgRating = props.avgRating;
@@ -79,20 +101,27 @@ function Ratings(props) {
       ) : null}
       {showNumberInput ? (
         <div>
+          {ratingInputError ? (
+            <label data-test="add-rating-input-error">
+              Rating needs to be between 1 and 5
+            </label>
+          ) : null}
           <input
             type="number"
             max="5"
             min="1"
-            defaultValue="1"
+            defaultValue="0"
+            value={rating}
             onChange={(evt) => {
               setRating(evt.target.value);
             }}
             data-test="add-rating-input"
           />
-          <button 
-            type="button" 
+          <button
+            type="button"
             onClick={handleSubmitRating}
-            data-test="add-rating-submit-button">
+            data-test="add-rating-submit-button"
+          >
             Submit
           </button>
         </div>
