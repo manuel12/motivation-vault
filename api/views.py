@@ -270,14 +270,24 @@ class RatingList(APIView):
 
 def delete_test_data(request):
     """
-    Delete all resources, comments and ratins created by tests.
+    Delete all resources, comments and ratings created by tests.
     """
     test_resources = models.Resource.objects.filter(title='Test Title')
     for resource in test_resources:
         resource.delete()
 
-    test_comments = models.Resource.objects.filter(title='[Test comment]')
+    test_comments = models.Comment.objects.filter(text__startswith='[Test comment]')
     for comments in test_comments:
         comments.delete()
+
+    # Delete all test user ratings.
+    for i in range(1,6):
+      testusers = User.objects.filter(username=f'testuser{i}')
+
+      for testuser in testusers:
+        test_ratings = models.Rating.objects.filter(user=testuser.pk)
+
+        for rating in test_ratings:
+          rating.delete()
 
     return Response('Resource and comments deleted!', status=status.HTTP_204_NO_CONTENT)
