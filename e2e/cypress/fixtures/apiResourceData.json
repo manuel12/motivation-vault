@@ -1,0 +1,24 @@
+{
+  "title": "Test Title",
+  "author": "Test Author",
+  "subtitle": "Test Subtitle",
+  "isbn": 1234567891011,
+
+  "from_podcast": 88,
+  "website_url": "http://wwww.google.com/",
+  "spotify_url": "http://open.spotify.com",
+  "youtube_url": "https://www.youtube.com/",
+
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat.",
+
+  "valueOne": "Test value one",
+  "valueTwo": "Test value two",
+  "valueThree": "Test value three",
+
+  "invalidData": {
+    "subtitle": "",
+    "isbn": "abcdefghijklmnp",
+    "website_url": "gooole.com",
+    "youtube_url": "youtube.com"
+  }
+}

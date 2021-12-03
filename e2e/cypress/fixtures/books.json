@@ -1,0 +1,83 @@
+[
+  {
+    "id": 2,
+    "title": "Can't Hurt Me",
+    "subtitle": "Master Your Mind and Defy the Odds",
+    "author": "David Goggins",
+    "description": "",
+    "isbn": "9781544507859",
+    "imageURL": "https://www.tonal.com/wp-content/uploads/2021/01/Blog_Bookclub_CantHurtMe_1200x800.png?resize=1200%2C800"
+  },
+  {
+    "id": 3,
+    "title": "The PMA Effect",
+    "subtitle": "How a positive mental attitude can make you the badass you were born to be",
+    "author": "John Joseph",
+    "description": "",
+    "isbn": "9780998344744",
+    "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.gr-assets.com%2Fimages%2FS%2Fcompressed.photo.goodreads.com%2Fbooks%2F1533287067i%2F41034115._UY630_SR1200%2C630_.jpg&f=1&nofb=1"
+  },
+  {
+    "id": 4,
+    "title": "Finding Ultra",
+    "subtitle": "Rejecting Middle Age, Becoming One of the World's Fittest Men, and Discovering Myself",
+    "author": "Rich Roll",
+    "description": "",
+    "isbn": "9780307952202",
+    "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.csmonitor.com%2Fcsm%2F2013%2F03%2FRB7.jpg%3Falias%3Dstandard_900x600nc&f=1&nofb=1"
+  },
+  {
+    "id": 5,
+    "title": "The Wim Hof Method",
+    "subtitle": "Activate Your Full Human Potential",
+    "author": "Wim Hof",
+    "description": "",
+    "isbn": "9781683644095",
+    "imageURL": "https://dynamic.indigoimages.ca/books/168364610x.jpg?scaleup=true&width=614&maxheight=614&quality=85&lang=en"
+  },
+  {
+    "id": 6,
+    "title": "12 Rules for Life",
+    "subtitle": "An Antidote to Chaos",
+    "author": "Jordan B. Peterson",
+    "description": "",
+    "isbn": "9780345816023",
+    "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fkbimages1-a.akamaihd.net%2F6874cf56-3c81-4d9c-be11-b0c29cbaa032%2F1200%2F1200%2FFalse%2F12-rules-for-life-3.jpg&f=1&nofb=1"
+  },
+  {
+    "id": 7,
+    "title": "Beyond Order",
+    "subtitle": "More Rules for Life",
+    "author": "Jordan B. Peterson",
+    "description": "",
+    "isbn": "9780593084649",
+    "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.dDVtBoruPKuLdosSmi5vGgHaD4%26pid%3DApi&f=1"
+  },
+  {
+    "id": 14,
+    "title": "Winning",
+    "subtitle": "The Unforgiving Race to Greatness",
+    "author": "Tim Grover",
+    "description": "From the elite performance coach for Michael Jordan, Kobe Bryant, Dwyane Wade, and many others—and the author of the powerful bestseller RELENTLESS—a no-holds-barred formula for winning that is ideal for business people, athletes, and anybody wanting to achieve success.\r\n\r\nWhether you’re an athlete striving to win, an entrepreneur building a business, a CEO managing an empire, a salesperson looking to close a deal, or a high achiever determined to stand in the winner’s circle, W1NNING offers thirteen key principles for ramping up your performance to the maximum. If you’re addicted to the taste of success and crave more, then you’re ready for the results-driven performance formula found here. And if you’re already winning and want to learn how to execute excellence repeatedly—so you can own not just this moment, but the next, and the next—then W1NNING  is for you.",
+    "isbn": "978198216886",
+    "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftimgrover.com%2Fwp-content%2Fuploads%2F2021%2F04%2Fwinningbook-OG.jpg&f=1&nofb=1"
+  },
+  {
+    "id": 15,
+    "title": "Relentless",
+    "subtitle": "From Good to Great to Unstoppable",
+    "author": "Tim Grover",
+    "description": "If you’ve never heard of him, he’s the guy who helped Michael Jordan, Kobe Bryant, Dwyane Wade, and other Basketball champions get to the top – and most importantly, stay at the top.\r\n\r\nHe’s worked with hundreds of top athletes and is an international authority when it comes to sports performance and motivation. As Kobe says, he knows more about the mental side of sports than anyone else.\r\n\r\nIn his book Relentless: From Good to Great to Unstoppable, he shares his insights into the mindsets of the most successful and accomplished athletes of our time. He shows us what it takes to go from good to great to unstoppable.",
+    "isbn": "978147671420",
+    "imageURL": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi.gr-assets.com%2Fimages%2FS%2Fcompressed.photo.goodreads.com%2Fbooks%2F1394419997i%2F17354208._UY630_SR1200%2C630_.jpg&f=1&nofb=1"
+  },
+  {
+    "id": 16,
+    "title": "In Order to Live",
+    "subtitle": "A North Korean Girl's Journey to Freedom",
+    "author": "Yeonmi Park",
+    "description": "",
+    "isbn": "978014310974",
+    "imageURL": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F1.bp.blogspot.com%2F-wLk4ek6L4N0%2FVoQF8ubIciI%2FAAAAAAAAEtc%2FYE_cF_NEyvc%2Fs1600%2FInOrdertoLive01.jpg&f=1&nofb=1"
+  }
+]

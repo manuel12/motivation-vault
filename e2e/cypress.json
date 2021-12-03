@@ -1,0 +1,13 @@
+{
+  "baseUrl": "http://localhost:3000/",
+  "adminUrl":  "http://localhost:8000/admin/",
+  
+  "addBookUrl": "http://localhost:8000/admin/resources/book/add/",
+  "addPodcastUrl": "http://localhost:8000/admin/resources/podcast/add/",
+  "addMotivationalSpeechUrl": "http://localhost:8000/admin/resources/motivationalspeech/add/",
+  
+  "commentsUrl": "http://localhost:8000/admin/resources/comment/",
+
+
+  "integrationFolder": "cypress/integration/"
+}
