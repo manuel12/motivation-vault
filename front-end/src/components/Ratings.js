@@ -62,35 +62,35 @@ function Ratings(props) {
       <FontAwesomeIcon
         icon={faStar}
         className={avgRating > 0 ? "orange" : "white"}
-        data-test={`star-icon-${1}`}
+        data-test="star-icon-1"
       />
       <FontAwesomeIcon
         icon={faStar}
         className={avgRating > 1 ? "orange" : "white"}
-        data-test={`star-icon-${2}`}
+        data-test="star-icon-2"
       />
       <FontAwesomeIcon
         icon={faStar}
         className={avgRating > 2 ? "orange" : "white"}
-        data-test={`star-icon-${3}`}
+        data-test="star-icon-3"
       />
       <FontAwesomeIcon
         icon={faStar}
         className={avgRating > 3 ? "orange" : "white"}
-        data-test={`star-icon-${4}`}
+        data-test="star-icon-4"
       />
       <FontAwesomeIcon
         icon={faStar}
         className={avgRating > 4 ? "orange" : "white"}
-        data-test={`star-icon-${5}`}
+        data-test="star-icon-5"
       />
 
       <span className="num-ratings" data-test="num-ratings">
-        (
-        {`${numRatings} 
-            ${numRatings !== 1 ? "reviews" : "review"}`}
-        )
+        {numRatings !== 1
+          ? `(${numRatings} reviews)`
+          : `(${numRatings} review)`}
       </span>
+
       {props.addRatingBtn ? (
         <FontAwesomeIcon
           icon={faPlusSquare}
@@ -99,13 +99,15 @@ function Ratings(props) {
           data-test="add-rating-button"
         />
       ) : null}
+
       {showNumberInput ? (
-        <div>
+        <div className="rating-input-form" data-test="rating-input-form">
           {ratingInputError ? (
             <label data-test="add-rating-input-error">
               Rating needs to be between 1 and 5
             </label>
           ) : null}
+
           <input
             type="number"
             max="5"
@@ -117,6 +119,7 @@ function Ratings(props) {
             }}
             data-test="add-rating-input"
           />
+
           <button
             type="button"
             onClick={handleSubmitRating}
@@ -127,7 +130,6 @@ function Ratings(props) {
         </div>
       ) : null}
     </div>
-    // : null
   );
 }
 
