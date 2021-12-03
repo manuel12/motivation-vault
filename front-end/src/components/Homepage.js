@@ -12,7 +12,7 @@ function HomePage(props) {
   }, [])
 
   return (
-    <div>
+    <div className="homepage">
       <PostList resources={resources}/>
     </div>
   )
