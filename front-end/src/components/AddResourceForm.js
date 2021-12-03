@@ -298,9 +298,9 @@ function AddResourceForm(props) {
             data-test="select-podcast"
           >
             <option value="">Select podcast</option>
-            <option value="12">Impact Theory</option>
-            <option value="10">School of Greatness</option>
-            <option value="11">The Tim Ferris Show</option>
+            <option value="83">Impact Theory</option>
+            <option value="81">School of Greatness</option>
+            <option value="82">The Tim Ferris Show</option>
           </select>
 
           <Input
@@ -311,7 +311,7 @@ function AddResourceForm(props) {
             onChange={(evt) => {
               setSpotifyEpisodeUrl(evt.target.value);
             }}
-            dataAttr="website-url-input"
+            dataAttr="spotify-ep-url-input"
           />
 
           <Input
@@ -322,7 +322,7 @@ function AddResourceForm(props) {
             onChange={(evt) => {
               setYoutubeEpisodeUrl(evt.target.value);
             }}
-            dataAttr="youtube-url-input"
+            dataAttr="youtube-ep-url-input"
           />
         </React.Fragment>
       )}
