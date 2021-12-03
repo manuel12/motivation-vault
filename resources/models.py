@@ -70,11 +70,17 @@ class Comment(models.Model):
     text = models.TextField(blank=False, null=False)
     date_created = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return self.text
+
     def get_username(self):
         return self.user.username
 
     def get_datetime(self):
         return self.date_created.strftime('%Y/%m/%d %H:%M:%S')
+
+
+
 
     class Meta:
         ordering = ['-date_created']
