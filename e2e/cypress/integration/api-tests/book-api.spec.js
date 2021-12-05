@@ -11,19 +11,19 @@ describe("Book API 'GET' request", () => {
     );
   });
 
-  it.skip("should have status code 200", () => {
+  it("should have status code 200", () => {
     cy.request("http://localhost:8000/api/books/").then((response) => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it.skip("should return JSON", () => {
+  it("should return JSON", () => {
     cy.request("http://localhost:8000/api/books/").then((response) => {
       expect(response.headers).to.have.property("content-type", "application/json");
     });
   });
 
-  it.skip("should have book fields", () => {
+  it("should have book fields", () => {
     cy.request("http://localhost:8000/api/books/").then((response) => {
 
       const firstBook = response.body[0];
