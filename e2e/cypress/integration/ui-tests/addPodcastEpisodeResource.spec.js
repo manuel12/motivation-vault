@@ -39,11 +39,11 @@ describe("Add Resources", () => {
     cy.url().should("contain", "add/");
   });
 
-  it("should NOT add a podcast episode resource with indalid data", () => {
+  it("should NOT add a podcast episode resource with invalid data", () => {
     cy.fixture("invalidResourceData").then((invalidData) => {
       cy.addResourceWithUI("podcast-episode", invalidData);
 
-      cy.get("[data-test=spotify-ep-url-input]")
+      cy.get("[data-test=spotify-ep-url-input-error]")
         .should("be.visible")
         .and("contain.text", "Spotify episode URL has to be a valid url!");
 
