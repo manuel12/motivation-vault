@@ -38,13 +38,17 @@ describe("Add Resources", () => {
     cy.url().should("contain", "add/");
   });
 
-  it("should NOT add a podcast resource with indalid data", () => {
+  it("should NOT add a podcast resource with invalid data", () => {
     cy.fixture("invalidResourceData").then((invalidData) => {
       cy.addResourceWithUI("podcast", invalidData);
 
       cy.get("[data-test=website-url-input-error]")
         .should("be.visible")
         .and("contain.text", "Website URL has to be a valid url!");
+
+      cy.get("[data-test=spotify-url-input-error]")
+        .should("be.visible")
+        .and("contain.text", "Spotify URL has to be a valid url!");
 
       cy.get("[data-test=youtube-url-input-error]")
         .should("be.visible")
@@ -63,6 +67,7 @@ describe("Add Resources", () => {
       cy.get("[data-test=description-input]").type(resourceData.description);
 
       cy.get("[data-test=website-url-input]").type(resourceData.websiteUrl);
+      cy.get("[data-test=spotify-url-input]").type(resourceData.spotifyUrl);
       cy.get("[data-test=youtube-url-input]").type(resourceData.youtubeUrl);
 
       cy.get("[data-test=value-one-input]").type(resourceData.valueOne);
