@@ -1,11 +1,8 @@
 /// <reference types="cypress" />
 
-beforeEach(() => {
-  cy.deleteTestData()
-})
-
 describe("Book API 'GET' request", () => {
   before(() => {
+    cy.deleteTestData()
     cy.fixture("apiResourceData").then((testData) =>
       cy.addResourceWithAPI("book", testData)
     );
