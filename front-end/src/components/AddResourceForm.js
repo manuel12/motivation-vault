@@ -12,6 +12,7 @@ function AddResourceForm(props) {
 
   // => Podcast fields
   let [websiteUrl, setWebsiteUrl] = useState("");
+  let [spotifyUrl, setSpotifyUrl] = useState("");
   let [youtubeUrl, setYoutubeUrl] = useState("");
 
   // => Podcast Episode fields
@@ -32,6 +33,7 @@ function AddResourceForm(props) {
 
   // => Podcast fields
   let [websiteUrlError, setWebsiteUrlError] = useState("");
+  let [spotifyUrlError, setSpotifyUrlError] = useState("");
   let [youtubeUrlError, setYoutubeUrlError] = useState("");
 
   // => Podcast Episode fields
@@ -78,6 +80,13 @@ function AddResourceForm(props) {
         validInput = false;
       } else {
         setWebsiteUrlError("");
+      }
+
+      if (!spotifyUrl) {
+        setSpotifyUrlError("Spotify URL cannot be empty!");
+        validInput = false;
+      } else {
+        setSpotifyUrlError("");
       }
 
       if (!youtubeUrl) {
@@ -180,6 +189,7 @@ function AddResourceForm(props) {
       setIsbn("");
 
       setWebsiteUrl("");
+      setSpotifyUrl("");
       setYoutubeUrl("");
 
       setPodcast("");
@@ -195,7 +205,7 @@ function AddResourceForm(props) {
   };
 
   return (
-    <div className="add-motivational-speech-form">
+    <div className="add-resource-form">
       <Input
         error={titleError}
         item="Title"
@@ -268,6 +278,17 @@ function AddResourceForm(props) {
               setWebsiteUrl(evt.target.value);
             }}
             dataAttr="website-url-input"
+          />
+
+          <Input
+            error={spotifyUrlError}
+            item="Spotify Url"
+            itemType="text"
+            value={spotifyUrl}
+            onChange={(evt) => {
+              setYoutubeUrl(evt.target.value);
+            }}
+            dataAttr="spotify-url-input"
           />
 
           <Input
