@@ -3,19 +3,23 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-import resources
+from .utils import get_model_data
 
 # Create your models here.
+
+LOREM_IPSUM_LONG = get_model_data('loremIpsumLong')
+LOREM_IPSUM_SHORT = get_model_data('loremIpsumShort')
+IMAGE_URL = get_model_data('imageUrl')
 
 class Resource(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=100)
-    description = models.TextField(blank=True, default='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-    imageURL = models.URLField(default='https://addicted2success.com/wp-content/uploads/2019/04/Here-Are-4-Reasons-Why-You-Should-Have-a-Podcast-Youtube-Channel-or-Online-Show-400x240.png')
+    description = models.TextField(blank=True, default=LOREM_IPSUM_SHORT)
+    imageURL = models.URLField(default=IMAGE_URL)
     
-    value_one = models.TextField(default='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
-    value_two = models.TextField(default='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
-    value_three = models.TextField(default='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
+    value_one = models.TextField(default=LOREM_IPSUM_SHORT)
+    value_two = models.TextField(default=LOREM_IPSUM_SHORT)
+    value_three = models.TextField(default=LOREM_IPSUM_SHORT)
 
     def __str__(self):
         return self.title
@@ -31,9 +35,6 @@ class Resource(models.Model):
           })
         return comments
 
-    class Meta:
-        ordering = ['-id']
-
     def num_ratings(self):
         ratings = Rating.objects.filter(resource=self)
         return len(ratings)
@@ -42,6 +43,9 @@ class Resource(models.Model):
         ratings = Rating.objects.filter(resource=self)
         stars = sum([rating.stars for rating in ratings])
         return stars / len(ratings) if stars else 0
+
+    class Meta:
+      ordering = ['-id']
 
 
 class Book(Resource):
@@ -52,6 +56,7 @@ class Book(Resource):
 class Podcast(Resource):
     website_url = models.URLField(max_length=200)
     youtube_url = models.URLField(max_length=200)
+    spotify_url = models.URLField(max_length=200, default='http://open.spotify.com/')
 
 
 class PodcastEpisode(Resource):
@@ -78,9 +83,6 @@ class Comment(models.Model):
 
     def get_datetime(self):
         return self.date_created.strftime('%Y/%m/%d %H:%M:%S')
-
-
-
 
     class Meta:
         ordering = ['-date_created']
