@@ -24,18 +24,18 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
-  if(text) {
-    return originalFn(element, text, options)
+Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
+  if (text) {
+    return originalFn(element, text, options);
   }
-})
+});
 
 Cypress.Commands.add("loginAdmin", (username, password) => {
   cy.visit(Cypress.config().adminUrl);
   cy.get("#id_username")
-    .type(username ? username : Cypress.env('adminUser'))
+    .type(username ? username : Cypress.env("adminUser"))
     .get("#id_password")
-    .type(password ? password : Cypress.env('adminPass'))
+    .type(password ? password : Cypress.env("adminPass"))
     .get("[type=submit]")
     .click();
 });
@@ -43,9 +43,9 @@ Cypress.Commands.add("loginAdmin", (username, password) => {
 Cypress.Commands.add("login", (username, password) => {
   cy.visit("/");
   cy.get("#username")
-    .type(username ? username : Cypress.env('adminUser'))
+    .type(username ? username : Cypress.env("adminUser"))
     .get("#password")
-    .type(password ? password : Cypress.env('adminPass'))
+    .type(password ? password : Cypress.env("adminPass"))
     .get("#submitButton")
     .click();
 });
@@ -59,9 +59,10 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({username, password}),
-  }).then((resp) => {
-    token = resp.body.token;
+    body: JSON.stringify({ username, password }),
+  }).then((response) => {
+    token = response.body.token;
+    expect(response.status).to.eq(200);
   });
 
   cy.visit("/", {
@@ -81,6 +82,8 @@ Cypress.Commands.add("deleteTestData", () => {
       "Content-Type": "application/json",
       Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
     },
+  }).then((response) => {
+    expect(response.status).to.eq(204);
   });
 });
 
@@ -94,26 +97,27 @@ Cypress.Commands.add(
     cy.get("[data-test=title-input]").type(testData.title);
     cy.get("[data-test=author-input]").type(testData.author);
 
-    switch(resourceType) {
+    switch (resourceType) {
       case "book":
         cy.get("[data-test=subtitle-input]").type(testData.subtitle);
         cy.get("[data-test=isbn-input]").type(testData.isbn);
-        break 
+        break;
 
       case "podcast":
         cy.get("[data-test=website-url-input]").type(testData.websiteUrl);
+        cy.get("[data-test=spotify-url-input]").type(testData.spotifyUrl);
         cy.get("[data-test=youtube-url-input]").type(testData.youtubeUrl);
-        break 
+        break;
 
       case "podcast-episode":
         cy.get("[data-test=select-podcast]").select(testData.podcast);
         cy.get("[data-test=spotify-ep-url-input]").type(testData.spotifyUrl);
         cy.get("[data-test=youtube-ep-url-input]").type(testData.youtubeUrl);
-        break 
+        break;
 
       case "motivational-speech":
         cy.get("[data-test=youtube-url-input]").type(testData.youtubeUrl);
-        break 
+        break;
     }
 
     if (requiredFieldsOnly) return cy.get("[data-test=submit]").click();
@@ -129,8 +133,8 @@ Cypress.Commands.add(
 
 Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
   const resourcePlurals = {
-    "book": "books",
-    "podcast": "podcasts",
+    book: "books",
+    podcast: "podcasts",
     "podcasts-episode": "podcast-episodes",
     "motivational-speech": "motivational-speeches",
   };
@@ -143,6 +147,8 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
       Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
     },
     body: JSON.stringify(testData),
+  }).then((response) => {
+    expect(response.status).to.eq(201);
   });
 });
 
@@ -159,5 +165,7 @@ Cypress.Commands.add("addRatingWithAPI", (resource, stars, token) => {
       Authorization: `Token ${token}`,
     },
     body: JSON.stringify(newRating),
+  }).then((response) => {
+    expect(response.status).to.eq(201);
   });
 });
