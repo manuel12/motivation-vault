@@ -2,6 +2,7 @@
 
 describe("Motivational Speech API 'GET' request", () => {
   before(() => {
+    cy.deleteTestData()
     cy.fixture("apiResourceData").then((testData) =>
       cy.addResourceWithAPI("motivational-speech", testData)
     );
