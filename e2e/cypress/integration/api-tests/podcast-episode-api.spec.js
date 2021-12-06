@@ -2,6 +2,7 @@
 
 describe("Podacst Episode API 'GET' request", () => {
   before(() => {
+    cy.deleteTestData()
     cy.fixture("apiResourceData").then((testData) =>
       cy.addResourceWithAPI("podcasts-episode", testData)
     );
@@ -95,7 +96,7 @@ describe("Podcast Episode API 'POST' request", () => {
         body: JSON.stringify(testData),
       }).then((response) => {
         console.log(response.body);
-        const podcast = response.body;
+        const podcastEpisode = response.body;
         expect(podcastEpisode).to.have.property("id");
         expect(podcastEpisode).to.have.property("title", "Test Title");
         expect(podcastEpisode).to.have.property("author", "Test Author");
