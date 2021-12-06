@@ -133,8 +133,8 @@ Cypress.Commands.add(
 
 Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
   const resourcePlurals = {
-    book: "books",
-    podcast: "podcasts",
+    "book": "books",
+    "podcast": "podcasts",
     "podcasts-episode": "podcast-episodes",
     "motivational-speech": "motivational-speeches",
   };
