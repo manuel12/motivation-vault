@@ -33,7 +33,7 @@ class BookSerializer(serializers.ModelSerializer):
 class PodcastSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Podcast
-        fields = base_fields + ('website_url', 'youtube_url') + ratings_fields
+        fields = base_fields + ('website_url', 'spotify_url', 'youtube_url') + ratings_fields
 
 
 class PodcastEpisodeSerializer(serializers.ModelSerializer):
