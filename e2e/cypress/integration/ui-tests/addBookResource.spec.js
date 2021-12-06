@@ -47,7 +47,7 @@ describe("Add Resources", () => {
     cy.url().should("contain", "add/");
   });
 
-  it("should NOT add a book resource with indalid data", () => {
+  it("should NOT add a book resource with invalid data", () => {
     cy.fixture("invalidResourceData").then((invalidData) => {
       cy.addResourceWithUI("book", invalidData);
 
