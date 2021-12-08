@@ -10,9 +10,7 @@ describe("Add Comments", () => {
   it("should add 3 comments", () => {
     cy.fixture("comments").then((comments) => {
       for (let comment of comments) {
-        cy.get("[data-test=comment-input]")
-          .type(comment.text)
-          .should("contain.value", comment.text);
+        cy.addCommentWithUI(comment.text)
         cy.get("[data-test=submit]").click();
       }
     });
@@ -35,10 +33,7 @@ describe("Add Comments", () => {
   });
 
   it("should add a comment", () => {
-    cy.get("[data-test=comment-input]")
-      .type("[Test comment]")
-      .should("contain.value", "[Test comment]");
-
+    cy.addCommentWithUI("[Test comment]")
     cy.get("[data-test=submit]").click();
 
     cy.get("[data-test=comment-container]")
@@ -47,11 +42,9 @@ describe("Add Comments", () => {
   });
 
   it("should clear comment input after clicking submit", () => {
-    cy.get("[data-test=comment-input]")
-      .type("[Test comment]")
-      .should("contain.value", "[Test comment]");
-
+    cy.addCommentWithUI("[Test comment]")
     cy.get("[data-test=submit]").click();
+    
     cy.get("[data-test=comment-input]").should(
       "not.contain.value",
       "[Test comment]"
