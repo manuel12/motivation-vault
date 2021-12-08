@@ -1,15 +1,11 @@
 /// <reference types="cypress" />
 
 describe("Add Ratings", () => {
-  before(() => {
+  beforeEach(() => {
     cy.deleteTestData();
-
     cy.fixture("resourceData").then((resourceData) =>
       cy.addResourceWithAPI("book", resourceData)
     );
-  });
-
-  beforeEach(() => {
     cy.loginWithAPI("testuser1", "testpass1");
 
     cy.get("[data-test=post-container] > a")
@@ -32,9 +28,7 @@ describe("Add Ratings", () => {
   });
 
   it("should add ratings to a resource", () => {
-    cy.get("[data-test=add-rating-button]").click();
-    cy.get("[data-test=add-rating-input]").clear().type(5);
-    cy.get("[data-test=add-rating-submit-button]").click();
+    cy.addRatingWithUI(5)
 
     cy.get("[data-test=star-icon-1]")
       .should("be.visible")
@@ -161,21 +155,18 @@ describe("Add Ratings", () => {
   });
 
   it("should display the text (1 review) in case of having only 1 review", () => {
-    cy.get("[data-test=add-rating-button]").click();
-    cy.get("[data-test=add-rating-input]").clear().type(5);
-    cy.get("[data-test=add-rating-submit-button]").click();
+    cy.addRatingWithUI(5)
 
     cy.get("[data-test=num-ratings]").should("contain.text", "(1 review)");
   });
   
   it("should display the text (2 reviews) in case of having 2 ratings", () => {
     cy.location().then((loc) => {
-      cy.log(loc.pathname);
       const resourceId = loc.pathname.replaceAll("/", "");
       cy.addRatingWithAPI(
         resourceId,
         5,
-        "51d55878caa6db7066be358ad1cd51eb90d88897"
+        "eeed5020633747d1b9530fe9a2a8bec0601aad93"
       );
       cy.addRatingWithAPI(
         resourceId,
@@ -184,6 +175,7 @@ describe("Add Ratings", () => {
       );
     });
 
+    cy.reload()
     cy.get("[data-test=num-ratings]").should("contain.text", "(2 reviews)");
   });
 });
