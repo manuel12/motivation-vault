@@ -30,17 +30,17 @@ Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
   }
 });
 
-Cypress.Commands.add("loginAdmin", (username, password) => {
+Cypress.Commands.add("loginAdminWithUI", () => {
   cy.visit(Cypress.config().adminUrl);
   cy.get("#id_username")
-    .type(username ? username : Cypress.env("adminUser"))
+    .type(Cypress.env("adminUser"))
     .get("#id_password")
-    .type(password ? password : Cypress.env("adminPass"))
+    .type(Cypress.env("adminPass"))
     .get("[type=submit]")
     .click();
 });
 
-Cypress.Commands.add("login", (username, password) => {
+Cypress.Commands.add("loginWithUI", (username, password) => {
   cy.visit("/");
   cy.get("#username")
     .type(username ? username : Cypress.env("adminUser"))
@@ -59,7 +59,10 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({
+      username: username ? username : Cypress.env("adminUser"),
+      password: password ? password : Cypress.env("adminPass"),
+    }),
   }).then((response) => {
     token = response.body.token;
     expect(response.status).to.eq(200);
@@ -72,7 +75,7 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
   });
 });
 
-Cypress.Commands.add("logout", () => cy.get("[data-test=logout-link]").click());
+Cypress.Commands.add("logoutWithUI", () => cy.get("[data-test=logout-link]").click());
 
 Cypress.Commands.add("deleteTestData", () => {
   cy.request({
@@ -80,7 +83,7 @@ Cypress.Commands.add("deleteTestData", () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+      Authorization: `Token ${Cypress.env("adminToken")}`,
     },
   }).then((response) => {
     expect(response.status).to.eq(204);
@@ -144,7 +147,7 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+      Authorization: `Token ${Cypress.env("adminToken")}`,
     },
     body: JSON.stringify(testData),
   }).then((response) => {
@@ -152,20 +155,34 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
   });
 });
 
-Cypress.Commands.add("addRatingWithAPI", (resource, stars, token) => {
+Cypress.Commands.add("addCommentWithUI", (text) => {
+  cy.get("[data-test=comment-input]")
+    .type(text)
+    .should("contain.value", text);
+})
+
+
+Cypress.Commands.add("addRatingWithUI", (numStars) => {
+  cy.get("[data-test=add-rating-button]").click();
+  cy.get("[data-test=add-rating-input]").clear().type(numStars);
+  cy.get("[data-test=add-rating-submit-button]").click();
+})
+
+Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
   const newRating = {
     resource: resource,
-    stars: stars,
+    stars: numStars,
   };
   cy.request({
     url: "http://127.0.0.1:8000/api/ratings/",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
+      Authorization: `Token ${token ? token : Cypress.env("adminToken")}`,
     },
     body: JSON.stringify(newRating),
   }).then((response) => {
-    expect(response.status).to.eq(201);
+    cy.log(response.body)
+    //expect(response.status).to.eq(201);
   });
 });
