@@ -6,8 +6,11 @@
 
   "from_podcast": 88,
   "website_url": "http://wwww.google.com/",
-  "spotify_url": "http://open.spotify.com",
+  "spotify_url": "http://open.spotify.com/",
   "youtube_url": "https://www.youtube.com/",
+
+  "youtube_episode_url": "https://www.youtube.com/podcast-episode/1",
+  "spotify_episode_url": "https://open.spotify.com/podcast-episode/1",
 
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat.",
 
