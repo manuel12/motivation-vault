@@ -7,7 +7,7 @@ function PodcastEpisodePage() {
 
   useEffect(() => {
     API.fetchResource({
-      resource: "podcasts-episodes",
+      resource: "podcast-episodes",
       setResourceFunc: setResources,
     });
   }, []);
