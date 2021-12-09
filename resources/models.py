@@ -29,6 +29,7 @@ class Resource(models.Model):
         resource_comments = Comment.objects.filter(resource=self)
         for comment in resource_comments:
           comments.append({
+            'id': comment.id,
             'user': comment.user.username,
             'text': comment.text,
             'date': comment.date_created
