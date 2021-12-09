@@ -64,14 +64,12 @@ function CommentSection(props) {
 
       {comments &&
         comments.map((comment) => (
-          <div>
-            <Comment
-              key={comment.id}
-              user={comment.user}
-              date={comment.date}
-              text={comment.text}
-            />
-          </div>
+          <Comment
+            key={comment.date}
+            user={comment.user}
+            date={comment.date}
+            text={comment.text}
+          />
         ))}
     </div>
   );
