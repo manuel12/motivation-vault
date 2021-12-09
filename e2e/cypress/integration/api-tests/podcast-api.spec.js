@@ -48,7 +48,7 @@ describe("Podacst API 'POST' request", () => {
         url: "http://localhost:8000/api/podcasts/",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
         body: JSON.stringify(testData),
       }).then((response) => {
@@ -64,7 +64,7 @@ describe("Podacst API 'POST' request", () => {
         url: "http://localhost:8000/api/podcasts/",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
         body: JSON.stringify(testData),
       }).then((response) => {
@@ -83,20 +83,19 @@ describe("Podacst API 'POST' request", () => {
         url: "http://localhost:8000/api/podcasts/",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
         body: JSON.stringify(testData),
       }).then((response) => {
-        console.log(response.body);
         const podcast = response.body;
         expect(podcast).to.have.property("id");
-        expect(podcast).to.have.property("title", "Test Title");
-        expect(podcast).to.have.property("author", "Test Author");
+        expect(podcast).to.have.property("title", testData.title);
+        expect(podcast).to.have.property("author", testData.author);
         expect(podcast).to.have.property("description");
         expect(podcast).to.have.property("imageURL");
-        expect(podcast).to.have.property("website_url");
-        expect(podcast).to.have.property("spotify_url");
-        expect(podcast).to.have.property("youtube_url");
+        expect(podcast).to.have.property("website_url", testData.website_url);
+        expect(podcast).to.have.property("spotify_url", testData.spotify_url);
+        expect(podcast).to.have.property("youtube_url", testData.youtube_url);
         expect(podcast).to.have.property("avg_rating", 0);
         expect(podcast).to.have.property("num_ratings", 0);
       });
