@@ -55,7 +55,7 @@ describe("Motivational Speech API 'POST' request", () => {
         url: "http://localhost:8000/api/motivational-speeches/",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
         body: JSON.stringify(testData),
       }).then((response) => {
@@ -71,7 +71,7 @@ describe("Motivational Speech API 'POST' request", () => {
         url: "http://localhost:8000/api/motivational-speeches/",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
         body: JSON.stringify(testData),
       }).then((response) => {
@@ -90,18 +90,17 @@ describe("Motivational Speech API 'POST' request", () => {
         url: "http://localhost:8000/api/motivational-speeches/",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 51d55878caa6db7066be358ad1cd51eb90d88897",
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
         body: JSON.stringify(testData),
       }).then((response) => {
-        console.log(response.body);
         const motivationalSpeech = response.body;
         expect(motivationalSpeech).to.have.property("id");
-        expect(motivationalSpeech).to.have.property("title", "Test Title");
-        expect(motivationalSpeech).to.have.property("author", "Test Author");
+        expect(motivationalSpeech).to.have.property("title", testData.title);
+        expect(motivationalSpeech).to.have.property("author", testData.author);
         expect(motivationalSpeech).to.have.property("description");
         expect(motivationalSpeech).to.have.property("imageURL");
-        expect(motivationalSpeech).to.have.property("youtube_url");
+        expect(motivationalSpeech).to.have.property("youtube_url", testData.youtube_url);
         expect(motivationalSpeech).to.have.property("avg_rating", 0);
         expect(motivationalSpeech).to.have.property("num_ratings", 0);
       });
