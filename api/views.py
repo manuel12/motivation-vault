@@ -276,18 +276,4 @@ def delete_test_data(request):
     for resource in test_resources:
         resource.delete()
 
-    test_comments = models.Comment.objects.filter(text__startswith='[Test comment]')
-    for comments in test_comments:
-        comments.delete()
-
-    # Delete all test user ratings.
-    for i in range(1,6):
-      testusers = User.objects.filter(username=f'testuser{i}')
-
-      for testuser in testusers:
-        test_ratings = models.Rating.objects.filter(user=testuser.pk)
-
-        for rating in test_ratings:
-          rating.delete()
-
     return Response('Resource and comments deleted!', status=status.HTTP_204_NO_CONTENT)
