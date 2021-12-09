@@ -38,6 +38,9 @@ Cypress.Commands.add("loginAdminWithUI", () => {
     .type(Cypress.env("adminPass"))
     .get("[type=submit]")
     .click();
+
+  cy.get("#content-main").should("be.visible");
+  cy.get("#recent-actions-module").should("be.visible");
 });
 
 Cypress.Commands.add("loginWithUI", (username, password) => {
@@ -48,6 +51,8 @@ Cypress.Commands.add("loginWithUI", (username, password) => {
     .type(password ? password : Cypress.env("adminPass"))
     .get("#submitButton")
     .click();
+
+  cy.get(".homepage").should("be.visible");
 });
 
 Cypress.Commands.add("loginWithAPI", (username, password) => {
@@ -65,6 +70,7 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
     }),
   }).then((response) => {
     token = response.body.token;
+    cy.log(token)
     expect(response.status).to.eq(200);
   });
 
@@ -75,7 +81,10 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
   });
 });
 
-Cypress.Commands.add("logoutWithUI", () => cy.get("[data-test=logout-link]").click());
+Cypress.Commands.add("logoutWithUI", () => {
+  cy.get("[data-test=logout-link]").click();
+  cy.get(".login-container").should("be.visible");
+});
 
 Cypress.Commands.add("deleteTestData", () => {
   cy.request({
@@ -131,13 +140,15 @@ Cypress.Commands.add(
     cy.get("[data-test=value-three-input]").type(testData.valueThree);
 
     cy.get("[data-test=submit]").click();
+
+    cy.url().should("equal", Cypress.config().baseUrl);
   }
 );
 
 Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
   const resourcePlurals = {
-    "book": "books",
-    "podcast": "podcasts",
+    book: "books",
+    podcast: "podcasts",
     "podcasts-episode": "podcast-episodes",
     "motivational-speech": "motivational-speeches",
   };
@@ -158,15 +169,19 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
 Cypress.Commands.add("addCommentWithUI", (text) => {
   cy.get("[data-test=comment-input]")
     .type(text)
-    .should("contain.value", text);
-})
+    .should("have.value", text)
+    .get("[data-test=submit]")
+    .click();
 
+  cy.get("[data-test=comment-input]").should("have.value", "");
+});
 
 Cypress.Commands.add("addRatingWithUI", (numStars) => {
   cy.get("[data-test=add-rating-button]").click();
   cy.get("[data-test=add-rating-input]").clear().type(numStars);
   cy.get("[data-test=add-rating-submit-button]").click();
-})
+  cy.get("[data-test=rating-input-form]").should("not.exist");
+});
 
 Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
   const newRating = {
@@ -182,7 +197,6 @@ Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
     },
     body: JSON.stringify(newRating),
   }).then((response) => {
-    cy.log(response.body)
-    //expect(response.status).to.eq(201);
+    expect(response.status).to.eq(201);
   });
 });
