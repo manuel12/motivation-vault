@@ -1,12 +1,12 @@
 [{
-  "get_username": "Manuel",
+  "get_username": "testuser1",
   "text": "[Test comment] Awesome book, really inspiring!"
 }, 
 {
-  "get_username": "Manuel",
+  "get_username": "testuser1",
   "text": "[Test comment] This book was great! Definetly recommend."
 },
 {
-  "get_username": "Manuel",
+  "get_username": "testuser1",
   "text": "[Test comment] A truly great book, worth the read!"
 }]
