@@ -12,15 +12,14 @@ describe("Add Resources", () => {
 
       cy.url().should("not.contain", "add/");
       cy.get(".add-container").should("not.exist");
-  
+
       cy.get("[data-test=post-container]")
         .first()
         .should("contain", resourceData.title)
         .and("contain", resourceData.author)
         .and("contain", resourceData.description);
-    })
+    });
   });
-
 
   it("should add a book resource filling required fields only", () => {
     cy.fixture("resourceData").then((resourceData) => {
@@ -28,15 +27,14 @@ describe("Add Resources", () => {
 
       cy.url().should("not.contain", "add/");
       cy.get(".add-container").should("not.exist");
-  
+
       cy.get("[data-test=post-container]")
         .first()
         .should("contain", resourceData.title)
         .and("contain", resourceData.author);
-    })
+    });
   });
 
-  
   it("should NOT submit a book form without filling required fields", () => {
     cy.visit("/add/");
     cy.get(".add-container").should("be.visible");
@@ -54,14 +52,13 @@ describe("Add Resources", () => {
       cy.get("[data-test=subtitle-input-error]")
         .should("be.visible")
         .and("contain.text", "Subtitle cannot be empty!");
-  
+
       cy.get("[data-test=isbn-input-error]")
         .should("be.visible")
         .and("contain.text", "ISBN has to be a 13 digit number!");
-    })
+    });
   });
 
-  
   it("should add a book resource by pressing ENTER when all fields are filled", () => {
     cy.fixture("resourceData").then((resourceData) => {
       cy.visit("/add/");
@@ -95,5 +92,4 @@ describe("Add Resources", () => {
   after(() => {
     cy.deleteTestData();
   });
-
-})
+});

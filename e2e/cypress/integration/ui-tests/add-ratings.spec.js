@@ -1,11 +1,14 @@
 /// <reference types="cypress" />
 
 describe("Add Ratings", () => {
-  beforeEach(() => {
+  before(() => {
     cy.deleteTestData();
     cy.fixture("resourceData").then((resourceData) =>
       cy.addResourceWithAPI("book", resourceData)
     );
+  })
+
+  beforeEach(() => {
     cy.loginWithAPI("testuser1", "testpass1");
 
     cy.get("[data-test=post-container] > a")
@@ -178,4 +181,8 @@ describe("Add Ratings", () => {
     cy.reload()
     cy.get("[data-test=num-ratings]").should("contain.text", "(2 reviews)");
   });
+
+  after(() => {
+    cy.deleteTestData()
+  })
 });
