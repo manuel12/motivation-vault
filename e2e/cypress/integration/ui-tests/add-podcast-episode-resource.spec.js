@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("Add Resources", () => {
+describe("Add Podcast Episode Resources", () => {
   beforeEach(() => {
     cy.loginWithAPI("testuser1", "testpass1");
     cy.get(".App").should("be.visible");
