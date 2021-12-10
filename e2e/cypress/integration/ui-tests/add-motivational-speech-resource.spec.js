@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("Add Resources", () => {
+describe("Add Motivational Speech Resources", () => {
   beforeEach(() => {
     cy.loginWithAPI("testuser1", "testpass1");
     cy.get(".App").should("be.visible");
@@ -20,7 +20,7 @@ describe("Add Resources", () => {
 
   it("should add a motivational speech resource filling required fields only", () => {
     cy.fixture("resourceData").then((resourceData) => {
-      cy.addResourceWithUI("motivational-speech", true);
+      cy.addResourceWithUI("motivational-speech", resourceData, true);
 
       cy.get("[data-test=post-container]")
         .first()
