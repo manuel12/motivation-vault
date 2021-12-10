@@ -1,5 +1,9 @@
 import { useState } from "react";
-import AddResourceForm from "./AddResourceForm";
+import AddBookResourceForm from "./AddBookResourceForm";
+import AddPodcastResourceForm from "./AddPodcastResourceForm";
+import AddPodcastEpisodeResourceForm from "./AddPodcastEpisodeResourceForm";
+import AddMotivationalSpeechResourceForm from "./AddMotivationalSpeechResourceForm";
+
 import "../css/Addpage.css";
 
 function AddPage() {
@@ -32,7 +36,7 @@ function AddPage() {
 
       {resourceType === "book" && (
         <div>
-          <AddResourceForm
+          <AddBookResourceForm
             resourceType={resourceType}
             submitClicked={submitClicked}
           />
@@ -40,7 +44,7 @@ function AddPage() {
       )}
       {resourceType === "podcast" && (
         <div>
-          <AddResourceForm
+          <AddPodcastResourceForm
             resourceType={resourceType}
             submitClicked={submitClicked}
           />
@@ -48,7 +52,7 @@ function AddPage() {
       )}
       {resourceType === "podcast-episode" && (
         <div>
-          <AddResourceForm
+          <AddPodcastEpisodeResourceForm
             resourceType={resourceType}
             submitClicked={submitClicked}
           />
@@ -56,7 +60,7 @@ function AddPage() {
       )}
       {resourceType === "motivational-speech" && (
         <div>
-          <AddResourceForm
+          <AddMotivationalSpeechResourceForm
             resourceType={resourceType}
             submitClicked={submitClicked}
           />
