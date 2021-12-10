@@ -4,6 +4,9 @@ describe("Add Comments", () => {
   before(() => {
     cy.deleteTestData()
     cy.loginWithAPI("testuser1", "testpass1")
+    cy.fixture("resourceData").then((resourceData) => {
+      cy.addResourceWithUI("book", resourceData);
+    })
     cy.get(".post-container a").first().click({ force: true });
   })
 
@@ -11,7 +14,6 @@ describe("Add Comments", () => {
     cy.fixture("comments").then((comments) => {
       for (let comment of comments) {
         cy.addCommentWithUI(comment.text)
-        cy.get("[data-test=submit]").click();
       }
     });
 
@@ -34,7 +36,6 @@ describe("Add Comments", () => {
 
   it("should add a comment", () => {
     cy.addCommentWithUI("[Test comment]")
-    cy.get("[data-test=submit]").click();
 
     cy.get("[data-test=comment-container]")
       .first()
@@ -43,7 +44,6 @@ describe("Add Comments", () => {
 
   it("should clear comment input after clicking submit", () => {
     cy.addCommentWithUI("[Test comment]")
-    cy.get("[data-test=submit]").click();
     
     cy.get("[data-test=comment-input]").should(
       "not.contain.value",
