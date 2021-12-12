@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "./Input";
+import LabeledInput from "./LabeledInput";
 
 function AddPodcastEpisodeResourceForm(props) {
   let [title, setTitle] = useState("");
@@ -112,7 +112,7 @@ function AddPodcastEpisodeResourceForm(props) {
   return (
     <div className="add-podcast-episode-form">
       <h3>Add Podcast Episode Form</h3>
-      <Input
+      <LabeledInput
         error={titleError}
         item="Title"
         itemType="text"
@@ -123,7 +123,7 @@ function AddPodcastEpisodeResourceForm(props) {
         dataAttr="title-input"
       />
 
-      <Input
+      <LabeledInput
         error={authorError}
         item="Author"
         itemType="text"
@@ -165,7 +165,7 @@ function AddPodcastEpisodeResourceForm(props) {
         <option value="82">The Tim Ferris Show</option>
       </select>
 
-      <Input
+      <LabeledInput
         error={spotifyEpisodeUrlError}
         item="Spotify Episode Url"
         itemType="text"
@@ -176,7 +176,7 @@ function AddPodcastEpisodeResourceForm(props) {
         dataAttr="spotify-ep-url-input"
       />
 
-      <Input
+      <LabeledInput
         error={youtubeEpisodeUrlError}
         item="Youtube Episode Url"
         itemType="text"
@@ -187,7 +187,7 @@ function AddPodcastEpisodeResourceForm(props) {
         dataAttr="youtube-ep-url-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value One"
         itemType="text"
         value={valueOne}
@@ -197,7 +197,7 @@ function AddPodcastEpisodeResourceForm(props) {
         dataAttr="value-one-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Two"
         itemType="text"
         value={valueTwo}
@@ -207,7 +207,7 @@ function AddPodcastEpisodeResourceForm(props) {
         dataAttr="value-two-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Three"
         itemType="text"
         value={valueThree}
@@ -217,12 +217,14 @@ function AddPodcastEpisodeResourceForm(props) {
         dataAttr="value-three-input"
       />
 
-      <input
+      <button
         id="submit"
         type="submit"
         onClick={submitClicked}
         data-test="submit"
-      />
+      >
+        Add Podcast Episode
+      </button>
     </div>
   );
 }

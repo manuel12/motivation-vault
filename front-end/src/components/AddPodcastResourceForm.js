@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "./Input";
+import LabeledInput from "./LabeledInput";
 
 function AddPodcastResourceForm(props) {
   let [title, setTitle] = useState("");
@@ -111,7 +111,7 @@ function AddPodcastResourceForm(props) {
   return (
     <div className="add-podcast-form">
       <h3>Add Podcasts Form</h3>
-      <Input
+      <LabeledInput
         error={titleError}
         item="Title"
         itemType="text"
@@ -122,7 +122,7 @@ function AddPodcastResourceForm(props) {
         dataAttr="title-input"
       />
 
-      <Input
+      <LabeledInput
         error={authorError}
         item="Author"
         itemType="text"
@@ -146,7 +146,7 @@ function AddPodcastResourceForm(props) {
         data-test="description-input"
       ></textarea>
 
-      <Input
+      <LabeledInput
         error={websiteUrlError}
         item="Website Url"
         itemType="text"
@@ -157,7 +157,7 @@ function AddPodcastResourceForm(props) {
         dataAttr="website-url-input"
       />
 
-      <Input
+      <LabeledInput
         error={spotifyUrlError}
         item="Spotify Url"
         itemType="text"
@@ -168,7 +168,7 @@ function AddPodcastResourceForm(props) {
         dataAttr="spotify-url-input"
       />
 
-      <Input
+      <LabeledInput
         error={youtubeUrlError}
         item="Youtube Url"
         itemType="text"
@@ -179,7 +179,7 @@ function AddPodcastResourceForm(props) {
         dataAttr="youtube-url-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value One"
         itemType="text"
         value={valueOne}
@@ -189,7 +189,7 @@ function AddPodcastResourceForm(props) {
         dataAttr="value-one-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Two"
         itemType="text"
         value={valueTwo}
@@ -199,7 +199,7 @@ function AddPodcastResourceForm(props) {
         dataAttr="value-two-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Three"
         itemType="text"
         value={valueThree}
@@ -209,12 +209,14 @@ function AddPodcastResourceForm(props) {
         dataAttr="value-three-input"
       />
 
-      <input
+      <button
         id="submit"
         type="submit"
         onClick={submitClicked}
         data-test="submit"
-      />
+      >
+        Add Podcast
+      </button>
     </div>
   );
 }

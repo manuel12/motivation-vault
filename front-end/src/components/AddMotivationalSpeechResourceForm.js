@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "./Input";
+import LabeledInput from "./LabeledInput";
 
 function AddMotivationalSpeechResourceForm(props) {
   let [title, setTitle] = useState("");
@@ -88,7 +88,7 @@ function AddMotivationalSpeechResourceForm(props) {
   return (
     <div className="add-motivational-speech-form">
       <h3>Add Motivational Speech Form</h3>
-      <Input
+      <LabeledInput
         error={titleError}
         item="Title"
         itemType="text"
@@ -99,7 +99,7 @@ function AddMotivationalSpeechResourceForm(props) {
         dataAttr="title-input"
       />
 
-      <Input
+      <LabeledInput
         error={authorError}
         item="Author"
         itemType="text"
@@ -123,7 +123,7 @@ function AddMotivationalSpeechResourceForm(props) {
         data-test="description-input"
       ></textarea>
 
-      <Input
+      <LabeledInput
         error={youtubeUrlError}
         item="Youtube Url"
         itemType="text"
@@ -134,7 +134,7 @@ function AddMotivationalSpeechResourceForm(props) {
         dataAttr="youtube-url-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value One"
         itemType="text"
         value={valueOne}
@@ -144,7 +144,7 @@ function AddMotivationalSpeechResourceForm(props) {
         dataAttr="value-one-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Two"
         itemType="text"
         value={valueTwo}
@@ -154,7 +154,7 @@ function AddMotivationalSpeechResourceForm(props) {
         dataAttr="value-two-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Three"
         itemType="text"
         value={valueThree}
@@ -164,12 +164,14 @@ function AddMotivationalSpeechResourceForm(props) {
         dataAttr="value-three-input"
       />
 
-      <input
+      <button
         id="submit"
         type="submit"
         onClick={submitClicked}
         data-test="submit"
-      />
+      >
+        Add Motivational Speech
+      </button>
     </div>
   );
 }

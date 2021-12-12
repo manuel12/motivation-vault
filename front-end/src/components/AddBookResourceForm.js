@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "./Input";
+import LabeledInput from "./LabeledInput";
 
 function AddBookResourceForm(props) {
   let [title, setTitle] = useState("");
@@ -101,7 +101,7 @@ function AddBookResourceForm(props) {
     <div className="add-book-form">
       <h3>Add Book Form</h3>
 
-      <Input
+      <LabeledInput
         error={titleError}
         item="Title"
         itemType="text"
@@ -112,7 +112,7 @@ function AddBookResourceForm(props) {
         dataAttr="title-input"
       />
 
-      <Input
+      <LabeledInput
         error={authorError}
         item="Author"
         itemType="text"
@@ -136,7 +136,7 @@ function AddBookResourceForm(props) {
         data-test="description-input"
       ></textarea>
 
-      <Input
+      <LabeledInput
         error={subtitleError}
         item="Subtitle"
         itemType="text"
@@ -147,7 +147,7 @@ function AddBookResourceForm(props) {
         dataAttr="subtitle-input"
       />
 
-      <Input
+      <LabeledInput
         error={isbnError}
         item="ISBN-13"
         itemType="text"
@@ -158,7 +158,7 @@ function AddBookResourceForm(props) {
         dataAttr="isbn-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value One"
         itemType="text"
         value={valueOne}
@@ -168,7 +168,7 @@ function AddBookResourceForm(props) {
         dataAttr="value-one-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Two"
         itemType="text"
         value={valueTwo}
@@ -178,7 +178,7 @@ function AddBookResourceForm(props) {
         dataAttr="value-two-input"
       />
 
-      <Input
+      <LabeledInput
         item="Value Three"
         itemType="text"
         value={valueThree}
@@ -188,12 +188,14 @@ function AddBookResourceForm(props) {
         dataAttr="value-three-input"
       />
 
-      <input
+      <button
         id="submit"
         type="submit"
         onClick={submitClicked}
         data-test="submit"
-      />
+      >
+        Add Book
+      </button>
     </div>
   );
 }
