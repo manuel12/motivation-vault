@@ -15,13 +15,13 @@ class UserSerializer(serializers.ModelSerializer):
         return user
         
 
-base_fields = ('id', 'title', 'author', 'description', 'imageURL')
+base_fields = ('id', 'title', 'author', 'description', 'imageURL', 'value_one', 'value_two', 'value_three')
 ratings_fields = ('avg_rating', 'num_ratings')
 
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Resource
-        fields = base_fields + ('value_one', 'value_two', 'value_three', 'get_comments') + ratings_fields
+        fields = base_fields + ('get_comments', ) + ratings_fields
 
 
 class BookSerializer(serializers.ModelSerializer):
