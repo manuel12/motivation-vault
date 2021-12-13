@@ -1,6 +1,6 @@
-import "../css/Input.css";
+import "../css/LabeledInput.css";
 
-function Input(props) {
+function LabeledInput(props) {
   return (
     <div className="inputContainer">
       {props.error ? (
@@ -20,4 +20,4 @@ function Input(props) {
   );
 }
 
-export default Input;
+export default LabeledInput;
