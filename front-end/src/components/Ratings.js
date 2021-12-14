@@ -125,7 +125,7 @@ function Ratings(props) {
             onClick={handleSubmitRating}
             data-test="add-rating-submit-button"
           >
-            Submit
+            Add Rating
           </button>
         </div>
       ) : null}

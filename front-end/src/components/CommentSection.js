@@ -54,12 +54,14 @@ function CommentSection(props) {
         data-test="comment-input"
       />
 
-      <input
+      <button
         id="submit"
         type="submit"
         onClick={submitClicked}
         data-test="submit"
-      />
+      >
+        Add Comment
+      </button>
       <br />
 
       {comments &&
