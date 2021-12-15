@@ -52,7 +52,8 @@ class BookList(APIView):
     """
     List all books, or create a new book.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         books = models.Book.objects.all()
@@ -71,7 +72,8 @@ class BookDetail(APIView):
     """
     Retrieve, update or delete a book instance.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self, pk):
       try:
@@ -89,7 +91,8 @@ class PodcastList(APIView):
     """
     List all podcasts, or create a new podcast.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         podcasts = models.Podcast.objects.all()
@@ -108,7 +111,8 @@ class PodcastDetail(APIView):
     """
     Retrieve, update or delete a podcast instance.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self, pk):
       try:
@@ -126,7 +130,8 @@ class PodcastEpisodeList(APIView):
     """
     List all podcasts episodes, or create a new podcast episode.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         podcast_episodes = models.PodcastEpisode.objects.all()
@@ -145,7 +150,8 @@ class PodcastEpisodeDetail(APIView):
     """
     Retrieve, update or delete a podcast episode instance.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self, pk):
       try:
@@ -163,7 +169,8 @@ class MotivationalSpeechList(APIView):
     """
     List all motivational speeches, or create a new motivational speech.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         motivational_speeches = models.MotivationalSpeech.objects.all()
@@ -182,7 +189,8 @@ class MotivationalSpeechDetail(APIView):
     """
     Retrieve, update or delete a motivational speech instance.
     """
-    permission_classes = (AllowAny,)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self, pk):
       try:
