@@ -34,7 +34,7 @@ function Auth({ setToken }) {
 
   return (
     <div>
-      <div className="app-header">
+      <div className="header">
         {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
       </div>
       
