@@ -9,7 +9,14 @@ describe("Podacst Episode API 'GET' request", () => {
   });
 
   it("should have status code 200", () => {
-    cy.request("http://localhost:8000/api/podcast-episodes/").then(
+    cy.request({
+      method: "GET",
+      url: "http://localhost:8000/api/podcast-episodes/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${Cypress.env("adminToken")}`,
+      }
+    }).then(
       (response) => {
         expect(response.status).to.eq(200);
       }
@@ -17,7 +24,14 @@ describe("Podacst Episode API 'GET' request", () => {
   });
 
   it("should return JSON", () => {
-    cy.request("http://localhost:8000/api/podcast-episodes/").then(
+    cy.request({
+      method: "GET",
+      url: "http://localhost:8000/api/podcast-episodes/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${Cypress.env("adminToken")}`,
+      }
+    }).then(
       (response) => {
         expect(response.headers).to.have.property(
           "content-type",
@@ -28,7 +42,14 @@ describe("Podacst Episode API 'GET' request", () => {
   });
 
   it("should have podcast episode fields", () => {
-    cy.request("http://localhost:8000/api/podcast-episodes/").then(
+    cy.request({
+      method: "GET",
+      url: "http://localhost:8000/api/podcast-episodes/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${Cypress.env("adminToken")}`,
+      }
+    }).then(
       (response) => {
         const firstMotivationalSpeech = response.body[0];
         expect(firstMotivationalSpeech).to.have.property("id");
