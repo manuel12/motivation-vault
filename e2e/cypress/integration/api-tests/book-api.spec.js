@@ -9,13 +9,27 @@ describe("Book API 'GET' request", () => {
   });
 
   it("should have status code 200", () => {
-    cy.request("http://localhost:8000/api/books/").then((response) => {
+    cy.request({
+      method: "GET",
+      url: "http://localhost:8000/api/books/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${Cypress.env("adminToken")}`,
+      },
+    }).then((response) => {
       expect(response.status).to.eq(200);
     });
   });
 
   it("should return JSON", () => {
-    cy.request("http://localhost:8000/api/books/").then((response) => {
+    cy.request({
+      method: "GET",
+      url: "http://localhost:8000/api/books/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${Cypress.env("adminToken")}`,
+      },
+    }).then((response) => {
       expect(response.headers).to.have.property(
         "content-type",
         "application/json"
@@ -24,7 +38,14 @@ describe("Book API 'GET' request", () => {
   });
 
   it("should have book fields", () => {
-    cy.request("http://localhost:8000/api/books/").then((response) => {
+    cy.request({
+      method: "GET",
+      url: "http://localhost:8000/api/books/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${Cypress.env("adminToken")}`,
+      },
+    }).then((response) => {
       const firstBook = response.body[0];
       expect(firstBook).to.have.property("id");
       expect(firstBook).to.have.property("title", "Test Title");
