@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import useToken from './useToken';
+
 import "../css/Ratings.css";
 
 function Ratings(props) {
+  const {token} = useToken();
+
   let [showNumberInput, setShowNumberInput] = useState(false);
   let [rating, setRating] = useState(-1);
   let [ratingInputError, setRatingInputError] = useState(false);
 
   useEffect(() => setRating(props.avgRating), [props.avgRating]);
 
-  const handleClick = () => {
+  const handleAddRating = () => {
     setShowNumberInput(true);
   };
 
@@ -25,7 +29,7 @@ function Ratings(props) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token 51d55878caa6db7066be358ad1cd51eb90d88897`,
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify(newRating),
       })
@@ -53,6 +57,10 @@ function Ratings(props) {
       .then((resp) => props.updateResource(resp))
       .catch((error) => console.log(error));
   };
+
+  const handleCancelAddRating = () => {
+    setShowNumberInput(false);
+  }
 
   let avgRating = props.avgRating;
   let numRatings = props.numRatings;
@@ -95,7 +103,7 @@ function Ratings(props) {
         <FontAwesomeIcon
           icon={faPlusSquare}
           className="add-rating"
-          onClick={handleClick}
+          onClick={handleAddRating}
           data-test="add-rating-button"
         />
       ) : null}
@@ -126,6 +134,13 @@ function Ratings(props) {
             data-test="add-rating-submit-button"
           >
             Add Rating
+          </button>
+          <button
+            type="button"
+            onClick={handleCancelAddRating}
+            data-test="add-rating-cancel-button"
+          >
+            Cancel
           </button>
         </div>
       ) : null}
