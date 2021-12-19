@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import LabeledInput from "./LabeledInput";
+import useToken from './useToken';
 
 function AddPodcastResourceForm(props) {
+  const {token} = useToken();
+
   let [title, setTitle] = useState("");
   let [author, setAuthor] = useState("");
   let [description, setDescription] = useState("");
@@ -83,6 +86,7 @@ function AddPodcastResourceForm(props) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify(newResource),
       })
