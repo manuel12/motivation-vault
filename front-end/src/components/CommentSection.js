@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Comment from "./Comment";
+import useToken from "./useToken";
+
 import "../css/CommentSection.css";
 
 function CommentSection(props) {
+  const { token } = useToken();
+
   let [comments, setComments] = useState([]);
   let [commentText, setCommentText] = useState("");
 
@@ -20,7 +24,7 @@ function CommentSection(props) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token 51d55878caa6db7066be358ad1cd51eb90d88897`,
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify(newComment),
       })
@@ -58,9 +62,19 @@ function CommentSection(props) {
         id="submit"
         type="submit"
         onClick={submitClicked}
-        data-test="submit"
+        data-test="add-comment-submit-button"
       >
         Add Comment
+      </button>
+      <button
+        id="submit"
+        type="submit"
+        onClick={()=>{
+          setCommentText("")
+        }}
+        data-test="add-comment-cancel-button"
+      >
+        Cancel
       </button>
       <br />
 
