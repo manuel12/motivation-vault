@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import LabeledInput from "./LabeledInput";
+import useToken from './useToken';
 
 function AddMotivationalSpeechResourceForm(props) {
+  const {token} = useToken();
+  
   let [title, setTitle] = useState("");
   let [author, setAuthor] = useState("");
   let [description, setDescription] = useState("");
@@ -62,6 +65,7 @@ function AddMotivationalSpeechResourceForm(props) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Token ${token}`
         },
         body: JSON.stringify(newResource),
       })
