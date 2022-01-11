@@ -24,6 +24,15 @@ class Resource(models.Model):
     def __str__(self):
         return self.title
 
+    def num_ratings(self):
+        ratings = Rating.objects.filter(resource=self)
+        return len(ratings)
+
+    def avg_rating(self):
+        ratings = Rating.objects.filter(resource=self)
+        stars = sum([rating.stars for rating in ratings])
+        return stars / len(ratings) if stars else 0
+
     def get_comments(self):
         comments = []
         resource_comments = Comment.objects.filter(resource=self)
@@ -36,14 +45,12 @@ class Resource(models.Model):
           })
         return comments
 
-    def num_ratings(self):
-        ratings = Rating.objects.filter(resource=self)
-        return len(ratings)
-
-    def avg_rating(self):
-        ratings = Rating.objects.filter(resource=self)
-        stars = sum([rating.stars for rating in ratings])
-        return stars / len(ratings) if stars else 0
+    def get_youtube_url(self):
+        try:
+            motivational_speech = MotivationalSpeech.objects.get(title=self.title)
+            return motivational_speech.youtube_url
+        except MotivationalSpeech.DoesNotExist:
+            return None
 
     class Meta:
       ordering = ['-id']
