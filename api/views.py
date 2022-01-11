@@ -280,8 +280,7 @@ def delete_test_data(request):
     """
     Delete all resources, comments and ratings created by tests.
     """
-    test_resources = models.Resource.objects.filter(title='Test Title')
+    test_resources = models.Resource.objects.filter(title__startswith='Test Title')
     for resource in test_resources:
         resource.delete()
-
     return Response('Resource and comments deleted!', status=status.HTTP_204_NO_CONTENT)
