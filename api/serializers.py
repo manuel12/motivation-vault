@@ -21,7 +21,7 @@ ratings_fields = ('avg_rating', 'num_ratings')
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Resource
-        fields = base_fields + ('get_comments', ) + ratings_fields
+        fields = base_fields + ('get_comments', 'get_youtube_url') + ratings_fields
 
 
 class BookSerializer(serializers.ModelSerializer):
