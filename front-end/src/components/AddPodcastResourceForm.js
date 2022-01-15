@@ -152,7 +152,7 @@ function AddPodcastResourceForm(props) {
       <textarea
         id="description"
         name="description"
-        placeholder="Descripion..."
+        placeholder="Description..."
         rows="4"
         cols="50"
         value={description}
