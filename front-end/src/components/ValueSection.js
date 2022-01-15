@@ -1,3 +1,5 @@
+import "../css/ValueSection.css";
+
 function ValueSection(props) {
   return (
     <div className="value-section-container" data-test="value-section">
