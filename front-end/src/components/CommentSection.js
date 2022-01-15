@@ -9,8 +9,31 @@ function CommentSection(props) {
 
   let [comments, setComments] = useState([]);
   let [commentText, setCommentText] = useState("");
+  let [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
+
+  const submitBtn = document.getElementById("submit");
+  const cancelBtn = document.getElementById("cancel");
 
   useEffect(() => setComments(props.comments), [props.comments]);
+  useEffect(() => {
+    if (commentText) {
+      submitBtn.className = "add-comment-btn-enabled";
+      setSubmitBtnDisabled(false);
+    } else {
+      if (submitBtn) {
+        if (cancelBtn.className === "hidden") {
+          submitBtn.className = "hidden";
+        } else {
+          submitBtn.className = "add-comment-btn";
+        }
+      }
+    }
+  }, [commentText]);
+
+  const inputClicked = () => {
+    submitBtn.className = "add-comment-btn";
+    cancelBtn.className = "cancel-button";
+  };
 
   const submitClicked = () => {
     if (commentText) {
@@ -28,17 +51,31 @@ function CommentSection(props) {
         },
         body: JSON.stringify(newComment),
       })
-        .then((resp) => resp.json())
-        .then((resp) => {
-          newComment["user"] = resp["get_username"];
+      .then((resp) => resp.json())
+      .then((resp) => {
+        newComment["user"] = resp["get_username"];
 
-          const updatedComments = [newComment, ...comments];
-          setComments(updatedComments);
-        })
-        .catch((error) => console.warn(error));
+        const updatedComments = [newComment, ...comments];
+        setComments(updatedComments);
 
+        const commentElems = document.getElementsByClassName("comment-container");
+        const lastCommentElem = commentElems[commentElems.length - 1];
+        lastCommentElem.scrollIntoView();
+      })
+      .catch((error) => console.warn(error));
+
+      setSubmitBtnDisabled(true);
       setCommentText("");
+      submitBtn.className = "hidden";
+      cancelBtn.className = "hidden";
     }
+  };
+
+  const cancelClicked = () => {
+    setSubmitBtnDisabled(true);
+    setCommentText("");
+    submitBtn.className = "hidden";
+    cancelBtn.className = "hidden";
   };
 
   return (
@@ -55,27 +92,30 @@ function CommentSection(props) {
         onChange={(evt) => {
           setCommentText(evt.target.value);
         }}
+        onClick={inputClicked}
         data-test="comment-input"
       />
-
-      <button
-        id="submit"
-        type="submit"
-        onClick={submitClicked}
-        data-test="add-comment-submit-button"
-      >
-        Add Comment
-      </button>
-      <button
-        id="submit"
-        type="submit"
-        onClick={()=>{
-          setCommentText("")
-        }}
-        data-test="add-comment-cancel-button"
-      >
-        Cancel
-      </button>
+      <div className="btn-container">
+        <button
+          disabled={submitBtnDisabled}
+          className="hidden"
+          id="submit"
+          type="submit"
+          onClick={submitClicked}
+          data-test="add-comment-submit-button"
+        >
+          Comment
+        </button>
+        <button
+          className="hidden"
+          id="cancel"
+          type="submit"
+          onClick={cancelClicked}
+          data-test="add-comment-cancel-button"
+        >
+          Cancel
+        </button>
+      </div>
       <br />
 
       {comments &&
