@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { isValidURL } from "../utils";
 import LabeledInput from "./LabeledInput";
-import useToken from './useToken';
+import useToken from "./useToken";
 
 function AddMotivationalSpeechResourceForm(props) {
-  const {token} = useToken();
-  
+  const { token } = useToken();
+
   let [title, setTitle] = useState("");
   let [author, setAuthor] = useState("");
   let [description, setDescription] = useState("");
@@ -42,9 +42,9 @@ function AddMotivationalSpeechResourceForm(props) {
     if (!youtubeUrl) {
       setYoutubeUrlError("Youtube URL cannot be empty!");
       validInput = false;
-    } else if(!isValidURL(youtubeUrl)) {
+    } else if (!isValidURL(youtubeUrl)) {
       setYoutubeUrlError("Youtube URL has to be a valid URL!");
-      validInput = false;   
+      validInput = false;
     } else {
       setYoutubeUrlError("");
     }
@@ -71,7 +71,7 @@ function AddMotivationalSpeechResourceForm(props) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token ${token}`
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify(newResource),
       })
@@ -123,7 +123,7 @@ function AddMotivationalSpeechResourceForm(props) {
       <textarea
         id="description"
         name="description"
-        placeholder="Descripion..."
+        placeholder="Description..."
         rows="4"
         cols="50"
         value={description}
