@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getYoutubeURL, getEmbedYoutubeURL } from "../utils";
 import { useParams } from "react-router-dom";
 import { API } from "../api-service";
 import CommentSection from "./CommentSection";
@@ -18,6 +19,8 @@ function DetailPage() {
     });
   }, [id]);
 
+  console.log(resource);
+
   return (
     <div className="container">
       <div className="post-section-container">
@@ -34,7 +37,10 @@ function DetailPage() {
         />
         <iframe
           title={resource.title}
-          src="https://www.youtube.com/embed/YxZsXZeFU1A"
+          src={getEmbedYoutubeURL(
+            resource,
+            "https://www.youtube.com/embed/YxZsXZeFU1A"
+          )}
         ></iframe>
         <h3>Description</h3>
         <p className="paragraph-container">{resource.description}</p>

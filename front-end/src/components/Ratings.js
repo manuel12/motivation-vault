@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faCheck,
+  faPlusSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import useToken from "./useToken";
 
 import "../css/Ratings.css";
@@ -40,7 +45,9 @@ function Ratings(props) {
           getDetails();
         })
         .catch((error) => console.warn(error));
+
       setShowNumberInput(false);
+      setRatingInputError(false);
     } else {
       setRatingInputError(true);
     }
@@ -61,6 +68,7 @@ function Ratings(props) {
 
   const handleCancelAddRating = () => {
     setShowNumberInput(false);
+    setRatingInputError(false);
   };
 
   let avgRating = props.avgRating;
@@ -110,36 +118,40 @@ function Ratings(props) {
       ) : null}
 
       {showNumberInput ? (
-        <form
-          onSubmit={handleSubmitRating}
-          className="rating-input-form"
-          data-test="rating-input-form"
-        >
+        <form onSubmit={handleSubmitRating} data-test="rating-input-form">
           {ratingInputError ? (
-            <label data-test="add-rating-input-error">
+            <label id="rating-error" data-test="add-rating-input-error">
               Rating needs to be between 1 and 5
             </label>
           ) : null}
 
-          <input
-            type="number"
-            value={rating}
-            onChange={(evt) => {
-              setRating(evt.target.value);
-            }}
-            data-test="add-rating-input"
-          />
+          <div>
+            <input
+              className="rating-input"
+              type="number"
+              value={rating}
+              onChange={(evt) => {
+                setRating(evt.target.value);
+              }}
+              data-test="add-rating-input"
+            />
 
-          <button type="submit" data-test="add-rating-submit-button">
-            Add Rating
-          </button>
-          <button
-            type="button"
-            onClick={handleCancelAddRating}
-            data-test="add-rating-cancel-button"
-          >
-            Cancel
-          </button>
+            <button
+              className="rating-submit-btn"
+              type="submit"
+              data-test="add-rating-submit-button"
+            >
+              <FontAwesomeIcon icon={faCheck} />
+            </button>
+            <button
+              className="rating-cancel-button"
+              type="button"
+              onClick={handleCancelAddRating}
+              data-test="add-rating-cancel-button"
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          </div>
         </form>
       ) : null}
     </div>
