@@ -5,3 +5,39 @@
 .add-comment {
   border-style:none
 }
+
+.btn-container {
+  display: flex;
+}
+
+.add-comment-btn {
+  background-color: grey;
+  border-radius: 5px;
+  width: 100px;
+  padding: 10px;
+  margin: 0 0 0 10px;
+  display: inline-block;
+  border: 0;
+}
+
+.add-comment-btn-enabled {
+  background-color: orangered;
+  border-radius: 5px;
+  width: 100px;
+  padding: 10px;
+  margin: 0 0 0 10px;
+  border: 0;
+}
+
+.cancel-button {
+  border-radius: 5px;
+  width: 100px;
+  padding: 10px;
+  margin: 0 0 0 10px;
+  display: inline-block;
+  border: 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
