@@ -21,19 +21,20 @@ function AddPage() {
 
   return (
     <div className="add-container">
-      <select
-        onChange={selectResourceType}
-        name="resoruces"
-        id="resources"
-        data-test="select-resource-type"
-      >
-        <option value="">Select resource type</option>
-        <option value="book">Book</option>
-        <option value="podcast">Podcast</option>
-        <option value="podcast-episode">Podcast Episode</option>
-        <option value="motivational-speech">Motivational Speech</option>
-      </select>
-
+      <div className="selectContainer">
+        <select
+          name="resoruces"
+          id="resources"
+          onChange={selectResourceType}
+          data-test="select-resource-type"
+        >
+          <option value="">Select resource type</option>
+          <option value="book">Book</option>
+          <option value="podcast">Podcast</option>
+          <option value="podcast-episode">Podcast Episode</option>
+          <option value="motivational-speech">Motivational Speech</option>
+        </select>
+      </div>
       {resourceType === "book" && (
         <div>
           <AddBookResourceForm
