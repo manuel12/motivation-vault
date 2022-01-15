@@ -39,9 +39,30 @@ export function isValidIsbn(str) {
 
 export function isValidURL(str) {
   try {
-    new URL(str)
+    new URL(str);
     return true;
   } catch (error) {
     return false;
   }
+}
+
+export function getYoutubeURL(resource, fallback) {
+  return resource.get_youtube_url &&
+    resource.get_youtube_url.includes("/watch?")
+    ? resource.get_youtube_url
+    : fallback;
+}
+
+export function getEmbedYoutubeURL(resource, fallback) {
+  let url = resource.get_youtube_url || fallback;
+  
+  if (!url.includes("embed")) {
+    const tempUrl = new URL(url);
+    const origin = tempUrl["origin"];
+    const embedStr = "/embed/";
+    const videoId = tempUrl["searchParams"].get("v");
+
+    url = origin + embedStr + videoId;
+  }
+  return url;
 }
