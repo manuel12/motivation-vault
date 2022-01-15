@@ -41,5 +41,9 @@ li {
   margin: 15px 0 15px 0;
   display: block;
   width: 70%;
+  white-space: pre-line;
 }
 
+.section {
+  border: 10px black;
+}
