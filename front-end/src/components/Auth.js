@@ -1,7 +1,9 @@
-import "../css/Auth.css";
-
 import React, { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { API } from "../api-service";
+
+import "../css/Auth.css";
 
 function Auth({ setToken }) {
   const [username, setUsername] = useState("");
@@ -39,32 +41,33 @@ function Auth({ setToken }) {
 
       <div className="login-container">
         <form onSubmit={submitHandler}>
+          <FontAwesomeIcon icon={faEnvelope} className="icon"/>
           <label htmlFor="username">Username</label>
           <br />
           <input
             ref={searchInput}
             id="username"
             type="text"
-            placeholder="username"
+            placeholder="Enter your username"
             value={username}
             onChange={(evt) => setUsername(evt.target.value)}
           />
           <br />
-
+          <FontAwesomeIcon icon={faLock} className="icon"/>
           <label htmlFor="password">Password</label>
           <br />
           <input
             id="password"
             type="password"
-            placeholder="password"
+            placeholder="Enter your password"
             value={password}
             onChange={(evt) => setPassword(evt.target.value)}
           ></input>
           <br />
 
-            <button id="submitButton" type="submit">
-              {isLoginView ? "Login" : "Register"}
-            </button>
+          <button id="submitButton" type="submit">
+            {isLoginView ? "Login" : "Register"}
+          </button>
 
           {isLoginView ? (
             <p onClick={() => setLoginView(false)}>
