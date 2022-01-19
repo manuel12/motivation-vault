@@ -2,6 +2,8 @@
 
 describe("Error labels", () => {
   beforeEach(() => {
+    cy.deleteTestData();
+    
     cy.loginWithAPI("testuser1", "testpass1");
     cy.get(".App").should("be.visible");
   });
@@ -74,11 +76,11 @@ describe("Error labels", () => {
       .should("be.visible")
       .and("contain.text", "Podcast cannot be empty!");
 
-    cy.get("[data-test=spotify-url-input-error]")
+    cy.get("[data-test=spotify-ep-url-input-error]")
       .should("be.visible")
       .and("contain.text", "Spotify episode URL cannot be empty!");
 
-    cy.get("[data-test=youtube-url-input-error]")
+    cy.get("[data-test=youtube-ep-url-input-error]")
       .should("be.visible")
       .and("contain.text", "Youtube episode URL cannot be empty!");
   });
