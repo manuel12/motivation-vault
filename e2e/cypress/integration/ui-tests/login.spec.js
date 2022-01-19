@@ -2,6 +2,7 @@
 
 describe("Login", () => {
   beforeEach(() => {
+    cy.deleteTestData();
     cy.visit("/");
   });
   it("should login with valid username and password", () => {
