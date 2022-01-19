@@ -2,6 +2,8 @@
 
 describe("Add Podcast Resources", () => {
   beforeEach(() => {
+    cy.deleteTestData();
+    
     cy.loginWithAPI("testuser1", "testpass1");
     cy.get(".App").should("be.visible");
   });
@@ -10,6 +12,19 @@ describe("Add Podcast Resources", () => {
     cy.fixture("resourceData").then((resourceData) => {
       cy.addResourceWithUI("podcast", resourceData);
 
+      cy.get("[data-test=post-container]")
+        .first()
+        .should("contain", resourceData.title)
+        .and("contain", resourceData.author)
+        .and("contain", resourceData.description);
+    });
+  });
+
+  it("should display added podcast resource on podcast section", () => {
+    cy.fixture("resourceData").then((resourceData) => {
+      cy.addResourceWithUI("podcast", resourceData);
+
+      cy.visit("/podcasts/");
       cy.get("[data-test=post-container]")
         .first()
         .should("contain", resourceData.title)
@@ -36,12 +51,20 @@ describe("Add Podcast Resources", () => {
     cy.get("[data-test=submit]").click();
 
     cy.url().should("contain", "add/");
+
+    cy.get("[data-test=title-input-error]").should("be.visible");
+    cy.get("[data-test=author-input-error]").should("be.visible");
+    cy.get("[data-test=website-url-input-error]").should("be.visible");
+    cy.get("[data-test=spotify-url-input-error]").should("be.visible");
+    cy.get("[data-test=youtube-url-input-error]").should("be.visible");
   });
 
   it("should NOT add a podcast resource with invalid data", () => {
     cy.fixture("invalidResourceData").then((invalidData) => {
       cy.addResourceWithUI("podcast", invalidData);
 
+      cy.url().should("contain", "add/");
+      
       cy.get("[data-test=website-url-input-error]")
         .should("be.visible")
         .and("contain.text", "Website URL has to be a valid url!");
