@@ -2,6 +2,7 @@
 
 describe("Logout", () => {
   beforeEach(() => {
+    cy.deleteTestData();
     cy.loginWithAPI("testuser1", "testpass1");
   });
   it("should logout by navigation bar", () => {
