@@ -2,6 +2,7 @@
 
 describe("404 Page not found", () => {
   beforeEach(() => {
+    cy.deleteTestData();
     cy.loginWithAPI("testuser1", "testpass1");
     cy.get(".App").should("be.visible");
   });
