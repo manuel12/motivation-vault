@@ -24,6 +24,12 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+
+addMatchImageSnapshotCommand();
+
+
+
 Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
   if (text) {
     return originalFn(element, text, options);
@@ -140,15 +146,13 @@ Cypress.Commands.add(
     cy.get("[data-test=value-three-input]").type(testData.valueThree);
 
     cy.get("[data-test=submit]").click();
-
-    cy.url().should("equal", Cypress.config().baseUrl);
   }
 );
 
 Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
   const resourcePlurals = {
-    book: "books",
-    podcast: "podcasts",
+    "book": "books",
+    "podcast": "podcasts",
     "podcasts-episode": "podcast-episodes",
     "motivational-speech": "motivational-speeches",
   };
@@ -170,7 +174,7 @@ Cypress.Commands.add("addCommentWithUI", (text) => {
   cy.get("[data-test=comment-input]")
     .type(text)
     .should("have.value", text)
-    .get("[data-test=submit]")
+    .get("[data-test=add-comment-submit-button]")
     .click();
 
   cy.get("[data-test=comment-input]").should("have.value", "");
