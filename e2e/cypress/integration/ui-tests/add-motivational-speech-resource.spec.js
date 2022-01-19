@@ -2,6 +2,8 @@
 
 describe("Add Motivational Speech Resources", () => {
   beforeEach(() => {
+    cy.deleteTestData();
+    
     cy.loginWithAPI("testuser1", "testpass1");
     cy.get(".App").should("be.visible");
   });
@@ -18,10 +20,26 @@ describe("Add Motivational Speech Resources", () => {
     });
   });
 
+  
+  it("should display added motivational speech resource on motivational speech section", () => {
+    cy.fixture("resourceData").then((resourceData) => {
+      cy.addResourceWithUI("motivational-speech", resourceData);
+
+      cy.visit("/motivational-speeches/")
+      cy.get("[data-test=post-container]")
+        .first()
+        .should("contain", resourceData.title)
+        .and("contain", resourceData.author)
+        .and("contain", resourceData.description);
+    });
+  });
+
+  
+
   it("should add a motivational speech resource filling required fields only", () => {
     cy.fixture("resourceData").then((resourceData) => {
       cy.addResourceWithUI("motivational-speech", resourceData, true);
-
+    
       cy.get("[data-test=post-container]")
         .first()
         .should("contain", resourceData.title)
@@ -37,11 +55,17 @@ describe("Add Motivational Speech Resources", () => {
     cy.get("[data-test=submit]").click();
 
     cy.url().should("contain", "add/");
+
+    cy.get("[data-test=title-input-error]").should("be.visible");
+    cy.get("[data-test=author-input-error]").should("be.visible");
+    cy.get("[data-test=youtube-url-input-error]").should("be.visible");
   });
 
   it("should NOT add a motivational speech resource with invalid data", () => {
     cy.fixture("invalidResourceData").then((invalidData) => {
       cy.addResourceWithUI("motivational-speech", invalidData);
+
+      cy.url().should("contain", "add/");
 
       cy.get("[data-test=youtube-url-input-error]")
         .should("be.visible")
