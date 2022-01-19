@@ -1,12 +1,22 @@
-[{
-  "get_username": "testuser1",
-  "text": "[Test comment] Awesome book, really inspiring!"
-}, 
-{
-  "get_username": "testuser1",
-  "text": "[Test comment] This book was great! Definetly recommend."
-},
-{
-  "get_username": "testuser1",
-  "text": "[Test comment] A truly great book, worth the read!"
-}]
+[
+  {
+    "get_username": "testuser1",
+    "text": "[Test comment] Awesome book, really inspiring!"
+  },
+  {
+    "get_username": "testuser1",
+    "text": "[Test comment] This book was great! Definetly recommend."
+  },
+  {
+    "get_username": "testuser1",
+    "text": "[Test comment] A truly great book, worth the read!"
+  },
+  {
+      "get_username": "testuser1",
+      "text": "[Test comment] This is the forth comment!"
+  },
+  {
+    "get_username": "testuser1",
+    "text": "[Test comment] This is my fifth comment!"
+  }
+]

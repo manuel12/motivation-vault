@@ -2,12 +2,14 @@
   "title": "Test Title",
   "author": "Test Author",
   "subtitle": "Test Subtitle",
-  "isbn": 1234567891011,
+  "isbn": 9781544507873,
 
   "podcast": "Impact Theory",
   "websiteUrl": "http://wwww.google.com/",
-  "spotifyUrl": "http://open.spotify.com",
+  "spotifyUrl": "http://open.spotify.com/",
+  "spotifyEpUrl": "http://open.spotify.com/watch/podcast-episode/",
   "youtubeUrl": "https://www.youtube.com/",
+  "youtubeEpUrl": "https://www.youtube.com/watch/podcast-episode/",
 
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 

@@ -1,8 +1,8 @@
 {
   "title": "Test Title",
   "author": "Test Author",
-  "subtitle": "",
-  "isbn": "",
+  "subtitle": "Test Subtitle",
+  "isbn": "abcdefghikl",
   
   "podcast": "Impact Theory",
   "websiteUrl": "gooole.com",
