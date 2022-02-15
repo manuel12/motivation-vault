@@ -6,7 +6,7 @@ class ResourceAdmin(admin.ModelAdmin):
     list_display = ['pk', 'title', 'author', 'description']
 
 class BookAdmin(ResourceAdmin):
-    pass
+    list_display = ['pk', 'title', 'author', 'isbn']
 
 class PodcastAdmin(ResourceAdmin):
     pass
