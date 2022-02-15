@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { isValidURL } from "../utils";
 import LabeledInput from "./LabeledInput";
-import useToken from './useToken';
+import useToken from "./useToken";
 
 function AddPodcastResourceForm(props) {
-  const {token} = useToken();
+  const { token } = useToken();
 
   let [title, setTitle] = useState("");
   let [author, setAuthor] = useState("");
@@ -47,12 +48,18 @@ function AddPodcastResourceForm(props) {
     if (!websiteUrl) {
       setWebsiteUrlError("Website URL cannot be empty!");
       validInput = false;
+    } else if (!isValidURL(websiteUrl)) {
+      setWebsiteUrlError("Website URL has to be a valid url!");
+      validInput = false;
     } else {
       setWebsiteUrlError("");
     }
 
     if (!spotifyUrl) {
       setSpotifyUrlError("Spotify URL cannot be empty!");
+      validInput = false;
+    } else if (!isValidURL(spotifyUrl)) {
+      setSpotifyUrlError("Spotify URL has to be a valid url!");
       validInput = false;
     } else {
       setSpotifyUrlError("");
@@ -61,6 +68,9 @@ function AddPodcastResourceForm(props) {
     if (!youtubeUrl) {
       setYoutubeUrlError("Youtube URL cannot be empty!");
       validInput = false;
+    } else if (!isValidURL(youtubeUrl)) {
+      setYoutubeUrlError("Youtube URL has to be a valid url!");
+      validInput = false;
     } else {
       setYoutubeUrlError("");
     }
@@ -68,7 +78,9 @@ function AddPodcastResourceForm(props) {
     return validInput;
   };
 
-  const submitClicked = () => {
+  const submitClicked = (e) => {
+    e.preventDefault();
+
     if (validate()) {
       const newResource = {
         title: title,
@@ -113,7 +125,7 @@ function AddPodcastResourceForm(props) {
   };
 
   return (
-    <div className="add-podcast-form">
+    <form className="add-podcast-form" onSubmit={submitClicked}>
       <h3>Add Podcasts Form</h3>
       <LabeledInput
         error={titleError}
@@ -213,15 +225,10 @@ function AddPodcastResourceForm(props) {
         dataAttr="value-three-input"
       />
 
-      <button
-        id="submit"
-        type="submit"
-        onClick={submitClicked}
-        data-test="submit"
-      >
+      <button id="submit" type="submit" data-test="submit">
         Add Podcast
       </button>
-    </div>
+    </form>
   );
 }
 
