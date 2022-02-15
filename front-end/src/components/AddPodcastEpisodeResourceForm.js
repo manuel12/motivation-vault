@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { isValidURL } from "../utils";
 import LabeledInput from "./LabeledInput";
-import useToken from './useToken';
+import useToken from "./useToken";
 
 function AddPodcastEpisodeResourceForm(props) {
-  const {token} = useToken();
+  const { token } = useToken();
 
   let [title, setTitle] = useState("");
   let [author, setAuthor] = useState("");
@@ -54,12 +55,18 @@ function AddPodcastEpisodeResourceForm(props) {
     if (!youtubeEpisodeUrl) {
       setYoutubeEpisodeUrlError("Youtube episode URL cannot be empty!");
       validInput = false;
+    } else if (!isValidURL(youtubeEpisodeUrl)) {
+      setYoutubeEpisodeUrlError("Youtube episode URL has to be a valid url!");
+      validInput = false;
     } else {
       setYoutubeEpisodeUrlError("");
     }
 
     if (!spotifyEpisodeUrl) {
       setSpotifyEpisodeUrlError("Spotify episode URL cannot be empty!");
+      validInput = false;
+    } else if (!isValidURL(spotifyEpisodeUrl)) {
+      setSpotifyEpisodeUrlError("Spotify episode URL has to be a valid url!");
       validInput = false;
     } else {
       setSpotifyEpisodeUrlError("");
@@ -68,7 +75,9 @@ function AddPodcastEpisodeResourceForm(props) {
     return validInput;
   };
 
-  const submitClicked = () => {
+  const submitClicked = (e) => {
+    e.preventDefault();
+
     if (validate()) {
       const newResource = {
         title: title,
@@ -87,7 +96,7 @@ function AddPodcastEpisodeResourceForm(props) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token ${token}`
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify(newResource),
       })
@@ -114,7 +123,7 @@ function AddPodcastEpisodeResourceForm(props) {
   };
 
   return (
-    <div className="add-podcast-episode-form">
+    <form className="add-podcast-episode-form" onSubmit={submitClicked}>
       <h3>Add Podcast Episode Form</h3>
       <LabeledInput
         error={titleError}
@@ -221,15 +230,10 @@ function AddPodcastEpisodeResourceForm(props) {
         dataAttr="value-three-input"
       />
 
-      <button
-        id="submit"
-        type="submit"
-        onClick={submitClicked}
-        data-test="submit"
-      >
+      <button id="submit" type="submit" data-test="submit">
         Add Podcast Episode
       </button>
-    </div>
+    </form>
   );
 }
 
