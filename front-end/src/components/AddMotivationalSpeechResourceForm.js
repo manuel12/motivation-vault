@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { isValidURL } from "../utils";
 import LabeledInput from "./LabeledInput";
 import useToken from './useToken';
 
@@ -41,6 +42,9 @@ function AddMotivationalSpeechResourceForm(props) {
     if (!youtubeUrl) {
       setYoutubeUrlError("Youtube URL cannot be empty!");
       validInput = false;
+    } else if(!isValidURL(youtubeUrl)) {
+      setYoutubeUrlError("Youtube URL has to be a valid URL!");
+      validInput = false;   
     } else {
       setYoutubeUrlError("");
     }
@@ -48,7 +52,9 @@ function AddMotivationalSpeechResourceForm(props) {
     return validInput;
   };
 
-  const submitClicked = () => {
+  const submitClicked = (e) => {
+    e.preventDefault();
+
     if (validate()) {
       const newResource = {
         title: title,
@@ -90,7 +96,7 @@ function AddMotivationalSpeechResourceForm(props) {
   };
 
   return (
-    <div className="add-motivational-speech-form">
+    <form className="add-motivational-speech-form" onSubmit={submitClicked}>
       <h3>Add Motivational Speech Form</h3>
       <LabeledInput
         error={titleError}
@@ -176,7 +182,7 @@ function AddMotivationalSpeechResourceForm(props) {
       >
         Add Motivational Speech
       </button>
-    </div>
+    </form>
   );
 }
 
