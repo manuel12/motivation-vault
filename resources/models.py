@@ -17,9 +17,9 @@ class Resource(models.Model):
     description = models.TextField(blank=True, default=LOREM_IPSUM_SHORT)
     imageURL = models.URLField(default=IMAGE_URL)
     
-    value_one = models.TextField(default=LOREM_IPSUM_SHORT)
-    value_two = models.TextField(default=LOREM_IPSUM_SHORT)
-    value_three = models.TextField(default=LOREM_IPSUM_SHORT)
+    value_one = models.TextField(blank=True, default=LOREM_IPSUM_SHORT)
+    value_two = models.TextField(blank=True, default=LOREM_IPSUM_SHORT)
+    value_three = models.TextField(blank=True, default=LOREM_IPSUM_SHORT)
 
     def __str__(self):
         return self.title
