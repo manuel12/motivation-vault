@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
-import useToken from './useToken';
+import useToken from "./useToken";
 
 import "../css/Ratings.css";
 
 function Ratings(props) {
-  const {token} = useToken();
+  const { token } = useToken();
 
   let [showNumberInput, setShowNumberInput] = useState(false);
   let [rating, setRating] = useState(-1);
@@ -18,7 +18,9 @@ function Ratings(props) {
     setShowNumberInput(true);
   };
 
-  const handleSubmitRating = () => {
+  const handleSubmitRating = (e) => {
+    e.preventDefault();
+
     if (rating >= 1 && rating <= 5) {
       const newRating = {
         resource: props.resourceId,
@@ -35,7 +37,6 @@ function Ratings(props) {
       })
         .then((resp) => resp.json())
         .then((resp) => {
-          console.log(resp);
           getDetails();
         })
         .catch((error) => console.warn(error));
@@ -60,7 +61,7 @@ function Ratings(props) {
 
   const handleCancelAddRating = () => {
     setShowNumberInput(false);
-  }
+  };
 
   let avgRating = props.avgRating;
   let numRatings = props.numRatings;
@@ -109,7 +110,11 @@ function Ratings(props) {
       ) : null}
 
       {showNumberInput ? (
-        <div className="rating-input-form" data-test="rating-input-form">
+        <form
+          onSubmit={handleSubmitRating}
+          className="rating-input-form"
+          data-test="rating-input-form"
+        >
           {ratingInputError ? (
             <label data-test="add-rating-input-error">
               Rating needs to be between 1 and 5
@@ -118,9 +123,6 @@ function Ratings(props) {
 
           <input
             type="number"
-            max="5"
-            min="1"
-            defaultValue="0"
             value={rating}
             onChange={(evt) => {
               setRating(evt.target.value);
@@ -128,11 +130,7 @@ function Ratings(props) {
             data-test="add-rating-input"
           />
 
-          <button
-            type="button"
-            onClick={handleSubmitRating}
-            data-test="add-rating-submit-button"
-          >
+          <button type="submit" data-test="add-rating-submit-button">
             Add Rating
           </button>
           <button
@@ -142,7 +140,7 @@ function Ratings(props) {
           >
             Cancel
           </button>
-        </div>
+        </form>
       ) : null}
     </div>
   );
