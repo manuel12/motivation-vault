@@ -32,7 +32,11 @@ function DetailPage() {
           updateResource={setResource}
           addRatingBtn={true}
         />
-        <img src={resource.imageURL} className="image" alt=""></img>
+        {/* <img src={resource.imageURL} className="image" alt=""></img> */}
+        <iframe
+          title={resource.title}
+          src="https://www.youtube.com/embed/YxZsXZeFU1A"
+        ></iframe>
         <h3>Description</h3>
         <p className="paragraph-container">{resource.description}</p>
       </div>
