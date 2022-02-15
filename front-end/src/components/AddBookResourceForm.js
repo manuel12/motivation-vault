@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { isValidIsbn } from "../utils";
 import LabeledInput from "./LabeledInput";
-import useToken from './useToken';
+import useToken from "./useToken";
 
 function AddBookResourceForm(props) {
-  const {token} = useToken();
+  const { token } = useToken();
 
   let [title, setTitle] = useState("");
   let [author, setAuthor] = useState("");
@@ -51,6 +52,9 @@ function AddBookResourceForm(props) {
     if (!isbn) {
       setIsbnError("ISBN cannot be empty!");
       validInput = false;
+    } else if (!isValidIsbn(isbn)) {
+      setIsbnError("ISBN has to be a 13 digits!");
+      validInput = false;
     } else {
       setIsbnError("");
     }
@@ -58,7 +62,9 @@ function AddBookResourceForm(props) {
     return validInput;
   };
 
-  const submitClicked = () => {
+  const submitClicked = (e) => {
+    e.preventDefault();
+
     if (validate()) {
       const newResource = {
         title: title,
@@ -102,7 +108,7 @@ function AddBookResourceForm(props) {
   };
 
   return (
-    <div className="add-book-form">
+    <form className="add-book-form" onSubmit={submitClicked}>
       <h3>Add Book Form</h3>
 
       <LabeledInput
@@ -192,15 +198,10 @@ function AddBookResourceForm(props) {
         dataAttr="value-three-input"
       />
 
-      <button
-        id="submit"
-        type="submit"
-        onClick={submitClicked}
-        data-test="submit"
-      >
+      <button id="submit" type="submit" data-test="submit">
         Add Book
       </button>
-    </div>
+    </form>
   );
 }
 
