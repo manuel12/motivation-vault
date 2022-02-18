@@ -21,7 +21,6 @@
 }
 
 .add-comment-btn-enabled {
-  background-color: orangered;
   border-radius: 5px;
   width: 100px;
   padding: 10px;
@@ -30,6 +29,7 @@
 }
 
 .cancel-button {
+  background-color: grey;
   border-radius: 5px;
   width: 100px;
   padding: 10px;
