@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "../css/Navbar.css";
 
 function Navbar({ deleteToken }) {
@@ -6,8 +7,41 @@ function Navbar({ deleteToken }) {
     window.location.href = "/";
   };
 
+  useEffect(() => {
+    const locPath = window.location.pathname;
+
+    const cleanedLocPath = (locPath) => {
+      if (locPath === "/") return "home";
+      return locPath.replaceAll("/", "");
+    };
+
+    const cleanLocPath = cleanedLocPath(locPath);
+    console.log(cleanLocPath);
+
+    const navItemsLinks = [
+      "home-link",
+      "add-link",
+      "books-link",
+      "podcasts-link",
+      "podcasts-episodes-link",
+      "motivational-speeches-link",
+      "about-link",
+      "logout-link",
+    ];
+
+    navItemsLinks.forEach((link) => {
+      const query = `[data-test=${link}]`;
+      const elem = document.querySelector(query);
+      if (link.includes(cleanLocPath)) {
+        elem.className = "nav-item-link active";
+      } else {
+        elem.className = "nav-item-link";
+      }
+    });
+  }, []);
+
   return (
-    <div className="app-nav-bar">
+    <div className="app-navbar">
       <ul className="nav-list">
         <li className="nav-item">
           <a className="nav-item-link" href="/" data-test="home-link">
@@ -37,7 +71,7 @@ function Navbar({ deleteToken }) {
           <a
             className="nav-item-link"
             href="/podcasts-episodes/"
-            data-test="podcasts-link"
+            data-test="podcasts-episodes-link"
           >
             Podcasts Episodes
           </a>
