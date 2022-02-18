@@ -54,15 +54,22 @@ export function getYoutubeURL(resource, fallback) {
 }
 
 export function getEmbedYoutubeURL(resource, fallback) {
-  let url = resource.get_youtube_url || fallback;
+  console.log(resource)
+  let url = resource.get_youtube_url;
   
-  if (!url.includes("embed")) {
-    const tempUrl = new URL(url);
-    const origin = tempUrl["origin"];
-    const embedStr = "/embed/";
-    const videoId = tempUrl["searchParams"].get("v");
-
-    url = origin + embedStr + videoId;
+  try {
+    if (!url.includes("embed")) {
+      const tempUrl = new URL(url);
+      const origin = tempUrl["origin"];
+      const embedStr = "/embed/";
+      const videoId = tempUrl["searchParams"].get("v");
+  
+      url = origin + embedStr + videoId;
+    }
+  } catch(err) {
+    url = fallback;
   }
+
+  console.log(`Returning ${url} for resource ${resource}`)
   return url;
 }
