@@ -50,7 +50,15 @@ class Resource(models.Model):
             motivational_speech = MotivationalSpeech.objects.get(title=self.title)
             return motivational_speech.youtube_url
         except MotivationalSpeech.DoesNotExist:
-            return None
+            pass
+
+        try:
+            podcast_episode = PodcastEpisode.objects.get(title=self.title)
+            return podcast_episode.youtube_episode_url
+        except PodcastEpisode.DoesNotExist:
+            pass
+
+        return None
 
     class Meta:
       ordering = ['-id']
