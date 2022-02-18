@@ -10,10 +10,22 @@
   color: orange;
 }
 
+.orange-pointer {
+  color: orange;
+  cursor: pointer;
+}
+
+.purple {
+  color: purple;
+}
+
 .white {
-  display: none;
   color: white;
-  cursor: none;
+  cursor: pointer;
+}
+
+.no-display {
+  display: none;
 }
 
 .num-ratings {
@@ -31,28 +43,10 @@
   size: 1.3rem;
 }
 
-#rating-error {
-  font-family: 'Open Sans';
-  font-weight: bold;
-}
-
-.rating-input {
-  width: 40px;
-  appearance: none;
-}
-
-.rating-submit-btn {
-  background-color: orangered;
-  width: auto;
-  margin: 10px;
+.rate-container {
+  background-color: lightgray;
+  width: 200px;
+  margin-top: 10px;
+  border-top: 3px solid orange;
   border-radius: 5px;
-  border: 0;
 }
-
-.rating-cancel-button {
-  width: auto;
-  margin: 10px;
-  border-radius: 5px;
-  border: 0;
-}
-
