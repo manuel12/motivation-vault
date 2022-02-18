@@ -6,7 +6,7 @@ function Post(props) {
     <div className="post-container" data-test="post-container">
       <a href={`http://localhost:3000/${props.id}/`} className="container-link">
         <div className="image-container">
-          <img src={props.imageURL} className="image" alt=""></img>
+          <img src={props.imageURL} className="post-image" alt=""></img>
         </div>
         <div className="text-container">
           <h3>{props.title}</h3>
