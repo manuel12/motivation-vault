@@ -31,7 +31,11 @@ function CommentSection(props) {
   }, [commentText]);
 
   const inputClicked = () => {
-    submitBtn.className = "add-comment-btn";
+    if (commentText) {
+      submitBtn.className = "add-comment-btn-enabled";
+    } else {
+      submitBtn.className = "add-comment-btn";
+    }
     cancelBtn.className = "cancel-button";
   };
 
@@ -51,18 +55,19 @@ function CommentSection(props) {
         },
         body: JSON.stringify(newComment),
       })
-      .then((resp) => resp.json())
-      .then((resp) => {
-        newComment["user"] = resp["get_username"];
+        .then((resp) => resp.json())
+        .then((resp) => {
+          newComment["user"] = resp["get_username"];
 
-        const updatedComments = [newComment, ...comments];
-        setComments(updatedComments);
+          const updatedComments = [newComment, ...comments];
+          setComments(updatedComments);
 
-        const commentElems = document.getElementsByClassName("comment-container");
-        const lastCommentElem = commentElems[commentElems.length - 1];
-        lastCommentElem.scrollIntoView();
-      })
-      .catch((error) => console.warn(error));
+          const commentElems =
+            document.getElementsByClassName("comment-container");
+          const lastCommentElem = commentElems[commentElems.length - 1];
+          lastCommentElem.scrollIntoView();
+        })
+        .catch((error) => console.warn(error));
 
       setSubmitBtnDisabled(true);
       setCommentText("");
