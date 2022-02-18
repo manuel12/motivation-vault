@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getYoutubeURL, getEmbedYoutubeURL } from "../utils";
+import { getEmbedYoutubeURL } from "../utils";
 import { useParams } from "react-router-dom";
 import { API } from "../api-service";
 import CommentSection from "./CommentSection";
@@ -19,8 +19,6 @@ function DetailPage() {
     });
   }, [id]);
 
-  console.log(resource);
-
   return (
     <div className="container">
       <div className="post-section-container">
@@ -35,13 +33,22 @@ function DetailPage() {
           updateResource={setResource}
           addRatingBtn={true}
         />
-        <iframe
-          title={resource.title}
-          src={getEmbedYoutubeURL(
-            resource,
-            "https://www.youtube.com/embed/YxZsXZeFU1A"
-          )}
-        ></iframe>
+        <div className="media-container">
+          {resource &&
+            (resource.get_youtube_url ? (
+              <iframe
+              title={resource.title}
+              src={getEmbedYoutubeURL(
+                resource,
+                "https://www.youtube.com/embed/YxZsXZeFU1A"
+              )}
+            ></iframe>
+             ) : (
+              <img src={resource.imageURL} className="image" />
+
+            ))}
+        </div>
+
         <h3>Description</h3>
         <p className="paragraph-container">{resource.description}</p>
       </div>
