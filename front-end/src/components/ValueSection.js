@@ -1,15 +1,31 @@
 import "../css/ValueSection.css";
 
 function ValueSection(props) {
+  const values = [
+    props.resource.value_one,
+    props.resource.value_two,
+    props.resource.value_three,
+  ];
+
+  const filteredValues = values.filter((val) => {
+    return val && val.length > 1;
+  });
+
   return (
-    <div className="value-section-container" data-test="value-section">
-      <h3>What value does it bring you?</h3>
-      <ul>
-        <li>{props.resource.value_one}</li>
-        <li>{props.resource.value_two}</li>
-        <li>{props.resource.value_three}</li>
-      </ul>
-    </div>
+    filteredValues.length > 0 && (
+      <div className="value-section-container" data-test="value-section">
+        <h3>What value does it bring you?</h3>
+        <ul>
+          {filteredValues.map((value, i) => {
+            return (
+              <li key={i} className="value-item">
+                {value}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    )
   );
 }
 
