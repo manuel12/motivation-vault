@@ -1,9 +1,16 @@
-.app-nav-bar {
+.app-navbar {
   background-color: #1a161b;
 }
 
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  display: flex;;
+}
+
 .nav-item {
-  float: left;
+  
 }
 
 .nav-item-link {
@@ -14,4 +21,13 @@
   padding: 14px 30px;
   text-decoration: none;
   cursor:pointer;
+}
+
+.active {
+  background-color: grey;
+}
+
+.nav-item-link:hover {
+  background-color: yellow;
+  color: black;
 }
