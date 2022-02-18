@@ -24,11 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
 
 addMatchImageSnapshotCommand();
-
-
 
 Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
   if (text) {
@@ -76,7 +74,7 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
     }),
   }).then((response) => {
     token = response.body.token;
-    cy.log(token)
+    cy.log(token);
     expect(response.status).to.eq(200);
   });
 
@@ -98,7 +96,7 @@ Cypress.Commands.add("deleteTestData", () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${Cypress.env("adminToken")}`,
+      "Authorization": `Token ${Cypress.env("adminToken")}`,
     },
   }).then((response) => {
     expect(response.status).to.eq(204);
@@ -162,7 +160,7 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${Cypress.env("adminToken")}`,
+      "Authorization": `Token ${Cypress.env("adminToken")}`,
     },
     body: JSON.stringify(testData),
   }).then((response) => {
@@ -182,9 +180,7 @@ Cypress.Commands.add("addCommentWithUI", (text) => {
 
 Cypress.Commands.add("addRatingWithUI", (numStars) => {
   cy.get("[data-test=add-rating-button]").click();
-  cy.get("[data-test=add-rating-input]").clear().type(numStars);
-  cy.get("[data-test=add-rating-submit-button]").click();
-  cy.get("[data-test=rating-input-form]").should("not.exist");
+  cy.get(`[data-test=add-star-icon-${numStars}]`).click();
 });
 
 Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
@@ -192,12 +188,13 @@ Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
     resource: resource,
     stars: numStars,
   };
+
   cy.request({
     url: "http://127.0.0.1:8000/api/ratings/",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${token ? token : Cypress.env("adminToken")}`,
+      "Authorization": `Token ${token ? token : Cypress.env("adminToken")}`,
     },
     body: JSON.stringify(newRating),
   }).then((response) => {
