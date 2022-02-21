@@ -5,6 +5,6 @@ def read_from_json(file):
       data = json.load(f)
     return data
 
-def get_model_data(key):
-  data = read_from_json("resources/model-data.json")
-  return data[key]
+def get_default_data():
+  data = read_from_json("resources/default-data.json")
+  return data
