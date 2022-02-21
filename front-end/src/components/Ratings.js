@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faCheck,
-  faPlusSquare,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import useToken from "./useToken";
 
 import "../css/Ratings.css";
@@ -13,44 +8,44 @@ import "../css/Ratings.css";
 function Ratings(props) {
   const { token } = useToken();
 
-  let [showNumberInput, setShowNumberInput] = useState(false);
   let [rating, setRating] = useState(-1);
-  let [ratingInputError, setRatingInputError] = useState(false);
+  let [showRatingInput, setShowRatingInput] = useState(false);
+  let [hightlighted, setHighlighted] = useState(-1);
 
   useEffect(() => setRating(props.avgRating), [props.avgRating]);
 
-  const handleAddRating = () => {
-    setShowNumberInput(true);
+  const toggleDisplayRatingInput = () => {
+    setShowRatingInput(!showRatingInput);
   };
 
-  const handleSubmitRating = (e) => {
+  const highlightRate = (high) => (e) => {
+    setHighlighted(high);
+  };
+
+  const handleSubmitRating = (rating) => (e) => {
     e.preventDefault();
+    rating += 1;
 
-    if (rating >= 1 && rating <= 5) {
-      const newRating = {
-        resource: props.resourceId,
-        stars: rating,
-      };
+    const newRating = {
+      resource: props.resourceId,
+      stars: rating,
+    };
 
-      fetch(`http://127.0.0.1:8000/api/ratings/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-        },
-        body: JSON.stringify(newRating),
+    fetch(`http://127.0.0.1:8000/api/ratings/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify(newRating),
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        getDetails();
       })
-        .then((resp) => resp.json())
-        .then((resp) => {
-          getDetails();
-        })
-        .catch((error) => console.warn(error));
+      .catch((error) => console.warn(error));
 
-      setShowNumberInput(false);
-      setRatingInputError(false);
-    } else {
-      setRatingInputError(true);
-    }
+    setShowRatingInput(false);
   };
 
   const getDetails = () => {
@@ -66,11 +61,6 @@ function Ratings(props) {
       .catch((error) => console.log(error));
   };
 
-  const handleCancelAddRating = () => {
-    setShowNumberInput(false);
-    setRatingInputError(false);
-  };
-
   let avgRating = props.avgRating;
   let numRatings = props.numRatings;
 
@@ -78,27 +68,27 @@ function Ratings(props) {
     <div className="ratings-container" data-test="ratings-container">
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 0 ? "orange" : "white"}
+        className={avgRating > 0 ? "orange" : "no-display"}
         data-test="star-icon-1"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 1 ? "orange" : "white"}
+        className={avgRating > 1 ? "orange" : "no-display"}
         data-test="star-icon-2"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 2 ? "orange" : "white"}
+        className={avgRating > 2 ? "orange" : "no-display"}
         data-test="star-icon-3"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 3 ? "orange" : "white"}
+        className={avgRating > 3 ? "orange" : "no-display"}
         data-test="star-icon-4"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 4 ? "orange" : "white"}
+        className={avgRating > 4 ? "orange" : "no-display"}
         data-test="star-icon-5"
       />
 
@@ -108,52 +98,33 @@ function Ratings(props) {
           : `(${numRatings} review)`}
       </span>
 
-      {props.addRatingBtn ? (
+      {props.addRatingBtn && (
         <FontAwesomeIcon
           icon={faPlusSquare}
           className="add-rating"
-          onClick={handleAddRating}
+          onClick={toggleDisplayRatingInput}
           data-test="add-rating-button"
         />
-      ) : null}
+      )}
 
-      {showNumberInput ? (
-        <form onSubmit={handleSubmitRating} data-test="rating-input-form">
-          {ratingInputError ? (
-            <label id="rating-error" data-test="add-rating-input-error">
-              Rating needs to be between 1 and 5
-            </label>
-          ) : null}
-
-          <div>
-            <input
-              className="rating-input"
-              type="number"
-              value={rating}
-              onChange={(evt) => {
-                setRating(evt.target.value);
-              }}
-              data-test="add-rating-input"
-            />
-
-            <button
-              className="rating-submit-btn"
-              type="submit"
-              data-test="add-rating-submit-button"
-            >
-              <FontAwesomeIcon icon={faCheck} />
-            </button>
-            <button
-              className="rating-cancel-button"
-              type="button"
-              onClick={handleCancelAddRating}
-              data-test="add-rating-cancel-button"
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-          </div>
-        </form>
-      ) : null}
+      {showRatingInput && (
+        <div className="rate-container">
+          <h2>Rate it!</h2>
+          {[...Array(5)].map((e, i) => {
+            return (
+              <FontAwesomeIcon
+                key={i}
+                icon={faStar}
+                className={hightlighted > i - 1 ? "orange-pointer" : "white"}
+                data-test={`add-star-icon-${i + 1}`}
+                onMouseEnter={highlightRate(i)}
+                onMouseLeave={highlightRate(-1)}
+                onClick={handleSubmitRating(i)}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
