@@ -1,3 +1,4 @@
+from csv import list_dialects
 from django.contrib import admin
 from resources import models
 # Register your models here.
@@ -9,13 +10,13 @@ class BookAdmin(ResourceAdmin):
     list_display = ['pk', 'title', 'author', 'isbn']
 
 class PodcastAdmin(ResourceAdmin):
-    pass
+    list_display = ['pk', 'title', 'author', 'youtube_url', 'spotify_url']
 
 class PodcastEpisodeAdmin(ResourceAdmin):
-    pass
+    list_display = ['pk', 'title', 'youtube_episode_url', 'from_podcast']
 
 class MotivationalSpeechAdmin(ResourceAdmin):
-    pass
+    list_display = ['pk', 'title', 'author', 'youtube_url', 'value_one']
 
 class CommentAdmin(ResourceAdmin):
     list_display = ['pk', 'resource', 'user', 'text', 'date_created']
