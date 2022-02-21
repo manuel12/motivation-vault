@@ -10,13 +10,12 @@ function Navbar({ deleteToken }) {
   useEffect(() => {
     const locPath = window.location.pathname;
 
-    const cleanedLocPath = (locPath) => {
+    const cleanLocPath = (locPath) => {
       if (locPath === "/") return "home";
       return locPath.replaceAll("/", "");
     };
 
-    const cleanLocPath = cleanedLocPath(locPath);
-    console.log(cleanLocPath);
+    const cleanedLocPath = cleanLocPath(locPath);
 
     const navItemsLinks = [
       "home-link",
@@ -32,7 +31,7 @@ function Navbar({ deleteToken }) {
     navItemsLinks.forEach((link) => {
       const query = `[data-test=${link}]`;
       const elem = document.querySelector(query);
-      if (link.includes(cleanLocPath)) {
+      if (link === `${cleanedLocPath}-link`) {
         elem.className = "nav-item-link active";
       } else {
         elem.className = "nav-item-link";
