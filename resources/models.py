@@ -74,8 +74,8 @@ class Book(Resource):
 
 class Podcast(Resource):
     website_url = models.URLField(max_length=200)
-    youtube_url = models.URLField(max_length=200)
-    spotify_url = models.URLField(
+    youtube_page_url = models.URLField(max_length=200)
+    spotify_page_url = models.URLField(
         max_length=200, default='http://open.spotify.com/')
 
 
