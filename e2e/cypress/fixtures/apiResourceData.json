@@ -6,8 +6,11 @@
 
   "from_podcast": 88,
   "website_url": "http://wwww.google.com/",
-  "spotify_url": "http://open.spotify.com/",
-  "youtube_url": "https://www.youtube.com/",
+  "spotify_page_url": "http://open.spotify.com/",
+  "youtube_page_url": "https://www.youtube.com/",
+
+  "spotify_url": "http://open.spotify.com/motivational-speech/",
+  "youtube_url": "https://www.youtube.com/motivational-speech/",
 
   "youtube_episode_url": "https://www.youtube.com/podcast-episode/1",
   "spotify_episode_url": "https://open.spotify.com/podcast-episode/1",
