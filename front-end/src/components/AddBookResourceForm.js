@@ -90,7 +90,7 @@ function AddBookResourceForm(props) {
         .then((resp) => {
           console.log(resp);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
 
       setTitle("");
       setAuthor("");

@@ -12,8 +12,8 @@ function AddPodcastResourceForm(props) {
 
   // => Podcast fields
   let [websiteUrl, setWebsiteUrl] = useState("");
-  let [spotifyUrl, setSpotifyUrl] = useState("");
-  let [youtubeUrl, setYoutubeUrl] = useState("");
+  let [spotifyPageUrl, setSpotifyPageUrl] = useState("");
+  let [youtubePageUrl, setYoutubePageUrl] = useState("");
 
   let [valueOne, setValueOne] = useState("");
   let [valueTwo, setValueTwo] = useState("");
@@ -25,8 +25,8 @@ function AddPodcastResourceForm(props) {
   let [authorError, setAuthorError] = useState("");
 
   let [websiteUrlError, setWebsiteUrlError] = useState("");
-  let [spotifyUrlError, setSpotifyUrlError] = useState("");
-  let [youtubeUrlError, setYoutubeUrlError] = useState("");
+  let [spotifyPageUrlError, setSpotifyPageUrlError] = useState("");
+  let [youtubePageUrlError, setYoutubePageUrlError] = useState("");
 
   const validate = () => {
     let validInput = true;
@@ -55,24 +55,24 @@ function AddPodcastResourceForm(props) {
       setWebsiteUrlError("");
     }
 
-    if (!spotifyUrl) {
-      setSpotifyUrlError("Spotify URL cannot be empty!");
+    if (!spotifyPageUrl) {
+      setSpotifyPageUrlError("Spotify URL cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(spotifyUrl)) {
-      setSpotifyUrlError("Spotify URL has to be a valid url!");
+    } else if (!isValidURL(spotifyPageUrl)) {
+      setSpotifyPageUrlError("Spotify URL has to be a valid url!");
       validInput = false;
     } else {
-      setSpotifyUrlError("");
+      setSpotifyPageUrlError("");
     }
 
-    if (!youtubeUrl) {
-      setYoutubeUrlError("Youtube URL cannot be empty!");
+    if (!youtubePageUrl) {
+      setYoutubePageUrlError("Youtube URL cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(youtubeUrl)) {
-      setYoutubeUrlError("Youtube URL has to be a valid url!");
+    } else if (!isValidURL(youtubePageUrl)) {
+      setYoutubePageUrlError("Youtube URL has to be a valid url!");
       validInput = false;
     } else {
-      setYoutubeUrlError("");
+      setYoutubePageUrlError("");
     }
 
     return validInput;
@@ -92,7 +92,14 @@ function AddPodcastResourceForm(props) {
       };
 
       newResource["website_url"] = websiteUrl;
-      newResource["youtube_url"] = youtubeUrl;
+      newResource["youtube_page_url"] = youtubePageUrl;
+
+      console.log("---------------------------------------------------");
+      console.log("New Resource obj");
+      for(const key in newResource) {
+          console.log(`${key}: ${newResource[key]}`);
+      }
+      
 
       fetch(`http://127.0.0.1:8000/api/podcasts/`, {
         method: "POST",
@@ -106,15 +113,15 @@ function AddPodcastResourceForm(props) {
         .then((resp) => {
           console.log(resp);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
 
       setTitle("");
       setAuthor("");
       setDescription("");
 
       setWebsiteUrl("");
-      setSpotifyUrl("");
-      setYoutubeUrl("");
+      setSpotifyPageUrl("");
+      setYoutubePageUrl("");
 
       setValueOne("");
       setValueTwo("");
@@ -174,23 +181,23 @@ function AddPodcastResourceForm(props) {
       />
 
       <LabeledInput
-        error={spotifyUrlError}
+        error={spotifyPageUrlError}
         item="Spotify Url"
         itemType="text"
-        value={spotifyUrl}
+        value={spotifyPageUrl}
         onChange={(evt) => {
-          setSpotifyUrl(evt.target.value);
+          setSpotifyPageUrl(evt.target.value);
         }}
         dataAttr="spotify-url-input"
       />
 
       <LabeledInput
-        error={youtubeUrlError}
+        error={youtubePageUrlError}
         item="Youtube Url"
         itemType="text"
-        value={youtubeUrl}
+        value={youtubePageUrl}
         onChange={(evt) => {
-          setYoutubeUrl(evt.target.value);
+          setYoutubePageUrl(evt.target.value);
         }}
         dataAttr="youtube-url-input"
       />
