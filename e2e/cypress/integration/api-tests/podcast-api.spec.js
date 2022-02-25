@@ -53,8 +53,8 @@ describe("Podacst API 'GET' request", () => {
       expect(firstPodcast).to.have.property("description");
       expect(firstPodcast).to.have.property("imageURL");
       expect(firstPodcast).to.have.property("website_url");
-      expect(firstPodcast).to.have.property("spotify_url");
-      expect(firstPodcast).to.have.property("youtube_url");
+      expect(firstPodcast).to.have.property("spotify_page_url");
+      expect(firstPodcast).to.have.property("youtube_page_url");
       expect(firstPodcast).to.have.property("avg_rating", 0);
       expect(firstPodcast).to.have.property("num_ratings", 0);
     });
@@ -115,8 +115,8 @@ describe("Podacst API 'POST' request", () => {
         expect(podcast).to.have.property("description");
         expect(podcast).to.have.property("imageURL");
         expect(podcast).to.have.property("website_url", testData.website_url);
-        expect(podcast).to.have.property("spotify_url", testData.spotify_url);
-        expect(podcast).to.have.property("youtube_url", testData.youtube_url);
+        expect(podcast).to.have.property("spotify_page_url", testData.spotify_page_url);
+        expect(podcast).to.have.property("youtube_page_url", testData.youtube_page_url);
         expect(podcast).to.have.property("avg_rating", 0);
         expect(podcast).to.have.property("num_ratings", 0);
       });

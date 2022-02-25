@@ -60,7 +60,7 @@ describe("Motivational Speech API 'GET' request", () => {
 });
 
 describe("Motivational Speech API 'POST' request", () => {
-  it("should have status code 201", () => {
+    it("should have status code 201", () => {
     cy.fixture("apiResourceData").then((testData) => {
       cy.request({
         method: "POST",
