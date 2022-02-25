@@ -1,6 +1,7 @@
 from django.test import TestCase
 from resources.models import Podcast, PodcastEpisode
 
+
 class PodcastEpisodeModelTest(TestCase):
     """Creates a podcast episodes and tests the fields."""
 
@@ -9,8 +10,8 @@ class PodcastEpisodeModelTest(TestCase):
             title="Impact Theory",
             author="Tom Bilyeu",
             website_url="https://impacttheory.com/",
-            youtube_url="https://www.youtube.com/channel/UCnYMOamNKLGVlJgRUbamveA",
-            spotify_url="https://open.spotify.com/show/1nARKz2vTIOb7gC9dusE4b")
+            youtube_page_url="https://www.youtube.com/channel/UCnYMOamNKLGVlJgRUbamveA",
+            spotify_page_url="https://open.spotify.com/show/1nARKz2vTIOb7gC9dusE4b")
 
         self.test_podcast_episode = PodcastEpisode.objects.create(
             title="How to Make Yourself Immune to Pain",
