@@ -10,7 +10,7 @@ class BookAdmin(ResourceAdmin):
     list_display = ['pk', 'title', 'author', 'isbn']
 
 class PodcastAdmin(ResourceAdmin):
-    list_display = ['pk', 'title', 'author', 'youtube_url', 'spotify_url']
+    list_display = ['pk', 'title', 'author', 'youtube_page_url', 'spotify_page_url']
 
 class PodcastEpisodeAdmin(ResourceAdmin):
     list_display = ['pk', 'title', 'youtube_episode_url', 'from_podcast']
