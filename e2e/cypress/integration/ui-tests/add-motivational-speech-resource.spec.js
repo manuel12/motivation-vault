@@ -1,55 +1,47 @@
 /// <reference types="cypress" />
 
+const resourceTestData = require("../../fixtures/resourceTestData.json");
+const resourceInvalidTestData = require("../../fixtures/invalidResourceTestData.json");
+
 describe("Add Motivational Speech Resources", () => {
   beforeEach(() => {
-    cy.deleteTestData();
-    
-    cy.loginWithAPI("testuser1", "testpass1");
-    cy.get(".App").should("be.visible");
+    cy.loginAndCleanUp();
+    cy.get("[data-test=app]").should("be.visible");
   });
 
   it("should add a motivational speech resource", () => {
-    cy.fixture("resourceData").then((resourceData) => {
-      cy.addResourceWithUI("motivational-speech", resourceData);
+    cy.addResourceWithUI("motivational-speech", resourceTestData);
 
-      cy.get("[data-test=post-container]")
-        .first()
-        .should("contain", resourceData.title)
-        .and("contain", resourceData.author)
-        .and("contain", resourceData.description);
-    });
+    cy.get("[data-test=post-container]")
+      .first()
+      .should("contain", resourceTestData.title)
+      .and("contain", resourceTestData.author)
+      .and("contain", resourceTestData.description);
   });
 
-  
   it("should display added motivational speech resource on motivational speech section", () => {
-    cy.fixture("resourceData").then((resourceData) => {
-      cy.addResourceWithUI("motivational-speech", resourceData);
+    cy.addResourceWithUI("motivational-speech", resourceTestData);
 
-      cy.visit("/motivational-speeches/")
-      cy.get("[data-test=post-container]")
-        .first()
-        .should("contain", resourceData.title)
-        .and("contain", resourceData.author)
-        .and("contain", resourceData.description);
-    });
+    cy.visit("/motivational-speeches/");
+    cy.get("[data-test=post-container]")
+      .first()
+      .should("contain", resourceTestData.title)
+      .and("contain", resourceTestData.author)
+      .and("contain", resourceTestData.description);
   });
-
-  
 
   it("should add a motivational speech resource filling required fields only", () => {
-    cy.fixture("resourceData").then((resourceData) => {
-      cy.addResourceWithUI("motivational-speech", resourceData, true);
-    
-      cy.get("[data-test=post-container]")
-        .first()
-        .should("contain", resourceData.title)
-        .and("contain", resourceData.author);
-    });
+    cy.addResourceWithUI("motivational-speech", resourceTestData, true);
+
+    cy.get("[data-test=post-container]")
+      .first()
+      .should("contain", resourceTestData.title)
+      .and("contain", resourceTestData.author);
   });
 
   it("should NOT submit motivational speech form without filling required fields", () => {
     cy.visit("/add/");
-    cy.get(".add-container").should("be.visible");
+    cy.get("[data-test=add-container]").should("be.visible");
     cy.get("[data-test=select-resource-type]").select("Motivational Speech");
 
     cy.get("[data-test=submit]").click();
@@ -62,41 +54,37 @@ describe("Add Motivational Speech Resources", () => {
   });
 
   it("should NOT add a motivational speech resource with invalid data", () => {
-    cy.fixture("invalidResourceData").then((invalidData) => {
-      cy.addResourceWithUI("motivational-speech", invalidData);
+    cy.addResourceWithUI("motivational-speech", resourceInvalidTestData);
 
-      cy.url().should("contain", "add/");
+    cy.url().should("contain", "add/");
 
-      cy.get("[data-test=youtube-url-input-error]")
-        .should("be.visible")
-        .and("contain.text", "Youtube URL has to be a valid URL!");
-    });
+    cy.get("[data-test=youtube-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Youtube URL has to be a valid URL!");
   });
 
   it("should add a motivational speech resource by pressing ENTER when all fields are filled", () => {
-    cy.fixture("resourceData").then((resourceData) => {
-      cy.visit("/add/");
-      cy.get(".add-container").should("be.visible");
-      cy.get("[data-test=select-resource-type]").select("Motivational Speech");
+    cy.visit("/add/");
+    cy.get("[data-test=add-container]").should("be.visible");
+    cy.get("[data-test=select-resource-type]").select("Motivational Speech");
 
-      cy.get("[data-test=title-input]").type(resourceData.title);
-      cy.get("[data-test=author-input]").type(resourceData.author);
-      cy.get("[data-test=description-input]").type(resourceData.description);
+    cy.get("[data-test=title-input]").type(resourceTestData.title);
+    cy.get("[data-test=author-input]").type(resourceTestData.author);
+    cy.get("[data-test=description-input]").type(resourceTestData.description);
 
-      cy.get("[data-test=youtube-url-input]").type(resourceData.youtubeUrl);
+    cy.get("[data-test=youtube-url-input]").type(resourceTestData.youtubeUrl);
 
-      cy.get("[data-test=value-one-input]").type(resourceData.valueOne);
-      cy.get("[data-test=value-two-input]").type(resourceData.valueTwo);
-      cy.get("[data-test=value-three-input]").type(
-        `${resourceData.valueThree}{enter}`
-      );
+    cy.get("[data-test=value-one-input]").type(resourceTestData.valueOne);
+    cy.get("[data-test=value-two-input]").type(resourceTestData.valueTwo);
+    cy.get("[data-test=value-three-input]").type(
+      `${resourceTestData.valueThree}{enter}`
+    );
 
-      cy.get("[data-test=post-container]")
-        .first()
-        .should("contain", resourceData.title)
-        .and("contain", resourceData.author)
-        .and("contain", resourceData.description);
-    });
+    cy.get("[data-test=post-container]")
+      .first()
+      .should("contain", resourceTestData.title)
+      .and("contain", resourceTestData.author)
+      .and("contain", resourceTestData.description);
   });
 
   after(() => {
