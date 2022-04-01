@@ -3,7 +3,7 @@
 describe("Sandbox experiments", () => {
   beforeEach(() => {
     cy.visit("/");
-    cy.loginWithAPI("testuser1", "testpass1");
+    cy.loginAndCleanUp();
   });
 
   it("About page - should display about page", () => {
