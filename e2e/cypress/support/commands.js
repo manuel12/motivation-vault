@@ -25,16 +25,22 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
+const testuserData = require("../fixtures/testuser.json");
 
 addMatchImageSnapshotCommand();
 
-Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
-  if (text) {
-    return originalFn(element, text, options);
-  }
-});
+// Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
+//   if (text) {
+//     return originalFn(element, text, options);
+//   }
+// });
 
 Cypress.Commands.add("loginAdminWithUI", () => {
+  /**
+   * Login the admin user by interacting with the UI
+   * and using credentials found on cypress.env.json
+   */
+
   cy.visit(Cypress.config().adminUrl);
   cy.get("#id_username")
     .type(Cypress.env("adminUser"))
@@ -48,20 +54,35 @@ Cypress.Commands.add("loginAdminWithUI", () => {
 });
 
 Cypress.Commands.add("loginWithUI", (username, password) => {
+  /**
+   * Login the a normal user by interacting with the UI
+   * if no credentials are provided credentials
+   * found on testuser.json will be used.
+   */
+
   cy.visit("/");
+
   cy.get("#username")
-    .type(username ? username : Cypress.env("adminUser"))
+    .type(username ? username : testuserData.username)
     .get("#password")
-    .type(password ? password : Cypress.env("adminPass"))
+    .type(password ? password : testuserData.password)
     .get("#submitButton")
     .click();
 
   cy.get(".homepage").should("be.visible");
 });
 
-Cypress.Commands.add("loginWithAPI", (username, password) => {
-  let token;
+Cypress.Commands.add("loginWithAPI", () => {
+  /**
+   * Login programatically using the API. if no credentials
+   * are provided credentials found on testuser.json
+   * will be used.
+   *
+   * Request will set a token on localStorage necessary
+   * for login.
+   */
 
+  let token;
   cy.request({
     method: "POST",
     url: "http://127.0.0.1:8000/auth/",
@@ -69,12 +90,11 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: username ? username : Cypress.env("adminUser"),
-      password: password ? password : Cypress.env("adminPass"),
+      username: testuserData.username,
+      password: testuserData.password,
     }),
   }).then((response) => {
     token = response.body.token;
-    cy.log(token);
     expect(response.status).to.eq(200);
   });
 
@@ -85,18 +105,37 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
   });
 });
 
+Cypress.Commands.add("loginAndCleanUp", () => {
+  /**
+   * Deletes any previous data left from tests and logs in.
+   */
+  cy.deleteTestData();
+  cy.loginWithAPI();
+});
+
 Cypress.Commands.add("logoutWithUI", () => {
+  /**
+   * Logout the usen by clicking on the logout link.
+   */
+
   cy.get("[data-test=logout-link]").click();
   cy.get(".login-container").should("be.visible");
 });
 
 Cypress.Commands.add("deleteTestData", () => {
+  /**
+   * Deletes all resources and comments created by tests.
+   *
+   * The user token found on testuser.json will be used for
+   * authorization.
+   */
+
   cy.request({
     url: "http://localhost:8000/api/delete-test-data/",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Token ${Cypress.env("adminToken")}`,
+      Authorization: `Token ${testuserData['token']}`,
     },
   }).then((response) => {
     expect(response.status).to.eq(204);
@@ -106,6 +145,21 @@ Cypress.Commands.add("deleteTestData", () => {
 Cypress.Commands.add(
   "addResourceWithUI",
   (resourceType, testData, requiredFieldsOnly = false) => {
+    /**
+     * Adds a resource by using the UI.
+     *
+     * The resource in question is determined by the resourceType param
+     * and can be one of four types: book, podcast, podcast-episode or
+     * motivational-speech.
+     *
+     * The command will select the resource type from a dropdown and then
+     * fill out the respective resource form fields.
+     *
+     * If the requiredFieldsOnly param is set to true then
+     * the non-required fields (description, valueOne, valueTwo, valueThree)
+     * will be skipped.
+     */
+
     cy.visit("/add/");
     cy.get(".add-container").should("be.visible");
     cy.get("[data-test=select-resource-type]").select(resourceType);
@@ -121,8 +175,8 @@ Cypress.Commands.add(
 
       case "podcast":
         cy.get("[data-test=website-url-input]").type(testData.websiteUrl);
-        cy.get("[data-test=spotify-url-input]").type(testData.spotifyUrl);
-        cy.get("[data-test=youtube-url-input]").type(testData.youtubeUrl);
+        cy.get("[data-test=spotify-page-url-input]").type(testData.spotifyUrl);
+        cy.get("[data-test=youtube-page-url-input]").type(testData.youtubeUrl);
         break;
 
       case "podcast-episode":
@@ -148,19 +202,35 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
+  /**
+   * Adds a resource by using the API.
+   *
+   * The resource in question is determined by the resourceType param
+   * and can be one of four types: book, podcast, podcast-episode or
+   * motivational-speech.
+   *
+   * The resourceType will be converted to it's plural which will
+   * form part of the url: book > http://127.0.0.1:8000/api/books/.
+   *
+   * The user token found on testuser.json will be used for
+   * authorization.
+   */
+
   const resourcePlurals = {
-    "book": "books",
-    "podcast": "podcasts",
+    book: "books",
+    podcast: "podcasts",
     "podcasts-episode": "podcast-episodes",
     "motivational-speech": "motivational-speeches",
   };
+  cy.log(`user: ${testuserData}`);
+  cy.log(`user token: ${testuserData['token']}`);
   const resourcePlural = resourcePlurals[resourceType];
   cy.request({
     url: `http://127.0.0.1:8000/api/${resourcePlural}/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Token ${Cypress.env("adminToken")}`,
+      Authorization: `Token ${testuserData['token']}`,
     },
     body: JSON.stringify(testData),
   }).then((response) => {
@@ -169,6 +239,14 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
 });
 
 Cypress.Commands.add("addCommentWithUI", (text) => {
+  /**
+   * Adds a comment by using the UI.
+   *
+   * The command checks that the text is present as value
+   * on the input element and also that the value is cleared
+   * after the submit button has been clicked.
+   */
+
   cy.get("[data-test=comment-input]")
     .type(text)
     .should("have.value", text)
@@ -179,11 +257,24 @@ Cypress.Commands.add("addCommentWithUI", (text) => {
 });
 
 Cypress.Commands.add("addRatingWithUI", (numStars) => {
+  /**
+   * Adds a rating by using the UI.
+   *
+   */
+
   cy.get("[data-test=add-rating-button]").click();
   cy.get(`[data-test=add-star-icon-${numStars}]`).click();
 });
 
 Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
+  /**
+   * Adds a rating by using the UI.
+   *
+   * A specific token param can be passed to represent adding a rating from a
+   * specific user or, if no token is passed, user token found on
+   * testuser.json will be used for authorization.
+   */
+
   const newRating = {
     resource: resource,
     stars: numStars,
@@ -194,7 +285,7 @@ Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Token ${token ? token : Cypress.env("adminToken")}`,
+      Authorization: `Token ${token ? token : testuserData['token']}`,
     },
     body: JSON.stringify(newRating),
   }).then((response) => {
