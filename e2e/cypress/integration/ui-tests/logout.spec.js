@@ -2,14 +2,13 @@
 
 describe("Logout", () => {
   beforeEach(() => {
-    cy.deleteTestData();
-    cy.loginWithAPI("testuser1", "testpass1");
+    cy.loginAndCleanUp();
   });
   it("should logout by navigation bar", () => {
     cy.get("[data-test=logout-link]").click();
 
-    cy.get("h1").should("contain.text", "Login");
-    cy.get(".nav-list").should("not.exist");
-    cy.get(".homepage").should("not.exist");
+    cy.get("[data-test=heading]").should("contain.text", "Login");
+    cy.get("[data-test=nav-list]").should("not.exist");
+    cy.get("[data-test=homepage]").should("not.exist");
   });
 });
