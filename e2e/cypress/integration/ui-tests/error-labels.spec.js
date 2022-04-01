@@ -2,16 +2,14 @@
 
 describe("Error labels", () => {
   beforeEach(() => {
-    cy.deleteTestData();
-    
-    cy.loginWithAPI("testuser1", "testpass1");
-    cy.get(".App").should("be.visible");
+    cy.loginAndCleanUp();
+    cy.get("[data-test=app]").should("be.visible");
   });
 
   // Add tests to check that models can be submitted without filling out optional fields.
   it("should display error labels for book form fields", () => {
     cy.visit("/add/");
-    cy.get(".add-container").should("be.visible");
+    cy.get("[data-test=add-container]").should("be.visible");
     cy.get("[data-test=select-resource-type]").select("Book");
 
     cy.get("[data-test=submit]").click();
@@ -35,7 +33,7 @@ describe("Error labels", () => {
 
   it("should display error labels for podcast form fields", () => {
     cy.visit("/add/");
-    cy.get(".add-container").should("be.visible");
+    cy.get("[data-test=add-container]").should("be.visible");
     cy.get("[data-test=select-resource-type]").select("Podcast");
 
     cy.get("[data-test=submit]").click();
@@ -52,14 +50,18 @@ describe("Error labels", () => {
       .should("be.visible")
       .and("contain.text", "Website URL cannot be empty!");
 
-    cy.get("[data-test=youtube-url-input-error]")
+    cy.get("[data-test=spotify-page-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Spotify URL cannot be empty!");
+
+    cy.get("[data-test=youtube-page-url-input-error]")
       .should("be.visible")
       .and("contain.text", "Youtube URL cannot be empty!");
   });
 
   it("should display error labels for podcast episode form fields", () => {
     cy.visit("/add/");
-    cy.get(".add-container").should("be.visible");
+    cy.get("[data-test=add-container]").should("be.visible");
     cy.get("[data-test=select-resource-type]").select("Podcast Episode");
 
     cy.get("[data-test=submit]").click();
@@ -87,7 +89,7 @@ describe("Error labels", () => {
 
   it("should display error labels for motivational speech form fields", () => {
     cy.visit("/add/");
-    cy.get(".add-container").should("be.visible");
+    cy.get("[data-test=add-container]").should("be.visible");
     cy.get("[data-test=select-resource-type]").select("Motivational Speech");
 
     cy.get("[data-test=submit]").click();
