@@ -1,11 +1,12 @@
 /// <reference types="cypress" />
 
+const resourceTestData = require("../../fixtures/resourceAPITestData.json");
+const testuserData = require("../../fixtures/testuser.json");
+
 describe("Book API 'GET' request", () => {
   before(() => {
     cy.deleteTestData();
-    cy.fixture("apiResourceData").then((testData) =>
-      cy.addResourceWithAPI("book", testData)
-    );
+    cy.addResourceWithAPI("book", resourceTestData);
   });
 
   it("should have status code 200", () => {
@@ -14,7 +15,7 @@ describe("Book API 'GET' request", () => {
       url: "http://localhost:8000/api/books/",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token  ${Cypress.env("adminToken")}`,
+        Authorization: `Token  ${testuserData.token}`,
       },
     }).then((response) => {
       expect(response.status).to.eq(200);
@@ -27,7 +28,7 @@ describe("Book API 'GET' request", () => {
       url: "http://localhost:8000/api/books/",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token  ${Cypress.env("adminToken")}`,
+        Authorization: `Token  ${testuserData.token}`,
       },
     }).then((response) => {
       expect(response.headers).to.have.property(
@@ -43,7 +44,7 @@ describe("Book API 'GET' request", () => {
       url: "http://localhost:8000/api/books/",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token  ${Cypress.env("adminToken")}`,
+        Authorization: `Token  ${testuserData.token}`,
       },
     }).then((response) => {
       const firstBook = response.body[0];
@@ -62,62 +63,56 @@ describe("Book API 'GET' request", () => {
 
 describe("Book API 'POST' request", () => {
   it("should have status code 201", () => {
-    cy.fixture("apiResourceData").then((testData) => {
-      cy.request({
-        method: "POST",
-        url: "http://localhost:8000/api/books/",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token  ${Cypress.env("adminToken")}`,
-        },
-        body: JSON.stringify(testData),
-      }).then((response) => {
-        expect(response.status).to.eq(201);
-      });
+    cy.request({
+      method: "POST",
+      url: "http://localhost:8000/api/books/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${testuserData.token}`,
+      },
+      body: JSON.stringify(resourceTestData),
+    }).then((response) => {
+      expect(response.status).to.eq(201);
     });
   });
 
   it("should return JSON", () => {
-    cy.fixture("apiResourceData").then((testData) => {
-      cy.request({
-        method: "POST",
-        url: "http://localhost:8000/api/books/",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token  ${Cypress.env("adminToken")}`,
-        },
-        body: JSON.stringify(testData),
-      }).then((response) => {
-        expect(response.headers).to.have.property(
-          "content-type",
-          "application/json"
-        );
-      });
+    cy.request({
+      method: "POST",
+      url: "http://localhost:8000/api/books/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${testuserData.token}`,
+      },
+      body: JSON.stringify(resourceTestData),
+    }).then((response) => {
+      expect(response.headers).to.have.property(
+        "content-type",
+        "application/json"
+      );
     });
   });
 
   it("should have book fields", () => {
-    cy.fixture("apiResourceData").then((testData) => {
-      cy.request({
-        method: "POST",
-        url: "http://localhost:8000/api/books/",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token  ${Cypress.env("adminToken")}`,
-        },
-        body: JSON.stringify(testData),
-      }).then((response) => {
-        const book = response.body;
-        expect(book).to.have.property("id");
-        expect(book).to.have.property("title", testData.title);
-        expect(book).to.have.property("author", testData.author);
-        expect(book).to.have.property("description");
-        expect(book).to.have.property("imageURL");
-        expect(book).to.have.property("subtitle", testData.subtitle);
-        expect(book).to.have.property("isbn", Number(testData.isbn).toString());
-        expect(book).to.have.property("avg_rating", 0);
-        expect(book).to.have.property("num_ratings", 0);
-      });
+    cy.request({
+      method: "POST",
+      url: "http://localhost:8000/api/books/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${testuserData.token}`,
+      },
+      body: JSON.stringify(resourceTestData),
+    }).then((response) => {
+      const book = response.body;
+      expect(book).to.have.property("id");
+      expect(book).to.have.property("title", resourceTestData.title);
+      expect(book).to.have.property("author", resourceTestData.author);
+      expect(book).to.have.property("description");
+      expect(book).to.have.property("imageURL");
+      expect(book).to.have.property("subtitle", resourceTestData.subtitle);
+      expect(book).to.have.property("isbn", Number(resourceTestData.isbn).toString());
+      expect(book).to.have.property("avg_rating", 0);
+      expect(book).to.have.property("num_ratings", 0);
     });
   });
 });
