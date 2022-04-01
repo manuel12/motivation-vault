@@ -1,36 +1,38 @@
 /// <reference types="cypress" />
 
+const testuserData = require("../../fixtures/testuser.json");
+
 describe("Login", () => {
   beforeEach(() => {
     cy.deleteTestData();
     cy.visit("/");
   });
   it("should login with valid username and password", () => {
-    cy.get("#username").type("Manuel");
-    cy.get("#password").type("Superuser1");
-    cy.get("#submitButton").click();
+    cy.get("[data-test=username]").type(testuserData.username);
+    cy.get("[data-test=password]").type(testuserData.password);
+    cy.get("[data-test=submit-button]").click();
 
-    cy.get("h1").should("contain.text", "Resource API Project");
-    cy.get(".nav-list").should("be.visible");
-    cy.get(".homepage").should("be.visible");
+    cy.get("[data-test=heading]").should("contain.text", "Resource API Project");
+    cy.get("[data-test=nav-list]").should("be.visible");
+    cy.get("[data-test=homepage]").should("be.visible");
   });
 
   it("should NOT login with valid username and invalid password", () => {
-    cy.get("#username").type("Manuel");
-    cy.get("#password").type("fakepassword");
-    cy.get("#submitButton").click();
+    cy.get("[data-test=username]").type(testuserData.username);
+    cy.get("[data-test=password]").type("fakepassword");
+    cy.get("[data-test=submit-button]").click();
 
-    cy.get("h1").should("contain.text", "Login");
-    cy.get(".nav-list").should("not.exist");
-    cy.get(".homepage").should("not.exist");
+    cy.get("[data-test=heading]").should("contain.text", "Login");
+    cy.get("[data-test=nav-list]").should("not.exist");
+    cy.get("[data-test=homepage]").should("not.exist");
   });
 
   it("should NOT login with empty username and password fields", () => {
-    cy.get("#submitButton").click();
+    cy.get("[data-test=submit-button]").click();
 
-    cy.get("h1").should("contain.text", "Login");
-    cy.get(".nav-list").should("not.exist");
-    cy.get(".homepage").should("not.exist");
+    cy.get("[data-test=heading]").should("contain.text", "Login");
+    cy.get("[data-test=nav-list]").should("not.exist");
+    cy.get("[data-test=homepage]").should("not.exist");
   });
 
   it("should have focus on username input", () => {
@@ -38,11 +40,29 @@ describe("Login", () => {
   });
 
   it("should login when pressing ENTER from input field", () => {
-    cy.get("#username").type("Manuel");
-    cy.get("#password").type("Superuser1{enter}");
+    cy.get("[data-test=username]").type(testuserData.username);
+    cy.get("[data-test=password]").type(`${testuserData.password}{enter}`);
 
-    cy.get("h1").should("contain.text", "Resource API Project");
-    cy.get(".nav-list").should("be.visible");
-    cy.get(".homepage").should("be.visible");
+    cy.get("[data-test=heading]").should("contain.text", "Resource API Project");
+    cy.get("[data-test=nav-list]").should("be.visible");
+    cy.get("[data-test=homepage]").should("be.visible");
   });
+
+  it("should show error message when leaving username empty", () => {
+    cy.get("[data-test=password]").type(testuserData.password);
+    cy.get("[data-test=submit-button]").click();
+
+    cy.get("[data-test=username-error]")
+      .should("be.visible")
+      .and("contain.text", "You need to provide a username.");
+  })
+
+  it("should show error message when leaving password empty", () => {
+    cy.get("[data-test=username]").type(testuserData.password);
+    cy.get("[data-test=submit-button]").click();
+
+    cy.get("[data-test=password-error]")
+      .should("be.visible")
+      .and("contain.text", "You need to provide a password.");
+  })
 });
