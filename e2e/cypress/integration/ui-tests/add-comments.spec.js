@@ -1,26 +1,14 @@
 /// <reference types="cypress" />
+const resourceTestData = require("../../fixtures/resourceTestData.json");
+const commentsTestData = require("../../fixtures/commentsTestData.json");
+const testuserData = require("../../fixtures/testuser.json");
 
 describe("Add Comments", () => {
   beforeEach(() => {
-    cy.deleteTestData();
+    cy.loginAndCleanUp();
+    cy.addResourceWithAPI("book", resourceTestData);
 
-    cy.fixture("resourceData").then((resourceData) => {
-      cy.addResourceWithAPI("book", resourceData);
-    });
-    cy.request({
-      url: "http://localhost:8000/api/books/",
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${Cypress.env("adminToken")}`,
-      },
-    }).then((response) => {
-      const firstBook = response.body[0];
-      expect(firstBook).to.have.property("id");
-      expect(firstBook).to.have.property("title", "Test Title");
-    });
-
-    cy.loginWithAPI("testuser1", "testpass1");
+    cy.visit("/");
     cy.contains("Test Title").click({ force: true });
   });
 
@@ -48,11 +36,9 @@ describe("Add Comments", () => {
   });
 
   it("should add 5 comments", () => {
-    cy.fixture("comments").then((comments) => {
-      for (let comment of comments) {
-        cy.addCommentWithUI(comment.text);
-      }
-    });
+    for (let comment of commentsTestData) {
+      cy.addCommentWithUI(comment.text);
+    }
 
     cy.get("[data-test=comment-container]")
       .should("be.visible")
@@ -60,11 +46,9 @@ describe("Add Comments", () => {
   });
 
   it("should have comments persist after page reload", () => {
-    cy.fixture("comments").then((comments) => {
-      for (let comment of comments) {
-        cy.addCommentWithUI(comment.text);
-      }
-    });
+    for (let comment of commentsTestData) {
+      cy.addCommentWithUI(comment.text);
+    }
 
     cy.reload();
     cy.get("[data-test=comment-container]").should("have.length", 5);
@@ -84,7 +68,6 @@ describe("Add Comments", () => {
     cy.get("[data-test=comment-container]")
       .eq(4)
       .should("contain.text", "Awesome book, really inspiring!");
-
   });
 
   after(() => {
