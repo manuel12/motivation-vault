@@ -1,29 +1,33 @@
 /// <reference types="cypress" />
 
+const resourceTestData = require("../../fixtures/resourceAPITestData.json");
+const tokenData = require("../../fixtures/tokens.json");
+
 describe("Add Ratings", () => {
   beforeEach(() => {
-    cy.deleteTestData();
+    cy.loginAndCleanUp();
+    cy.addResourceWithAPI("book", resourceTestData);
 
-    cy.fixture("resourceData").then((resourceData) => {
-      cy.addResourceWithAPI("book", resourceData);
-    });
-
-    cy.request({
-      url: "http://localhost:8000/api/books/",
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${Cypress.env("adminToken")}`,
-      },
-    }).then((response) => {
-      const firstBook = response.body[0];
-      expect(firstBook).to.have.property("id");
-      expect(firstBook).to.have.property("title", "Test Title");
-    });
-
-    cy.loginWithAPI("testuser1", "testpass1");
+    cy.visit("/");
     cy.contains("Test Title").click({ force: true });
   });
+
+  const getResourceTypeFromPage = (page) =>
+    page === "motivational-speeches"
+      ? page.substr(0, page.length - 2)
+      : page.substr(0, page.length - 1);
+
+  const checkStars = (stars) => {
+    let i = 1;
+    while (i <= stars) {
+      cy.get(`[data-test=star-icon-${i}]`)
+        .should("be.visible")
+        .and("have.class", "orange");
+      i++;
+    }
+  };
+
+  const getResourceIdFromUrl = (url) => url.pathname.replaceAll("/", "");
 
   let pages = [
     "home",
@@ -32,6 +36,7 @@ describe("Add Ratings", () => {
     "podcast-episodes",
     "motivational-speeches",
   ];
+
   for (let page of pages) {
     it(`should display ratings section on ${page} page`, () => {
       cy.visit(`/${page == "home" ? "" : page}`);
@@ -44,113 +49,79 @@ describe("Add Ratings", () => {
     cy.get("[data-test=ratings-container]").should("be.visible");
   });
 
-  it("should add ratings to a resource", () => {
-    cy.addRatingWithUI(5);
+  const stars = [1, 2, 3, 4, 5];
+  stars.forEach((star) => {
+    it(`should add ratings with ${star} ${
+      star > 1 ? "stars" : "star"
+    } to a resource`, () => {
+      cy.addRatingWithUI(star);
+      checkStars(star);
 
-    cy.get("[data-test=star-icon-1]")
-      .should("be.visible")
-      .and("have.class", "orange");
-
-    cy.get("[data-test=star-icon-2]")
-      .should("be.visible")
-      .and("have.class", "orange");
-
-    cy.get("[data-test=star-icon-3]")
-      .should("be.visible")
-      .and("have.class", "orange");
-
-    cy.get("[data-test=star-icon-4]")
-      .should("be.visible")
-      .and("have.class", "orange");
-
-    cy.get("[data-test=star-icon-5]")
-      .should("be.visible")
-      .and("have.class", "orange");
-
-    cy.get("[data-test=num-ratings]")
-      .should("contain.text", "1")
-      .and("contain.text", "review");
+      cy.get("[data-test=num-ratings]")
+        .should("contain.text", "1")
+        .and("contain.text", "review");
+    });
   });
 
   pages = ["books", "podcasts", "podcasts-episodes", "motivational-speeches"];
+
   for (let page of pages) {
     it(`should update rating on ${page} once it has been updated on detailpage`, () => {
       const numStarsFirstRating = 1;
       const numStarsUpdatedRating = 4;
 
-      cy.fixture("apiResourceData").then((resourceData) => {
-        // TODO: add utils to get resourceType from page string.
-        let resourceType =
-          page === "motivational-speeches"
-            ? page.substr(0, page.length - 2)
-            : page.substr(0, page.length - 1);
+      let resourceType = getResourceTypeFromPage(page);
 
-        // Change resource title to specific name
-        resourceData.title = "Test Title - Ratings";
-        cy.addResourceWithAPI(resourceType, resourceData);
+      // Change resource title, add resource and check on page section
+      resourceTestData.title = "Test Title - Ratings";
+      cy.addResourceWithAPI(resourceType, resourceTestData);
+      cy.visit(page);
 
-        // Visit page section.
-        cy.visit(page);
+      // Click on new resource, wait for heading to appear and
+      // add rating.
+      cy.contains("Test Title - Ratings").click({ force: true });
+      cy.get("[data-test=heading]").should("be.visible");
+      cy.addRatingWithUI(numStarsFirstRating);
 
-        // Click on new resource.
-        cy.contains("Test Title - Ratings").click({ force: true });
+      // Check ratings container on page section.
+      cy.visit(page);
+      cy.get("[data-test=ratings-container]")
+        .first()
+        .within(() => {
+          checkStars(numStarsFirstRating);
+        })
+        .click();
 
-        // Wait for heading to appear.
-        cy.get(".heading").should("be.visible");
-
-        cy.addRatingWithUI(numStarsFirstRating);
-
-        cy.visit(page);
-
-        // Check ratings container on page section.
-        cy.get("[data-test=ratings-container]")
-          .first()
-          .within(() => {
-            cy.get("[data-test=star-icon-1]").should("be.visible");
-          })
-          .click();
-
-        cy.addRatingWithUI(numStarsUpdatedRating);
-
-        cy.visit(page);
-
-        cy.get("[data-test=ratings-container]")
-          .first()
-          .within(() => {
-            const starsNumToCheck = [
-              ...Array(numStarsUpdatedRating + 1).keys(),
-            ].slice(1);
-
-            for (let i of starsNumToCheck)
-              cy.get(`[data-test=star-icon-${i}]`).should("be.visible");
-          });
-      });
+      // Update rating, check page section and updated number of stars.
+      cy.addRatingWithUI(numStarsUpdatedRating);
+      cy.visit(page);
+      cy.get("[data-test=ratings-container]")
+        .first()
+        .within(() => {
+          checkStars(numStarsUpdatedRating);
+        });
     });
   }
 
-  it("should display the text (0 reviews) in case of having more than 0 ratings", () => {
+  it("should display the text (0 ratings) in case of having more than 0 ratings", () => {
     cy.get("[data-test=num-ratings]").should("contain.text", "(0 reviews)");
   });
 
-  it("should display the text (1 review) in case of having only 1 review", () => {
+  it("should display the text (1 rating) in case of having only 1 rating", () => {
     cy.addRatingWithUI(5);
 
     cy.get("[data-test=num-ratings]").should("contain.text", "(1 review)");
   });
 
-  it("should display the text (2 reviews) in case of having 2 ratings", () => {
+  it("should display the text (2 ratings) in case of having 2 ratings", () => {
+    const testuser2Token = tokenData['testuser2'];
+    const testuser3Token = tokenData['testuser3'];
+
+    // Get resourceId and add 2 ratings from different user to said resourceId.
     cy.location().then((loc) => {
-      const resourceId = loc.pathname.replaceAll("/", "");
-      cy.addRatingWithAPI(
-        resourceId,
-        5,
-        "eeed5020633747d1b9530fe9a2a8bec0601aad93"
-      );
-      cy.addRatingWithAPI(
-        resourceId,
-        5,
-        "4044a7dfd19e9d41c585b388af32cba151c6cd36"
-      );
+      const resourceId = getResourceIdFromUrl(loc);
+      cy.addRatingWithAPI(resourceId, 5, testuser2Token);
+      cy.addRatingWithAPI(resourceId, 5, testuser3Token);
     });
 
     cy.reload();
