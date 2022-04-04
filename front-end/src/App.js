@@ -25,7 +25,7 @@ function App() {
   }
 
   return (
-      <div className="App">
+      <div className="App" data-test="app">
         <Header/>
         <Navbar deleteToken={deleteToken}/>
         <div className="content">
