@@ -41,7 +41,7 @@ function Navbar({ deleteToken }) {
 
   return (
     <div className="app-navbar">
-      <ul className="nav-list">
+      <ul className="nav-list" data-test="nav-list">
         <li className="nav-item">
           <a className="nav-item-link" href="/" data-test="home-link">
             Home
