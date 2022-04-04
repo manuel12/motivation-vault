@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import { isValidURL } from "../utils";
+import { isValidUrl } from "../utils";
 import LabeledInput from "./LabeledInput";
 import useToken from "./useToken";
 
 function AddPodcastResourceForm(props) {
   const { token } = useToken();
 
-  let [title, setTitle] = useState("");
-  let [author, setAuthor] = useState("");
-  let [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [description, setDescription] = useState("");
 
   // => Podcast fields
-  let [websiteUrl, setWebsiteUrl] = useState("");
-  let [spotifyPageUrl, setSpotifyPageUrl] = useState("");
-  let [youtubePageUrl, setYoutubePageUrl] = useState("");
+  const [websiteUrl, setWebsiteUrl] = useState("");
+  const [spotifyPageUrl, setSpotifyPageUrl] = useState("");
+  const [youtubePageUrl, setYoutubePageUrl] = useState("");
 
-  let [valueOne, setValueOne] = useState("");
-  let [valueTwo, setValueTwo] = useState("");
-  let [valueThree, setValueThree] = useState("");
+  const [valueOne, setValueOne] = useState("");
+  const [valueTwo, setValueTwo] = useState("");
+  const [valueThree, setValueThree] = useState("");
 
   // => Podcast error fields
 
-  let [titleError, setTitleError] = useState("");
-  let [authorError, setAuthorError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [authorError, setAuthorError] = useState("");
 
-  let [websiteUrlError, setWebsiteUrlError] = useState("");
-  let [spotifyPageUrlError, setSpotifyPageUrlError] = useState("");
-  let [youtubePageUrlError, setYoutubePageUrlError] = useState("");
+  const [websiteUrlError, setWebsiteUrlError] = useState("");
+  const [spotifyPageUrlError, setSpotifyPageUrlError] = useState("");
+  const [youtubePageUrlError, setYoutubePageUrlError] = useState("");
 
   const validate = () => {
     let validInput = true;
@@ -46,30 +46,30 @@ function AddPodcastResourceForm(props) {
     }
 
     if (!websiteUrl) {
-      setWebsiteUrlError("Website URL cannot be empty!");
+      setWebsiteUrlError("Website Url cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(websiteUrl)) {
-      setWebsiteUrlError("Website URL has to be a valid url!");
+    } else if (!isValidUrl(websiteUrl)) {
+      setWebsiteUrlError("Website Url has to be a valid url!");
       validInput = false;
     } else {
       setWebsiteUrlError("");
     }
 
     if (!spotifyPageUrl) {
-      setSpotifyPageUrlError("Spotify URL cannot be empty!");
+      setSpotifyPageUrlError("Spotify Url cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(spotifyPageUrl)) {
-      setSpotifyPageUrlError("Spotify URL has to be a valid url!");
+    } else if (!isValidUrl(spotifyPageUrl)) {
+      setSpotifyPageUrlError("Spotify Url has to be a valid url!");
       validInput = false;
     } else {
       setSpotifyPageUrlError("");
     }
 
     if (!youtubePageUrl) {
-      setYoutubePageUrlError("Youtube URL cannot be empty!");
+      setYoutubePageUrlError("Youtube Url cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(youtubePageUrl)) {
-      setYoutubePageUrlError("Youtube URL has to be a valid url!");
+    } else if (!isValidUrl(youtubePageUrl)) {
+      setYoutubePageUrlError("Youtube Url has to be a valid url!");
       validInput = false;
     } else {
       setYoutubePageUrlError("");
@@ -78,7 +78,7 @@ function AddPodcastResourceForm(props) {
     return validInput;
   };
 
-  const submitClicked = (e) => {
+  const submitClickedHandler = (e) => {
     e.preventDefault();
 
     if (validate()) {
@@ -94,8 +94,6 @@ function AddPodcastResourceForm(props) {
       newResource["website_url"] = websiteUrl;
       newResource["youtube_page_url"] = youtubePageUrl;
 
-      console.log("---------------------------------------------------");
-      console.log("New Resource obj");
       for(const key in newResource) {
           console.log(`${key}: ${newResource[key]}`);
       }
@@ -127,20 +125,20 @@ function AddPodcastResourceForm(props) {
       setValueTwo("");
       setValueThree("");
 
-      props.submitClicked();
+      props.submitClickedHandler();
     }
   };
 
   return (
-    <form className="add-podcast-form" onSubmit={submitClicked}>
+    <form className="add-podcast-form" onSubmit={submitClickedHandler}>
       <h3>Add Podcasts Form</h3>
       <LabeledInput
         error={titleError}
         item="Title"
         itemType="text"
         value={title}
-        onChange={(evt) => {
-          setTitle(evt.target.value);
+        onChange={(e) => {
+          setTitle(e.target.value);
         }}
         dataAttr="title-input"
       />
@@ -150,8 +148,8 @@ function AddPodcastResourceForm(props) {
         item="Author"
         itemType="text"
         value={author}
-        onChange={(evt) => {
-          setAuthor(evt.target.value);
+        onChange={(e) => {
+          setAuthor(e.target.value);
         }}
         dataAttr="author-input"
       />
@@ -163,8 +161,8 @@ function AddPodcastResourceForm(props) {
         rows="4"
         cols="50"
         value={description}
-        onChange={(evt) => {
-          setDescription(evt.target.value);
+        onChange={(e) => {
+          setDescription(e.target.value);
         }}
         data-test="description-input"
       ></textarea>
@@ -174,8 +172,8 @@ function AddPodcastResourceForm(props) {
         item="Website Url"
         itemType="text"
         value={websiteUrl}
-        onChange={(evt) => {
-          setWebsiteUrl(evt.target.value);
+        onChange={(e) => {
+          setWebsiteUrl(e.target.value);
         }}
         dataAttr="website-url-input"
       />
@@ -185,10 +183,10 @@ function AddPodcastResourceForm(props) {
         item="Spotify Url"
         itemType="text"
         value={spotifyPageUrl}
-        onChange={(evt) => {
-          setSpotifyPageUrl(evt.target.value);
+        onChange={(e) => {
+          setSpotifyPageUrl(e.target.value);
         }}
-        dataAttr="spotify-url-input"
+        dataAttr="spotify-page-url-input"
       />
 
       <LabeledInput
@@ -196,18 +194,18 @@ function AddPodcastResourceForm(props) {
         item="Youtube Url"
         itemType="text"
         value={youtubePageUrl}
-        onChange={(evt) => {
-          setYoutubePageUrl(evt.target.value);
+        onChange={(e) => {
+          setYoutubePageUrl(e.target.value);
         }}
-        dataAttr="youtube-url-input"
+        dataAttr="youtube-page-url-input"
       />
 
       <LabeledInput
         item="Value One"
         itemType="text"
         value={valueOne}
-        onChange={(evt) => {
-          setValueOne(evt.target.value);
+        onChange={(e) => {
+          setValueOne(e.target.value);
         }}
         dataAttr="value-one-input"
       />
@@ -216,8 +214,8 @@ function AddPodcastResourceForm(props) {
         item="Value Two"
         itemType="text"
         value={valueTwo}
-        onChange={(evt) => {
-          setValueTwo(evt.target.value);
+        onChange={(e) => {
+          setValueTwo(e.target.value);
         }}
         dataAttr="value-two-input"
       />
@@ -226,8 +224,8 @@ function AddPodcastResourceForm(props) {
         item="Value Three"
         itemType="text"
         value={valueThree}
-        onChange={(evt) => {
-          setValueThree(evt.target.value);
+        onChange={(e) => {
+          setValueThree(e.target.value);
         }}
         dataAttr="value-three-input"
       />

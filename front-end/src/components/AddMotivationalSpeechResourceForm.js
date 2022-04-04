@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { isValidURL } from "../utils";
+import { isValidUrl } from "../utils";
 import LabeledInput from "./LabeledInput";
 import useToken from "./useToken";
 
 function AddMotivationalSpeechResourceForm(props) {
   const { token } = useToken();
 
-  let [title, setTitle] = useState("");
-  let [author, setAuthor] = useState("");
-  let [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [description, setDescription] = useState("");
 
-  let [youtubeUrl, setYoutubeUrl] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
-  let [valueOne, setValueOne] = useState("");
-  let [valueTwo, setValueTwo] = useState("");
-  let [valueThree, setValueThree] = useState("");
+  const [valueOne, setValueOne] = useState("");
+  const [valueTwo, setValueTwo] = useState("");
+  const [valueThree, setValueThree] = useState("");
 
   // => Motivational Speech error fields
-  let [titleError, setTitleError] = useState("");
-  let [authorError, setAuthorError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [authorError, setAuthorError] = useState("");
 
-  let [youtubeUrlError, setYoutubeUrlError] = useState("");
+  const [youtubeUrlError, setYoutubeUrlError] = useState("");
 
   const validate = () => {
     let validInput = true;
@@ -40,10 +40,10 @@ function AddMotivationalSpeechResourceForm(props) {
     }
 
     if (!youtubeUrl) {
-      setYoutubeUrlError("Youtube URL cannot be empty!");
+      setYoutubeUrlError("Youtube Url cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(youtubeUrl)) {
-      setYoutubeUrlError("Youtube URL has to be a valid URL!");
+    } else if (!isValidUrl(youtubeUrl)) {
+      setYoutubeUrlError("Youtube Url has to be a valid Url!");
       validInput = false;
     } else {
       setYoutubeUrlError("");
@@ -52,7 +52,7 @@ function AddMotivationalSpeechResourceForm(props) {
     return validInput;
   };
 
-  const submitClicked = (e) => {
+  const submitClickedHandler = (e) => {
     e.preventDefault();
 
     if (validate()) {
@@ -91,20 +91,20 @@ function AddMotivationalSpeechResourceForm(props) {
       setValueTwo("");
       setValueThree("");
 
-      props.submitClicked();
+      props.submitClickedHandler();
     }
   };
 
   return (
-    <form className="add-motivational-speech-form" onSubmit={submitClicked}>
+    <form className="add-motivational-speech-form" onSubmit={submitClickedHandler}>
       <h3>Add Motivational Speech Form</h3>
       <LabeledInput
         error={titleError}
         item="Title"
         itemType="text"
         value={title}
-        onChange={(evt) => {
-          setTitle(evt.target.value);
+        onChange={(e) => {
+          setTitle(e.target.value);
         }}
         dataAttr="title-input"
       />
@@ -114,8 +114,8 @@ function AddMotivationalSpeechResourceForm(props) {
         item="Author"
         itemType="text"
         value={author}
-        onChange={(evt) => {
-          setAuthor(evt.target.value);
+        onChange={(e) => {
+          setAuthor(e.target.value);
         }}
         dataAttr="author-input"
       />
@@ -127,8 +127,8 @@ function AddMotivationalSpeechResourceForm(props) {
         rows="4"
         cols="50"
         value={description}
-        onChange={(evt) => {
-          setDescription(evt.target.value);
+        onChange={(e) => {
+          setDescription(e.target.value);
         }}
         data-test="description-input"
       ></textarea>
@@ -138,8 +138,8 @@ function AddMotivationalSpeechResourceForm(props) {
         item="Youtube Url"
         itemType="text"
         value={youtubeUrl}
-        onChange={(evt) => {
-          setYoutubeUrl(evt.target.value);
+        onChange={(e) => {
+          setYoutubeUrl(e.target.value);
         }}
         dataAttr="youtube-url-input"
       />
@@ -148,8 +148,8 @@ function AddMotivationalSpeechResourceForm(props) {
         item="Value One"
         itemType="text"
         value={valueOne}
-        onChange={(evt) => {
-          setValueOne(evt.target.value);
+        onChange={(e) => {
+          setValueOne(e.target.value);
         }}
         dataAttr="value-one-input"
       />
@@ -158,8 +158,8 @@ function AddMotivationalSpeechResourceForm(props) {
         item="Value Two"
         itemType="text"
         value={valueTwo}
-        onChange={(evt) => {
-          setValueTwo(evt.target.value);
+        onChange={(e) => {
+          setValueTwo(e.target.value);
         }}
         dataAttr="value-two-input"
       />
@@ -168,8 +168,8 @@ function AddMotivationalSpeechResourceForm(props) {
         item="Value Three"
         itemType="text"
         value={valueThree}
-        onChange={(evt) => {
-          setValueThree(evt.target.value);
+        onChange={(e) => {
+          setValueThree(e.target.value);
         }}
         dataAttr="value-three-input"
       />
@@ -177,7 +177,7 @@ function AddMotivationalSpeechResourceForm(props) {
       <button
         id="submit"
         type="submit"
-        onClick={submitClicked}
+        onClick={submitClickedHandler}
         data-test="submit"
       >
         Add Motivational Speech

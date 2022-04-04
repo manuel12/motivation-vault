@@ -3,66 +3,68 @@ import { isValidIsbn } from "../utils";
 import LabeledInput from "./LabeledInput";
 import useToken from "./useToken";
 
+
 function AddBookResourceForm(props) {
   const { token } = useToken();
 
-  let [title, setTitle] = useState("");
-  let [author, setAuthor] = useState("");
-  let [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [description, setDescription] = useState("");
 
-  let [valueOne, setValueOne] = useState("");
-  let [valueTwo, setValueTwo] = useState("");
-  let [valueThree, setValueThree] = useState("");
+  const [valueOne, setValueOne] = useState("");
+  const [valueTwo, setValueTwo] = useState("");
+  
+  const [valueThree, setValueThree] = useState("");
 
   // => Book fields
-  let [subtitle, setSubtitle] = useState("");
-  let [isbn, setIsbn] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [isbn, setIsbn] = useState("");
 
   // => Book error fields
-  let [titleError, setTitleError] = useState("");
-  let [authorError, setAuthorError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [authorError, setAuthorError] = useState("");
 
-  let [subtitleError, setSubtitleError] = useState("");
-  let [isbnError, setIsbnError] = useState("");
+  const [subtitleError, setSubtitleError] = useState("");
+  const [isbnError, setIsbnError] = useState("");
 
   const validate = () => {
-    let validInput = true;
+    let isValidInput = true;
 
     if (!title) {
       setTitleError("Title cannot be empty!");
-      validInput = false;
+      isValidInput = false;
     } else {
       setTitleError("");
     }
 
     if (!author) {
       setAuthorError("Author cannot be empty!");
-      validInput = false;
+      isValidInput = false;
     } else {
       setAuthorError("");
     }
 
     if (!subtitle) {
       setSubtitleError("Subtitle cannot be empty!");
-      validInput = false;
+      isValidInput = false;
     } else {
       setSubtitleError("");
     }
 
     if (!isbn) {
       setIsbnError("ISBN cannot be empty!");
-      validInput = false;
+      isValidInput = false;
     } else if (!isValidIsbn(isbn)) {
       setIsbnError("ISBN has to be a 13 digits!");
-      validInput = false;
+      isValidInput = false;
     } else {
       setIsbnError("");
     }
 
-    return validInput;
+    return isValidInput;
   };
 
-  const submitClicked = (e) => {
+  const submitClickedHandler = (e) => {
     e.preventDefault();
 
     if (validate()) {
@@ -103,12 +105,12 @@ function AddBookResourceForm(props) {
       setValueTwo("");
       setValueThree("");
 
-      props.submitClicked();
+      props.submitClickedHandler();
     }
   };
 
   return (
-    <form className="add-book-form" onSubmit={submitClicked}>
+    <form className="add-book-form" onSubmit={submitClickedHandler}>
       <h3>Add Book Form</h3>
 
       <LabeledInput
@@ -116,8 +118,8 @@ function AddBookResourceForm(props) {
         item="Title"
         itemType="text"
         value={title}
-        onChange={(evt) => {
-          setTitle(evt.target.value);
+        onChange={(e) => {
+          setTitle(e.target.value);
         }}
         dataAttr="title-input"
       />
@@ -127,8 +129,8 @@ function AddBookResourceForm(props) {
         item="Author"
         itemType="text"
         value={author}
-        onChange={(evt) => {
-          setAuthor(evt.target.value);
+        onChange={(e) => {
+          setAuthor(e.target.value);
         }}
         dataAttr="author-input"
       />
@@ -140,8 +142,8 @@ function AddBookResourceForm(props) {
         rows="4"
         cols="50"
         value={description}
-        onChange={(evt) => {
-          setDescription(evt.target.value);
+        onChange={(e) => {
+          setDescription(e.target.value);
         }}
         data-test="description-input"
       ></textarea>
@@ -151,8 +153,8 @@ function AddBookResourceForm(props) {
         item="Subtitle"
         itemType="text"
         value={subtitle}
-        onChange={(evt) => {
-          setSubtitle(evt.target.value);
+        onChange={(e) => {
+          setSubtitle(e.target.value);
         }}
         dataAttr="subtitle-input"
       />
@@ -162,8 +164,8 @@ function AddBookResourceForm(props) {
         item="ISBN-13"
         itemType="text"
         value={isbn}
-        onChange={(evt) => {
-          setIsbn(evt.target.value);
+        onChange={(e) => {
+          setIsbn(e.target.value);
         }}
         dataAttr="isbn-input"
       />
@@ -172,8 +174,8 @@ function AddBookResourceForm(props) {
         item="Value One"
         itemType="text"
         value={valueOne}
-        onChange={(evt) => {
-          setValueOne(evt.target.value);
+        onChange={(e) => {
+          setValueOne(e.target.value);
         }}
         dataAttr="value-one-input"
       />
@@ -182,8 +184,8 @@ function AddBookResourceForm(props) {
         item="Value Two"
         itemType="text"
         value={valueTwo}
-        onChange={(evt) => {
-          setValueTwo(evt.target.value);
+        onChange={(e) => {
+          setValueTwo(e.target.value);
         }}
         dataAttr="value-two-input"
       />
@@ -192,8 +194,8 @@ function AddBookResourceForm(props) {
         item="Value Three"
         itemType="text"
         value={valueThree}
-        onChange={(evt) => {
-          setValueThree(evt.target.value);
+        onChange={(e) => {
+          setValueThree(e.target.value);
         }}
         dataAttr="value-three-input"
       />

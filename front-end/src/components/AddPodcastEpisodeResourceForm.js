@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import { isValidURL } from "../utils";
+import { isValidUrl } from "../utils";
 import LabeledInput from "./LabeledInput";
 import useToken from "./useToken";
 
 function AddPodcastEpisodeResourceForm(props) {
   const { token } = useToken();
 
-  let [title, setTitle] = useState("");
-  let [author, setAuthor] = useState("");
-  let [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [description, setDescription] = useState("");
 
   // => Podcast Episode fields
-  let [podcast, setPodcast] = useState("");
-  let [youtubeEpisodeUrl, setYoutubeEpisodeUrl] = useState("");
-  let [spotifyEpisodeUrl, setSpotifyEpisodeUrl] = useState("");
+  const [podcast, setPodcast] = useState("");
+  const [youtubeEpisodeUrl, setYoutubeEpisodeUrl] = useState("");
+  const [spotifyEpisodeUrl, setSpotifyEpisodeUrl] = useState("");
 
-  let [valueOne, setValueOne] = useState("");
-  let [valueTwo, setValueTwo] = useState("");
-  let [valueThree, setValueThree] = useState("");
+  const [valueOne, setValueOne] = useState("");
+  const [valueTwo, setValueTwo] = useState("");
+  const [valueThree, setValueThree] = useState("");
 
   // => Podcast Episode fields
 
-  let [titleError, setTitleError] = useState("");
-  let [authorError, setAuthorError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [authorError, setAuthorError] = useState("");
 
-  let [podcastError, setPodcastError] = useState("");
-  let [youtubeEpisodeUrlError, setYoutubeEpisodeUrlError] = useState("");
-  let [spotifyEpisodeUrlError, setSpotifyEpisodeUrlError] = useState("");
+  const [podcastError, setPodcastError] = useState("");
+  const [youtubeEpisodeUrlError, setYoutubeEpisodeUrlError] = useState("");
+  const [spotifyEpisodeUrlError, setSpotifyEpisodeUrlError] = useState("");
 
   const validate = () => {
     let validInput = true;
@@ -53,20 +53,20 @@ function AddPodcastEpisodeResourceForm(props) {
     }
 
     if (!youtubeEpisodeUrl) {
-      setYoutubeEpisodeUrlError("Youtube episode URL cannot be empty!");
+      setYoutubeEpisodeUrlError("Youtube episode Url cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(youtubeEpisodeUrl)) {
-      setYoutubeEpisodeUrlError("Youtube episode URL has to be a valid url!");
+    } else if (!isValidUrl(youtubeEpisodeUrl)) {
+      setYoutubeEpisodeUrlError("Youtube episode Url has to be a valid url!");
       validInput = false;
     } else {
       setYoutubeEpisodeUrlError("");
     }
 
     if (!spotifyEpisodeUrl) {
-      setSpotifyEpisodeUrlError("Spotify episode URL cannot be empty!");
+      setSpotifyEpisodeUrlError("Spotify episode Url cannot be empty!");
       validInput = false;
-    } else if (!isValidURL(spotifyEpisodeUrl)) {
-      setSpotifyEpisodeUrlError("Spotify episode URL has to be a valid url!");
+    } else if (!isValidUrl(spotifyEpisodeUrl)) {
+      setSpotifyEpisodeUrlError("Spotify episode Url has to be a valid url!");
       validInput = false;
     } else {
       setSpotifyEpisodeUrlError("");
@@ -75,7 +75,7 @@ function AddPodcastEpisodeResourceForm(props) {
     return validInput;
   };
 
-  const submitClicked = (e) => {
+  const submitClickedHandler = (e) => {
     e.preventDefault();
 
     if (validate()) {
@@ -118,20 +118,20 @@ function AddPodcastEpisodeResourceForm(props) {
       setValueTwo("");
       setValueThree("");
 
-      props.submitClicked();
+      props.submitClickedHandler();
     }
   };
 
   return (
-    <form className="add-podcast-episode-form" onSubmit={submitClicked}>
+    <form className="add-podcast-episode-form" onSubmit={submitClickedHandler}>
       <h3>Add Podcast Episode Form</h3>
       <LabeledInput
         error={titleError}
         item="Title"
         itemType="text"
         value={title}
-        onChange={(evt) => {
-          setTitle(evt.target.value);
+        onChange={(e) => {
+          setTitle(e.target.value);
         }}
         dataAttr="title-input"
       />
@@ -141,8 +141,8 @@ function AddPodcastEpisodeResourceForm(props) {
         item="Author"
         itemType="text"
         value={author}
-        onChange={(evt) => {
-          setAuthor(evt.target.value);
+        onChange={(e) => {
+          setAuthor(e.target.value);
         }}
         dataAttr="author-input"
       />
@@ -154,8 +154,8 @@ function AddPodcastEpisodeResourceForm(props) {
         rows="4"
         cols="50"
         value={description}
-        onChange={(evt) => {
-          setDescription(evt.target.value);
+        onChange={(e) => {
+          setDescription(e.target.value);
         }}
         data-test="description-input"
       ></textarea>
@@ -167,8 +167,8 @@ function AddPodcastEpisodeResourceForm(props) {
         name="select-podcast"
         id="select-podcast"
         value={podcast}
-        onChange={(evt) => {
-          setPodcast(evt.target.value);
+        onChange={(e) => {
+          setPodcast(e.target.value);
         }}
         data-test="select-podcast"
       >
@@ -183,8 +183,8 @@ function AddPodcastEpisodeResourceForm(props) {
         item="Spotify Episode Url"
         itemType="text"
         value={spotifyEpisodeUrl}
-        onChange={(evt) => {
-          setSpotifyEpisodeUrl(evt.target.value);
+        onChange={(e) => {
+          setSpotifyEpisodeUrl(e.target.value);
         }}
         dataAttr="spotify-ep-url-input"
       />
@@ -194,8 +194,8 @@ function AddPodcastEpisodeResourceForm(props) {
         item="Youtube Episode Url"
         itemType="text"
         value={youtubeEpisodeUrl}
-        onChange={(evt) => {
-          setYoutubeEpisodeUrl(evt.target.value);
+        onChange={(e) => {
+          setYoutubeEpisodeUrl(e.target.value);
         }}
         dataAttr="youtube-ep-url-input"
       />
@@ -204,8 +204,8 @@ function AddPodcastEpisodeResourceForm(props) {
         item="Value One"
         itemType="text"
         value={valueOne}
-        onChange={(evt) => {
-          setValueOne(evt.target.value);
+        onChange={(e) => {
+          setValueOne(e.target.value);
         }}
         dataAttr="value-one-input"
       />
@@ -214,8 +214,8 @@ function AddPodcastEpisodeResourceForm(props) {
         item="Value Two"
         itemType="text"
         value={valueTwo}
-        onChange={(evt) => {
-          setValueTwo(evt.target.value);
+        onChange={(e) => {
+          setValueTwo(e.target.value);
         }}
         dataAttr="value-two-input"
       />
@@ -224,8 +224,8 @@ function AddPodcastEpisodeResourceForm(props) {
         item="Value Three"
         itemType="text"
         value={valueThree}
-        onChange={(evt) => {
-          setValueThree(evt.target.value);
+        onChange={(e) => {
+          setValueThree(e.target.value);
         }}
         dataAttr="value-three-input"
       />
