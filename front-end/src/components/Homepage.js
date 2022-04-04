@@ -3,7 +3,7 @@ import PostList from './PostList';
 import { API  } from '../api-service';
 
 function HomePage(props) {
-  let [resources, setResources] = useState([]);
+  const [resources, setResources] = useState([]);
 
   useEffect(() => {
     API.fetchResource({
@@ -12,7 +12,7 @@ function HomePage(props) {
   }, [])
 
   return (
-    <div className="homepage">
+    <div className="homepage" data-test="homepage">
       <PostList resources={resources}/>
     </div>
   )
