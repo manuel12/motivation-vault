@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getEmbedYoutubeURL } from "../utils";
+import { getEmbedYoutubeUrl } from "../utils";
 import { useParams } from "react-router-dom";
 import { API } from "../api-service";
 import CommentSection from "./CommentSection";
-import Rating from "./Ratings";
+import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
 import "../css/Detailpage.css";
 
 function DetailPage() {
   const { id } = useParams();
-  let [resource, setResource] = useState([]);
+  const [resource, setResource] = useState([]);
 
   useEffect(() => {
     API.fetchResource({
@@ -22,11 +22,13 @@ function DetailPage() {
   return (
     <div className="container">
       <div className="post-section-container">
-        <h1 className="heading">{resource.title}</h1>
+        <h1 className="heading" data-test="heading">
+          {resource.title}
+        </h1>
         <div className="author-container">
           By <strong>{resource.author}</strong>
         </div>
-        <Rating
+        <RatingSection
           resourceId={resource.id}
           avgRating={resource.avg_rating}
           numRatings={resource.num_ratings}
@@ -37,15 +39,11 @@ function DetailPage() {
           {resource &&
             (resource.get_youtube_url ? (
               <iframe
-              title={resource.title}
-              src={getEmbedYoutubeURL(
-                resource,
-                "https://www.youtube.com/embed/YxZsXZeFU1A"
-              )}
-            ></iframe>
-             ) : (
+                title={resource.title}
+                src={getEmbedYoutubeUrl(resource)}
+              ></iframe>
+            ) : (
               <img src={resource.imageURL} className="image" />
-
             ))}
         </div>
 
