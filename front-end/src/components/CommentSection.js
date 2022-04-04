@@ -7,9 +7,9 @@ import "../css/CommentSection.css";
 function CommentSection(props) {
   const { token } = useToken();
 
-  let [comments, setComments] = useState([]);
-  let [commentText, setCommentText] = useState("");
-  let [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
+  const [comments, setComments] = useState([]);
+  const [commentText, setCommentText] = useState("");
+  const [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
 
   const submitBtn = document.getElementById("submit");
   const cancelBtn = document.getElementById("cancel");
@@ -39,7 +39,7 @@ function CommentSection(props) {
     cancelBtn.className = "cancel-button";
   };
 
-  const submitClicked = () => {
+  const submitClickedHandler = () => {
     if (commentText) {
       const newComment = {
         resource: props.resourceId,
@@ -94,8 +94,8 @@ function CommentSection(props) {
         type="text"
         value={commentText}
         placeholder="Write a comment..."
-        onChange={(evt) => {
-          setCommentText(evt.target.value);
+        onChange={(e) => {
+          setCommentText(e.target.value);
         }}
         onClick={inputClicked}
         data-test="comment-input"
@@ -106,7 +106,7 @@ function CommentSection(props) {
           className="hidden"
           id="submit"
           type="submit"
-          onClick={submitClicked}
+          onClick={submitClickedHandler}
           data-test="add-comment-submit-button"
         >
           Comment
