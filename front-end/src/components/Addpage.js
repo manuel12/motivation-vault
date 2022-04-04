@@ -9,23 +9,24 @@ import "../css/Addpage.css";
 function AddPage() {
   const [resourceType, setResourceType] = useState(null);
 
-  const selectResourceType = (e) => {
+  const selectResourceTypeHandler = (e) => {
     const selectedIndex = e.target.selectedIndex;
     const selectedOption = e.target.options[selectedIndex].value;
     setResourceType(selectedOption);
   };
 
-  const submitClicked = () => {
+  const submitClickedHandler = () => {
     window.location.href = "/";
   };
 
   return (
-    <div className="add-container">
+    <div className="add-container" data-test="add-container">
+      <h2>Add a resource!</h2>
       <div className="selectContainer">
         <select
           name="resoruces"
           id="resources"
-          onChange={selectResourceType}
+          onChange={selectResourceTypeHandler}
           data-test="select-resource-type"
         >
           <option value="">Select resource type</option>
@@ -39,7 +40,7 @@ function AddPage() {
         <div>
           <AddBookResourceForm
             resourceType={resourceType}
-            submitClicked={submitClicked}
+            submitClickedHandler={submitClickedHandler}
           />
         </div>
       )}
@@ -47,7 +48,7 @@ function AddPage() {
         <div>
           <AddPodcastResourceForm
             resourceType={resourceType}
-            submitClicked={submitClicked}
+            submitClickedHandler={submitClickedHandler}
           />
         </div>
       )}
@@ -55,7 +56,7 @@ function AddPage() {
         <div>
           <AddPodcastEpisodeResourceForm
             resourceType={resourceType}
-            submitClicked={submitClicked}
+            submitClickedHandler={submitClickedHandler}
           />
         </div>
       )}
@@ -63,7 +64,7 @@ function AddPage() {
         <div>
           <AddMotivationalSpeechResourceForm
             resourceType={resourceType}
-            submitClicked={submitClicked}
+            submitClickedHandler={submitClickedHandler}
           />
         </div>
       )}
