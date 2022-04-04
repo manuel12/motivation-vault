@@ -1,4 +1,9 @@
 export function isValidIsbn(str) {
+  /**
+   * Checks ISBN validity on add book resource forms.
+   * Cortesy of derek-kurth: https://stackoverflow.com/a/23161438
+   */
+
   let sum, weight, digit, check, i;
 
   str = str.replace(/[^0-9X]/gi, "");
@@ -37,7 +42,10 @@ export function isValidIsbn(str) {
   }
 }
 
-export function isValidURL(str) {
+export function isValidUrl(str) {
+  /**
+   * For use in add resource forms.
+   */
   try {
     new URL(str);
     return true;
@@ -46,30 +54,25 @@ export function isValidURL(str) {
   }
 }
 
-export function getYoutubeURL(resource, fallback) {
-  return resource.get_youtube_url &&
-    resource.get_youtube_url.includes("/watch?")
-    ? resource.get_youtube_url
-    : fallback;
-}
+export function getEmbedYoutubeUrl(resource) {
+  /**
+   * Get url embed-abled URL from resource's
+   * youtube url in order to show in iframe.
+   */
 
-export function getEmbedYoutubeURL(resource, fallback) {
-  console.log(resource)
-  let url = resource.get_youtube_url;
-  
+  let youtubeUrl = resource.get_youtube_url;
+  let embedYoutubeUrl;
+
   try {
-    if (!url.includes("embed")) {
-      const tempUrl = new URL(url);
-      const origin = tempUrl["origin"];
-      const embedStr = "/embed/";
-      const videoId = tempUrl["searchParams"].get("v");
-  
-      url = origin + embedStr + videoId;
-    }
-  } catch(err) {
-    url = fallback;
-  }
+    const urlObj = new URL(youtubeUrl);
+    const urlOriginSection = urlObj["origin"];
+    const embedSection = "/embed/";
+    const videoIdSection = urlObj["searchParams"].get("v");
 
-  console.log(`Returning ${url} for resource ${resource}`)
-  return url;
+    embedYoutubeUrl = urlOriginSection + embedSection + videoIdSection;
+  } catch (err) {
+    const fallback = "https://www.youtube.com/embed/YxZsXZeFU1A";
+    embedYoutubeUrl = fallback;
+  }
+  return embedYoutubeUrl;
 }
