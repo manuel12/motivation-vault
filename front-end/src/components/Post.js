@@ -1,4 +1,4 @@
-import Ratings from "./Ratings";
+import RatingSection from "./RatingSection";
 import "../css/Post.css";
 
 function Post(props) {
@@ -13,7 +13,10 @@ function Post(props) {
           <div className="author-text-container">
             by <h5 className="author-name">{props.author}</h5>
           </div>
-          <Ratings avgRating={props.avgRating} numRatings={props.numRatings} />
+          <RatingSection
+            avgRating={props.avgRating}
+            numRatings={props.numRatings}
+          />
           <p className="description-container">
             {props.description && props.description.length > 300
               ? `${props.description.substring(0, 300)}...`
