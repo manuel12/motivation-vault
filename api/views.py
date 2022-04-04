@@ -35,6 +35,14 @@ class ResourceList(ResourceView):
     """
     permission_classes = (AllowAny,)
 
+    def _post_error(self):
+        response = {
+                'message':
+                'You cannot create from the Resource class directly. '
+                'You must create an instance of a subclass like '
+                'Book, Podcast, PodcastEpisode or Motivational Speech.'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
     def get(self, request):
         resource_class = self.get_resource_class()
         serializer_class = self.get_serializer_class()
@@ -45,7 +53,7 @@ class ResourceList(ResourceView):
         resource_name = self.get_resource_class().__name__
 
         # Do not allow any resource creation to occur from the Resource class.
-        if(resource_name == "Resource"): 
+        if(resource_name == "Resource"):
             return self._post_error()
 
         serializer_class = self.get_serializer_class()
@@ -53,14 +61,8 @@ class ResourceList(ResourceView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)     
-        
-    def _post_error(self):
-        response = {'message': 'You cannot create from the Resource class directly. '
-                'You must create an instance of a subclass like Book, Podcast, PodcastEpisode '
-                'or Motivational Speech.'}
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
-        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ResourceDetail(ResourceView):
     """
@@ -252,4 +254,5 @@ def delete_test_data(request):
         title__startswith='Test Title')
     for resource in test_resources:
         resource.delete()
-    return Response('Test resources and their related comments deleted!', status=status.HTTP_204_NO_CONTENT)
+    return Response('Test resources and their related comments deleted!',
+                    status=status.HTTP_204_NO_CONTENT)
