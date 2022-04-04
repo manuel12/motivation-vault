@@ -3,7 +3,9 @@ import "../css/NotFound.css";
 function NotFound() {
   return (
     <div>
-      <h1 className="not-found">404 - Not found :(</h1>
+      <h1 className="not-found" data-test="not-found">
+        404 - Not found :(
+      </h1>
     </div>
   );
 }
