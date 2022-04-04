@@ -1,6 +1,7 @@
 from django.test import TestCase
 from resources.models import Book
 
+
 class BookModelTests(TestCase):
     """Creates a book model and tests the fields."""
 

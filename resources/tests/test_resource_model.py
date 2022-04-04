@@ -6,6 +6,7 @@ from resources.utils import get_default_data
 
 default_data = get_default_data()
 
+
 class ResourceModelDefaultValuesTests(TestCase):
     """Creates a resource and tests all default values."""
 
@@ -42,7 +43,8 @@ class ResourceModelTests(TestCase):
         self.test_resource = Resource.objects.create(
             title="The Little Prince",
             author="Antoine de Saint-Exupéry",
-            description="The simple tale tells the story of a child, the little prince, who travels the universe gaining wisdom",
+            description="The simple tale tells the story of a child,"
+            "the little prince, who travels the universe gaining wisdom",
             imageURL="https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG",
             value_one="It explains what is important in life",
             value_two="It explains the subject of authority",
@@ -99,7 +101,8 @@ class ResourceModelTests(TestCase):
     def test_resource_description(self):
         self.assertEqual(
             self.test_resource.description,
-            "The simple tale tells the story of a child, the little prince, who travels the universe gaining wisdom")
+            "The simple tale tells the story of a child,"
+            "the little prince, who travels the universe gaining wisdom")
 
     def test_description_blank_true(self):
         description_blank = self.test_resource._meta.get_field(
@@ -113,7 +116,8 @@ class ResourceModelTests(TestCase):
 
     def test_resource_value_one(self):
         self.assertEqual(
-            self.test_resource.value_one, "It explains what is important in life")
+            self.test_resource.value_one,
+            "It explains what is important in life")
 
     def test_value_one_blank_true(self):
         value_one_blank = self.test_resource._meta.get_field('value_one').blank
@@ -121,7 +125,8 @@ class ResourceModelTests(TestCase):
 
     def test_resource_value_two(self):
         self.assertEqual(
-            self.test_resource.value_two, "It explains the subject of authority")
+            self.test_resource.value_two,
+            "It explains the subject of authority")
 
     def test_value_two_blank_true(self):
         value_two_blank = self.test_resource._meta.get_field('value_two').blank
@@ -129,7 +134,8 @@ class ResourceModelTests(TestCase):
 
     def test_resource_value_three(self):
         self.assertEqual(
-            self.test_resource.value_three, "It explains the subject of lonelyness")
+            self.test_resource.value_three,
+            "It explains the subject of lonelyness")
 
     def test_value_three_blank_true(self):
         value_three_blank = self.test_resource._meta.get_field(

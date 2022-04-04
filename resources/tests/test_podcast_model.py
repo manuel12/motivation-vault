@@ -1,6 +1,7 @@
 from django.test import TestCase
 from resources.models import Podcast
 
+
 class PodcastModelTests(TestCase):
     """Creates a podcast and tests the fields."""
 

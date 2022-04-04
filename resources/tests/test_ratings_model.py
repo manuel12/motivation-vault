@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from resources.models import Resource, Rating
 
+
 class RatingModelTest(TestCase):
     """Creates a rating and tests the fields."""
 
