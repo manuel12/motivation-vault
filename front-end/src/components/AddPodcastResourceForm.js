@@ -46,30 +46,30 @@ function AddPodcastResourceForm(props) {
     }
 
     if (!websiteUrl) {
-      setWebsiteUrlError("Website Url cannot be empty!");
+      setWebsiteUrlError("Website URL cannot be empty!");
       validInput = false;
     } else if (!isValidUrl(websiteUrl)) {
-      setWebsiteUrlError("Website Url has to be a valid url!");
+      setWebsiteUrlError("Website URL has to be a valid url!");
       validInput = false;
     } else {
       setWebsiteUrlError("");
     }
 
     if (!spotifyPageUrl) {
-      setSpotifyPageUrlError("Spotify Url cannot be empty!");
+      setSpotifyPageUrlError("Spotify URL cannot be empty!");
       validInput = false;
     } else if (!isValidUrl(spotifyPageUrl)) {
-      setSpotifyPageUrlError("Spotify Url has to be a valid url!");
+      setSpotifyPageUrlError("Spotify URL has to be a valid url!");
       validInput = false;
     } else {
       setSpotifyPageUrlError("");
     }
 
     if (!youtubePageUrl) {
-      setYoutubePageUrlError("Youtube Url cannot be empty!");
+      setYoutubePageUrlError("Youtube URL cannot be empty!");
       validInput = false;
     } else if (!isValidUrl(youtubePageUrl)) {
-      setYoutubePageUrlError("Youtube Url has to be a valid url!");
+      setYoutubePageUrlError("Youtube URL has to be a valid url!");
       validInput = false;
     } else {
       setYoutubePageUrlError("");
@@ -169,7 +169,7 @@ function AddPodcastResourceForm(props) {
 
       <LabeledInput
         error={websiteUrlError}
-        item="Website Url"
+        item="Website URL"
         itemType="text"
         value={websiteUrl}
         onChange={(e) => {
@@ -180,7 +180,7 @@ function AddPodcastResourceForm(props) {
 
       <LabeledInput
         error={spotifyPageUrlError}
-        item="Spotify Url"
+        item="Spotify URL"
         itemType="text"
         value={spotifyPageUrl}
         onChange={(e) => {
@@ -191,7 +191,7 @@ function AddPodcastResourceForm(props) {
 
       <LabeledInput
         error={youtubePageUrlError}
-        item="Youtube Url"
+        item="Youtube URL"
         itemType="text"
         value={youtubePageUrl}
         onChange={(e) => {
