@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { API } from "../api-service";
 
-import "../css/Auth.css";
+import classes from "../css/Auth.module.css";
 
 function Auth({ setToken }) {
   const [username, setUsername] = useState("");
@@ -13,7 +13,7 @@ function Auth({ setToken }) {
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-  const loginClicked = () => {
+  const loginClickedHandler = () => {
     if (username === "") setUsernameError(true);
     if (password === "") setPasswordError(true);
 
@@ -22,12 +22,12 @@ function Auth({ setToken }) {
       .catch((err) => console.log(err));
   };
 
-  const registerClicked = () => {
+  const registerClickedHandler = () => {
     if (username === "") setUsernameError(true);
     if (password === "") setPasswordError(true);
 
     API.registerUser({ username, password })
-      .then(() => loginClicked())
+      .then(() => loginClickedHandler())
       .catch((error) => console.log(error));
   };
 
@@ -39,7 +39,7 @@ function Auth({ setToken }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    isLoginView ? loginClicked() : registerClicked();
+    isLoginView ? loginClickedHandler() : registerClickedHandler();
   };
 
   return (
@@ -48,7 +48,7 @@ function Auth({ setToken }) {
         {isLoginView ? <h1 data-test="heading">Login</h1> : <h1>Register</h1>}
       </div>
 
-      <div className="login-container">
+      <div className={classes['login-container']}>
         <form onSubmit={submitHandler}>
           {usernameError && (
             <div class="username-error" data-test="username-error">
