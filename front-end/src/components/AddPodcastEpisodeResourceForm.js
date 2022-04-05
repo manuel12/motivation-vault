@@ -53,20 +53,20 @@ function AddPodcastEpisodeResourceForm(props) {
     }
 
     if (!youtubeEpisodeUrl) {
-      setYoutubeEpisodeUrlError("Youtube episode Url cannot be empty!");
+      setYoutubeEpisodeUrlError("Youtube episode URL cannot be empty!");
       validInput = false;
     } else if (!isValidUrl(youtubeEpisodeUrl)) {
-      setYoutubeEpisodeUrlError("Youtube episode Url has to be a valid url!");
+      setYoutubeEpisodeUrlError("Youtube episode URL has to be a valid url!");
       validInput = false;
     } else {
       setYoutubeEpisodeUrlError("");
     }
 
     if (!spotifyEpisodeUrl) {
-      setSpotifyEpisodeUrlError("Spotify episode Url cannot be empty!");
+      setSpotifyEpisodeUrlError("Spotify episode URL cannot be empty!");
       validInput = false;
     } else if (!isValidUrl(spotifyEpisodeUrl)) {
-      setSpotifyEpisodeUrlError("Spotify episode Url has to be a valid url!");
+      setSpotifyEpisodeUrlError("Spotify episode URL has to be a valid url!");
       validInput = false;
     } else {
       setSpotifyEpisodeUrlError("");
