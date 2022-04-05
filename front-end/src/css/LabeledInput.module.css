@@ -1,0 +1,11 @@
+label {
+  font-size: 0.8rem;
+  color: red;
+  font-style: italic;
+  margin: 0px;
+  padding: 0px;
+}
+
+input {
+  margin: 5px 0px;
+}

@@ -1,0 +1,29 @@
+.app-navbar {
+  background-color: #1a161b;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  display: flex;;
+}
+
+.nav-item-link {
+  display: block;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 14px 30px;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+.active {
+  background-color: grey;
+}
+
+.nav-item-link:hover {
+  background-color: yellow;
+  color: black;
+}
