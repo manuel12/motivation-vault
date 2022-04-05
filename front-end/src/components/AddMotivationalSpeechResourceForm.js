@@ -40,10 +40,10 @@ function AddMotivationalSpeechResourceForm(props) {
     }
 
     if (!youtubeUrl) {
-      setYoutubeUrlError("Youtube Url cannot be empty!");
+      setYoutubeUrlError("Youtube URL cannot be empty!");
       validInput = false;
     } else if (!isValidUrl(youtubeUrl)) {
-      setYoutubeUrlError("Youtube Url has to be a valid Url!");
+      setYoutubeUrlError("Youtube URL has to be a valid URL!");
       validInput = false;
     } else {
       setYoutubeUrlError("");
@@ -135,7 +135,7 @@ function AddMotivationalSpeechResourceForm(props) {
 
       <LabeledInput
         error={youtubeUrlError}
-        item="Youtube Url"
+        item="Youtube URL"
         itemType="text"
         value={youtubeUrl}
         onChange={(e) => {
