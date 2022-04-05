@@ -1,13 +1,48 @@
-import React, { useEffect } from "react";
-import "../css/Navbar.css";
+import React, { useEffect, useState } from "react";
+import classes from "../css/Navbar.module.css";
 
 function Navbar({ deleteToken }) {
-  const logoutUser = () => {
+  
+  const [homeLinkClassName, setHomeLinkClassName] = useState(
+    classes["nav-item-link"]
+  );
+
+  const [addLinkClassName, setAddLinkClassName] = useState(
+    classes["nav-item-link"]
+  );
+
+  const [booksLinkClassName, setBooksLinkClassName] = useState(
+    classes["nav-item-link"]
+  );
+
+  const [podcastsLinkClassName, setPodcastsLinkClassName] = useState(
+    classes["nav-item-link"]
+  );
+
+  const [podcastsEpisodesLinkClassName, setPodcastsEpisodesLinkClassName] =
+    useState(classes["nav-item-link"]);
+
+  const [
+    motivationalSpeechesLinkClassName,
+    setMotivationalSpeechesLinkClassName,
+  ] = useState(classes["nav-item-link"]);
+
+  const [aboutLinkClassName, setAboutLinkClassName] = useState(
+    classes["nav-item-link"]
+  );
+
+  const [logoutLinkClassName, setLogoutLinkClassName] = useState(
+    classes["nav-item-link"]
+  );
+
+  const logoutClickedHandler = () => {
     deleteToken();
     window.location.href = "/";
   };
 
   useEffect(() => {
+    console.log(classes);
+
     const locPath = window.location.pathname;
 
     const cleanLocPath = (locPath) => {
@@ -17,84 +52,90 @@ function Navbar({ deleteToken }) {
 
     const cleanedLocPath = cleanLocPath(locPath);
 
-    const navItemsLinks = [
-      "home-link",
-      "add-link",
-      "books-link",
-      "podcasts-link",
-      "podcasts-episodes-link",
-      "motivational-speeches-link",
-      "about-link",
-      "logout-link",
-    ];
+    const linkClassNames = {
+      "home-link": setHomeLinkClassName,
+      "add-link": setAddLinkClassName,
+      "books-link": setBooksLinkClassName,
+      "podcasts-link": setPodcastsLinkClassName,
+      "podcasts-episodes-link": setPodcastsEpisodesLinkClassName,
+      "motivational-speeches-link": setMotivationalSpeechesLinkClassName,
+      "about-link": setAboutLinkClassName,
+      "logout-link": setLogoutLinkClassName,
+    };
 
-    navItemsLinks.forEach((link) => {
-      const query = `[data-test=${link}]`;
-      const elem = document.querySelector(query);
+    for (const link in linkClassNames) {
       if (link === `${cleanedLocPath}-link`) {
-        elem.className = "nav-item-link active";
+        linkClassNames[link](
+          `${classes["nav-item-link"]} ${classes["active"]}`
+        );
       } else {
-        elem.className = "nav-item-link";
+        linkClassNames[link](classes["nav-item-link"]);
       }
-    });
+    }
   }, []);
 
   return (
-    <div className="app-navbar">
-      <ul className="nav-list" data-test="nav-list">
-        <li className="nav-item">
-          <a className="nav-item-link" href="/" data-test="home-link">
+    <div className={classes["app-navbar"]}>
+      <ul className={classes["nav-list"]} data-test="nav-list">
+        <li className={classes["nav-item"]}>
+          <a className={homeLinkClassName} href="/" data-test="home-link">
             Home
           </a>
         </li>
-        <li className="nav-item">
-          <a className="nav-item-link" href="/add/" data-test="add-link">
+        <li className={classes["nav-item"]}>
+          <a className={addLinkClassName} href="/add/" data-test="add-link">
             Add+
           </a>
         </li>
-        <li className="nav-item">
-          <a className="nav-item-link" href="/books/" data-test="books-link">
+        <li className={classes["nav-item"]}>
+          <a
+            className={booksLinkClassName}
+            href="/books/"
+            data-test="books-link"
+          >
             Books
           </a>
         </li>
-        <li className="nav-item">
+        <li className={classes["nav-item"]}>
           <a
-            className="nav-item-link"
+            className={podcastsLinkClassName}
             href="/podcasts/"
             data-test="podcasts-link"
           >
             Podcasts
           </a>
         </li>
-        <li className="nav-item">
+        <li className={classes["nav-item"]}>
           <a
-            className="nav-item-link"
+            className={podcastsEpisodesLinkClassName}
             href="/podcasts-episodes/"
             data-test="podcasts-episodes-link"
           >
             Podcasts Episodes
           </a>
         </li>
-        <li className="nav-item">
+        <li className={classes["nav-item"]}>
           <a
-            className="nav-item-link"
+            className={motivationalSpeechesLinkClassName}
             href="/motivational-speeches/"
             data-test="motivational-speeches-link"
           >
             Motivational Speeches
           </a>
         </li>
-        <li className="nav-item">
-          <a className="nav-item-link" href="/about/" data-test="about-link">
+        <li className={classes["nav-item"]}>
+          <a
+            className={aboutLinkClassName}
+            href="/about/"
+            data-test="about-link"
+          >
             About
           </a>
         </li>
-        <li className="nav-item">
+        <li className={classes["nav-item"]}>
           <div
-            className="nav-item-link "
-            onClick={() => {
-              logoutUser();
-            }}
+            className={classes["nav-item-link"]}
+            onClick={logoutClickedHandler}
             data-test="logout-link"
           >
             Logout
