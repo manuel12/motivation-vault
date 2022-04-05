@@ -1,9 +1,9 @@
-import "../css/NotFound.css";
+import classes from "../css/NotFound.module.css";
 
 function NotFound() {
   return (
     <div>
-      <h1 className="not-found" data-test="not-found">
+      <h1 className={classes["not-found"]} data-test="not-found">
         404 - Not found :(
       </h1>
     </div>
