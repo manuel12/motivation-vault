@@ -1,4 +1,4 @@
-import "../css/ValueSection.css";
+import classes from "../css/ValueSection.module.css";
 
 function ValueSection(props) {
   const values = [
@@ -13,12 +13,15 @@ function ValueSection(props) {
 
   return (
     filteredValues.length > 0 && (
-      <div className="value-section-container" data-test="value-section">
+      <div
+        className={classes["value-container"]}
+        data-test="value-section"
+      >
         <h3>What value does it bring you?</h3>
         <ul>
           {filteredValues.map((value, i) => {
             return (
-              <li key={i} className="value-item">
+              <li key={i} className={classes["value-item"]}>
                 {value}
               </li>
             );
