@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import useToken from "./useToken";
 
-import "../css/RatingSection.css";
+import classes from "../css/RatingSection.module.css";
 
 function RatingSection(props) {
   const { token } = useToken();
@@ -14,7 +14,7 @@ function RatingSection(props) {
 
   useEffect(() => setRating(props.avgRating), [props.avgRating]);
 
-  const toggleDisplayRatingInput = () => {
+  const addRatingClickedHandler = () => {
     setShowRatingInput(!showRatingInput);
   };
 
@@ -22,7 +22,7 @@ function RatingSection(props) {
     setHighlighted(high);
   };
 
-  const handleSubmitRating = (rating) => (e) => {
+  const submitRatingHandler = (rating) => (e) => {
     e.preventDefault();
     rating += 1;
 
@@ -65,34 +65,34 @@ function RatingSection(props) {
   let numRatings = props.numRatings;
 
   return (
-    <div className="ratings-container" data-test="ratings-container">
+    <div className={classes["ratings-container"]} data-test="ratings-container">
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 0 ? "orange" : "no-display"}
+        className={avgRating > 0 ? classes["orange"] : classes["no-display"]}
         data-test="star-icon-1"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 1 ? "orange" : "no-display"}
+        className={avgRating > 1 ? classes["orange"] : classes["no-display"]}
         data-test="star-icon-2"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 2 ? "orange" : "no-display"}
+        className={avgRating > 2 ? classes["orange"] : classes["no-display"]}
         data-test="star-icon-3"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 3 ? "orange" : "no-display"}
+        className={avgRating > 3 ? classes["orange"] : classes["no-display"]}
         data-test="star-icon-4"
       />
       <FontAwesomeIcon
         icon={faStar}
-        className={avgRating > 4 ? "orange" : "no-display"}
+        className={avgRating > 4 ? classes["orange"] : classes["no-display"]}
         data-test="star-icon-5"
       />
 
-      <span className="num-ratings" data-test="num-ratings">
+      <span className={classes["num-ratings"]} data-test="num-ratings">
         {numRatings !== 1
           ? `(${numRatings} reviews)`
           : `(${numRatings} review)`}
@@ -101,25 +101,29 @@ function RatingSection(props) {
       {props.addRatingBtn && (
         <FontAwesomeIcon
           icon={faPlusSquare}
-          className="add-rating"
-          onClick={toggleDisplayRatingInput}
+          className={classes["add-rating"]}
+          onClick={addRatingClickedHandler}
           data-test="add-rating-button"
         />
       )}
 
       {showRatingInput && (
-        <div className="rate-container">
+        <div className={classes["rate-container"]}>
           <h2>Rate it!</h2>
           {[...Array(5)].map((e, i) => {
             return (
               <FontAwesomeIcon
                 key={i}
                 icon={faStar}
-                className={hightlighted > i - 1 ? "orange-pointer" : "white"}
+                className={
+                  hightlighted > i - 1
+                    ? classes["orange-pointer"]
+                    : classes["white"]
+                }
                 data-test={`add-star-icon-${i + 1}`}
                 onMouseEnter={highlightRate(i)}
                 onMouseLeave={highlightRate(-1)}
-                onClick={handleSubmitRating(i)}
+                onClick={submitRatingHandler(i)}
               />
             );
           })}
