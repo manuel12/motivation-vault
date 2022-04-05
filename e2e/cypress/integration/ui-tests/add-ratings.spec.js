@@ -22,7 +22,8 @@ describe("Add Ratings", () => {
     while (i <= stars) {
       cy.get(`[data-test=star-icon-${i}]`)
         .should("be.visible")
-        .and("have.class", "orange");
+        .invoke("attr", "class")
+        .should("contain", "orange")
       i++;
     }
   };
