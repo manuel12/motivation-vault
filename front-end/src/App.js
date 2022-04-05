@@ -15,7 +15,7 @@ import DetailPage from './components/Detailpage';
 import AboutPage from './components/Aboutpage';
 import NotFound from './components/NotFound';
 import useToken from './components/useToken';
-import './css/App.css';
+import classes from './css/App.module.css';
 
 function App() {    
   const {token, setToken, deleteToken} = useToken()
@@ -25,10 +25,10 @@ function App() {
   }
 
   return (
-      <div className="App" data-test="app">
+      <div className={classes["App"]} data-test="app">
         <Header/>
         <Navbar deleteToken={deleteToken}/>
-        <div className="content">
+        <div className={classes["content"]}>
           <Router>
             <Switch>
               <Route exact path="/"  component={HomePage} />
