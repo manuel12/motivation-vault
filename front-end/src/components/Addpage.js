@@ -4,7 +4,7 @@ import AddPodcastResourceForm from "./AddPodcastResourceForm";
 import AddPodcastEpisodeResourceForm from "./AddPodcastEpisodeResourceForm";
 import AddMotivationalSpeechResourceForm from "./AddMotivationalSpeechResourceForm";
 
-import "../css/Addpage.css";
+import classes from "../css/Addpage.module.css";
 
 function AddPage() {
   const [resourceType, setResourceType] = useState(null);
@@ -22,10 +22,10 @@ function AddPage() {
   return (
     <div className="add-container" data-test="add-container">
       <h2>Add a resource!</h2>
-      <div className="selectContainer">
+      <div className={classes["selectContainer"]}>
         <select
-          name="resoruces"
-          id="resources"
+          name="resources"
+          className={classes["resources"]}
           onChange={selectResourceTypeHandler}
           data-test="select-resource-type"
         >
