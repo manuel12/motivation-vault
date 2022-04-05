@@ -1,12 +1,14 @@
-import "../css/LabeledInput.css";
+import classes from "../css/LabeledInput.module.css";
 
 function LabeledInput(props) {
   return (
-    <div className="inputContainer">
+    <div className={classes["inputContainer"]}>
       {props.error ? (
-        <label data-test={`${props?.dataAttr}-error`}>*{props.error}</label>
+        <label
+        className={classes["label"]} data-test={`${props?.dataAttr}-error`}>*{props.error}</label>
       ) : null}
       <input
+        className={classes["input"]}
         id={props.item?.toLowerCase()}
         type={props.itemType}
         placeholder={props?.item}
