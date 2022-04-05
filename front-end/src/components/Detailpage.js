@@ -5,7 +5,7 @@ import { API } from "../api-service";
 import CommentSection from "./CommentSection";
 import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
-import "../css/Detailpage.css";
+import classes from "../css/Detailpage.module.css";
 
 function DetailPage() {
   const { id } = useParams();
@@ -20,12 +20,12 @@ function DetailPage() {
   }, [id]);
 
   return (
-    <div className="container">
-      <div className="post-section-container">
-        <h1 className="heading" data-test="heading">
+    <div className={classes["container"]}>
+      <div className={classes["post-section-container"]}>
+        <h1 className={classes["heading"]} data-test="heading">
           {resource.title}
         </h1>
-        <div className="author-container">
+        <div className={classes["author-container"]}>
           By <strong>{resource.author}</strong>
         </div>
         <RatingSection
@@ -35,20 +35,21 @@ function DetailPage() {
           updateResource={setResource}
           addRatingBtn={true}
         />
-        <div className="media-container">
+        <div className={classes["media-container"]}>
           {resource &&
             (resource.get_youtube_url ? (
               <iframe
+                className={classes["iframe"]}
                 title={resource.title}
                 src={getEmbedYoutubeUrl(resource)}
               ></iframe>
             ) : (
-              <img src={resource.imageURL} className="image" />
+              <img src={resource.imageURL} className={classes["image"]} />
             ))}
         </div>
 
         <h3>Description</h3>
-        <p className="paragraph-container">{resource.description}</p>
+        <p className={classes["paragraph-container"]}>{resource.description}</p>
       </div>
 
       <ValueSection resource={resource} />
