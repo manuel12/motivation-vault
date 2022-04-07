@@ -41,7 +41,6 @@ function Navbar({ deleteToken }) {
   };
 
   useEffect(() => {
-    console.log(classes);
 
     const locPath = window.location.pathname;
 
