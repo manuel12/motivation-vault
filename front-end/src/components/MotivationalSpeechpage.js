@@ -8,11 +8,7 @@ function MotivationalSpeechPage() {
   const [resources, setResources] = useState([]);
 
   useEffect(() => {
-    API.fetchResource({
-      resource: "motivational-speeches",
-      token: token,
-      setResourceFunc: setResources,
-    });
+    API.fetchAllResourcesOfType("motivational-speeches", token, setResources);
   }, [token]);
 
   return (
