@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { API } from "../api-service";
+import useToken from "./useToken";
 
 import classes from "../css/Auth.module.css";
 
@@ -48,7 +49,7 @@ function Auth({ setToken }) {
         {isLoginView ? <h1 data-test="heading">Login</h1> : <h1>Register</h1>}
       </div>
 
-      <div className={classes['login-container']}>
+      <div className={classes["login-container"]}>
         <form onSubmit={submitHandler}>
           {usernameError && (
             <div class="username-error" data-test="username-error">
