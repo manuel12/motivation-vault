@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getEmbedYoutubeUrl } from "../utils";
 import { useParams } from "react-router-dom";
 import { API } from "../api-service";
+import useToken from "./useToken";
 import CommentSection from "./CommentSection";
 import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
@@ -9,14 +10,11 @@ import classes from "../css/Detailpage.module.css";
 
 function DetailPage() {
   const { id } = useParams();
+  const { token } = useToken();
   const [resource, setResource] = useState([]);
 
   useEffect(() => {
-    API.fetchResource({
-      resource: null,
-      setResourceFunc: setResource,
-      id: id,
-    });
+    API.fetchResource(id, token, setResource);
   }, [id]);
 
   return (
