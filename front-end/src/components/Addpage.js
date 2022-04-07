@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AddResourceForm from "./AddResourceForm";
 import AddBookResourceForm from "./AddBookResourceForm";
 import AddPodcastResourceForm from "./AddPodcastResourceForm";
 import AddPodcastEpisodeResourceForm from "./AddPodcastEpisodeResourceForm";
@@ -13,10 +14,6 @@ function AddPage() {
     const selectedIndex = e.target.selectedIndex;
     const selectedOption = e.target.options[selectedIndex].value;
     setResourceType(selectedOption);
-  };
-
-  const submitClickedHandler = () => {
-    window.location.href = "/";
   };
 
   return (
@@ -38,34 +35,22 @@ function AddPage() {
       </div>
       {resourceType === "book" && (
         <div>
-          <AddBookResourceForm
-            resourceType={resourceType}
-            submitClickedHandler={submitClickedHandler}
-          />
+          <AddResourceForm resourceType={resourceType} />
         </div>
       )}
       {resourceType === "podcast" && (
         <div>
-          <AddPodcastResourceForm
-            resourceType={resourceType}
-            submitClickedHandler={submitClickedHandler}
-          />
+          <AddResourceForm resourceType={resourceType} />
         </div>
       )}
       {resourceType === "podcast-episode" && (
         <div>
-          <AddPodcastEpisodeResourceForm
-            resourceType={resourceType}
-            submitClickedHandler={submitClickedHandler}
-          />
+          <AddResourceForm resourceType={resourceType} />
         </div>
       )}
       {resourceType === "motivational-speech" && (
         <div>
-          <AddMotivationalSpeechResourceForm
-            resourceType={resourceType}
-            submitClickedHandler={submitClickedHandler}
-          />
+          <AddResourceForm resourceType={resourceType} />
         </div>
       )}
     </div>
