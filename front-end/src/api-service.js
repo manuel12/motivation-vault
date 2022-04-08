@@ -8,6 +8,17 @@ const _fetch = (url, token) => {
   });
 };
 
+const _send = (url, token, data) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+};
+
 export class API {
   static loginUser(body) {
     return fetch(`http://127.0.0.1:8000/auth/`, {
@@ -54,14 +65,20 @@ export class API {
       .catch((error) => console.log(error));
   }
 
-  static createResource(options) {
-    return fetch(`http://127.0.0.1:8000/api/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${options.token}`,
-      },
-      body: JSON.stringify(options.body),
-    }).then((resp) => resp.json());
+  static createResource(resourceType, token, resourceData) {
+    let url = "http://127.0.0.1:8000/api/";
+
+    if (resourceType === "motivational-speech") {
+      url += `${resourceType}es/`;
+    } else {
+      url += `${resourceType}s/`;
+    }
+    _send(url, token, resourceData)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        console.log(resp);
+        window.location.href = "/";
+      })
+      .catch((error) => console.error(error));
   }
 }
