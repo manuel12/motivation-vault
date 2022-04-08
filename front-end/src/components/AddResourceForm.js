@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { isValidIsbn, isValidUrl } from "../utils";
+import { validateYoutubeUrl, Validator } from "../utils";
+import { API } from "../api-service";
 import LabeledInput from "./LabeledInput";
 import AddBookResourceForm from "./AddBookResourceForm";
 import AddPodcastResourceForm from "./AddPodcastResourceForm";
@@ -23,11 +24,11 @@ function AddResourceForm(props) {
 
   // => Book fields
   const [subtitle, setSubtitle] = useState("");
-  const [isbn, setIsbn] = useState("");
+  const [isbn, setISBN] = useState("");
 
   // => Book error fields
   const [subtitleError, setSubtitleError] = useState("");
-  const [isbnError, setIsbnError] = useState("");
+  const [isbnError, setISBNError] = useState("");
 
   // => Podcast fields
   const [websiteUrl, setWebsiteUrl] = useState("");
@@ -55,124 +56,40 @@ function AddResourceForm(props) {
   // => Motivational Speech error fields
   const [youtubeUrlError, setYoutubeUrlError] = useState("");
 
+  const validator = new Validator(true);
+
   const validate = () => {
-    let isValidInput = true;
-
-    if (!title) {
-      setTitleError("Title cannot be empty!");
-      isValidInput = false;
-    } else {
-      setTitleError("");
-    }
-
-    if (!author) {
-      setAuthorError("Author cannot be empty!");
-      isValidInput = false;
-    } else {
-      setAuthorError("");
-    }
+    validator.registerTitle(title, setTitleError);
+    validator.registerAuthor(author, setAuthorError);
 
     if (props.resourceType === "book") {
-      if (!subtitle) {
-        setSubtitleError("Subtitle cannot be empty!");
-        isValidInput = false;
-      } else {
-        setSubtitleError("");
-      }
-
-      if (!isbn) {
-        setIsbnError("ISBN cannot be empty!");
-        isValidInput = false;
-      } else if (!isValidIsbn(isbn)) {
-        setIsbnError("ISBN has to be a 13 digits!");
-        isValidInput = false;
-      } else {
-        setIsbnError("");
-      }
+      validator.registerSubtitle(subtitle, setSubtitleError);
+      validator.registerISBN(isbn, setISBNError);
+    } else if (props.resourceType === "podcast") {
+      validator.registerWebsiteUrl(websiteUrl, setWebsiteUrlError);
+      validator.registerSpotifyPageUrl(spotifyPageUrl, setSpotifyPageUrlError);
+      validator.registerYoutubePageUrl(youtubePageUrl, setYoutubePageUrlError);
+    } else if (props.resourceType === "podcast-episode") {
+      validator.registerPodcast(podcast, setPodcastError);
+      validator.registerYoutubeEpisodeUrl(
+        youtubeEpisodeUrl,
+        setYoutubeEpisodeUrlError
+      );
+      validator.registerSpotifyEpisodeUrl(
+        spotifyEpisodeUrl,
+        setSpotifyEpisodeUrlError
+      );
+    } else if (props.resourceType === "motivational-speech") {
+      validator.registerYoutubeUrl(youtubeUrl, setYoutubeUrlError);
     }
 
-    if (props.resourceType === "podcast") {
-      if (!websiteUrl) {
-        setWebsiteUrlError("Website URL cannot be empty!");
-        isValidInput = false;
-      } else if (!isValidUrl(websiteUrl)) {
-        setWebsiteUrlError("Website URL has to be a valid url!");
-        isValidInput = false;
-      } else {
-        setWebsiteUrlError("");
-      }
-
-      if (!spotifyPageUrl) {
-        setSpotifyPageUrlError("Spotify URL cannot be empty!");
-        isValidInput = false;
-      } else if (!isValidUrl(spotifyPageUrl)) {
-        setSpotifyPageUrlError("Spotify URL has to be a valid url!");
-        isValidInput = false;
-      } else {
-        setSpotifyPageUrlError("");
-      }
-
-      if (!youtubePageUrl) {
-        setYoutubePageUrlError("Youtube URL cannot be empty!");
-        isValidInput = false;
-      } else if (!isValidUrl(youtubePageUrl)) {
-        setYoutubePageUrlError("Youtube URL has to be a valid url!");
-        isValidInput = false;
-      } else {
-        setYoutubePageUrlError("");
-      }
-    }
-
-    if (props.resourceType === "podcast-episode") {
-      if (!podcast) {
-        setPodcastError("Podcast cannot be empty!");
-        isValidInput = false;
-      } else {
-        setPodcastError("");
-      }
-
-      if (!youtubeEpisodeUrl) {
-        setYoutubeEpisodeUrlError("Youtube episode URL cannot be empty!");
-        isValidInput = false;
-      } else if (!isValidUrl(youtubeEpisodeUrl)) {
-        setYoutubeEpisodeUrlError("Youtube episode URL has to be a valid url!");
-        isValidInput = false;
-      } else {
-        setYoutubeEpisodeUrlError("");
-      }
-
-      if (!spotifyEpisodeUrl) {
-        setSpotifyEpisodeUrlError("Spotify episode URL cannot be empty!");
-        isValidInput = false;
-      } else if (!isValidUrl(spotifyEpisodeUrl)) {
-        setSpotifyEpisodeUrlError("Spotify episode URL has to be a valid url!");
-        isValidInput = false;
-      } else {
-        setSpotifyEpisodeUrlError("");
-      }
-    }
-
-    if (props.resourceType === "motivational-speech") {
-      if (!youtubeUrl) {
-        setYoutubeUrlError("Youtube URL cannot be empty!");
-        isValidInput = false;
-      } else if (!isValidUrl(youtubeUrl)) {
-        setYoutubeUrlError("Youtube URL has to be a valid URL!");
-        isValidInput = false;
-      } else {
-        setYoutubeUrlError("");
-      }
-    }
-
-    return isValidInput;
+    return validator.validate();
   };
 
   const submitClickedHandler = (e) => {
-    console.log(props.resourceType);
     e.preventDefault();
 
     if (validate()) {
-      console.log("Validated!");
       const newResource = {
         title: title,
         author: author,
@@ -202,29 +119,7 @@ function AddResourceForm(props) {
       if (props.resourceType === "motivational-speech") {
         newResource["youtube_url"] = youtubeUrl;
       }
-
-      let url =
-        props.resourceType === "motivational-speech"
-          ? `http://127.0.0.1:8000/api/${props.resourceType}es/`
-          : `http://127.0.0.1:8000/api/${props.resourceType}s/`;
-
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-        },
-        body: JSON.stringify(newResource),
-      })
-        .then((resp) => resp.json())
-        .then((resp) => {
-          console.log(resp);
-        })
-        .catch((error) => console.error(error));
-
-        window.location.href = "/";
-    } else {
-      console.log("Validation failed!");
+      API.createResource(props.resourceType, token, newResource);
     }
   };
 
@@ -267,7 +162,7 @@ function AddResourceForm(props) {
       {props.resourceType === "book" && (
         <AddBookResourceForm
           isbn={isbn}
-          setIsbn={setIsbn}
+          setISBN={setISBN}
           isbnError={isbnError}
           subtitle={subtitle}
           setSubtitle={setSubtitle}
