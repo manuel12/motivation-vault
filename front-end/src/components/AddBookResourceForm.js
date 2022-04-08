@@ -21,7 +21,7 @@ function AddBookResourceForm(props) {
         itemType="text"
         value={props.isbn}
         onChange={(e) => {
-          props.setIsbn(e.target.value);
+          props.setISBN(e.target.value);
         }}
         dataAttr="isbn-input"
       />
