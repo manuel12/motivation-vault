@@ -37,7 +37,7 @@ class ResourceList(ResourceView):
 
     def _post_error(self):
         response = {
-                'message':
+            'message':
                 'You cannot create from the Resource class directly. '
                 'You must create an instance of a subclass like '
                 'Book, Podcast, PodcastEpisode or Motivational Speech.'}
@@ -252,7 +252,9 @@ def delete_test_data(request):
     """
     test_resources = models.Resource.objects.filter(
         title__startswith='Test Title')
-    for resource in test_resources:
-        resource.delete()
+    test_resources.delete()
+
+    test_users = models.User.objects.filter(username='newUser1')
+    test_users.delete()
     return Response('Test resources and their related comments deleted!',
                     status=status.HTTP_204_NO_CONTENT)
