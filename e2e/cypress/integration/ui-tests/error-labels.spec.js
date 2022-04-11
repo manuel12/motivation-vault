@@ -29,6 +29,13 @@ describe("Error labels", () => {
     cy.get("[data-test=isbn-input-error]")
       .should("be.visible")
       .and("contain.text", "ISBN cannot be empty!");
+
+    cy.get("[data-test=isbn-input]").type("AAA");
+    cy.get("[data-test=submit]").click();
+
+    cy.get("[data-test=isbn-input-error]")
+      .should("be.visible")
+      .and("contain.text", "ISBN has to be a 13 digits!");
   });
 
   it("should display error labels for podcast form fields", () => {
@@ -57,6 +64,24 @@ describe("Error labels", () => {
     cy.get("[data-test=youtube-page-url-input-error]")
       .should("be.visible")
       .and("contain.text", "Youtube URL cannot be empty!");
+
+    cy.get("[data-test=website-url-input]").type("AAA");
+    cy.get("[data-test=spotify-page-url-input]").type("AAA");
+    cy.get("[data-test=youtube-page-url-input]").type("AAA");
+
+    cy.get("[data-test=submit]").click();
+
+    cy.get("[data-test=website-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Website URL has to be a valid url!");
+
+    cy.get("[data-test=spotify-page-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Spotify URL has to be a valid url!");
+
+    cy.get("[data-test=youtube-page-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Youtube URL has to be a valid url!");
   });
 
   it("should display error labels for podcast episode form fields", () => {
@@ -85,6 +110,20 @@ describe("Error labels", () => {
     cy.get("[data-test=youtube-ep-url-input-error]")
       .should("be.visible")
       .and("contain.text", "Youtube episode URL cannot be empty!");
+
+    cy.get("[data-test=spotify-ep-url-input]").type("AAA");
+
+    cy.get("[data-test=youtube-ep-url-input]").type("AAA");
+
+    cy.get("[data-test=submit]").click();
+
+    cy.get("[data-test=spotify-ep-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Spotify episode URL has to be a valid url!");
+
+    cy.get("[data-test=youtube-ep-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Youtube episode URL has to be a valid url!");
   });
 
   it("should display error labels for motivational speech form fields", () => {
@@ -105,5 +144,13 @@ describe("Error labels", () => {
     cy.get("[data-test=youtube-url-input-error]")
       .should("be.visible")
       .and("contain.text", "Youtube URL cannot be empty!");
+
+    cy.get("[data-test=youtube-url-input]").type("AAA");
+
+    cy.get("[data-test=submit]").click();
+
+    cy.get("[data-test=youtube-url-input-error]")
+      .should("be.visible")
+      .and("contain.text", "Youtube URL has to be a valid URL!");
   });
 });
