@@ -16,7 +16,7 @@ urlpatterns = [
 
   path('podcasts/', views.PodcastList.as_view()),
   path('podcasts/<int:pk>/', views.PodcastDetail.as_view()),
-  
+
   path('podcast-episodes/', views.PodcastEpisodeList.as_view()),
   path('podcast-episodes/<int:pk>/', views.PodcastEpisodeDetail.as_view()),
 
