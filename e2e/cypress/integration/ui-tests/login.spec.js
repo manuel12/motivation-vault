@@ -12,7 +12,10 @@ describe("Login", () => {
     cy.get("[data-test=password]").type(testuserData.password);
     cy.get("[data-test=submit-button]").click();
 
-    cy.get("[data-test=heading]").should("contain.text", "Resource API Project");
+    cy.get("[data-test=heading]").should(
+      "contain.text",
+      "Resource API Project"
+    );
     cy.get("[data-test=nav-list]").should("be.visible");
     cy.get("[data-test=homepage]").should("be.visible");
   });
@@ -43,7 +46,10 @@ describe("Login", () => {
     cy.get("[data-test=username]").type(testuserData.username);
     cy.get("[data-test=password]").type(`${testuserData.password}{enter}`);
 
-    cy.get("[data-test=heading]").should("contain.text", "Resource API Project");
+    cy.get("[data-test=heading]").should(
+      "contain.text",
+      "Resource API Project"
+    );
     cy.get("[data-test=nav-list]").should("be.visible");
     cy.get("[data-test=homepage]").should("be.visible");
   });
@@ -55,7 +61,7 @@ describe("Login", () => {
     cy.get("[data-test=username-error]")
       .should("be.visible")
       .and("contain.text", "You need to provide a username.");
-  })
+  });
 
   it("should show error message when leaving password empty", () => {
     cy.get("[data-test=username]").type(testuserData.password);
@@ -64,5 +70,5 @@ describe("Login", () => {
     cy.get("[data-test=password-error]")
       .should("be.visible")
       .and("contain.text", "You need to provide a password.");
-  })
+  });
 });
