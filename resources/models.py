@@ -11,6 +11,7 @@ from .utils import get_default_data
 
 default_data = get_default_data()
 
+
 class Resource(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=100)
