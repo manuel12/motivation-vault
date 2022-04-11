@@ -31,7 +31,7 @@ describe("Add Comments", () => {
 
   it("should clear comment input form after clicking cancel button", () => {
     cy.get("[data-test=comment-input]").type("[Test comment]");
-    cy.get("[data-test=add-comment-cancel-button]").click();
+    cy.get("[data-test=cancel-comment-button]").click();
     cy.get("[data-test=comment-input]").should("contain.value", "");
   });
 
