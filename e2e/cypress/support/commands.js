@@ -250,7 +250,7 @@ Cypress.Commands.add("addCommentWithUI", (text) => {
   cy.get("[data-test=comment-input]")
     .type(text)
     .should("have.value", text)
-    .get("[data-test=add-comment-submit-button]")
+    .get("[data-test=add-comment-button]")
     .click();
 
   cy.get("[data-test=comment-input]").should("have.value", "");
