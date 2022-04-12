@@ -1,3 +1,36 @@
+export function cleanLocPath(locPath) {
+  /**
+   * Remove leading and trailing slashes from
+   * location.pathname.
+   */
+
+  if (locPath === "/") return "home";
+  return locPath.replaceAll("/", "");
+}
+
+export function getEmbedYoutubeUrl(resource) {
+  /**
+   * Get url embed-abled URL from resource's
+   * youtube url in order to show in iframe.
+   */
+
+  let youtubeUrl = resource.get_youtube_url;
+  let embedYoutubeUrl;
+
+  try {
+    const urlObj = new URL(youtubeUrl);
+    const urlOriginSection = urlObj["origin"];
+    const embedSection = "/embed/";
+    const videoIdSection = urlObj["searchParams"].get("v");
+
+    embedYoutubeUrl = urlOriginSection + embedSection + videoIdSection;
+  } catch (err) {
+    const fallback = "https://www.youtube.com/embed/YxZsXZeFU1A";
+    embedYoutubeUrl = fallback;
+  }
+  return embedYoutubeUrl;
+}
+
 export function isValidISBN(str) {
   /**
    * Checks ISBN validity on add book resource forms.
@@ -52,29 +85,6 @@ export function isValidUrl(str) {
   } catch (error) {
     return false;
   }
-}
-
-export function getEmbedYoutubeUrl(resource) {
-  /**
-   * Get url embed-abled URL from resource's
-   * youtube url in order to show in iframe.
-   */
-
-  let youtubeUrl = resource.get_youtube_url;
-  let embedYoutubeUrl;
-
-  try {
-    const urlObj = new URL(youtubeUrl);
-    const urlOriginSection = urlObj["origin"];
-    const embedSection = "/embed/";
-    const videoIdSection = urlObj["searchParams"].get("v");
-
-    embedYoutubeUrl = urlOriginSection + embedSection + videoIdSection;
-  } catch (err) {
-    const fallback = "https://www.youtube.com/embed/YxZsXZeFU1A";
-    embedYoutubeUrl = fallback;
-  }
-  return embedYoutubeUrl;
 }
 
 export class Validator {
