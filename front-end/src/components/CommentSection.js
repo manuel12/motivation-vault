@@ -3,6 +3,7 @@ import Comment from "./Comment";
 import useToken from "./useToken";
 
 import classes from "../css/CommentSection.module.css";
+import { API } from "../api-service";
 
 function CommentSection(props) {
   const { token } = useToken();
@@ -49,27 +50,19 @@ function CommentSection(props) {
         date: new Date().toISOString(),
       };
 
-      fetch(`http://127.0.0.1:8000/api/comments/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-        },
-        body: JSON.stringify(newComment),
+      API.createComment(token, newComment, (resp) => {
+        // Add user and formatted date data in order to display it.
+        newComment["user"] = resp["get_username"];
+        newComment["date"] = resp["get_formatted_date"];
+
+        const updatedComments = [newComment, ...comments];
+        setComments(updatedComments);
+
+        const commentElems =
+          document.getElementsByClassName("comment-container");
+        const lastCommentElem = commentElems[commentElems.length - 1];
+        lastCommentElem.scrollIntoView();
       })
-        .then((resp) => resp.json())
-        .then((resp) => {
-          newComment["user"] = resp["get_username"];
-
-          const updatedComments = [newComment, ...comments];
-          setComments(updatedComments);
-
-          const commentElems =
-            document.getElementsByClassName("comment-container");
-          const lastCommentElem = commentElems[commentElems.length - 1];
-          lastCommentElem.scrollIntoView();
-        })
-        .catch((error) => console.warn(error));
 
       setSubmitBtnDisabled(true);
       setCommentText("");
@@ -92,7 +85,7 @@ function CommentSection(props) {
       data-test="comment-section"
     >
       <h3>
-        <u>Comments</u>
+        Comments
       </h3>
 
       <input
@@ -113,7 +106,7 @@ function CommentSection(props) {
           id="submit"
           type="submit"
           onClick={submitClickedHandler}
-          data-test="add-comment-submit-button"
+          data-test="add-comment-button"
         >
           Comment
         </button>
@@ -122,7 +115,7 @@ function CommentSection(props) {
           id="cancel"
           type="submit"
           onClick={cancelClickedHandler}
-          data-test="add-comment-cancel-button"
+          data-test="cancel-comment-button"
         >
           Cancel
         </button>
