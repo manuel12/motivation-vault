@@ -1,10 +1,5 @@
 import { useState } from "react";
 import AddResourceForm from "./AddResourceForm";
-import AddBookResourceForm from "./AddBookResourceForm";
-import AddPodcastResourceForm from "./AddPodcastResourceForm";
-import AddPodcastEpisodeResourceForm from "./AddPodcastEpisodeResourceForm";
-import AddMotivationalSpeechResourceForm from "./AddMotivationalSpeechResourceForm";
-
 import classes from "../css/Addpage.module.css";
 
 function AddPage() {
@@ -33,26 +28,10 @@ function AddPage() {
           <option value="motivational-speech">Motivational Speech</option>
         </select>
       </div>
-      {resourceType === "book" && (
-        <div>
-          <AddResourceForm resourceType={resourceType} />
-        </div>
-      )}
-      {resourceType === "podcast" && (
-        <div>
-          <AddResourceForm resourceType={resourceType} />
-        </div>
-      )}
-      {resourceType === "podcast-episode" && (
-        <div>
-          <AddResourceForm resourceType={resourceType} />
-        </div>
-      )}
-      {resourceType === "motivational-speech" && (
-        <div>
-          <AddResourceForm resourceType={resourceType} />
-        </div>
-      )}
+
+      {resourceType && <div>
+        <AddResourceForm resourceType={resourceType} />
+      </div>}
     </div>
   );
 }
