@@ -1,3 +1,28 @@
+export function getResourceValues(props) {
+  /**
+   * Returns a list with all present values
+   * from a resource.
+   */
+
+  const values = [
+    props.resource.value_one,
+    props.resource.value_two,
+    props.resource.value_three,
+  ];
+
+  return values;
+}
+
+export function getPopulatedValues(values) {
+  /**
+   * Returns non-empty values.
+   */
+
+  return values.filter((value) => {
+    return value && value.length > 1;
+  })
+}
+
 export function cleanLocPath(locPath) {
   /**
    * Remove leading and trailing slashes from
@@ -10,8 +35,8 @@ export function cleanLocPath(locPath) {
 
 export function getEmbedYoutubeUrl(resource) {
   /**
-   * Get url embed-abled URL from resource's
-   * youtube url in order to show in iframe.
+   * Returns a embed-abled URL from resource's
+   * youtube url in order to show play in iframe.
    */
 
   let youtubeUrl = resource.get_youtube_url;
