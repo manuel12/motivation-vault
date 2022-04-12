@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { cleanLocPath } from "../utils";
 import classes from "../css/Navbar.module.css";
 
 function Navbar({ deleteToken }) {
@@ -43,12 +44,6 @@ function Navbar({ deleteToken }) {
   useEffect(() => {
 
     const locPath = window.location.pathname;
-
-    const cleanLocPath = (locPath) => {
-      if (locPath === "/") return "home";
-      return locPath.replaceAll("/", "");
-    };
-
     const cleanedLocPath = cleanLocPath(locPath);
 
     const linkClassNames = {
@@ -56,7 +51,7 @@ function Navbar({ deleteToken }) {
       "add-link": setAddLinkClassName,
       "books-link": setBooksLinkClassName,
       "podcasts-link": setPodcastsLinkClassName,
-      "podcasts-episodes-link": setPodcastsEpisodesLinkClassName,
+      "podcast-episodes-link": setPodcastsEpisodesLinkClassName,
       "motivational-speeches-link": setMotivationalSpeechesLinkClassName,
       "about-link": setAboutLinkClassName,
       "logout-link": setLogoutLinkClassName,
@@ -107,8 +102,8 @@ function Navbar({ deleteToken }) {
         <li className={classes["nav-item"]}>
           <a
             className={podcastsEpisodesLinkClassName}
-            href="/podcasts-episodes/"
-            data-test="podcasts-episodes-link"
+            href="/podcast-episodes/"
+            data-test="podcast-episodes-link"
           >
             Podcasts Episodes
           </a>
