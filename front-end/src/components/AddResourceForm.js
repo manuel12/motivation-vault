@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { validateYoutubeUrl, Validator } from "../utils";
+import { Validator } from "../utils";
 import { API } from "../api-service";
 import LabeledInput from "./LabeledInput";
 import AddBookResourceForm from "./AddBookResourceForm";
