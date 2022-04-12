@@ -16,7 +16,7 @@ function Post(props) {
           ></img>
         </div>
         <div className={classes["text-container"]}>
-          <h3 classNam>{classes["h3"]}{props.title}</h3>
+          <h3 className={classes["h3"]}>{props.title}</h3>
           <div className={classes["author-text-container"]}>
             by <h5 className={classes["author-name"]}>{props.author}</h5>
           </div>

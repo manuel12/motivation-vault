@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { API } from "../api-service";
-import useToken from "./useToken";
 
 import classes from "../css/Auth.module.css";
 
@@ -11,25 +10,42 @@ function Auth({ setToken }) {
   const [password, setPassword] = useState("");
   const [isLoginView, setLoginView] = useState(true);
 
-  const [usernameError, setUsernameError] = useState(false);
+  const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
   const loginClickedHandler = () => {
-    if (username === "") setUsernameError(true);
-    if (password === "") setPasswordError(true);
+    if (username === "") setUsernameError("You need to provide a username.");
+    if (password === "") setPasswordError("You need to provide a password.");
+
+    if (!username || !password) return;
 
     API.loginUser({ username, password })
       .then((resp) => setToken(resp.token))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   const registerClickedHandler = () => {
-    if (username === "") setUsernameError(true);
-    if (password === "") setPasswordError(true);
+    if (username === "") setUsernameError("You need to provide a username.");
+    if (password === "") setPasswordError("You need to provide a password.");
+
+    if (!username || !password) return;
 
     API.registerUser({ username, password })
-      .then(() => loginClickedHandler())
-      .catch((error) => console.log(error));
+      .then((resp) => {
+        console.log(resp);
+
+        const userCreatedId = resp["id"];
+        if (userCreatedId) {
+          loginClickedHandler();
+        } else {
+          const usernameErrorMsg = resp["username"][0];
+          setUsernameError(usernameErrorMsg);
+
+          const passwordErrorMsg = resp["password"][0];
+          setPasswordError(passwordErrorMsg);
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   const searchInput = useRef(null);
@@ -45,8 +61,8 @@ function Auth({ setToken }) {
 
   return (
     <div>
-      <div className="header">
-        {isLoginView ? <h1 data-test="heading">Login</h1> : <h1>Register</h1>}
+      <div className={classes["header"]} data-test="heading">
+        {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
       </div>
 
       <div className={classes["login-container"]}>
@@ -54,7 +70,7 @@ function Auth({ setToken }) {
           {usernameError && (
             <div class="username-error" data-test="username-error">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
-              <label htmlFor="username">You need to provide a username.</label>
+              <label htmlFor="username">{usernameError}</label>
             </div>
           )}
           <input
@@ -69,7 +85,7 @@ function Auth({ setToken }) {
           {passwordError && (
             <div div class="password-error" data-test="password-error">
               <FontAwesomeIcon icon={faLock} className="icon" />
-              <label htmlFor="password">You need to provide a password.</label>
+              <label htmlFor="password">{passwordError}</label>
             </div>
           )}
           <input
@@ -86,11 +102,13 @@ function Auth({ setToken }) {
           </button>
           {isLoginView ? (
             <p onClick={() => setLoginView(false)}>
-              You don't have an account? Register here!
+              You don't have an account?{" "}
+              <span data-test="register-link">Register here!</span>
             </p>
           ) : (
             <p onClick={() => setLoginView(true)}>
-              You already have an account? Login here!
+              You already have an account?{" "}
+              <span data-test="login-link">Login here!</span>
             </p>
           )}
         </form>
