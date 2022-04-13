@@ -14,7 +14,7 @@ function AddPage() {
   return (
     <div className="add-container" data-test="add-container">
       <h2>Add a resource!</h2>
-      <div className={classes["selectContainer"]}>
+      <div className={classes["select-container"]}>
         <select
           name="resources"
           className={classes["resources"]}
