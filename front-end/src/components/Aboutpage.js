@@ -1,11 +1,10 @@
 import classes from "../css/Aboutpage.module.css";
 
 function AboutPage() {
-  console.log(classes['about-page-container']);
   return (
     <div className={classes['about-page-container']}>
-      <h2 className={classes["h2"]}>About</h2>
-      <hr className={classes["hr"]}></hr>
+      <h2>About</h2>
+      <hr></hr>
       <p>
         The idea for this project came during the Covid pandemic of 2020-2021
         and onwards. <br />
