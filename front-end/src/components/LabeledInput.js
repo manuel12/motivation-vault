@@ -5,7 +5,11 @@ function LabeledInput(props) {
     <div className={classes["inputContainer"]}>
       {props.error ? (
         <label
-        className={classes["label"]} data-test={`${props?.dataAttr}-error`}>*{props.error}</label>
+          className={classes["label"]}
+          data-test={`${props?.dataAttr}-error`}
+        >
+          *{props.error}
+        </label>
       ) : null}
       <input
         className={classes["input"]}
