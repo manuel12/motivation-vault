@@ -82,7 +82,7 @@ function CommentSection(props) {
   return (
     <div
       className={classes["comment-section-container"]}
-      data-test="comment-section"
+      data-test="comment-section-container"
     >
       <h3>
         Comments
