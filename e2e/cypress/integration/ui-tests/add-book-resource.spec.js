@@ -33,6 +33,23 @@ describe("Add Book Resources", () => {
       .and("contain", resourceTestData.description);
   });
 
+  it("should display added book resource on detail page", () => {
+    cy.addResourceWithUI("book", resourceTestData);
+
+    cy.url().should("not.contain", "add/");
+    cy.get("[data-test=add-container]").should("not.exist");
+
+    cy.get("[data-test=post-container]").first().click();
+
+    cy.get("[data-test=detail-page-container]")
+      .should("contain", resourceTestData.title)
+      .and("contain", resourceTestData.author)
+      .and("contain", resourceTestData.description)
+      .and("contain", resourceTestData.valueOne)
+      .and("contain", resourceTestData.valueTwo)
+      .and("contain", resourceTestData.valueThree);
+  });
+
   it("should add a book resource filling required fields only", () => {
     cy.addResourceWithUI("book", resourceTestData, true);
 
