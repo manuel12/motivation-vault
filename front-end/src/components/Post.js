@@ -6,7 +6,7 @@ function Post(props) {
     <div className={classes["post-container"]} data-test="post-container">
       <a
         href={`http://localhost:3000/${props.id}/`}
-        className={classes["container-link"]}
+        className={classes["post-container-link"]}
       >
         <div className={classes["image-container"]}>
           <img
@@ -16,7 +16,7 @@ function Post(props) {
           ></img>
         </div>
         <div className={classes["text-container"]}>
-          <h3 className={classes["h3"]}>{props.title}</h3>
+          <h3>{props.title}</h3>
           <div className={classes["author-text-container"]}>
             by <h5 className={classes["author-name"]}>{props.author}</h5>
           </div>
