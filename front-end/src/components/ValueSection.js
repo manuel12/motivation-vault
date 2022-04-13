@@ -1,25 +1,19 @@
 import classes from "../css/ValueSection.module.css";
+import { getPopulatedValues, getResourceValues } from "../utils";
 
 function ValueSection(props) {
-  const values = [
-    props.resource.value_one,
-    props.resource.value_two,
-    props.resource.value_three,
-  ];
-
-  const filteredValues = values.filter((val) => {
-    return val && val.length > 1;
-  });
+  const values = getResourceValues(props);
+  const populatedValues = getPopulatedValues(values);
 
   return (
-    filteredValues.length > 0 && (
+    populatedValues.length > 0 && (
       <div
         className={classes["value-container"]}
         data-test="value-section"
       >
         <h3>What value does it bring you?</h3>
         <ul>
-          {filteredValues.map((value, i) => {
+          {populatedValues.map((value, i) => {
             return (
               <li key={i} className={classes["value-item"]}>
                 {value}
