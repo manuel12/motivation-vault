@@ -29,7 +29,7 @@ export class API {
       body: JSON.stringify(body),
     })
       .then((resp) => resp.json())
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }
 
   static registerUser(body) {
@@ -46,7 +46,7 @@ export class API {
     return _fetch("http://127.0.0.1:8000/api/")
       .then((resp) => resp.json())
       .then((resp) => setResourceFunc(resp))
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }
 
   static fetchAllResourcesOfType(resourceType, token, setResourceFunc) {
@@ -54,7 +54,7 @@ export class API {
     _fetch(url, token)
       .then((resp) => resp.json())
       .then((resp) => setResourceFunc(resp))
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }
 
   static fetchResource(id, token, setResourceFunc) {
@@ -62,7 +62,7 @@ export class API {
     _fetch(url, token)
       .then((resp) => resp.json())
       .then((resp) => setResourceFunc(resp))
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }
 
   static createResource(resourceType, token, resourceData) {
@@ -78,6 +78,23 @@ export class API {
       .then((resp) => {
         console.log(resp);
         window.location.href = "/";
+      })
+      .catch((error) => console.error(error));
+  }
+
+  static createComment(token, commentData, callback) {
+    _send(`http://127.0.0.1:8000/api/comments/`, token, commentData)
+      .then((resp) => resp.json())
+      .then(callback)
+      .catch((error) => console.error(error));
+  }
+
+  static postRating(token, ratingData, callback) {
+    _send(`http://127.0.0.1:8000/api/ratings/`, token, ratingData)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        console.log(resp);
+        callback(resp);
       })
       .catch((error) => console.error(error));
   }
