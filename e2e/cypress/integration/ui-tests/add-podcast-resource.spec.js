@@ -30,6 +30,23 @@ describe("Add Podcast Resources", () => {
       .and("contain", resourceTestData.description);
   });
 
+  it("should display added podcast resource on detail page", () => {
+    cy.addResourceWithUI("podcast", resourceTestData);
+
+    cy.url().should("not.contain", "podcast/");
+    cy.get("[data-test=add-container]").should("not.exist");
+
+    cy.get("[data-test=post-container]").first().click();
+
+    cy.get("[data-test=detail-page-container]")
+      .should("contain", resourceTestData.title)
+      .and("contain", resourceTestData.author)
+      .and("contain", resourceTestData.description)
+      .and("contain", resourceTestData.valueOne)
+      .and("contain", resourceTestData.valueTwo)
+      .and("contain", resourceTestData.valueThree);
+  });
+
   it("should add a podcast resource filling required fields only", () => {
     cy.addResourceWithUI("podcast", resourceTestData, true);
     cy.get("[data-test=post-container]")
