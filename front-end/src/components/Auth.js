@@ -11,41 +11,41 @@ function Auth({ setToken }) {
   const [isLoginView, setLoginView] = useState(true);
 
   const [usernameError, setUsernameError] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   const loginClickedHandler = () => {
+    if (username && password) {
+      return API.loginUser({ username, password })
+        .then((resp) => setToken(resp.token))
+        .catch((err) => console.error(err));
+    }
+
     if (username === "") setUsernameError("You need to provide a username.");
     if (password === "") setPasswordError("You need to provide a password.");
-
-    if (!username || !password) return;
-
-    API.loginUser({ username, password })
-      .then((resp) => setToken(resp.token))
-      .catch((err) => console.error(err));
   };
 
   const registerClickedHandler = () => {
+    if (username && password) {
+      return API.registerUser({ username, password })
+        .then((resp) => {
+          console.log(resp);
+
+          const userCreatedId = resp["id"];
+          if (userCreatedId) {
+            loginClickedHandler();
+          } else {
+            const usernameErrorMsg = resp["username"][0];
+            setUsernameError(usernameErrorMsg);
+
+            const passwordErrorMsg = resp["password"][0];
+            setPasswordError(passwordErrorMsg);
+          }
+        })
+        .catch((error) => console.error(error));
+    }
+
     if (username === "") setUsernameError("You need to provide a username.");
     if (password === "") setPasswordError("You need to provide a password.");
-
-    if (!username || !password) return;
-
-    API.registerUser({ username, password })
-      .then((resp) => {
-        console.log(resp);
-
-        const userCreatedId = resp["id"];
-        if (userCreatedId) {
-          loginClickedHandler();
-        } else {
-          const usernameErrorMsg = resp["username"][0];
-          setUsernameError(usernameErrorMsg);
-
-          const passwordErrorMsg = resp["password"][0];
-          setPasswordError(passwordErrorMsg);
-        }
-      })
-      .catch((error) => console.error(error));
   };
 
   const searchInput = useRef(null);
@@ -57,6 +57,12 @@ function Auth({ setToken }) {
   const submitHandler = (e) => {
     e.preventDefault();
     isLoginView ? loginClickedHandler() : registerClickedHandler();
+  };
+
+  const toggleViewClickedHandler = (bool) => {
+    setLoginView(bool);
+    setUsernameError("");
+    setPasswordError("");
   };
 
   return (
@@ -101,12 +107,12 @@ function Auth({ setToken }) {
             {isLoginView ? "Login" : "Register"}
           </button>
           {isLoginView ? (
-            <p onClick={() => setLoginView(false)}>
+            <p onClick={() => toggleViewClickedHandler(false)}>
               You don't have an account?{" "}
               <span data-test="register-link">Register here!</span>
             </p>
           ) : (
-            <p onClick={() => setLoginView(true)}>
+            <p onClick={() => toggleViewClickedHandler(true)}>
               You already have an account?{" "}
               <span data-test="login-link">Login here!</span>
             </p>
