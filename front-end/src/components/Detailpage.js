@@ -18,7 +18,7 @@ function DetailPage() {
   }, [id]);
 
   return (
-    <div className={classes["container"]}>
+    <div className={classes["detail-page-container"]} data-test="detail-page-container">
       <div className={classes["post-section-container"]}>
         <h1 className={classes["heading"]} data-test="heading">
           {resource.title}
