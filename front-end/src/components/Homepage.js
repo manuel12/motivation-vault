@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PostList from "./PostList";
 import { API } from "../api-service";
 
-function HomePage() {
+const HomePage = () => {
   const [resources, setResources] = useState([]);
 
   useEffect(() => {
