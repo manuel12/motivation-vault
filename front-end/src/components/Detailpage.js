@@ -8,7 +8,7 @@ import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
 import classes from "../css/Detailpage.module.css";
 
-function DetailPage() {
+const DetailPage = () => {
   const { id } = useParams();
   const { token } = useToken();
   const [resource, setResource] = useState([]);

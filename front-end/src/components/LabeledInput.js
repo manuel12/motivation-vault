@@ -1,6 +1,6 @@
 import classes from "../css/LabeledInput.module.css";
 
-function LabeledInput(props) {
+const LabeledInput = (props) => {
   return (
     <div className={classes["inputContainer"]}>
       {props.error ? (

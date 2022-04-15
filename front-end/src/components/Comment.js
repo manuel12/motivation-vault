@@ -1,6 +1,6 @@
 import classes from "../css/Comment.module.css";
 
-function Comment(props) {
+const Comment = (props) => {
   return (
     <div className={classes["comment-container"]} data-test="comment-container">
       <div>

@@ -5,7 +5,7 @@ import useToken from "./useToken";
 import classes from "../css/CommentSection.module.css";
 import { API } from "../api-service";
 
-function CommentSection(props) {
+const CommentSection = (props) => {
   const { token } = useToken();
 
   const [comments, setComments] = useState([]);
