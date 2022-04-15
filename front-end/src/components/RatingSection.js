@@ -6,7 +6,7 @@ import useToken from "./useToken";
 import classes from "../css/RatingSection.module.css";
 import { API } from "../api-service";
 
-function RatingSection(props) {
+const RatingSection = (props) => {
   const { token } = useToken();
 
   const [rating, setRating] = useState(-1);

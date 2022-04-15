@@ -1,7 +1,7 @@
 import classes from "../css/ValueSection.module.css";
 import { getPopulatedValues, getResourceValues } from "../utils";
 
-function ValueSection(props) {
+const ValueSection = (props) => {
   const values = getResourceValues(props);
   const populatedValues = getPopulatedValues(values);
 

@@ -1,8 +1,8 @@
 import Post from "./Post";
 
-function PostList(props) {
+const PostList = (props) => {
   return (
-    <div>
+    <div data-test="post-list-container">
       {props.resources.map((resource) => (
         <Post
           key={resource.id}

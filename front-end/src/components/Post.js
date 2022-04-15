@@ -1,7 +1,7 @@
 import RatingSection from "./RatingSection";
 import classes from "../css/Post.module.css";
 
-function Post(props) {
+const Post = (props) => {
   return (
     <div className={classes["post-container"]} data-test="post-container">
       <a

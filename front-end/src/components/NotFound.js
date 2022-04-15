@@ -1,6 +1,6 @@
 import classes from "../css/NotFound.module.css";
 
-function NotFound() {
+const NotFound = () => {
   return (
     <div>
       <h1 className={classes["not-found"]} data-test="not-found">
