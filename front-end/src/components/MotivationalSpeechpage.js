@@ -3,7 +3,7 @@ import PostList from "./PostList";
 import { API } from "../api-service";
 import useToken from "./useToken";
 
-function MotivationalSpeechPage() {
+const MotivationalSpeechPage = () => {
   const { token } = useToken();
   const [resources, setResources] = useState([]);
 

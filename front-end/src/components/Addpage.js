@@ -2,7 +2,7 @@ import { useState } from "react";
 import AddResourceForm from "./AddResourceForm";
 import classes from "../css/Addpage.module.css";
 
-function AddPage() {
+const AddPage = () => {
   const [resourceType, setResourceType] = useState(null);
 
   const selectResourceTypeHandler = (e) => {

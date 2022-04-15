@@ -8,7 +8,7 @@ import AddPodcastEpisodeResourceForm from "./AddPodcastEpisodeResourceForm";
 import AddMotivationalSpeechResourceForm from "./AddMotivationalSpeechResourceForm";
 import useToken from "./useToken";
 
-function AddResourceForm(props) {
+const AddResourceForm = (props) => {
   const { token } = useToken();
 
   const [title, setTitle] = useState("");
@@ -86,7 +86,7 @@ function AddResourceForm(props) {
     return validator.validate();
   };
 
-  const submitClickedHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
     if (validate()) {
@@ -124,7 +124,7 @@ function AddResourceForm(props) {
   };
 
   return (
-    <form className="add-resource-form" onSubmit={submitClickedHandler}>
+    <form className="add-resource-form" onSubmit={submitHandler}>
       <h3>Add Resource Form</h3>
       <LabeledInput
         error={titleError}

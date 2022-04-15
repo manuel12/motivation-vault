@@ -3,7 +3,7 @@ import PostList from "./PostList";
 import { API } from "../api-service";
 import useToken from "./useToken";
 
-function BookPage() {
+const BookPage = () => {
   const { token } = useToken();
   const [resources, setResources] = useState([]);
 
@@ -16,6 +16,6 @@ function BookPage() {
       <PostList resources={resources} />
     </div>
   );
-}
+};
 
 export default BookPage;
