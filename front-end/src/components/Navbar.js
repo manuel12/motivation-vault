@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { cleanLocPath } from "../utils";
 import classes from "../css/Navbar.module.css";
 
-function Navbar({ deleteToken }) {
+const Navbar = ({ deleteToken }) => {
   
   const [homeLinkClassName, setHomeLinkClassName] = useState(
     classes["nav-item-link"]
@@ -51,7 +51,7 @@ function Navbar({ deleteToken }) {
       "add-link": setAddLinkClassName,
       "books-link": setBooksLinkClassName,
       "podcasts-link": setPodcastsLinkClassName,
-      "podcast-episodes-link": setPodcastsEpisodesLinkClassName,
+      "podcasts-episodes-link": setPodcastsEpisodesLinkClassName,
       "motivational-speeches-link": setMotivationalSpeechesLinkClassName,
       "about-link": setAboutLinkClassName,
       "logout-link": setLogoutLinkClassName,
@@ -102,7 +102,7 @@ function Navbar({ deleteToken }) {
         <li className={classes["nav-item"]}>
           <a
             className={podcastsEpisodesLinkClassName}
-            href="/podcast-episodes/"
+            href="/podcasts-episodes/"
             data-test="podcast-episodes-link"
           >
             Podcasts Episodes
