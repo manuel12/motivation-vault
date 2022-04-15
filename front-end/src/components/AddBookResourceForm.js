@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import LabeledInput from "./LabeledInput";
 
-function AddBookResourceForm(props) {
+const AddBookResourceForm = (props) => {
   return (
     <Fragment>
       <LabeledInput

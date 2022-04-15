@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import LabeledInput from "./LabeledInput";
 
-function AddPodcastEpisodeResourceForm(props) {
+const AddPodcastEpisodeResourceForm = (props) => {
   return (
     <Fragment>
       {props.podcastError ? (

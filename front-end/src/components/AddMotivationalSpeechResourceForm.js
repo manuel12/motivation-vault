@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import LabeledInput from "./LabeledInput";
 
-function AddMotivationalSpeechResourceForm(props) {
+const AddMotivationalSpeechResourceForm = (props) => {
   return (
     <Fragment>
       <LabeledInput
