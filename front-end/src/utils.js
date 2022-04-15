@@ -1,4 +1,4 @@
-export function getResourceValues(props) {
+export const getResourceValues = (props) => {
   /**
    * Returns a list with all present values
    * from a resource.
@@ -13,7 +13,7 @@ export function getResourceValues(props) {
   return values;
 }
 
-export function getPopulatedValues(values) {
+export const getPopulatedValues = (values) => {
   /**
    * Returns non-empty values.
    */
@@ -23,7 +23,7 @@ export function getPopulatedValues(values) {
   })
 }
 
-export function cleanLocPath(locPath) {
+export const cleanLocPath = (locPath) => {
   /**
    * Remove leading and trailing slashes from
    * location.pathname.
@@ -33,7 +33,7 @@ export function cleanLocPath(locPath) {
   return locPath.replaceAll("/", "");
 }
 
-export function getEmbedYoutubeUrl(resource) {
+export const getEmbedYoutubeUrl = (resource) => {
   /**
    * Returns a embed-abled URL from resource's
    * youtube url in order to show play in iframe.
@@ -56,7 +56,7 @@ export function getEmbedYoutubeUrl(resource) {
   return embedYoutubeUrl;
 }
 
-export function isValidISBN(str) {
+export const isValidISBN = (str) => {
   /**
    * Checks ISBN validity on add book resource forms.
    * Cortesy of derek-kurth: https://stackoverflow.com/a/23161438
@@ -100,7 +100,7 @@ export function isValidISBN(str) {
   }
 }
 
-export function isValidUrl(str) {
+export const isValidUrl = (str) => {
   /**
    * For use in add resource forms.
    */
