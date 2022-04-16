@@ -5,7 +5,7 @@ import { API } from "../api-service";
 
 import classes from "../css/Auth.module.css";
 
-function Auth({ setToken }) {
+const Auth = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoginView, setLoginView] = useState(true);
@@ -15,18 +15,30 @@ function Auth({ setToken }) {
 
   const loginClickedHandler = () => {
     if (username && password) {
-      return API.loginUser({ username, password })
-        .then((resp) => setToken(resp.token))
+      API.loginUser({ username, password })
+        .then((resp) => {
+          if ("errors" in resp) {
+            const errors = resp["errors"]["non_field_errors"];
+            setUsernameError(errors);
+            setPasswordError(errors);
+          }
+          setToken(resp.token);
+        })
         .catch((err) => console.error(err));
+      return;
     }
 
-    if (username === "") setUsernameError("You need to provide a username.");
-    if (password === "") setPasswordError("You need to provide a password.");
+    username === ""
+      ? setUsernameError("You need to provide a username.")
+      : setUsernameError("");
+    password === ""
+      ? setPasswordError("You need to provide a password.")
+      : setPasswordError("");
   };
 
   const registerClickedHandler = () => {
     if (username && password) {
-      return API.registerUser({ username, password })
+      API.registerUser({ username, password })
         .then((resp) => {
           console.log(resp);
 
@@ -42,16 +54,22 @@ function Auth({ setToken }) {
           }
         })
         .catch((error) => console.error(error));
+      return;
     }
 
-    if (username === "") setUsernameError("You need to provide a username.");
-    if (password === "") setPasswordError("You need to provide a password.");
+    username === ""
+      ? setUsernameError("You need to provide a username.")
+      : setUsernameError("");
+    password === ""
+      ? setPasswordError("You need to provide a password.")
+      : setPasswordError("");
   };
 
-  const searchInput = useRef(null);
+  const loginInput = useRef(null);
+  const registerInput = useRef(null);
 
   useEffect(() => {
-    searchInput.current.focus();
+    loginInput.current.focus();
   }, []);
 
   const submitHandler = (e) => {
@@ -68,7 +86,7 @@ function Auth({ setToken }) {
   return (
     <div>
       <div className={classes["header"]} data-test="heading">
-        {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
+        <h1>Motivation Vault</h1>
       </div>
 
       <div className={classes["login-container"]}>
@@ -80,7 +98,7 @@ function Auth({ setToken }) {
             </div>
           )}
           <input
-            ref={searchInput}
+            ref={loginInput}
             id="username"
             type="text"
             placeholder="Enter your username"
@@ -121,6 +139,6 @@ function Auth({ setToken }) {
       </div>
     </div>
   );
-}
+};
 
 export default Auth;
