@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.views import APIView
+from rest_framework.authtoken.views import APIView, ObtainAuthToken
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
@@ -10,6 +11,28 @@ from resources import models
 from api import serializers
 
 # Create your views here.
+
+
+class CustomObtainAuthToken(ObtainAuthToken):
+    def post(self, request):
+        serializer = self.serializer_class(
+          data=request.data, context={'request': request})
+        if(serializer.is_valid(raise_exception=False)):
+            user = serializer.validated_data['user']
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key})
+        else:
+            errors = {}
+            error_types = ["username", "password", "non_field_errors"]
+            for error_type in error_types:
+                if error_type in serializer.errors:
+                    errors[error_type] = str(serializer.errors[error_type][0])
+            print(errors)
+            return Response({'errors': errors},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+
+obtain_auth_token = CustomObtainAuthToken.as_view()
 
 
 class UserViewSet(viewsets.ModelViewSet):
