@@ -4,7 +4,9 @@
   "description": "e2e cypress tests",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "test:headless": "cypress run --headless",
+    "test:open": "npx cypress open"
   },
   "author": "",
   "license": "ISC",
