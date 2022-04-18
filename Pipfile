@@ -13,6 +13,7 @@ static3 = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 dateinfer = "*"
+isort = "*"
 
 [dev-packages]
 
