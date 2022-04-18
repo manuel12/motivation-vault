@@ -1,8 +1,8 @@
-from django.test import TestCase
 from django.contrib.auth.models import User
-from resources.models import Resource, MotivationalSpeech, Comment, Rating
-from resources.utils import get_default_data
+from django.test import TestCase
 
+from resources.models import Comment, MotivationalSpeech, Rating, Resource
+from resources.utils import get_default_data
 
 default_data = get_default_data()
 

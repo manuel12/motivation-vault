@@ -1,8 +1,11 @@
-import pytz
 from datetime import datetime
-from django.test import TestCase
+
+import pytz
 from django.contrib.auth.models import User
+from django.test import TestCase
+
 from resources.models import Book, Comment
+
 
 class CommentModelTests(TestCase):
     """Creates a comment and tests the fields."""

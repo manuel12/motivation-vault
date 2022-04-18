@@ -1,8 +1,9 @@
 from tkinter import NONE
-from django.db import models
+
 from django.contrib.auth.models import User
-from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+from django.utils import timezone
 from pkg_resources import ResourceManager
 
 from .utils import get_default_data

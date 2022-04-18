@@ -1,6 +1,7 @@
-from django.test import TestCase
 from django.contrib.auth.models import User
-from resources.models import Resource, Rating
+from django.test import TestCase
+
+from resources.models import Rating, Resource
 
 
 class RatingModelTest(TestCase):

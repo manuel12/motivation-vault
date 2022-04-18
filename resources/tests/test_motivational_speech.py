@@ -1,5 +1,7 @@
 from django.test import TestCase
+
 from resources.models import MotivationalSpeech
+
 
 class MotivationalSpeechTests(TestCase):
     """Creates a motivational speech and tests the fields."""
