@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 const resourceTestData = require("../../fixtures/resourceTestData.json");
 const commentsTestData = require("../../fixtures/commentsTestData.json");
-const testuserData = require("../../fixtures/testuser.json");
 
 describe("Add Comments", () => {
   beforeEach(() => {
