@@ -40,6 +40,24 @@ For installing the React application go to the front-end folder and run:
   And after install is finished run:
 
     npm start
+
+
+## Running tests
+
+### Unit tests
+
+    python manage.py test
+
+### E2E tests
+For running the tests run:
+
+    npm run test
+For running the tests on headless mode run:
+
+    npm run test:headless
+For opening cypress client run:
+
+    npm run test:open
     
 ## Uses
 
