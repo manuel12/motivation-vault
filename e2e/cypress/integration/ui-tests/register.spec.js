@@ -16,10 +16,7 @@ describe("Register", () => {
     cy.get("[data-test=password]").type(testuserData.password);
     cy.get("[data-test=submit-button]").click();
 
-    cy.get("[data-test=heading]").should(
-      "contain.text",
-      "Resource API Project"
-    );
+    cy.get("[data-test=heading]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("be.visible");
     cy.get("[data-test=homepage]").should("be.visible");
   });
@@ -29,7 +26,7 @@ describe("Register", () => {
     cy.get("[data-test=password]").type(testuser2Data.password);
     cy.get("[data-test=submit-button]").click();
 
-    cy.get("[data-test=heading]").should("contain.text", "Register");
+    cy.get("[data-test=heading]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
   });
@@ -37,7 +34,7 @@ describe("Register", () => {
   it("should NOT register with empty username and password fields", () => {
     cy.get("[data-test=submit-button]").click();
 
-    cy.get("[data-test=heading]").should("contain.text", "Register");
+    cy.get("[data-test=heading]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
   });
