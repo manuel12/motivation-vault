@@ -1,7 +1,7 @@
-from rest_framework import routers
 from django.urls import path
-from api import views
+from rest_framework import routers
 
+from api import views
 
 router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet)

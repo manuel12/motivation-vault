@@ -1,14 +1,14 @@
-from rest_framework import viewsets
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.authtoken.views import APIView, ObtainAuthToken
-from rest_framework.authtoken.models import Token
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
-from resources import models
+from rest_framework import status, viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import APIView, ObtainAuthToken
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+
 from api import serializers
+from resources import models
 
 # Create your views here.
 
