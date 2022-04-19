@@ -7,6 +7,7 @@
   "commentsUrl": "http://localhost:8000/admin/resources/comment/",
 
   "integrationFolder": "cypress/integration/",
+  "ignoreTestFiles": ["sandbox.spec.js", "visual.spec.js"],
   "chromeWebSecurity": false,
 
   "retries": {
