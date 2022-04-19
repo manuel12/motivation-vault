@@ -16,12 +16,12 @@ default_data = get_default_data()
 class Resource(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=100)
-    description = models.TextField(blank=True, default=default_data['loremIpsumShort'])
-    imageURL = models.URLField(default=default_data['imageUrl'])
+    description = models.TextField(blank=True, default=default_data["loremIpsumShort"])
+    imageURL = models.URLField(default=default_data["imageUrl"])
 
-    value_one = models.TextField(blank=True, default=default_data['loremIpsumShort'])
-    value_two = models.TextField(blank=True, default=default_data['loremIpsumShort'])
-    value_three = models.TextField(blank=True, default=default_data['loremIpsumShort'])
+    value_one = models.TextField(blank=True, default=default_data["loremIpsumShort"])
+    value_two = models.TextField(blank=True, default=default_data["loremIpsumShort"])
+    value_three = models.TextField(blank=True, default=default_data["loremIpsumShort"])
 
     objects = ResourceManager()
 
@@ -41,18 +41,19 @@ class Resource(models.Model):
         comments = []
         resource_comments = Comment.objects.filter(resource=self)
         for comment in resource_comments:
-            comments.append({
-                'id': comment.id,
-                'user': comment.user.username,
-                'text': comment.text,
-                'date': comment.get_formatted_date()
-            })
+            comments.append(
+                {
+                    "id": comment.id,
+                    "user": comment.user.username,
+                    "text": comment.text,
+                    "date": comment.get_formatted_date(),
+                }
+            )
         return comments
 
     def get_youtube_url(self):
         try:
-            motivational_speech = MotivationalSpeech.objects.get(
-                title=self.title)
+            motivational_speech = MotivationalSpeech.objects.get(title=self.title)
             return motivational_speech.youtube_url
         except MotivationalSpeech.DoesNotExist:
             pass
@@ -66,7 +67,7 @@ class Resource(models.Model):
         return None
 
     class Meta:
-        ordering = ['-id']
+        ordering = ["-id"]
 
 
 class Book(Resource):
@@ -78,15 +79,14 @@ class Podcast(Resource):
     website_url = models.URLField(max_length=200)
     youtube_page_url = models.URLField(max_length=200)
     spotify_page_url = models.URLField(
-        max_length=200, default='http://open.spotify.com/')
+        max_length=200, default="http://open.spotify.com/"
+    )
 
 
 class PodcastEpisode(Resource):
     from_podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE)
-    youtube_episode_url = models.URLField(
-        max_length=200, blank=True, default='')
-    spotify_episode_url = models.URLField(
-        max_length=200, blank=True, default='')
+    youtube_episode_url = models.URLField(max_length=200, blank=True, default="")
+    spotify_episode_url = models.URLField(max_length=200, blank=True, default="")
 
 
 class MotivationalSpeech(Resource):
@@ -106,17 +106,16 @@ class Comment(models.Model):
         return self.user.username
 
     def get_formatted_date(self):
-        return self.date_created.strftime('%Y/%m/%d %H:%M:%S')
+        return self.date_created.strftime("%Y/%m/%d %H:%M:%S")
 
     class Meta:
-        ordering = ['-date_created']
+        ordering = ["-date_created"]
 
 
 class Rating(models.Model):
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    stars = models.IntegerField(validators=[MinValueValidator(1),
-                                            MaxValueValidator(5)])
+    stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     def __str__(self):
         stars = self.stars
@@ -129,5 +128,5 @@ class Rating(models.Model):
         return self.user.username
 
     class Meta:
-        unique_together = (('user', 'resource'),)
-        index_together = (('user', 'resource'),)
+        unique_together = (("user", "resource"),)
+        index_together = (("user", "resource"),)
