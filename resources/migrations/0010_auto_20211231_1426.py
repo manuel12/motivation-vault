@@ -6,33 +6,45 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0009_podcast_spotify_url'),
+        ("resources", "0009_podcast_spotify_url"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='podcast',
-            name='spotify_url',
-            field=models.URLField(default='http://open.spotify.com/'),
+            model_name="podcast",
+            name="spotify_url",
+            field=models.URLField(default="http://open.spotify.com/"),
         ),
         migrations.AlterField(
-            model_name='resource',
-            name='description',
-            field=models.TextField(blank=True, default='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+            model_name="resource",
+            name="description",
+            field=models.TextField(
+                blank=True,
+                default="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            ),
         ),
         migrations.AlterField(
-            model_name='resource',
-            name='value_one',
-            field=models.TextField(blank=True, default='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+            model_name="resource",
+            name="value_one",
+            field=models.TextField(
+                blank=True,
+                default="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            ),
         ),
         migrations.AlterField(
-            model_name='resource',
-            name='value_three',
-            field=models.TextField(blank=True, default='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+            model_name="resource",
+            name="value_three",
+            field=models.TextField(
+                blank=True,
+                default="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            ),
         ),
         migrations.AlterField(
-            model_name='resource',
-            name='value_two',
-            field=models.TextField(blank=True, default='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+            model_name="resource",
+            name="value_two",
+            field=models.TextField(
+                blank=True,
+                default="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            ),
         ),
     ]

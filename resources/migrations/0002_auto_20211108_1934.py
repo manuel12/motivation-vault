@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0001_initial'),
+        ("resources", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='podcastepisode',
-            name='spotify_episode_url',
-            field=models.URLField(blank=True, default=''),
+            model_name="podcastepisode",
+            name="spotify_episode_url",
+            field=models.URLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='podcastepisode',
-            name='youtube_episode_url',
-            field=models.URLField(blank=True, default=''),
+            model_name="podcastepisode",
+            name="youtube_episode_url",
+            field=models.URLField(blank=True, default=""),
         ),
     ]

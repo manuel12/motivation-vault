@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0007_rating'),
+        ("resources", "0007_rating"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='comment',
-            options={'ordering': ['-date_created']},
+            name="comment",
+            options={"ordering": ["-date_created"]},
         ),
         migrations.AlterModelOptions(
-            name='resource',
-            options={'ordering': ['-id']},
+            name="resource",
+            options={"ordering": ["-id"]},
         ),
     ]

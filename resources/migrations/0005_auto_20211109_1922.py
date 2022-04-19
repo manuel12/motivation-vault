@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0004_auto_20211109_1428'),
+        ("resources", "0004_auto_20211109_1428"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='resource',
-            name='value_one',
-            field=models.TextField(default='', max_length=250),
+            model_name="resource",
+            name="value_one",
+            field=models.TextField(default="", max_length=250),
         ),
         migrations.AlterField(
-            model_name='resource',
-            name='value_three',
-            field=models.TextField(default='', max_length=250),
+            model_name="resource",
+            name="value_three",
+            field=models.TextField(default="", max_length=250),
         ),
         migrations.AlterField(
-            model_name='resource',
-            name='value_two',
-            field=models.TextField(default='', max_length=250),
+            model_name="resource",
+            name="value_two",
+            field=models.TextField(default="", max_length=250),
         ),
     ]

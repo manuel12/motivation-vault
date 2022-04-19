@@ -8,54 +8,112 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Resource',
+            name="Resource",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=250)),
-                ('author', models.CharField(max_length=100)),
-                ('description', models.TextField(blank=True, default='')),
-                ('imageURL', models.URLField(default='https://addicted2success.com/wp-content/uploads/2019/04/Here-Are-4-Reasons-Why-You-Should-Have-a-Podcast-Youtube-Channel-or-Online-Show-400x240.png')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=250)),
+                ("author", models.CharField(max_length=100)),
+                ("description", models.TextField(blank=True, default="")),
+                (
+                    "imageURL",
+                    models.URLField(
+                        default="https://addicted2success.com/wp-content/uploads/2019/04/Here-Are-4-Reasons-Why-You-Should-Have-a-Podcast-Youtube-Channel-or-Online-Show-400x240.png"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('resource_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='resources.Resource')),
-                ('subtitle', models.CharField(max_length=250)),
-                ('isbn', models.CharField(max_length=13)),
+                (
+                    "resource_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="resources.Resource",
+                    ),
+                ),
+                ("subtitle", models.CharField(max_length=250)),
+                ("isbn", models.CharField(max_length=13)),
             ],
-            bases=('resources.resource',),
+            bases=("resources.resource",),
         ),
         migrations.CreateModel(
-            name='MotivationalSpeech',
+            name="MotivationalSpeech",
             fields=[
-                ('resource_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='resources.Resource')),
-                ('youtube_url', models.URLField()),
+                (
+                    "resource_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="resources.Resource",
+                    ),
+                ),
+                ("youtube_url", models.URLField()),
             ],
-            bases=('resources.resource',),
+            bases=("resources.resource",),
         ),
         migrations.CreateModel(
-            name='Podcast',
+            name="Podcast",
             fields=[
-                ('resource_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='resources.Resource')),
-                ('website_url', models.URLField()),
-                ('youtube_url', models.URLField()),
+                (
+                    "resource_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="resources.Resource",
+                    ),
+                ),
+                ("website_url", models.URLField()),
+                ("youtube_url", models.URLField()),
             ],
-            bases=('resources.resource',),
+            bases=("resources.resource",),
         ),
         migrations.CreateModel(
-            name='PodcastEpisode',
+            name="PodcastEpisode",
             fields=[
-                ('resource_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='resources.Resource')),
-                ('youtube_episode_url', models.URLField()),
-                ('spotify_episode_url', models.URLField()),
-                ('from_podcast', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='resources.Podcast')),
+                (
+                    "resource_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="resources.Resource",
+                    ),
+                ),
+                ("youtube_episode_url", models.URLField()),
+                ("spotify_episode_url", models.URLField()),
+                (
+                    "from_podcast",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="resources.Podcast",
+                    ),
+                ),
             ],
-            bases=('resources.resource',),
+            bases=("resources.resource",),
         ),
     ]
