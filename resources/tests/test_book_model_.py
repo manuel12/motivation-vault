@@ -11,15 +11,14 @@ class BookModelTests(TestCase):
             title="12 Rules for Life",
             author="Jordan B. Peterson",
             subtitle="An antidote to chaos",
-            isbn=9780345816023
+            isbn=9780345816023,
         )
 
     def test_subtitle(self):
         self.assertEqual(self.test_book.subtitle, "An antidote to chaos")
 
     def test_subtitle_max_length(self):
-        subtitle_max_length = self.test_book._meta.get_field(
-            'subtitle').max_length
+        subtitle_max_length = self.test_book._meta.get_field("subtitle").max_length
         self.assertEqual(subtitle_max_length, 250)
 
     def test_isbn(self):

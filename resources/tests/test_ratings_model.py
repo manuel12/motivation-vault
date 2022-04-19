@@ -9,15 +9,15 @@ class RatingModelTest(TestCase):
 
     def setUp(self):
         self.test_resource = Resource.objects.create(
-            title="Test Resource", author="Test Author")
+            title="Test Resource", author="Test Author"
+        )
 
         self.test_user = User.objects.create_user(
-            username='testuser', password='testpassword')
+            username="testuser", password="testpassword"
+        )
 
         self.test_rating = Rating.objects.create(
-            resource=self.test_resource,
-            user=self.test_user,
-            stars=3
+            resource=self.test_resource, user=self.test_user, stars=3
         )
 
     def test_rating_resource(self):
