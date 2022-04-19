@@ -42,24 +42,22 @@ export class API {
     }).then((resp) => resp.json());
   }
 
-  static fetchAllResources(setResourceFunc) {
-    return _fetch("http://127.0.0.1:8000/api/")
+  static fetchAllResources(token, setResourceFunc) {
+    _fetch("http://127.0.0.1:8000/api/", token)
       .then((resp) => resp.json())
       .then((resp) => setResourceFunc(resp))
       .catch((error) => console.error(error));
   }
 
   static fetchAllResourcesOfType(resourceType, token, setResourceFunc) {
-    let url = `http://127.0.0.1:8000/api/${resourceType}/`;
-    _fetch(url, token)
+    _fetch(`http://127.0.0.1:8000/api/${resourceType}/`, token)
       .then((resp) => resp.json())
       .then((resp) => setResourceFunc(resp))
       .catch((error) => console.error(error));
   }
 
   static fetchResource(id, token, setResourceFunc) {
-    let url = `http://127.0.0.1:8000/api/${id}/`;
-    _fetch(url, token)
+    _fetch(`http://127.0.0.1:8000/api/${id}/`, token)
       .then((resp) => resp.json())
       .then((resp) => setResourceFunc(resp))
       .catch((error) => console.error(error));
@@ -76,7 +74,6 @@ export class API {
     _send(url, token, resourceData)
       .then((resp) => resp.json())
       .then((resp) => {
-        console.log(resp);
         window.location.href = "/";
       })
       .catch((error) => console.error(error));
@@ -92,10 +89,7 @@ export class API {
   static postRating(token, ratingData, callback) {
     _send(`http://127.0.0.1:8000/api/ratings/`, token, ratingData)
       .then((resp) => resp.json())
-      .then((resp) => {
-        console.log(resp);
-        callback(resp);
-      })
+      .then((resp) => callback(resp))
       .catch((error) => console.error(error));
   }
 }
