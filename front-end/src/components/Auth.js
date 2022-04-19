@@ -40,8 +40,6 @@ const Auth = ({ setToken }) => {
     if (username && password) {
       API.registerUser({ username, password })
         .then((resp) => {
-          console.log(resp);
-
           const userCreatedId = resp["id"];
           if (userCreatedId) {
             loginClickedHandler();
