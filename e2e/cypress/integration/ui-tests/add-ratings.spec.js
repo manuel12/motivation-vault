@@ -12,10 +12,12 @@ describe("Add Ratings", () => {
     cy.contains("Test Title").click({ force: true });
   });
 
-  const getResourceTypeFromPage = (page) =>
-    page === "motivational-speeches"
-      ? page.substr(0, page.length - 2)
-      : page.substr(0, page.length - 1);
+  const getResourceTypeFromPage = (page) => {
+    if (page === "podcasts-episodes") return "podcast-episode";
+    else if (page === "motivational-speeches")
+      return page.substr(0, page.length - 2);
+    else return page.substr(0, page.length - 1);
+  };
 
   const checkStars = (stars) => {
     let i = 1;
@@ -23,7 +25,7 @@ describe("Add Ratings", () => {
       cy.get(`[data-test=star-icon-${i}]`)
         .should("be.visible")
         .invoke("attr", "class")
-        .should("contain", "orange")
+        .should("contain", "orange");
       i++;
     }
   };
@@ -72,6 +74,7 @@ describe("Add Ratings", () => {
       const numStarsUpdatedRating = 4;
 
       let resourceType = getResourceTypeFromPage(page);
+      cy.log(resourceType);
 
       // Change resource title, add resource and check on page section
       resourceTestData.title = "Test Title - Ratings";
@@ -115,8 +118,8 @@ describe("Add Ratings", () => {
   });
 
   it("should display the text (2 ratings) in case of having 2 ratings", () => {
-    const testuser2Token = tokenData['testuser2'];
-    const testuser3Token = tokenData['testuser3'];
+    const testuser2Token = tokenData["testuser2"];
+    const testuser3Token = tokenData["testuser3"];
 
     // Get resourceId and add 2 ratings from different user to said resourceId.
     cy.location().then((loc) => {
