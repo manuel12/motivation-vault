@@ -27,7 +27,10 @@
 import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
 const testuserData = require("../fixtures/testuser.json");
 
-addMatchImageSnapshotCommand();
+addMatchImageSnapshotCommand({
+  failureThreshold: 0.05, // threshold for entire image
+  failureThresholdType: "pixel", // percent of image or number of pixels
+});
 
 // Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
 //   if (text) {
@@ -119,7 +122,7 @@ Cypress.Commands.add("logoutWithUI", () => {
    */
 
   cy.get("[data-test=logout-link]").click();
-  cy.get(".login-container").should("be.visible");
+  cy.get("[data-test=login-container]").should("be.visible");
 });
 
 Cypress.Commands.add("deleteTestData", () => {
@@ -135,7 +138,7 @@ Cypress.Commands.add("deleteTestData", () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${testuserData['token']}`,
+      Authorization: `Token ${testuserData["token"]}`,
     },
   }).then((response) => {
     expect(response.status).to.eq(204);
@@ -219,18 +222,16 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
   const resourcePlurals = {
     book: "books",
     podcast: "podcasts",
-    "podcasts-episode": "podcast-episodes",
+    "podcast-episode": "podcast-episodes",
     "motivational-speech": "motivational-speeches",
   };
-  cy.log(`user: ${testuserData}`);
-  cy.log(`user token: ${testuserData['token']}`);
   const resourcePlural = resourcePlurals[resourceType];
   cy.request({
     url: `http://127.0.0.1:8000/api/${resourcePlural}/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${testuserData['token']}`,
+      Authorization: `Token ${testuserData["token"]}`,
     },
     body: JSON.stringify(testData),
   }).then((response) => {
@@ -285,7 +286,7 @@ Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${token ? token : testuserData['token']}`,
+      Authorization: `Token ${token ? token : testuserData["token"]}`,
     },
     body: JSON.stringify(newRating),
   }).then((response) => {
