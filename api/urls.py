@@ -6,7 +6,6 @@ from api import views
 router = routers.SimpleRouter()
 router.register(r"users", views.UserViewSet)
 
-
 urlpatterns = [
     path("", views.ResourceList.as_view()),
     path("<int:pk>/", views.ResourceDetail.as_view()),
