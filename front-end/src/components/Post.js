@@ -13,9 +13,10 @@ const Post = (props) => {
             src={props.imageURL}
             className={classes["post-image"]}
             alt=""
+            data-test="image"
           ></img>
         </div>
-        <div className={classes["text-container"]}>
+        <div className={classes["text-container"]} data-test="text-container">
           <h3>{props.title}</h3>
           <div className={classes["author-text-container"]}>
             by <h5 className={classes["author-name"]}>{props.author}</h5>
