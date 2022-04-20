@@ -13,7 +13,7 @@ describe("Login", () => {
     cy.get("[data-test=password]").type(testuserData.password);
     cy.get("[data-test=submit-button]").click();
 
-    cy.get("[data-test=heading]").should("contain.text", "Motivation Vault");
+    cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("be.visible");
     cy.get("[data-test=homepage]").should("be.visible");
   });
@@ -44,7 +44,7 @@ describe("Login", () => {
     cy.get("[data-test=username]").type(testuserData.username);
     cy.get("[data-test=password]").type(`${testuserData.password}{enter}`);
 
-    cy.get("[data-test=heading]").should("contain.text", "Motivation Vault");
+    cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("be.visible");
     cy.get("[data-test=homepage]").should("be.visible");
   });

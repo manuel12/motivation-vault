@@ -7,8 +7,14 @@ describe("Sandbox experiments", () => {
   });
 
   it("About page - should display about page", () => {
-    cy.get("[data-test=about-link]").click();
-    cy.get(".about-page-container").should("be.visible");
-    cy.matchImageSnapshot();
+    cy.get("[data-test=post-container]")
+    .first()
+    .within(() => {
+      cy.get("[data-test=image]")
+        .should("be.visible").and(($img) => {
+          console.log($img[0].naturalWidth)
+        })
+      
+    })
   });
 });
