@@ -18,7 +18,10 @@ const DetailPage = () => {
   }, [id]);
 
   return (
-    <div className={classes["detail-page-container"]} data-test="detail-page-container">
+    <div
+      className={classes["detail-page-container"]}
+      data-test="detail-page-container"
+    >
       <div className={classes["post-section-container"]}>
         <h1 className={classes["heading"]} data-test="heading">
           {resource.title}
@@ -40,9 +43,14 @@ const DetailPage = () => {
                 className={classes["iframe"]}
                 title={resource.title}
                 src={getEmbedYoutubeUrl(resource)}
+                data-test="iframe"
               ></iframe>
             ) : (
-              <img src={resource.imageURL} className={classes["image"]} />
+              <img
+                src={resource.imageURL}
+                className={classes["image"]}
+                data-test="image"
+              />
             ))}
         </div>
 
@@ -54,6 +62,6 @@ const DetailPage = () => {
       <CommentSection resourceId={id} comments={resource.get_comments} />
     </div>
   );
-}
+};
 
 export default DetailPage;
