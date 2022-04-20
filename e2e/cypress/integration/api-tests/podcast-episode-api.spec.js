@@ -6,7 +6,7 @@ const testuserData = require("../../fixtures/testuser.json");
 describe("Podacst Episode API 'GET' request", () => {
   before(() => {
     cy.deleteTestData();
-    cy.addResourceWithAPI("podcasts-episode", resourceTestData);
+    cy.addResourceWithAPI("podcast-episode", resourceTestData);
   });
 
   it("should have status code 200", () => {
