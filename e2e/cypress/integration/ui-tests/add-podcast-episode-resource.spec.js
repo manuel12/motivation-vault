@@ -22,6 +22,9 @@ describe("Add Podcast Episode Resources", () => {
   it("should display added podcast episode resource on podcast episode section", () => {
     cy.addResourceWithUI("podcast-episode", resourceTestData);
 
+    cy.url().should("not.contain", "add/");
+    cy.get("[data-test=add-container]").should("not.exist");
+
     cy.visit("/podcasts-episodes/");
     cy.get("[data-test=post-container]")
       .first()

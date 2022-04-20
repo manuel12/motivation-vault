@@ -25,6 +25,9 @@ describe("Add Book Resources", () => {
   it("should display added book resource on book section", () => {
     cy.addResourceWithUI("book", resourceTestData);
 
+    cy.url().should("not.contain", "add/");
+    cy.get("[data-test=add-container]").should("not.exist");
+    
     cy.visit("/books/");
     cy.get("[data-test=post-container]")
       .first()

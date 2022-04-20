@@ -22,6 +22,9 @@ describe("Add Motivational Speech Resources", () => {
   it("should display added motivational speech resource on motivational speech section", () => {
     cy.addResourceWithUI("motivational-speech", resourceTestData);
 
+    cy.url().should("not.contain", "add/");
+    cy.get("[data-test=add-container]").should("not.exist");
+
     cy.visit("/motivational-speeches/");
     cy.get("[data-test=post-container]")
       .first()
