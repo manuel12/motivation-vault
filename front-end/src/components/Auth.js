@@ -40,6 +40,7 @@ const Auth = ({ setToken }) => {
     if (username && password) {
       API.registerUser({ username, password })
         .then((resp) => {
+          console.log(resp)
           const userCreatedId = resp["id"];
           if (userCreatedId) {
             loginClickedHandler();
@@ -83,11 +84,11 @@ const Auth = ({ setToken }) => {
 
   return (
     <div>
-      <div className={classes["header"]} data-test="heading">
+      <div className={classes["header"]} data-test="header">
         <h1>Motivation Vault</h1>
       </div>
 
-      <div className={classes["login-container"]}>
+      <div className={classes["login-container"]} data-test="login-container">
         <form onSubmit={submitHandler}>
           {usernameError && (
             <div class="username-error" data-test="username-error">
