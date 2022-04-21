@@ -1,4 +1,4 @@
-[![django-api-reac](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/3i7tdw&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
+[![django-api-reac](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
 
 # API Resource
 
