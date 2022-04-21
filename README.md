@@ -7,31 +7,26 @@ The API Resource is an application that hosts optimistic, inspiring, motivationa
 ## Usage
 
 ### Adding Resources
-You can add a new resource by clicking on the "+Add" link on the navigation bar.
 
-Then you can select the resource type from the dropdown. 
+You can add a new resource by clicking the "+Add" link on the navigation bar. 
 
-The 4 available types are: Book, Podcast, Podcast Episode and Motivational Speech. 
+Select the resource type from the dropdown, the resource available resource types are: Book, Podcast, Podcast Episode and Motivational Speech.
 
-Once you have selected the resource type the form will be displayed, and you can fill it in with the resource's data.
+Fill in the resource form and click "Add Resource".
 
-**Note:** 
-*You cannot submit the form until all the required fields are filled. If you click submit without such fields or pass invalid data to those fields the form will display corresponding error labels.*
+**Note:**
+*If any required fields aren't filled or the added data is invalid the form will display validation errors.*
 
-Once the form is submitted your resource will appear first on the home page resource list and on it's own category's list (If the resource is a podcast it will appear first on the list you get after navigating to "Podcasts" on the navigation bar).
+After submitting the form your resource will appear first on the home page list and on it's own category list(If resource is a motivational speech it will appear on motivational speeches page).
 
-(Action #1 GIF)
+![Display gif clicking Add Resource button, filling and submitting resource form and displaying resource on hoomepage list and detail page](demo/add-resource-demo.gif)
 
 ### Visiting a Resource's Detail Page.
-You can also check more information, leave a rating or a comment on a specific resource by visiting said resource's detail page. 
+To check more information on a resource, leave a rating or a comment, visit said resource detail page by clicking on the resource's image or text on the home page list or on any category list.
 
-Just click on the resource's image or text on the home page list or on any of the category lists.
+On the detail page the full information of the resource is displayed, including full description and value section, which is basically a list of points on the benefits of consuming said resource.
 
-The detail page is where all of the resource's information is displayed, as well as where it's poster image(for books or podcasts) or youtube video(for podcast episodes or motivational speeches) will be displayed.
-
-The resource's description will be displayed here in full as well as it's "value section" which is basically a list of points on the benefits of consuming said resource.
-
-(Action #2 GIF)
+Also the poster image(for books or podcasts) or embedded youtube video(for podcast episodes or motivational speeches) will be displayed.
 
 ### Leave a Rating.
 You can leave a rating on a resource by clicking the "+" next to the ratings counter (right below the resource's author) on the detail page.
@@ -40,14 +35,14 @@ Here you can click on the number of stars you think the resource deserves and it
 
 **Note:** *A user can only leave 1 rating per resource.*
 
-(Action #3 GIF)
+![Display gif clicking Add Rating button, clicking on rarting stars and displaying added rating](demo/add-rating-demo.gif)
 
 ### Leave a Comment.
 You can leave a comment by clicking  on the "Write a comment..." input field on the detail page. Once you've written a comment the "Comment" button will become active and clicking it will submit the comment. To abort leaving the comment click "Cancel".
 
 Unlike ratings a user can write as many comments per resource as they like.
 
-(Action #4 GIF)
+![Display gif clicking Add Comment button, adding comments and dislplaying added comments](demo/add-rating-demo.gif)
 
 <br />
 
@@ -97,6 +92,7 @@ For installing the React application go to the front-end folder and run:
 ## Running tests
 
 ### Unit tests
+For running the tests run:
 
     python manage.py test
 
