@@ -9,32 +9,32 @@ The API Resource is an application that hosts optimistic, inspiring, motivationa
 ### Adding Resources
 You can add a new resource by clicking on the "+Add" link on the navigation bar.
 
-Then you can select the resource type from the dropdown. The 4 available types are:
-- Book.
-- Podcast.
-- Podcast Episode.
-- Motivational Speech. 
+Then you can select the resource type from the dropdown. 
 
-Once you have select the resource type the form corresponding to that specific type will be displayed and you can fill it in with the resource's data.
+The 4 available types are: Book, Podcast, Podcast Episode and Motivational Speech. 
+
+Once you have selected the resource type the form will be displayed, and you can fill it in with the resource's data.
 
 **Note:** 
-*You will not be able to submit the form until at least all the required fields are filled. If you try to submit the form without such fields or you pass invalid data to those fields the form will display corresponding error labels.*
+*You cannot submit the form until all the required fields are filled. If you click submit without such fields or pass invalid data to those fields the form will display corresponding error labels.*
 
-Once you've submitted the resource form your resource will appear first on the home page resource list and will appear first on it's own category's list (Example: if the resource added is a podcast it will appear first on the list you get after navigating to "Podcasts" on the navigation bar).
+Once the form is submitted your resource will appear first on the home page resource list and on it's own category's list (If the resource is a podcast it will appear first on the list you get after navigating to "Podcasts" on the navigation bar).
 
 (Action #1 GIF)
 
 ### Visiting a Resource's Detail Page.
-You can also check more information, leave a rating or a comment on a speciific resource by visiting said resource's detail page. 
+You can also check more information, leave a rating or a comment on a specific resource by visiting said resource's detail page. 
 
-The detail page is where all of a resource's information is displayed, as well as where it's poster image(in case it is a book or podcast) or youtube video(in case it is a podcast episode or motivational speech) will be displayed.
+Just click on the resource's image or text on the home page list or on any of the category lists.
 
-The resource's description will be displayed here in full as well as it's "value section" which is basically a list of points of which are the benefits of consuming said resource.
+The detail page is where all of the resource's information is displayed, as well as where it's poster image(for books or podcasts) or youtube video(for podcast episodes or motivational speeches) will be displayed.
+
+The resource's description will be displayed here in full as well as it's "value section" which is basically a list of points on the benefits of consuming said resource.
 
 (Action #2 GIF)
 
 ### Leave a Rating.
-You can leave a rating on a resource by navigating to said resource's detail page and clicking the "+" next to the ratings counter (right below the resource's author).
+You can leave a rating on a resource by clicking the "+" next to the ratings counter (right below the resource's author) on the detail page.
 
 Here you can click on the number of stars you think the resource deserves and it will inmediatly save that rating.
 
@@ -43,7 +43,7 @@ Here you can click on the number of stars you think the resource deserves and it
 (Action #3 GIF)
 
 ### Leave a Comment.
-You can leave a comment on a resource by navigating to said resource's detail page and clicking  on the "Write a comment..." input field. Once you've written a comment the "Comment" button will become active and clicking it will submit the comment. To abort leaving the comment click "Cancel".
+You can leave a comment by clicking  on the "Write a comment..." input field on the detail page. Once you've written a comment the "Comment" button will become active and clicking it will submit the comment. To abort leaving the comment click "Cancel".
 
 Unlike ratings a user can write as many comments per resource as they like.
 
@@ -52,10 +52,7 @@ Unlike ratings a user can write as many comments per resource as they like.
 <br />
 
 ### Credentials ###   
-username: testuser1  
-password: testpass1
-
-You can check the app (please wait a bit for a free dyno to start) [here](https://expense-tracker16.herokuapp.com/).
+**TODO!**
 
 <br />
 
