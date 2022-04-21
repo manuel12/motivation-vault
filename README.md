@@ -42,7 +42,7 @@ You can leave a comment by clicking  on the "Write a comment..." input field on 
 
 Unlike ratings a user can write as many comments per resource as they like.
 
-![Display gif clicking Add Comment button, adding comments and dislplaying added comments](demo/add-rating-demo.gif)
+![Display gif clicking Add Comment button, adding comments and dislplaying added comments](demo/add-comment-demo.gif)
 
 <br />
 
