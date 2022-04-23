@@ -101,7 +101,7 @@ For running the tests run:
     python manage.py test
 
 ### E2E tests
-For running the tests run:
+For running the tests go to the e2e folder and run:
 
     npm run test
 For running the tests on headless mode run:
