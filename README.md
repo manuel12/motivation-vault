@@ -108,16 +108,19 @@ For opening cypress client run:
     npm run test:open
     
 ## Uses
-
  - Django.
- - DRF
+ - DRF.
  - React.
+ - Font Awesome icons.
  - Cypress.
+ - Cypress Image Snapshot.
 
 ## Features
 - Token authentication.
 - Form validation.
-- Ratings.
-- Comments.
-- End-to-end tests.
-
+- Rating section.
+- Comment setion.
+- Unit tests.
+- API tests.
+- Functional tests.
+- Visual tests.
