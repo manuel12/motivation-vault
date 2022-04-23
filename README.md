@@ -88,6 +88,10 @@ For installing the React application go to the front-end folder and run:
 
     npm start
 
+## Installation - Cypress
+For installing Cypress run go to the e2e folder and run:
+    
+    npm install
 
 ## Running tests
 
