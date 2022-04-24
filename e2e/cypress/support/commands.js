@@ -28,15 +28,15 @@ import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
 const testuserData = require("../fixtures/testuser.json");
 
 addMatchImageSnapshotCommand({
-  failureThreshold: 0.05, // threshold for entire image
-  failureThresholdType: "pixel", // percent of image or number of pixels
+  failureThreshold: 0.05,
+  failureThresholdType: "pixel",
 });
 
-// Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
-//   if (text) {
-//     return originalFn(element, text, options);
-//   }
-// });
+Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
+  if (text) {
+    return originalFn(element, text, options);
+  }
+});
 
 Cypress.Commands.add("loginAdminWithUI", () => {
   /**
@@ -163,8 +163,10 @@ Cypress.Commands.add(
      * will be skipped.
      */
 
-    cy.visit("/add/");
+    //cy.visit("/add/");
+    cy.get("[data-test=add-link]").click();
     cy.get(".add-container").should("be.visible");
+
     cy.get("[data-test=select-resource-type]").select(resourceType);
 
     cy.get("[data-test=title-input]").type(testData.title);
@@ -196,6 +198,8 @@ Cypress.Commands.add(
     if (requiredFieldsOnly) return cy.get("[data-test=submit]").click();
 
     cy.get("[data-test=description-input]").type(testData.description);
+    cy.get("[data-test=image-url-input]").type(testData.imageUrl);
+    
     cy.get("[data-test=value-one-input]").type(testData.valueOne);
     cy.get("[data-test=value-two-input]").type(testData.valueTwo);
     cy.get("[data-test=value-three-input]").type(testData.valueThree);
