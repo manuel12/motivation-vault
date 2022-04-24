@@ -28,8 +28,8 @@ class CustomObtainAuthToken(ObtainAuthToken):
             for error_type in error_types:
                 if error_type in serializer.errors:
                     errors[error_type] = str(serializer.errors[error_type][0])
-            print(errors)
-            return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"errors": errors},
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 obtain_auth_token = CustomObtainAuthToken.as_view()
@@ -54,7 +54,7 @@ class ResourceView(APIView):
 
 class ResourceList(ResourceView):
     """
-    List all resources, or create a new book.
+    List all resources, or create a new resource.
     """
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
@@ -100,13 +100,15 @@ class ResourceDetail(ResourceView):
         try:
             return resource_class.objects.get(pk=pk)
         except resource_class.DoesNotExist:
-            return
+            return False
 
     def get(self, request, pk):
         resource = self.get_object(pk)
-        serializer_class = self.get_serializer_class()
-        serializer = serializer_class(resource)
-        return Response(serializer.data)
+        if resource:
+            serializer_class = self.get_serializer_class()
+            serializer = serializer_class(resource)
+            return Response(serializer.data)
+        return Response({"error": "Not found"})
 
 
 class BookList(ResourceList):
