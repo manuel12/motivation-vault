@@ -12,6 +12,9 @@ describe("Add Podcast Resources", () => {
   it("should add a podcast resource", () => {
     cy.addResourceWithUI("podcast", resourceTestData);
 
+    cy.url().should("not.contain", "add/");
+    cy.get("[data-test=add-container]").should("not.exist");
+
     cy.get("[data-test=post-container]")
       .first()
       .should("contain", resourceTestData.title)

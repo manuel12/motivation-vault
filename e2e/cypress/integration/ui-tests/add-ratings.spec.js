@@ -62,7 +62,7 @@ describe("Add Ratings", () => {
 
       cy.get("[data-test=num-ratings]")
         .should("contain.text", "1")
-        .and("contain.text", "review");
+        .and("contain.text", "rating");
     });
   });
 
@@ -108,13 +108,13 @@ describe("Add Ratings", () => {
   }
 
   it("should display the text (0 ratings) in case of having more than 0 ratings", () => {
-    cy.get("[data-test=num-ratings]").should("contain.text", "(0 reviews)");
+    cy.get("[data-test=num-ratings]").should("contain.text", "(0 ratings)");
   });
 
   it("should display the text (1 rating) in case of having only 1 rating", () => {
     cy.addRatingWithUI(5);
 
-    cy.get("[data-test=num-ratings]").should("contain.text", "(1 review)");
+    cy.get("[data-test=num-ratings]").should("contain.text", "(1 rating)");
   });
 
   it("should display the text (2 ratings) in case of having 2 ratings", () => {
@@ -129,7 +129,7 @@ describe("Add Ratings", () => {
     });
 
     cy.reload();
-    cy.get("[data-test=num-ratings]").should("contain.text", "(2 reviews)");
+    cy.get("[data-test=num-ratings]").should("contain.text", "(2 ratings)");
   });
 
   after(() => {

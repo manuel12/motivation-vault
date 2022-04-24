@@ -11,6 +11,9 @@ describe("Add Motivational Speech Resources", () => {
 
   it("should add a motivational speech resource", () => {
     cy.addResourceWithUI("motivational-speech", resourceTestData);
+    
+    cy.url().should("not.contain", "add/");
+    cy.get("[data-test=add-container]").should("not.exist");
 
     cy.get("[data-test=post-container]")
       .first()
