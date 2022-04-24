@@ -6,6 +6,7 @@ import useToken from "./useToken";
 import CommentSection from "./CommentSection";
 import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
+import NotFound from "./NotFound";
 import classes from "../css/Detailpage.module.css";
 
 const DetailPage = () => {
@@ -16,6 +17,10 @@ const DetailPage = () => {
   useEffect(() => {
     API.fetchResource(id, token, setResource);
   }, [id]);
+
+  if (resource.error && resource.error === "Not found") {
+    return <NotFound />;
+  }
 
   return (
     <div
@@ -53,9 +58,14 @@ const DetailPage = () => {
               />
             ))}
         </div>
-
-        <h3>Description</h3>
-        <p className={classes["paragraph-container"]}>{resource.description}</p>
+        {resource.description && (
+          <>
+            <h3>Description</h3>
+            <p className={classes["paragraph-container"]}>
+              {resource.description}
+            </p>
+          </>
+        )}
       </div>
 
       <ValueSection resource={resource} />
