@@ -1,5 +1,3 @@
-from csv import list_dialects
-
 from django.contrib import admin
 
 from resources import models
@@ -16,7 +14,8 @@ class BookAdmin(ResourceAdmin):
 
 
 class PodcastAdmin(ResourceAdmin):
-    list_display = ["pk", "title", "author", "youtube_page_url", "spotify_page_url"]
+    list_display = ["pk", "title", "author",
+                    "youtube_page_url", "spotify_page_url"]
 
 
 class PodcastEpisodeAdmin(ResourceAdmin):
