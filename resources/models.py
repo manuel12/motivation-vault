@@ -1,5 +1,3 @@
-from tkinter import NONE
-
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -16,12 +14,16 @@ default_data = get_default_data()
 class Resource(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=100)
-    description = models.TextField(blank=True, default=default_data["loremIpsumShort"])
-    imageURL = models.URLField(default=default_data["imageUrl"])
+    description = models.TextField(
+        blank=True, default=default_data["loremIpsumShort"])
+    imageURL = models.URLField(blank=True, default=default_data["imageUrl"])
 
-    value_one = models.TextField(blank=True, default=default_data["loremIpsumShort"])
-    value_two = models.TextField(blank=True, default=default_data["loremIpsumShort"])
-    value_three = models.TextField(blank=True, default=default_data["loremIpsumShort"])
+    value_one = models.TextField(
+        blank=True, default=default_data["loremIpsumShort"])
+    value_two = models.TextField(
+        blank=True, default=default_data["loremIpsumShort"])
+    value_three = models.TextField(
+        blank=True, default=default_data["loremIpsumShort"])
 
     objects = ResourceManager()
 
@@ -53,7 +55,8 @@ class Resource(models.Model):
 
     def get_youtube_url(self):
         try:
-            motivational_speech = MotivationalSpeech.objects.get(title=self.title)
+            motivational_speech = MotivationalSpeech.objects.get(
+                title=self.title)
             return motivational_speech.youtube_url
         except MotivationalSpeech.DoesNotExist:
             pass
@@ -85,8 +88,10 @@ class Podcast(Resource):
 
 class PodcastEpisode(Resource):
     from_podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE)
-    youtube_episode_url = models.URLField(max_length=200, blank=True, default="")
-    spotify_episode_url = models.URLField(max_length=200, blank=True, default="")
+    youtube_episode_url = models.URLField(
+        max_length=200, blank=True, default="")
+    spotify_episode_url = models.URLField(
+        max_length=200, blank=True, default="")
 
 
 class MotivationalSpeech(Resource):
@@ -115,7 +120,8 @@ class Comment(models.Model):
 class Rating(models.Model):
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    stars = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     def __str__(self):
         stars = self.stars
