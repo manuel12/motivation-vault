@@ -14,6 +14,7 @@ const AddResourceForm = (props) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const [valueOne, setValueOne] = useState("");
   const [valueTwo, setValueTwo] = useState("");
@@ -21,6 +22,7 @@ const AddResourceForm = (props) => {
 
   const [titleError, setTitleError] = useState("");
   const [authorError, setAuthorError] = useState("");
+  const [imageUrlError, setImageUrlError] = useState("");
 
   // => Book fields
   const [subtitle, setSubtitle] = useState("");
@@ -94,6 +96,7 @@ const AddResourceForm = (props) => {
         title: title,
         author: author,
         description: description,
+        imageURL: imageUrl,
         value_one: valueOne,
         value_two: valueTwo,
         value_three: valueThree,
@@ -146,6 +149,7 @@ const AddResourceForm = (props) => {
         }}
         dataAttr="author-input"
       />
+
       <textarea
         id="description"
         name="description"
@@ -158,6 +162,17 @@ const AddResourceForm = (props) => {
         }}
         data-test="description-input"
       ></textarea>
+
+      <LabeledInput
+        error={imageUrlError}
+        item="Image Url"
+        itemType="text"
+        value={imageUrl}
+        onChange={(e) => {
+          setImageUrl(e.target.value);
+        }}
+        dataAttr="image-url-input"
+      />
 
       {props.resourceType === "book" && (
         <AddBookResourceForm
@@ -238,6 +253,6 @@ const AddResourceForm = (props) => {
       </button>
     </form>
   );
-}
+};
 
 export default AddResourceForm;
