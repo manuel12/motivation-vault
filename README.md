@@ -46,8 +46,9 @@ Unlike ratings a user can write as many comments per resource as they like.
 
 <br />
 
-### Credentials ###   
-**TODO!**
+### Credentials ###  
+username: testuser1  
+password: testpass1
 
 <br />
 
