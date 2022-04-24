@@ -81,8 +81,8 @@ const RatingSection = (props) => {
 
       <span className={classes["num-ratings"]} data-test="num-ratings">
         {numRatings !== 1
-          ? `(${numRatings} reviews)`
-          : `(${numRatings} review)`}
+          ? `(${numRatings} ratings)`
+          : `(${numRatings} rating)`}
       </span>
 
       {props.addRatingBtn && (
