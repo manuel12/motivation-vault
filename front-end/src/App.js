@@ -17,7 +17,7 @@ import NotFound from "./components/NotFound";
 import useToken from "./components/useToken";
 import classes from "./css/App.module.css";
 
-const App = () => {
+const  App = () => {
   const { token, setToken, deleteToken } = useToken();
 
   if (!token) {
