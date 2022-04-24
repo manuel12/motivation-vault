@@ -16,7 +16,8 @@
   "spotify_episode_url": "https://open.spotify.com/podcast-episode/1",
 
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat.",
-
+  "imageUrl": "https://bin.snmmd.nl/m/78x73ij2tm1d_1200x600.jpg/blog_podcastboeken.jpg",
+  
   "valueOne": "Test value one",
   "valueTwo": "Test value two",
   "valueThree": "Test value three",

@@ -1,6 +1,7 @@
 {
   "title": "Test Title",
   "author": "Test Author",
+
   "subtitle": "Test Subtitle",
   "isbn": 9781544507873,
 
@@ -12,7 +13,8 @@
   "youtubeEpUrl": "https://www.youtube.com/watch/podcast-episode/",
 
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-
+  "imageUrl": "https://bin.snmmd.nl/m/78x73ij2tm1d_1200x600.jpg/blog_podcastboeken.jpg",
+  
   "valueOne": "Test value one",
   "valueTwo": "Test value two",
   "valueThree": "Test value three",

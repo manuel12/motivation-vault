@@ -10,6 +10,7 @@
   "youtubeUrl": "youtube.com",
 
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "imageUrl": "some-invalid-image-url",
 
   "valueOne": "Test value one",
   "valueTwo": "Test value two",
