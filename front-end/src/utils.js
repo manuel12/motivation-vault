@@ -157,6 +157,23 @@ export class Validator {
     }
   }
 
+  registerImageUrl(imageUrl, setImageUrlError) {
+    const imageUrlEmptyError = "Image URL cannot be empty!";
+    const imageUrlInvalidError = "Image URL has to be a valid url!";
+
+    if (!imageUrl) {
+      setImageUrlError(imageUrlEmptyError);
+      this.registerError(imageUrlEmptyError);
+    } else if (!isValidUrl(imageUrl)) {
+      setImageUrlError(imageUrlInvalidError);
+      this.registerError(imageUrlInvalidError);
+    } else {
+      setImageUrlError("");
+      return true;
+    }
+
+  }
+
   registerSubtitle(subtitle, setSubtitleError) {
     const subtitleEmptyError = "Subtitle cannot be empty!";
     if (!subtitle) {
