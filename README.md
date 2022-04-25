@@ -65,10 +65,7 @@ password: testpass1
      pipenv shell
 
 
-   Run migrations: 
-	
-    python manage.py makemigrations resources
-    python manage.py migrate
+  **Note:** *No need to run migrations as DB already has migrations applied to current data.*
 
    Create superuser:
 
