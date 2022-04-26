@@ -28,21 +28,14 @@ On the detail page the full information of the resource is displayed, including 
 
 Also the poster image(for books or podcasts) or embedded youtube video(for podcast episodes or motivational speeches) will be displayed.
 
-### Leave a Rating.
-You can leave a rating on a resource by clicking the "+" next to the ratings counter (right below the resource's author) on the detail page.
-
-Here you can click on the number of stars you think the resource deserves and it will inmediatly save that rating.
+### Leave a Rating or Comment.
+You can leave a rating on a resource by clicking the "+" next to the ratings counter.
 
 **Note:** *A user can only leave 1 rating per resource.*
 
-![Display gif clicking Add Rating button, clicking on rarting stars and displaying added rating](demo/add-rating-demo.gif)
+You can also leave a comment by clicking  on the "Write a comment..." input field. Unlike ratings a user can write as many comments per resource as they like.
 
-### Leave a Comment.
-You can leave a comment by clicking  on the "Write a comment..." input field on the detail page. Once you've written a comment the "Comment" button will become active and clicking it will submit the comment. To abort leaving the comment click "Cancel".
-
-Unlike ratings a user can write as many comments per resource as they like.
-
-![Display gif clicking Add Comment button, adding comments and dislplaying added comments](demo/add-comment-demo.gif)
+![Display gif clicking adding rating and comment](demo/add-rating-and-comment.gif)
 
 <br />
 
@@ -90,6 +83,14 @@ For installing the React application go to the front-end folder and run:
 For installing Cypress run go to the e2e folder and run:
     
     npm install
+
+## Tests
+
+| Type | Location                                 |
+| ---- | ---------------------------------------- |
+| api  | [e2e/cypress/integration/api-tests](e2e/cypress/integration/api-tests) |
+| ui   | [e2e/cypress/integration/ui-tests](e2e/cypress/integration/ui-tests)   |
+| unit | [resources/tests](resources/tests)       |
 
 ## Running tests
 
