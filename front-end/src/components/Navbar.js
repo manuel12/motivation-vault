@@ -102,7 +102,7 @@ const Navbar = ({ deleteToken }) => {
         <li className={classes["nav-item"]}>
           <a
             className={podcastsEpisodesLinkClassName}
-            href="/podcasts-episodes/"
+            href="/podcast-episodes/"
             data-test="podcast-episodes-link"
           >
             Podcasts Episodes

@@ -39,7 +39,7 @@ const  App = () => {
             <Route exact path="/podcasts/:id/" component={DetailPage} />
             <Route
               exact
-              path="/podcasts-episodes/"
+              path="/podcast-episodes/"
               component={PodcastEpisodePage}
             />
             <Route
