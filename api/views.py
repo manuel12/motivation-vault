@@ -282,7 +282,7 @@ def delete_test_data(request):
     Delete all resources, comments and ratings created by tests.
     """
     test_resources = models.Resource.objects.filter(
-        title__startswith="Test Title")
+        title__startswith="[Test Title]")
     test_resources.delete()
 
     test_users = models.User.objects.filter(username="newUser1")
