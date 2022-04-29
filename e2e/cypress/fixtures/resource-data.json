@@ -1,0 +1,28 @@
+{
+  "title": "[Test Title]",
+  "author": "[Test Author]",
+
+  "subtitle": "[Test Subtitle]",
+  "isbn": 9781544507873,
+
+  "podcast": "Impact Theory",
+  "websiteUrl": "http://wwww.google.com/",
+  "spotifyUrl": "http://open.spotify.com/",
+  "spotifyEpUrl": "http://open.spotify.com/watch/podcast-episode/",
+  "youtubeUrl": "https://www.youtube.com/",
+  "youtubeEpUrl": "https://www.youtube.com/watch/podcast-episode/",
+
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "imageUrl": "https://bin.snmmd.nl/m/78x73ij2tm1d_1200x600.jpg/blog_podcastboeken.jpg",
+  
+  "valueOne": "[Test value one]",
+  "valueTwo": "[Test value two]",
+  "valueThree": "[Test value three]",
+
+  "invalidData": {
+    "subtitle": "",
+    "isbn": "abcdefghijklmnp",
+    "website_url": "gooole.com",
+    "youtube_url": "youtube.com"
+  }
+}
