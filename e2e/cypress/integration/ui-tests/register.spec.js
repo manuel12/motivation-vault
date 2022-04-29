@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const testuserData = require("../../fixtures/registerUser.json");
+const testuserData = require("../../fixtures/register-user.json");
 const testuser2Data = require("../../fixtures/testuser.json");
 
 describe("Register", () => {
@@ -36,11 +36,6 @@ describe("Register", () => {
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
-  });
-
-  it.skip("should have focus on username input", () => {
-    cy.log(cy.focused());
-    cy.focused().should("have.id", "username");
   });
 
   it("should show error message when leaving username empty", () => {
