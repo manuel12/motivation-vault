@@ -1,28 +1,4 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (username, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/// <reference types="cypress" />
 
 import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
 const testuserData = require("../fixtures/testuser.json");
@@ -32,11 +8,11 @@ addMatchImageSnapshotCommand({
   failureThresholdType: "pixel",
 });
 
-Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
-  if (text) {
-    return originalFn(element, text, options);
-  }
-});
+// Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
+//   if (text) {
+//     return originalFn(element, text, options);
+//   }
+// });
 
 Cypress.Commands.add("loginAdminWithUI", () => {
   /**
@@ -56,7 +32,9 @@ Cypress.Commands.add("loginAdminWithUI", () => {
   cy.get("#recent-actions-module").should("be.visible");
 });
 
-Cypress.Commands.add("loginWithUI", (username, password) => {
+Cypress.Commands.add("loginWithUI", (
+  //username, password
+  ) => {
   /**
    * Login the a normal user by interacting with the UI
    * if no credentials are provided credentials
@@ -66,9 +44,13 @@ Cypress.Commands.add("loginWithUI", (username, password) => {
   cy.visit("/");
 
   cy.get("#username")
-    .type(username ? username : testuserData.username)
+    .type(
+      //username ? username : 
+      testuserData.username)
     .get("#password")
-    .type(password ? password : testuserData.password)
+    .type(
+      //password ? password : 
+      testuserData.password)
     .get("#submitButton")
     .click();
 
@@ -146,10 +128,10 @@ Cypress.Commands.add("deleteTestData", () => {
 });
 
 Cypress.Commands.add(
-  "addResourceWithUI",
+  "createResourceWithUI",
   (resourceType, testData, requiredFieldsOnly = false) => {
     /**
-     * Adds a resource by using the UI.
+     * Creates a resource by using the UI.
      *
      * The resource in question is determined by the resourceType param
      * and can be one of four types: book, podcast, podcast-episode or
@@ -208,9 +190,9 @@ Cypress.Commands.add(
   }
 );
 
-Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
+Cypress.Commands.add("createResourceWithAPI", (resourceType, testData) => {
   /**
-   * Adds a resource by using the API.
+   * Creates a resource by using the API.
    *
    * The resource in question is determined by the resourceType param
    * and can be one of four types: book, podcast, podcast-episode or
@@ -243,9 +225,9 @@ Cypress.Commands.add("addResourceWithAPI", (resourceType, testData) => {
   });
 });
 
-Cypress.Commands.add("addCommentWithUI", (text) => {
+Cypress.Commands.add("createCommentWithUI", (text) => {
   /**
-   * Adds a comment by using the UI.
+   * Creates a comment by using the UI.
    *
    * The command checks that the text is present as value
    * on the input element and also that the value is cleared
@@ -261,9 +243,9 @@ Cypress.Commands.add("addCommentWithUI", (text) => {
   cy.get("[data-test=comment-input]").should("have.value", "");
 });
 
-Cypress.Commands.add("addRatingWithUI", (numStars) => {
+Cypress.Commands.add("createRatingWithUI", (numStars) => {
   /**
-   * Adds a rating by using the UI.
+   * Creates a rating by using the UI.
    *
    */
 
@@ -271,9 +253,9 @@ Cypress.Commands.add("addRatingWithUI", (numStars) => {
   cy.get(`[data-test=add-star-icon-${numStars}]`).click();
 });
 
-Cypress.Commands.add("addRatingWithAPI", (resource, numStars, token) => {
+Cypress.Commands.add("createRatingWithAPI", (resource, numStars, token) => {
   /**
-   * Adds a rating by using the UI.
+   * Creates a rating by using the UI.
    *
    * A specific token param can be passed to represent adding a rating from a
    * specific user or, if no token is passed, user token found on
