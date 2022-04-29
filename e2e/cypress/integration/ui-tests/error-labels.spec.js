@@ -6,7 +6,7 @@ describe("Error labels", () => {
     cy.get("[data-test=app]").should("be.visible");
   });
 
-  // Add tests to check that models can be submitted without filling out optional fields.
+  // Create tests to check that models can be submitted without filling out optional fields.
   it("should display error labels for book form fields", () => {
     cy.visit("/add/");
     cy.get("[data-test=add-container]").should("be.visible");
@@ -30,7 +30,7 @@ describe("Error labels", () => {
       .should("be.visible")
       .and("contain.text", "ISBN cannot be empty!");
 
-    cy.get("[data-test=isbn-input]").type("AAA");
+    cy.get("[data-test=isbn-input]").type(".");
     cy.get("[data-test=submit]").click();
 
     cy.get("[data-test=isbn-input-error]")
@@ -65,9 +65,9 @@ describe("Error labels", () => {
       .should("be.visible")
       .and("contain.text", "Youtube URL cannot be empty!");
 
-    cy.get("[data-test=website-url-input]").type("AAA");
-    cy.get("[data-test=spotify-page-url-input]").type("AAA");
-    cy.get("[data-test=youtube-page-url-input]").type("AAA");
+    cy.get("[data-test=website-url-input]").type(".");
+    cy.get("[data-test=spotify-page-url-input]").type(".");
+    cy.get("[data-test=youtube-page-url-input]").type(".");
 
     cy.get("[data-test=submit]").click();
 
@@ -111,9 +111,9 @@ describe("Error labels", () => {
       .should("be.visible")
       .and("contain.text", "Youtube episode URL cannot be empty!");
 
-    cy.get("[data-test=spotify-ep-url-input]").type("AAA");
+    cy.get("[data-test=spotify-ep-url-input]").type(".");
 
-    cy.get("[data-test=youtube-ep-url-input]").type("AAA");
+    cy.get("[data-test=youtube-ep-url-input]").type(".");
 
     cy.get("[data-test=submit]").click();
 
@@ -145,7 +145,7 @@ describe("Error labels", () => {
       .should("be.visible")
       .and("contain.text", "Youtube URL cannot be empty!");
 
-    cy.get("[data-test=youtube-url-input]").type("AAA");
+    cy.get("[data-test=youtube-url-input]").type(".");
 
     cy.get("[data-test=submit]").click();
 
