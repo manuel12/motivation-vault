@@ -8,12 +8,6 @@ addMatchImageSnapshotCommand({
   failureThresholdType: "pixel",
 });
 
-// Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
-//   if (text) {
-//     return originalFn(element, text, options);
-//   }
-// });
-
 Cypress.Commands.add("loginAdminWithUI", () => {
   /**
    * Login the admin user by interacting with the UI
@@ -32,30 +26,27 @@ Cypress.Commands.add("loginAdminWithUI", () => {
   cy.get("#recent-actions-module").should("be.visible");
 });
 
-Cypress.Commands.add("loginWithUI", (
+Cypress.Commands.add("loginWithUI", () =>
   //username, password
-  ) => {
-  /**
-   * Login the a normal user by interacting with the UI
-   * if no credentials are provided credentials
-   * found on testuser.json will be used.
-   */
+  {
+    /**
+     * Login the a normal user by interacting with the UI
+     * if no credentials are provided credentials
+     * found on testuser.json will be used.
+     */
 
-  cy.visit("/");
+    cy.visit("/");
 
-  cy.get("#username")
-    .type(
-      //username ? username : 
-      testuserData.username)
-    .get("#password")
-    .type(
-      //password ? password : 
-      testuserData.password)
-    .get("#submitButton")
-    .click();
+    cy.get("#username")
+      .type(testuserData.username)
+      .get("#password")
+      .type(testuserData.password)
+      .get("#submitButton")
+      .click();
 
-  cy.get(".homepage").should("be.visible");
-});
+    cy.get(".homepage").should("be.visible");
+  }
+);
 
 Cypress.Commands.add("loginWithAPI", () => {
   /**
@@ -181,7 +172,7 @@ Cypress.Commands.add(
 
     cy.get("[data-test=description-input]").type(testData.description);
     cy.get("[data-test=image-url-input]").type(testData.imageUrl);
-    
+
     cy.get("[data-test=value-one-input]").type(testData.valueOne);
     cy.get("[data-test=value-two-input]").type(testData.valueTwo);
     cy.get("[data-test=value-three-input]").type(testData.valueThree);
