@@ -59,7 +59,7 @@ describe("Navbar", () => {
 
     cy.get("[data-test=podcast-episodes-link]").click();
 
-    cy.url().should("contain", "podcasts-episodes/");
+    cy.url().should("contain", "podcast-episodes/");
 
     cy.get("[data-test=podcast-episodes-link]")
       .invoke("attr", "class")
