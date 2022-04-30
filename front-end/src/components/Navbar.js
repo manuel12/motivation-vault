@@ -51,7 +51,7 @@ const Navbar = ({ deleteToken }) => {
       "add-link": setAddLinkClassName,
       "books-link": setBooksLinkClassName,
       "podcasts-link": setPodcastsLinkClassName,
-      "podcasts-episodes-link": setPodcastsEpisodesLinkClassName,
+      "podcast-episodes-link": setPodcastsEpisodesLinkClassName,
       "motivational-speeches-link": setMotivationalSpeechesLinkClassName,
       "about-link": setAboutLinkClassName,
       "logout-link": setLogoutLinkClassName,
