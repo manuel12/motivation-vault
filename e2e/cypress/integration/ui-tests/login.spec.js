@@ -23,7 +23,7 @@ describe("Login", () => {
     cy.get("[data-test=password]").type("fakepassword");
     cy.get("[data-test=submit-button]").click();
 
-    cy.get("[data-test=submit-button]").should("contain.text", "Login");
+    cy.get("[data-test=login-container]").should("be.visible");
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
   });
@@ -31,7 +31,7 @@ describe("Login", () => {
   it("should NOT login with empty username and password fields", () => {
     cy.get("[data-test=submit-button]").click();
 
-    cy.get("[data-test=submit-button]").should("contain.text", "Login");
+    cy.get("[data-test=login-container]").should("be.visible")
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
   });
