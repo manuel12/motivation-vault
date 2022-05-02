@@ -42,9 +42,25 @@ export class API {
     }).then((resp) => resp.json());
   }
 
+  static isValidToken(token, callback) {
+    _fetch(`http://127.0.0.1:8000/api/`, token)
+      .then((resp) => resp.status === 200)
+      .then(callback);
+  }
+
+  static _clearInvalidToken(resp) {
+    if (resp.detail === "Invalid token.") {
+      delete localStorage.token;
+      window.location.href = "/";
+    } else {
+      return resp;
+    }
+  }
+
   static fetchAllResources(token, setResourceFunc) {
     _fetch("http://127.0.0.1:8000/api/", token)
       .then((resp) => resp.json())
+      .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => setResourceFunc(resp))
       .catch((error) => console.error(error));
   }
@@ -52,6 +68,7 @@ export class API {
   static fetchAllResourcesOfType(resourceType, token, setResourceFunc) {
     _fetch(`http://127.0.0.1:8000/api/${resourceType}/`, token)
       .then((resp) => resp.json())
+      .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => setResourceFunc(resp))
       .catch((error) => console.error(error));
   }
@@ -59,6 +76,7 @@ export class API {
   static fetchResource(id, token, setResourceFunc) {
     _fetch(`http://127.0.0.1:8000/api/${id}/`, token)
       .then((resp) => resp.json())
+      .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => setResourceFunc(resp))
       .catch((error) => console.error(error));
   }
@@ -82,7 +100,7 @@ export class API {
   static createComment(token, commentData, callback) {
     _send(`http://127.0.0.1:8000/api/comments/`, token, commentData)
       .then((resp) => resp.json())
-      .then(callback)
+      .then((resp) => callback(resp))
       .catch((error) => console.error(error));
   }
 
