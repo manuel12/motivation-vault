@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { API } from "../api-service";
 
 export default function useToken() {
   const getToken = () => {
-    const tokenString = localStorage.getItem("token");
+    const localStorageToken = localStorage.getItem("token");
 
     try {
-      const userToken = JSON.parse(tokenString);
+      if(!localStorageToken) return localStorageToken;
+      const userToken = JSON.parse(localStorageToken);
       return userToken;
     } catch (e) {
       return false;
@@ -14,9 +16,12 @@ export default function useToken() {
 
   const [token, setToken] = useState(getToken());
 
-  const saveToken = (userToken) => {
-    localStorage.setItem("token", JSON.stringify(userToken));
-    setToken(userToken);
+  const saveToken = async (userToken) => {
+    API.isValidToken(userToken, (validToken) => {
+      let validatedToken = validToken ? userToken : false;
+      localStorage.setItem("token", JSON.stringify(validatedToken));
+      setToken(validatedToken);
+    });
   };
 
   const deleteToken = () => localStorage.removeItem("token");
