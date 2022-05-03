@@ -1,0 +1,1 @@
+export const getResourceIdFromUrl = (url) => url.pathname.replaceAll("/", "");
