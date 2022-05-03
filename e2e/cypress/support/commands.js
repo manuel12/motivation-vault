@@ -15,18 +15,15 @@ Cypress.Commands.add("loginAdminWithUI", () => {
    */
 
   cy.visit(Cypress.config().adminUrl);
-  cy.get("#id_username")
-    .type(Cypress.env("adminUser"))
-    .get("#id_password")
-    .type(Cypress.env("adminPass"))
-    .get("[type=submit]")
-    .click();
+  cy.get("#id_username").type(Cypress.env("adminUser"));
+  cy.get("#id_password").type(Cypress.env("adminPass"));
+  cy.get("[type=submit]").click();
 
   cy.get("#content-main").should("be.visible");
   cy.get("#recent-actions-module").should("be.visible");
 });
 
-Cypress.Commands.add("loginWithUI", () =>
+Cypress.Commands.add("loginWithUI", (username, password) =>
   //username, password
   {
     /**
@@ -37,14 +34,18 @@ Cypress.Commands.add("loginWithUI", () =>
 
     cy.visit("/");
 
-    cy.get("#username")
-      .type(testuserData.username)
-      .get("#password")
-      .type(testuserData.password)
-      .get("#submitButton")
-      .click();
+    if (!username && !password) {
+      cy.get("#username").type(testuserData.username);
+      cy.get("#password").type(testuserData.password);
+    } else {
+      // Add username or password to input only if present
+      // to accomodate for tests that require adding one
+      // and leaving the other empty.
+      username && cy.get("#username").type(username);
+      password && cy.get("#password").type(password);
+    }
 
-    cy.get(".homepage").should("be.visible");
+    cy.get("#submitButton").click();
   }
 );
 
