@@ -9,9 +9,7 @@ describe("Login", () => {
   });
 
   it("should login with valid username and password", () => {
-    cy.get("[data-test=username]").type(testuserData.username);
-    cy.get("[data-test=password]").type(testuserData.password);
-    cy.get("[data-test=submit-button]").click();
+    cy.loginWithUI()
 
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("be.visible");
@@ -19,9 +17,7 @@ describe("Login", () => {
   });
 
   it("should NOT login with valid username and invalid password", () => {
-    cy.get("[data-test=username]").type(testuserData.username);
-    cy.get("[data-test=password]").type("fakepassword");
-    cy.get("[data-test=submit-button]").click();
+    cy.loginWithUI(testuserData.username, "fakepassword")
 
     cy.get("[data-test=login-container]").should("be.visible");
     cy.get("[data-test=nav-list]").should("not.exist");
@@ -50,8 +46,7 @@ describe("Login", () => {
   });
 
   it("should show error message when leaving username empty", () => {
-    cy.get("[data-test=password]").type(testuserData.password);
-    cy.get("[data-test=submit-button]").click();
+    cy.loginWithUI("", testuserData.password)
 
     cy.get("[data-test=username-error]")
       .should("be.visible")
@@ -59,8 +54,7 @@ describe("Login", () => {
   });
 
   it("should show error message when leaving password empty", () => {
-    cy.get("[data-test=username]").type(testuserData.password);
-    cy.get("[data-test=submit-button]").click();
+    cy.loginWithUI(testuserData.username, "")
 
     cy.get("[data-test=password-error]")
       .should("be.visible")
@@ -68,9 +62,7 @@ describe("Login", () => {
   });
 
   it("should show error message when using valid username and invalid password", () => {
-    cy.get("[data-test=username]").type(testuserData.password);
-    cy.get("[data-test=password]").type("fakepassword");
-    cy.get("[data-test=submit-button]").click();
+    cy.loginWithUI(testuserData.username, "fakepassword")
 
     cy.get("[data-test=username-error]")
       .should("be.visible")
