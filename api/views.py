@@ -210,7 +210,9 @@ class CommentList(APIView):
             "user": request.user.pk,
             "resource": request.data["resource"],
             "text": request.data["text"],
+            "date_created": request.data["date"]
         }
+
         serializer = serializers.CommentSerializer(data=comment_data)
         if serializer.is_valid():
             serializer.save()
