@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+
 import Post from "./Post";
 import classes from "../css/PostList.module.css";
 
@@ -18,7 +21,11 @@ const PostList = (props) => {
           />
         ))
       ) : (
-        <h2>No resoure data...</h2>
+        <FontAwesomeIcon
+          icon={faSpinner}
+          className={classes.spinner}
+          data-test="spinner"
+        />
       )}
     </div>
   );
