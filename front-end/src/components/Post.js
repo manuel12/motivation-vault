@@ -13,19 +13,22 @@ const Post = (props) => {
             src={props.imageURL}
             className={classes["post-image"]}
             alt=""
-            data-test="image"
+            data-test="post-image"
           ></img>
         </div>
         <div className={classes["text-container"]} data-test="text-container">
-          <h3>{props.title}</h3>
+          <h3 data-test="post-title">{props.title}</h3>
           <div className={classes["author-text-container"]}>
-            by <h5 className={classes["author-name"]}>{props.author}</h5>
+            by{" "}
+            <h5 className={classes["author-name"]} data-test="post-author">
+              {props.author}
+            </h5>
           </div>
           <RatingSection
             avgRating={props.avgRating}
             numRatings={props.numRatings}
           />
-          <p className={classes["description-container"]}>
+          <p className={classes["description-container"]} data-test="post-description">
             {props.description && props.description.length > 300
               ? `${props.description.substring(0, 300)}...`
               : props.description}
@@ -34,6 +37,6 @@ const Post = (props) => {
       </a>
     </div>
   );
-}
+};
 
 export default Post;
