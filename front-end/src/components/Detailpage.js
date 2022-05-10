@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { getEmbedYoutubeUrl } from "../utils";
 import { useParams } from "react-router-dom";
 import { API } from "../api-service";
@@ -7,12 +9,13 @@ import CommentSection from "./CommentSection";
 import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
 import NotFound from "./NotFound";
+
 import classes from "../css/Detailpage.module.css";
 
 const DetailPage = () => {
   const { id } = useParams();
   const { token } = useToken();
-  const [resource, setResource] = useState([]);
+  const [resource, setResource] = useState(false);
 
   useEffect(() => {
     API.fetchResource(id, token, setResource);
@@ -22,7 +25,7 @@ const DetailPage = () => {
     return <NotFound />;
   }
 
-  return (
+  return resource ? (
     <div
       className={classes["detail-page-container"]}
       data-test="detail-page-container"
@@ -71,6 +74,12 @@ const DetailPage = () => {
       <ValueSection resource={resource} />
       <CommentSection resourceId={id} comments={resource.get_comments} />
     </div>
+  ) : (
+    <FontAwesomeIcon
+      icon={faSpinner}
+      className={classes.spinner}
+      data-test="spinner"
+    />
   );
 };
 
