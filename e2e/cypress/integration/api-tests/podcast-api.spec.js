@@ -3,7 +3,7 @@
 const resourceData = require("../../fixtures/resource-api-data.json");
 const testuserData = require("../../fixtures/testuser.json");
 
-describe("Podacst API 'GET' request", () => {
+describe("Podcast API 'GET' request", () => {
   before(() => {
     cy.deleteTestData();
     cy.createResourceWithAPI("podcast", resourceData);
@@ -62,7 +62,7 @@ describe("Podacst API 'GET' request", () => {
   });
 });
 
-describe("Podacst API 'POST' request", () => {
+describe("Podcast API 'POST' request", () => {
   it("should have status code 201", () => {
     cy.request({
       method: "POST",
@@ -74,6 +74,28 @@ describe("Podacst API 'POST' request", () => {
       body: JSON.stringify(resourceData),
     }).then((response) => {
       expect(response.status).to.eq(201);
+    });
+  });
+
+  it("should add 1 to the podcast resource count", () => {
+    let podcastResourceCount;
+
+    cy.request("http://localhost:8000/api/podcasts/").then((response) => {
+      podcastResourceCount = response.body.length;
+    });
+
+    cy.request({
+      method: "POST",
+      url: "http://localhost:8000/api/podcasts/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${testuserData.token}`,
+      },
+      body: JSON.stringify(resourceData),
+    });
+
+    cy.request("http://localhost:8000/api/podcasts/").then((response) => {
+      expect(response.body.length).to.eq(podcastResourceCount + 1);
     });
   });
 
@@ -122,5 +144,9 @@ describe("Podacst API 'POST' request", () => {
       expect(podcast).to.have.property("avg_rating", 0);
       expect(podcast).to.have.property("num_ratings", 0);
     });
+  });
+
+  afterEach(() => {
+    cy.deleteTestData();
   });
 });
