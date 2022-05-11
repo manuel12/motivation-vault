@@ -38,24 +38,6 @@ describe("Register", () => {
     cy.get("[data-test=homepage]").should("not.exist");
   });
 
-  it("should show error message when leaving username empty", () => {
-    cy.get("[data-test=password]").type(testuserData.password);
-    cy.get("[data-test=submit-button]").click();
-
-    cy.get("[data-test=username-error]")
-      .should("be.visible")
-      .and("contain.text", "You need to provide a username.");
-  });
-
-  it("should show error message when leaving password empty", () => {
-    cy.get("[data-test=username]").type(testuserData.username);
-    cy.get("[data-test=submit-button]").click();
-
-    cy.get("[data-test=password-error]")
-      .should("be.visible")
-      .and("contain.text", "You need to provide a password.");
-  });
-
   afterEach(() => {
     cy.deleteTestData();
   });
