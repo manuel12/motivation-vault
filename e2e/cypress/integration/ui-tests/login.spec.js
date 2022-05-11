@@ -32,10 +32,6 @@ describe("Login", () => {
     cy.get("[data-test=homepage]").should("not.exist");
   });
 
-  it("should have focus on username input", () => {
-    cy.focused().should("have.id", "username");
-  });
-
   it("should login when pressing ENTER from input field", () => {
     cy.get("[data-test=username]").type(testuserData.username);
     cy.get("[data-test=password]").type(`${testuserData.password}{enter}`);
@@ -45,31 +41,7 @@ describe("Login", () => {
     cy.get("[data-test=homepage]").should("be.visible");
   });
 
-  it("should show error message when leaving username empty", () => {
-    cy.loginWithUI("", testuserData.password)
-
-    cy.get("[data-test=username-error]")
-      .should("be.visible")
-      .and("contain.text", "You need to provide a username.");
-  });
-
-  it("should show error message when leaving password empty", () => {
-    cy.loginWithUI(testuserData.username, "")
-
-    cy.get("[data-test=password-error]")
-      .should("be.visible")
-      .and("contain.text", "You need to provide a password.");
-  });
-
-  it("should show error message when using valid username and invalid password", () => {
-    cy.loginWithUI(testuserData.username, "fakepassword")
-
-    cy.get("[data-test=username-error]")
-      .should("be.visible")
-      .and("contain.text", "Unable to log in with provided credentials.");
-
-    cy.get("[data-test=password-error]")
-      .should("be.visible")
-      .and("contain.text", "Unable to log in with provided credentials.");
+  it("should have focus on username input", () => {
+    cy.focused().should("have.id", "username");
   });
 });
