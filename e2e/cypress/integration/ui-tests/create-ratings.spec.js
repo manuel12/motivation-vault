@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { getResourceIdFromUrl }  from "../../support/utils";
+import { getResourceIdFromUrl } from "../../support/utils";
 
 const resourceData = require("../../fixtures/resource-api-data.json");
 const tokenData = require("../../fixtures/tokens.json");
@@ -12,8 +12,6 @@ let pages = [
   "podcast-episodes",
   "motivational-speeches",
 ];
-
-
 
 const getResourceTypeFromPage = (page) => {
   const resourceTypes = {
@@ -46,14 +44,6 @@ describe("Create Ratings", () => {
     cy.contains("[Test Title]").click({ force: true });
   });
 
-  for (let page of pages) {
-    it(`should display ratings section on ${page} page`, () => {
-      cy.visit(`/${page == "home" ? "" : page}`);
-
-      cy.get("[data-test=ratings-container]").first().should("be.visible");
-    });
-  }
-
   it("should display ratings section on detail page", () => {
     cy.get("[data-test=ratings-container]").should("be.visible");
   });
@@ -75,7 +65,7 @@ describe("Create Ratings", () => {
   // the detailpages for the 4 resource types.
   pages.splice(0, 1);
 
-  for (let page of pages) {
+  for (const page of pages) {
     it(`should update rating on ${page} once it has been updated on detailpage`, () => {
       const numStarsFirstRating = 1;
       const numStarsUpdatedRating = 4;
