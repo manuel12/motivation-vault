@@ -10,11 +10,14 @@ describe("Create Comments", () => {
 
     cy.visit("/");
     cy.contains("[Test Title]").click({ force: true });
+
+    const now = new Date(Date.UTC(2022, 1, 1)).getTime();
+    cy.clock(now);
   });
 
   it("should create a comment", () => {
     cy.createCommentWithUI("[Test comment]");
-
+    
     cy.get("[data-test=comment-container]")
       .first()
       .should("contain.text", "[Test comment]");
@@ -36,7 +39,7 @@ describe("Create Comments", () => {
   });
 
   it("should create 5 comments", () => {
-    for (let comment of commentsData) {
+    for (const comment of commentsData) {
       cy.createCommentWithUI(comment.text);
     }
 
@@ -46,7 +49,7 @@ describe("Create Comments", () => {
   });
 
   it("should have comments persist after page reload", () => {
-    for (let comment of commentsData) {
+    for (const comment of commentsData) {
       cy.createCommentWithUI(comment.text);
     }
 
