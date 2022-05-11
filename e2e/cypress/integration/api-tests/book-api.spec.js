@@ -76,6 +76,28 @@ describe("Book API 'POST' request", () => {
     });
   });
 
+  it("should add 1 to the book resource count", () => {
+    let bookResourceCount;
+
+    cy.request("http://localhost:8000/api/books/").then((response) => {
+      bookResourceCount = response.body.length;
+    });
+
+    cy.request({
+      method: "POST",
+      url: "http://localhost:8000/api/books/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${testuserData.token}`,
+      },
+      body: JSON.stringify(resourceData),
+    });
+
+    cy.request("http://localhost:8000/api/books/").then((response) => {
+      expect(response.body.length).to.eq(bookResourceCount + 1);
+    });
+  });
+
   it("should return JSON", () => {
     cy.request({
       method: "POST",
@@ -110,9 +132,16 @@ describe("Book API 'POST' request", () => {
       expect(book).to.have.property("description");
       expect(book).to.have.property("imageURL");
       expect(book).to.have.property("subtitle", resourceData.subtitle);
-      expect(book).to.have.property("isbn", Number(resourceData.isbn).toString());
+      expect(book).to.have.property(
+        "isbn",
+        Number(resourceData.isbn).toString()
+      );
       expect(book).to.have.property("avg_rating", 0);
       expect(book).to.have.property("num_ratings", 0);
     });
+  });
+
+  afterEach(() => {
+    cy.deleteTestData();
   });
 });
