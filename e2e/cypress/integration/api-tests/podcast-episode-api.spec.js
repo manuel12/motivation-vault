@@ -77,6 +77,34 @@ describe("Podcast Episode API 'POST' request", () => {
     });
   });
 
+  it("should add 1 to the podcast resource count", () => {
+    let podcastEpisodesResourceCount;
+
+    cy.request("http://localhost:8000/api/podcast-episodes/").then(
+      (response) => {
+        cy.log(response.body.length);
+        podcastEpisodesResourceCount = response.body.length;
+      }
+    );
+
+    cy.request({
+      method: "POST",
+      url: "http://localhost:8000/api/podcast-episodes/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${testuserData.token}`,
+      },
+      body: JSON.stringify(resourceData),
+    });
+
+    cy.request("http://localhost:8000/api/podcast-episodes/").then(
+      (response) => {
+        cy.log(response.body.length);
+        expect(response.body.length).to.eq(podcastEpisodesResourceCount + 1);
+      }
+    );
+  });
+
   it("should return JSON", () => {
     cy.request({
       method: "POST",
@@ -125,5 +153,9 @@ describe("Podcast Episode API 'POST' request", () => {
       expect(podcastEpisode).to.have.property("avg_rating", 0);
       expect(podcastEpisode).to.have.property("num_ratings", 0);
     });
+  });
+
+  afterEach(() => {
+    cy.deleteTestData();
   });
 });
