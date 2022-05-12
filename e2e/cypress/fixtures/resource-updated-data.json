@@ -1,0 +1,28 @@
+{
+  "title": "[Updated Test Title]",
+  "author": "[Updated Test Author]",
+
+  "subtitle": "[Updated Test Subtitle]",
+  "isbn": 1234567891011,
+
+  "podcast": "Impact Theory",
+  "websiteUrl": "http://wwww.google.com/updated-url/",
+  "spotifyUrl": "http://open.spotify.com/updated-url/",
+  "spotifyEpUrl": "http://open.spotify.com/watch/podcast-episode/updated-url/",
+  "youtubeUrl": "https://www.youtube.com/updated-url/",
+  "youtubeEpUrl": "https://www.youtube.com/watch/podcast-episode/updated-url/",
+
+  "description": "UPDATED LOREM - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "imageUrl": "https://bin.snmmd.nl/m/78x73ij2tm1d_1200x600.jpg/blog_podcastboeken.jpg",
+  
+  "valueOne": "[Updated Test value one]",
+  "valueTwo": "[Updated Test value two]",
+  "valueThree": "[Updated Test value three]",
+
+  "invalidData": {
+    "subtitle": "",
+    "isbn": "abcdefghijklmnp",
+    "website_url": "gooole.com",
+    "youtube_url": "youtube.com"
+  }
+}
