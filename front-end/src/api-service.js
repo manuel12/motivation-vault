@@ -74,10 +74,13 @@ export class API {
   }
 
   static fetchResource(id, token, setResourceFunc) {
-    _fetch(`http://127.0.0.1:8000/api/${id}/`, token)
+    return _fetch(`http://127.0.0.1:8000/api/${id}/`, token)
       .then((resp) => resp.json())
       .then((resp) => API._clearInvalidToken(resp))
-      .then((resp) => setResourceFunc(resp))
+      .then((resp) => {
+        setResourceFunc(resp)
+        return resp
+      })
       .catch((error) => console.error(error));
   }
 
