@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faSpinner } from "@fortawesome/free-solid-svg-icons";
+
 import { getEmbedYoutubeUrl } from "../utils";
 import { useParams } from "react-router-dom";
 import { API } from "../api-service";
@@ -25,15 +26,28 @@ const DetailPage = () => {
     return <NotFound />;
   }
 
+  const editButtonClickedHandler = () => {
+    window.location.href = `/update/${id}/`
+  }
+
   return resource ? (
     <div
       className={classes["detail-page-container"]}
       data-test="detail-page-container"
     >
       <div className={classes["post-section-container"]}>
-        <h1 className={classes["heading"]} data-test="heading">
-          {resource.title}
-        </h1>
+        <div className="heading-container">
+          <h1 className={classes["heading"]} data-test="heading">
+            {resource.title}
+          </h1>
+          <FontAwesomeIcon
+            icon={faEdit}
+            className={classes["edit-button"]}
+            data-test="edit-button"
+            onClick={editButtonClickedHandler}
+          />
+        </div>
+
         <div className={classes["author-container"]}>
           By <strong>{resource.author}</strong>
         </div>
