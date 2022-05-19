@@ -3,18 +3,19 @@ import { useParams } from "react-router-dom";
 import { Validator } from "../utils";
 import { API } from "../api-service";
 import LabeledInput from "./LabeledInput";
-import AddBookResourceForm from "./AddBookResourceForm";
-import AddPodcastResourceForm from "./AddPodcastResourceForm";
-import AddPodcastEpisodeResourceForm from "./AddPodcastEpisodeResourceForm";
-import AddMotivationalSpeechResourceForm from "./AddMotivationalSpeechResourceForm";
+import BookResourceFormFields from "./BookResourceFormFields";
+import PodcastResourceFormFields from "./PodcastResourceFormFields";
+import PodcastEpisodeResourceFormFields from "./PodcastEpisodeResourceFormFields";
+import MotivationalSpeechResourceFormFields from "./MotivationalSpeechResourceFormFields";
 import useToken from "./useToken";
 
-const UpdateResourceForm = (props) => {
-  const resourceType = "book";
-  const { id } = useParams();
-  const [resource, setResource] = useState(false);
+import classes from "../css/UpdateResourceForm.module.css";
 
+const UpdateResourceForm = (props) => {
+  const { id, resourceType } = useParams();
   const { token } = useToken();
+
+  const [resource, setResource] = useState(false);
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -63,6 +64,8 @@ const UpdateResourceForm = (props) => {
   // => Motivational Speech error fields
   const [youtubeUrlError, setYoutubeUrlError] = useState("");
 
+  const [submitEnabled, setSubmitEnabled] = useState(false);
+
   const validator = new Validator(true);
 
   const validate = () => {
@@ -91,6 +94,10 @@ const UpdateResourceForm = (props) => {
     }
 
     return validator.validate();
+  };
+
+  const resourceDataUpdatedHandler = () => {
+    setSubmitEnabled(true);
   };
 
   const submitHandler = (e) => {
@@ -127,27 +134,39 @@ const UpdateResourceForm = (props) => {
       if (resourceType === "motivational-speech") {
         newResource["youtube_url"] = youtubeUrl;
       }
-      API.createResource(resourceType, token, newResource);
+      API.updateResource(resourceType, id, token, newResource);
     }
   };
 
-
   useEffect(() => {
-    API.fetchResource(id, token, setResource).then((resp) => {
-      setTitle(resp.title)
-      setAuthor(resp.author)
-      setDescription(resp.description)
-      setImageUrl(resp.imageURL)
+    API.fetchResourceOfType(resourceType, id, token, setResource).then(
+      (resp) => {
+        console.log(resp);
 
-      setSubtitle(resp.subtitle)
-      setISBN(resp.isbn)
+        setTitle(resp.title);
+        setAuthor(resp.author);
+        setDescription(resp.description);
+        setImageUrl(resp.imageURL);
 
-      setValueOne(resp.value_one)
-      setValueTwo(resp.value_two)
-      setValueThree(resp.value_three)
-    });
+        setSubtitle(resp.subtitle);
+        setISBN(resp.isbn);
+
+        setWebsiteUrl(resp.website_url);
+        setYoutubePageUrl(resp.youtube_page_url);
+        setSpotifyPageUrl(resp.spotify_page_url);
+
+        setPodcast(resp.from_podcast);
+        setYoutubeEpisodeUrl(resp.youtube_episode_url);
+        setSpotifyEpisodeUrl(resp.spotify_episode_url);
+
+        setYoutubeUrl(resp.youtube_url);
+
+        setValueOne(resp.value_one);
+        setValueTwo(resp.value_two);
+        setValueThree(resp.value_three);
+      }
+    );
   }, [id]);
-  
 
   return (
     <form className="add-resource-form" onSubmit={submitHandler}>
@@ -159,6 +178,7 @@ const UpdateResourceForm = (props) => {
         value={title}
         onChange={(e) => {
           setTitle(e.target.value);
+          resourceDataUpdatedHandler({ title: e.target.value });
         }}
         dataAttr="title-input"
       />
@@ -169,6 +189,7 @@ const UpdateResourceForm = (props) => {
         value={author}
         onChange={(e) => {
           setAuthor(e.target.value);
+          resourceDataUpdatedHandler();
         }}
         dataAttr="author-input"
       />
@@ -182,6 +203,7 @@ const UpdateResourceForm = (props) => {
         value={description}
         onChange={(e) => {
           setDescription(e.target.value);
+          resourceDataUpdatedHandler();
         }}
         data-test="description-input"
       ></textarea>
@@ -193,23 +215,25 @@ const UpdateResourceForm = (props) => {
         value={imageUrl}
         onChange={(e) => {
           setImageUrl(e.target.value);
+          resourceDataUpdatedHandler();
         }}
         dataAttr="image-url-input"
       />
 
       {resourceType === "book" && (
-        <AddBookResourceForm
+        <BookResourceFormFields
           isbn={isbn}
           setISBN={setISBN}
           isbnError={isbnError}
           subtitle={subtitle}
           setSubtitle={setSubtitle}
           subtitleError={subtitleError}
+          resourceDataUpdatedHandler={resourceDataUpdatedHandler}
         />
       )}
 
       {resourceType === "podcast" && (
-        <AddPodcastResourceForm
+        <PodcastResourceFormFields
           websiteUrl={websiteUrl}
           setWebsiteUrl={setWebsiteUrl}
           websiteUrlError={websiteUrlError}
@@ -219,11 +243,12 @@ const UpdateResourceForm = (props) => {
           youtubePageUrl={youtubePageUrl}
           setYoutubePageUrl={setYoutubePageUrl}
           youtubePageUrlError={youtubePageUrlError}
+          resourceDataUpdatedHandler={resourceDataUpdatedHandler}
         />
       )}
 
       {resourceType === "podcast-episode" && (
-        <AddPodcastEpisodeResourceForm
+        <PodcastEpisodeResourceFormFields
           podcast={podcast}
           setPodcast={setPodcast}
           podcastError={podcastError}
@@ -233,14 +258,16 @@ const UpdateResourceForm = (props) => {
           spotifyEpisodeUrl={spotifyEpisodeUrl}
           setSpotifyEpisodeUrl={setSpotifyEpisodeUrl}
           spotifyEpisodeUrlError={spotifyEpisodeUrlError}
+          resourceDataUpdatedHandler={resourceDataUpdatedHandler}
         />
       )}
 
       {resourceType === "motivational-speech" && (
-        <AddMotivationalSpeechResourceForm
+        <MotivationalSpeechResourceFormFields
           youtubeUrl={youtubeUrl}
           setYoutubeUrl={setYoutubeUrl}
           youtubeUrlError={youtubeUrlError}
+          resourceDataUpdatedHandler={resourceDataUpdatedHandler}
         />
       )}
 
@@ -250,6 +277,7 @@ const UpdateResourceForm = (props) => {
         value={valueOne}
         onChange={(e) => {
           setValueOne(e.target.value);
+          resourceDataUpdatedHandler();
         }}
         dataAttr="value-one-input"
       />
@@ -259,6 +287,7 @@ const UpdateResourceForm = (props) => {
         value={valueTwo}
         onChange={(e) => {
           setValueTwo(e.target.value);
+          resourceDataUpdatedHandler();
         }}
         dataAttr="value-two-input"
       />
@@ -268,10 +297,19 @@ const UpdateResourceForm = (props) => {
         value={valueThree}
         onChange={(e) => {
           setValueThree(e.target.value);
+          resourceDataUpdatedHandler();
         }}
         dataAttr="value-three-input"
       />
-      <button id="submit" type="submit" data-test="submit" disabled={true}>
+      <button
+        className={
+          classes[`submit-button-${submitEnabled ? "enabled" : "disabled"}`]
+        }
+        id="submit"
+        type="submit"
+        data-test="submit"
+        disabled={!submitEnabled}
+      >
         Update Resource
       </button>
     </form>
