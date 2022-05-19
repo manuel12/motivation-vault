@@ -172,7 +172,7 @@ describe("Book API 'PUT' request", () => {
     });
   });
 
-  it.only("should have status code 204", () => {
+  it("should have status code 204", () => {
     cy.request({
       method: "PUT",
       url: `http://localhost:8000/api/books/${ctx.id}/`,
