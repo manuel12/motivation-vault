@@ -19,6 +19,17 @@ const _send = (url, token, data) => {
   });
 };
 
+const _update = (url, token, data) => {
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+};
+
 export class API {
   static loginUser(body) {
     return fetch(`http://127.0.0.1:8000/auth/`, {
@@ -78,8 +89,25 @@ export class API {
       .then((resp) => resp.json())
       .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => {
-        setResourceFunc(resp)
-        return resp
+        setResourceFunc(resp);
+        return resp;
+      })
+      .catch((error) => console.error(error));
+  }
+
+  static fetchResourceOfType(resourceType, id, token, setResourceFunc) {
+    if (resourceType === "motivational-speech") {
+      resourceType = `${resourceType}es`;
+    } else {
+      resourceType = `${resourceType}s`;
+    }
+
+    return _fetch(`http://127.0.0.1:8000/api/${resourceType}/${id}/`, token)
+      .then((resp) => resp.json())
+      .then((resp) => API._clearInvalidToken(resp))
+      .then((resp) => {
+        setResourceFunc(resp);
+        return resp;
       })
       .catch((error) => console.error(error));
   }
@@ -96,6 +124,23 @@ export class API {
       .then((resp) => resp.json())
       .then((resp) => {
         window.location.href = "/";
+      })
+      .catch((error) => console.error(error));
+  }
+
+  static updateResource(resourceType, id, token, resourceData) {
+    if (resourceType === "motivational-speech") {
+      resourceType = `${resourceType}es`;
+    } else {
+      resourceType = `${resourceType}s`;
+    }
+
+    let url = `http://127.0.0.1:8000/api/${resourceType}/${id}/`;
+
+    _update(url, token, resourceData)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        window.location.href = `http://localhost:3000/${id}/`;
       })
       .catch((error) => console.error(error));
   }
