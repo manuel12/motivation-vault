@@ -1,0 +1,7 @@
+.submit-button-enabled {
+  background-color: auto;
+}
+
+.submit-button-disabled {
+  background-color: grey;
+}
