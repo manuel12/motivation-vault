@@ -10,7 +10,7 @@ describe("Sandbox experiments", () => {
     cy.get("[data-test=post-container]")
     .first()
     .within(() => {
-      cy.get("[data-test=image]")
+      cy.get("[data-test=post-image]")
         .should("be.visible").and(($img) => {
           console.log($img[0].naturalWidth)
         })
