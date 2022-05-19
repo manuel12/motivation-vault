@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Validator } from "../utils";
 import { API } from "../api-service";
 import LabeledInput from "./LabeledInput";
-import AddBookResourceForm from "./AddBookResourceForm";
-import AddPodcastResourceForm from "./AddPodcastResourceForm";
-import AddPodcastEpisodeResourceForm from "./AddPodcastEpisodeResourceForm";
-import AddMotivationalSpeechResourceForm from "./AddMotivationalSpeechResourceForm";
+import BookResourceFormFields from "./BookResourceFormFields";
+import PodcastResourceFormFields from "./PodcastResourceFormFields";
+import PodcastEpisodeResourceFormFields from "./PodcastEpisodeResourceFormFields";
+import MotivationalSpeechResourceFormFields from "./MotivationalSpeechResourceFormFields";
 import useToken from "./useToken";
 
 const AddResourceForm = (props) => {
@@ -175,7 +175,7 @@ const AddResourceForm = (props) => {
       />
 
       {props.resourceType === "book" && (
-        <AddBookResourceForm
+        <BookResourceFormFields
           isbn={isbn}
           setISBN={setISBN}
           isbnError={isbnError}
@@ -186,7 +186,7 @@ const AddResourceForm = (props) => {
       )}
 
       {props.resourceType === "podcast" && (
-        <AddPodcastResourceForm
+        <PodcastResourceFormFields
           websiteUrl={websiteUrl}
           setWebsiteUrl={setWebsiteUrl}
           websiteUrlError={websiteUrlError}
@@ -200,7 +200,7 @@ const AddResourceForm = (props) => {
       )}
 
       {props.resourceType === "podcast-episode" && (
-        <AddPodcastEpisodeResourceForm
+        <PodcastEpisodeResourceFormFields
           podcast={podcast}
           setPodcast={setPodcast}
           podcastError={podcastError}
@@ -214,7 +214,7 @@ const AddResourceForm = (props) => {
       )}
 
       {props.resourceType === "motivational-speech" && (
-        <AddMotivationalSpeechResourceForm
+        <MotivationalSpeechResourceFormFields
           youtubeUrl={youtubeUrl}
           setYoutubeUrl={setYoutubeUrl}
           youtubeUrlError={youtubeUrlError}
