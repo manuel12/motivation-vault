@@ -69,6 +69,35 @@ class Resource(models.Model):
 
         return None
 
+    def get_resource_type(self):
+        resource_type = ""
+
+        try:
+            if Book.objects.get(title=self.title):
+                resource_type = "book"
+        except Book.DoesNotExist:
+            pass
+
+        try:
+            if Podcast.objects.get(title=self.title):
+                resource_type = "podcast"
+        except Podcast.DoesNotExist:
+            pass
+
+        try:
+            if PodcastEpisode.objects.get(title=self.title):
+                resource_type = "podcast-episode"
+        except PodcastEpisode.DoesNotExist:
+            pass
+
+        try:
+            if MotivationalSpeech.objects.get(title=self.title):
+                resource_type = "motivational-speech"
+        except MotivationalSpeech.DoesNotExist:
+            pass
+
+        return resource_type
+
     class Meta:
         ordering = ["-id"]
 
