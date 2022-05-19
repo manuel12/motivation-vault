@@ -1,6 +1,3 @@
-from api import serializers
-from rest_framework.response import Response
-
 from django.contrib.auth.models import User
 from resources import models
 from rest_framework import status, viewsets
@@ -10,7 +7,9 @@ from rest_framework.authtoken.views import APIView, ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import (AllowAny, IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
+from rest_framework.response import Response
 
+from api import serializers
 
 # Create your views here.
 
@@ -92,7 +91,7 @@ class ResourceList(ResourceView):
 
 class ResourceDetail(ResourceView):
     """
-    Retrieve a resource instance.
+    Retrieve or update a resource instance.
     """
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
@@ -111,6 +110,18 @@ class ResourceDetail(ResourceView):
             serializer = serializer_class(resource)
             return Response(serializer.data)
         return Response({"error": "Not found"})
+
+    def put(self, request, pk):
+        resource = self.get_object(pk)
+        if resource:
+            serializer_class = self.get_serializer_class()
+            serializer = serializer_class(resource, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data,
+                                status=status.HTTP_200_OK)
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class BookList(ResourceList):
