@@ -20,7 +20,7 @@ import NotFound from "./components/NotFound";
 import useToken from "./components/useToken";
 import classes from "./css/App.module.css";
 
-const  App = () => {
+const App = () => {
   const { token, setToken, deleteToken } = useToken();
 
   if (!token) {
@@ -36,7 +36,7 @@ const  App = () => {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/add/" component={AddPage} />
-            <Route exact path="/update/:id/" component={UpdateResourceForm} />
+            <Route exact path="/update/:resourceType/:id/" component={UpdateResourceForm} />
             <Route exact path="/books/" component={BookPage} />
             <Route exact path="/books/:id/" component={DetailPage} />
             <Route exact path="/podcasts/" component={PodcastPage} />
@@ -64,6 +64,6 @@ const  App = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;
