@@ -18,6 +18,8 @@ const DetailPage = () => {
   const { token } = useToken();
   const [resource, setResource] = useState(false);
 
+  console.log(resource.get_resource_type)
+
   useEffect(() => {
     API.fetchResource(id, token, setResource);
   }, [id]);
@@ -27,8 +29,9 @@ const DetailPage = () => {
   }
 
   const editButtonClickedHandler = () => {
-    window.location.href = `/update/${id}/`
-  }
+    let resourceType = resource.get_resource_type;
+    window.location.href = `/update/${resourceType}/${id}/`;
+  };
 
   return resource ? (
     <div
@@ -36,17 +39,15 @@ const DetailPage = () => {
       data-test="detail-page-container"
     >
       <div className={classes["post-section-container"]}>
-        <div className="heading-container">
-          <h1 className={classes["heading"]} data-test="heading">
-            {resource.title}
-          </h1>
-          <FontAwesomeIcon
-            icon={faEdit}
-            className={classes["edit-button"]}
-            data-test="edit-button"
-            onClick={editButtonClickedHandler}
-          />
-        </div>
+        <FontAwesomeIcon
+          icon={faEdit}
+          className={classes["edit-button"]}
+          data-test="edit-button"
+          onClick={editButtonClickedHandler}
+        />
+        <h1 className={classes["heading"]} data-test="heading">
+          {resource.title}
+        </h1>
 
         <div className={classes["author-container"]}>
           By <strong>{resource.author}</strong>
