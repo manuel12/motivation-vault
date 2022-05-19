@@ -65,7 +65,7 @@ describe("Update Book Resources", () => {
       title: newResourceData.title,
       subtitle: newResourceData.subtitle,
       description: newResourceData.description,
-      isbn: newResourceDat.isbn,
+      isbn: newResourceData.isbn,
     });
 
     cy.get("[data-test=submit]").should("be.enabled").click();
@@ -82,7 +82,7 @@ describe("Update Book Resources", () => {
   });
 
   it("should NOT display edit button when logged in as regular user", () => {
-    cy.logout();
+    cy.logoutWithUI();
 
     // TODO: login with admin user.
     cy.loginAndCleanUp();
