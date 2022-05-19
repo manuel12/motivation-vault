@@ -3,10 +3,6 @@
   margin-right: 15%;
 }
 
-.heading-container {
-  display: flex;
-}
-
 .heading {
   display: inline-block;
   font-size: 3rem;
@@ -34,7 +30,6 @@ iframe {
   height: 450px;
   border: none;
   border-radius: 3px;
-  
 }
 
 .paragraph-container {
