@@ -10,8 +10,8 @@ const MotivationalSpeechResourceFormFields = (props) => {
         itemType="text"
         value={props.youtubeUrl}
         onChange={(e) => {
-          props.resourceDataUpdatedHandler();
           props.setYoutubeUrl(e.target.value);
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="youtube-url-input"
       />
