@@ -8,6 +8,7 @@ addMatchImageSnapshotCommand({
   failureThresholdType: "pixel",
 });
 
+
 Cypress.Commands.add("loginAdminWithUI", () => {
   /**
    * Login the admin user by interacting with the UI
@@ -214,8 +215,96 @@ Cypress.Commands.add("createResourceWithAPI", (resourceType, testData) => {
     body: JSON.stringify(testData),
   }).then((response) => {
     expect(response.status).to.eq(201);
+    console.log(JSON.stringify(testData));
   });
 });
+
+Cypress.Commands.add(
+  "updateResourceFieldsWithUI",
+  (resourceType, updateData) => {
+    /**
+     * Updates a resource by updating it's values on the
+     * update resource form.
+     */
+
+    updateData.title &&
+      cy.get("[data-test=title-input]").clear().type(updateData.title);
+
+    updateData.author &&
+      cy.get("[data-test=author-input]").clear().type(updateData.author);
+
+    switch (resourceType) {
+      case "book":
+        updateData.subtitle &&
+          cy
+            .get("[data-test=subtitle-input]")
+            .clear()
+            .type(updateData.subtitle);
+        updateData.isbn &&
+          cy.get("[data-test=isbn-input]").clear().type(updateData.isbn);
+        break;
+
+      case "podcast":
+        updateData.websiteUrl &&
+          cy
+            .get("[data-test=website-url-input]")
+            .clear()
+            .type(updateData.websiteUrl);
+        updateData.spotifyUrl &&
+          cy
+            .get("[data-test=spotify-page-url-input]")
+            .clear()
+            .type(updateData.spotifyUrl);
+        updateData.youtubeUrl &&
+          cy
+            .get("[data-test=youtube-page-url-input]")
+            .clear()
+            .type(updateData.youtubeUrl);
+        break;
+
+      case "podcast-episode":
+        updateData.podcast &&
+          cy.get("[data-test=select-podcast]").select(updateData.podcast);
+        updateData.spotifyUrl &&
+          cy
+            .get("[data-test=spotify-ep-url-input]")
+            .clear()
+            .type(updateData.spotifyUrl);
+        updateData.youtubeUrl &&
+          cy
+            .get("[data-test=youtube-ep-url-input]")
+            .clear()
+            .type(updateData.youtubeUrl);
+        break;
+
+      case "motivational-speech":
+        updateData.youtubeUrl &&
+          cy
+            .get("[data-test=youtube-url-input]")
+            .clear()
+            .type(updateData.youtubeUrl);
+        break;
+    }
+
+    updateData.description &&
+      cy
+        .get("[data-test=description-input]")
+        .clear()
+        .type(updateData.description);
+    updateData.imageUrl &&
+      cy.get("[data-test=image-url-input]").clear().type(updateData.imageUrl);
+
+    updateData.valueOne &&
+      cy.get("[data-test=value-one-input]").clear().type(updateData.valueOne);
+    updateData.valueTwo &&
+      cy.get("[data-test=value-two-input]").clear().type(updateData.valueTwo);
+    updateData.valueThree &&
+      cy
+        .get("[data-test=value-three-input]")
+        .clear()
+        .type(updateData.valueThree);
+  }
+);
 
 Cypress.Commands.add("createCommentWithUI", (text) => {
   /**
