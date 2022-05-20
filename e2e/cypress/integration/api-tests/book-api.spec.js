@@ -2,11 +2,11 @@
 
 const resourceData = require("../../fixtures/resource-api-data.json");
 // TODO: add newResourceData fixture.
-const newResourceData = null;
+const newResourceData = require("../../fixtures/resource-updated-data.json");;
 const testuserData = require("../../fixtures/testuser.json");
 
 // TODO: add admin user data fixture.
-const adminuserData = null;
+const adminuserData = require("../../fixtures/adminuser.json");;
 
 describe("Book API 'GET' request", () => {
   before(() => {
@@ -59,7 +59,7 @@ describe("Book API 'GET' request", () => {
       expect(firstBook).to.have.property("description");
       expect(firstBook).to.have.property("imageURL");
       expect(firstBook).to.have.property("subtitle", "[Test Subtitle]");
-      expect(firstBook).to.have.property("isbn", "1234567891011");
+      expect(firstBook).to.have.property("isbn", "9781544507873");
       expect(firstBook).to.have.property("avg_rating", 0);
       expect(firstBook).to.have.property("num_ratings", 0);
     });
@@ -172,7 +172,7 @@ describe("Book API 'PUT' request", () => {
     });
   });
 
-  it("should have status code 204", () => {
+  it("should have status code 200", () => {
     cy.request({
       method: "PUT",
       url: `http://localhost:8000/api/books/${ctx.id}/`,
@@ -182,7 +182,7 @@ describe("Book API 'PUT' request", () => {
       },
       body: JSON.stringify(newResourceData),
     }).then((response) => {
-      expect(response.status).to.eq(201);
+      expect(response.status).to.eq(200);
     });
   });
 
@@ -205,8 +205,8 @@ describe("Book API 'PUT' request", () => {
 
   it("should have updated fields with updated data", () => {
     cy.request({
-      method: "POST",
-      url: "http://localhost:8000/api/books/",
+      method: "PUT",
+      url: `http://localhost:8000/api/books/${ctx.id}/`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token  ${adminuserData.token}`,
@@ -227,5 +227,29 @@ describe("Book API 'PUT' request", () => {
       expect(book).to.have.property("avg_rating", 0);
       expect(book).to.have.property("num_ratings", 0);
     });
+  });
+
+  it("should not create a new resource when updating a resource", () => {
+    let bookResourceCount;
+
+    cy.request("http://localhost:8000/api/books/").then((response) => {
+      bookResourceCount = response.body.length;
+    });
+
+    cy.request({
+      method: "PUT",
+      url: `http://localhost:8000/api/books/${ctx.id}/`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token  ${adminuserData.token}`,
+      },
+      body: JSON.stringify(newResourceData),
+    });
+
+    cy.request("http://localhost:8000/api/books/").then((response) => {
+      expect(response.body.length).to.eq(bookResourceCount);
+    });
+
+
   });
 });
