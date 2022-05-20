@@ -4,7 +4,6 @@
 }
 
 .heading {
-  display: inline-block;
   font-size: 3rem;
 }
 
@@ -43,10 +42,27 @@ iframe {
   border: 10px black;
 }
 
+.crud-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 20%;
+  margin: 20px 40%;
+}
+
+
 .edit-button {
-  margin-top: 50px;
+  margin: 10px;
   float: right;
   color: orange;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.delete-button {
+  margin: 10px;
+  float: right;
+  color: red;
   font-size: 2rem;
   cursor: pointer;
 }
