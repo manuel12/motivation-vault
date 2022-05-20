@@ -1,3 +1,14 @@
+export const getResourceTypePlural = (resourceType) => {
+  /**
+   * Returns the plural form of any resource type.
+   * Used for url creation.
+   */
+
+  return resourceType === "motivational-speech"
+    ? `${resourceType}es`
+    : `${resourceType}s`;
+};
+
 export const getResourceValues = (props) => {
   /**
    * Returns a list with all present values
@@ -11,7 +22,7 @@ export const getResourceValues = (props) => {
   ];
 
   return values;
-}
+};
 
 export const getPopulatedValues = (values) => {
   /**
@@ -20,8 +31,8 @@ export const getPopulatedValues = (values) => {
 
   return values.filter((value) => {
     return value && value.length > 1;
-  })
-}
+  });
+};
 
 export const cleanLocPath = (locPath) => {
   /**
@@ -31,7 +42,7 @@ export const cleanLocPath = (locPath) => {
 
   if (locPath === "/") return "home";
   return locPath.replaceAll("/", "");
-}
+};
 
 export const getEmbedYoutubeUrl = (resource) => {
   /**
@@ -54,7 +65,7 @@ export const getEmbedYoutubeUrl = (resource) => {
     embedYoutubeUrl = fallback;
   }
   return embedYoutubeUrl;
-}
+};
 
 export const isValidISBN = (str) => {
   /**
@@ -98,7 +109,7 @@ export const isValidISBN = (str) => {
     }
     return check == str[str.length - 1].toUpperCase();
   }
-}
+};
 
 export const isValidUrl = (str) => {
   /**
@@ -110,7 +121,7 @@ export const isValidUrl = (str) => {
   } catch (error) {
     return false;
   }
-}
+};
 
 export class Validator {
   constructor() {
@@ -171,7 +182,6 @@ export class Validator {
       setImageUrlError("");
       return true;
     }
-
   }
 
   registerSubtitle(subtitle, setSubtitleError) {
