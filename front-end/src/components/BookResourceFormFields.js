@@ -11,7 +11,7 @@ const BookResourceFormFields = (props) => {
         value={props.subtitle}
         onChange={(e) => {
           props.setSubtitle(e.target.value);
-          props.resourceDataUpdatedHandler();
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="subtitle-input"
       />
@@ -23,7 +23,7 @@ const BookResourceFormFields = (props) => {
         value={props.isbn}
         onChange={(e) => {
           props.setISBN(e.target.value);
-          props.resourceDataUpdatedHandler();
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="isbn-input"
       />
