@@ -10,8 +10,8 @@ const PodcastResourceFormFields = (props) => {
         itemType="text"
         value={props.websiteUrl}
         onChange={(e) => {
-          props.resourceDataUpdatedHandler();
           props.setWebsiteUrl(e.target.value);
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="website-url-input"
       />
@@ -22,8 +22,8 @@ const PodcastResourceFormFields = (props) => {
         itemType="text"
         value={props.spotifyPageUrl}
         onChange={(e) => {
-          props.resourceDataUpdatedHandler();
           props.setSpotifyPageUrl(e.target.value);
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="spotify-page-url-input"
       />
@@ -34,8 +34,8 @@ const PodcastResourceFormFields = (props) => {
         itemType="text"
         value={props.youtubePageUrl}
         onChange={(e) => {
-          props.resourceDataUpdatedHandler();
           props.setYoutubePageUrl(e.target.value);
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="youtube-page-url-input"
       />
