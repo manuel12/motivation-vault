@@ -1,3 +1,5 @@
+import { getResourceTypePlural } from "./utils";
+
 const _fetch = (url, token) => {
   return fetch(url, {
     method: "GET",
@@ -27,6 +29,16 @@ const _update = (url, token, data) => {
       Authorization: `Token ${token}`,
     },
     body: JSON.stringify(data),
+  });
+};
+
+const _delete = (url, token) => {
+  return fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+    },
   });
 };
 
@@ -96,11 +108,7 @@ export class API {
   }
 
   static fetchResourceOfType(resourceType, id, token, setResourceFunc) {
-    if (resourceType === "motivational-speech") {
-      resourceType = `${resourceType}es`;
-    } else {
-      resourceType = `${resourceType}s`;
-    }
+    resourceType = getResourceTypePlural(resourceType);
 
     return _fetch(`http://127.0.0.1:8000/api/${resourceType}/${id}/`, token)
       .then((resp) => resp.json())
@@ -113,14 +121,9 @@ export class API {
   }
 
   static createResource(resourceType, token, resourceData) {
-    let url = "http://127.0.0.1:8000/api/";
+    resourceType = getResourceTypePlural(resourceType);
 
-    if (resourceType === "motivational-speech") {
-      url += `${resourceType}es/`;
-    } else {
-      url += `${resourceType}s/`;
-    }
-    _send(url, token, resourceData)
+    _send(`http://127.0.0.1:8000/api/${resourceType}/`, token, resourceData)
       .then((resp) => resp.json())
       .then((resp) => {
         window.location.href = "/";
@@ -129,18 +132,27 @@ export class API {
   }
 
   static updateResource(resourceType, id, token, resourceData) {
-    if (resourceType === "motivational-speech") {
-      resourceType = `${resourceType}es`;
-    } else {
-      resourceType = `${resourceType}s`;
-    }
+    resourceType = getResourceTypePlural(resourceType);
 
-    let url = `http://127.0.0.1:8000/api/${resourceType}/${id}/`;
-
-    _update(url, token, resourceData)
+    _update(
+      `http://127.0.0.1:8000/api/${resourceType}/${id}/`,
+      token,
+      resourceData
+    )
       .then((resp) => resp.json())
       .then((resp) => {
         window.location.href = `http://localhost:3000/${id}/`;
+      })
+      .catch((error) => console.error(error));
+  }
+
+  static deleteResource(resourceType, id, token) {
+    resourceType = getResourceTypePlural(resourceType);
+
+    _delete(`http://127.0.0.1:8000/api/${resourceType}/${id}/`, token)
+      .then((resp) => {
+        console.log(resp);
+        window.location.href = `http://localhost:3000/`;
       })
       .catch((error) => console.error(error));
   }
