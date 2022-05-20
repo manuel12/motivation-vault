@@ -12,8 +12,8 @@ const PodcastEpisodeResourceFormFields = (props) => {
         id="select-podcast"
         value={props.podcast}
         onChange={(e) => {
-          props.resourceDataUpdatedHandler();
           props.setPodcast(e.target.value);
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         data-test="select-podcast"
       >
@@ -29,8 +29,8 @@ const PodcastEpisodeResourceFormFields = (props) => {
         itemType="text"
         value={props.spotifyEpisodeUrl}
         onChange={(e) => {
-          props.resourceDataUpdatedHandler();
           props.setSpotifyEpisodeUrl(e.target.value);
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="spotify-ep-url-input"
       />
@@ -41,8 +41,8 @@ const PodcastEpisodeResourceFormFields = (props) => {
         itemType="text"
         value={props.youtubeEpisodeUrl}
         onChange={(e) => {
-          props.resourceDataUpdatedHandler();
           props.setYoutubeEpisodeUrl(e.target.value);
+          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
         }}
         dataAttr="youtube-ep-url-input"
       />
