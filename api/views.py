@@ -91,7 +91,7 @@ class ResourceList(ResourceView):
 
 class ResourceDetail(ResourceView):
     """
-    Retrieve or update a resource instance.
+    Retrieve, update or delete a resource instance.
     """
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
@@ -122,6 +122,12 @@ class ResourceDetail(ResourceView):
                                 status=status.HTTP_200_OK)
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        resource = self.get_object(pk)
+        if resource:
+            resource.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class BookList(ResourceList):
@@ -295,7 +301,7 @@ def delete_test_data(request):
     Delete all resources, comments and ratings created by tests.
     """
     test_resources = models.Resource.objects.filter(
-        title__startswith="[Test Title]")
+        title__contains="Test Title")
     test_resources.delete()
 
     test_users = models.User.objects.filter(username="newUser1")
