@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
 
 import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
+import { getResourceTypePlural } from "./utils";
+
 const testuserData = require("../fixtures/testuser.json");
 
 addMatchImageSnapshotCommand({
@@ -161,8 +163,8 @@ Cypress.Commands.add(
 
       case "podcast-episode":
         cy.get("[data-test=select-podcast]").select(testData.podcast);
-        cy.get("[data-test=spotify-ep-url-input]").type(testData.spotifyUrl);
-        cy.get("[data-test=youtube-ep-url-input]").type(testData.youtubeUrl);
+        cy.get("[data-test=spotify-ep-url-input]").type(testData.spotifyEpUrl);
+        cy.get("[data-test=youtube-ep-url-input]").type(testData.youtubeEpUrl);
         break;
 
       case "motivational-speech":
@@ -198,13 +200,7 @@ Cypress.Commands.add("createResourceWithAPI", (resourceType, testData) => {
    * authorization.
    */
 
-  const resourcePlurals = {
-    book: "books",
-    podcast: "podcasts",
-    "podcast-episode": "podcast-episodes",
-    "motivational-speech": "motivational-speeches",
-  };
-  const resourcePlural = resourcePlurals[resourceType];
+  const resourcePlural = getResourceTypePlural(resourceType);
   cy.request({
     url: `http://127.0.0.1:8000/api/${resourcePlural}/`,
     method: "POST",
@@ -265,16 +261,16 @@ Cypress.Commands.add(
       case "podcast-episode":
         updateData.podcast &&
           cy.get("[data-test=select-podcast]").select(updateData.podcast);
-        updateData.spotifyUrl &&
+        updateData.spotifyEpUrl &&
           cy
             .get("[data-test=spotify-ep-url-input]")
             .clear()
-            .type(updateData.spotifyUrl);
-        updateData.youtubeUrl &&
+            .type(updateData.spotifyEpUrl);
+        updateData.youtubeEpUrl &&
           cy
             .get("[data-test=youtube-ep-url-input]")
             .clear()
-            .type(updateData.youtubeUrl);
+            .type(updateData.youtubeEpUrl);
         break;
 
       case "motivational-speech":
