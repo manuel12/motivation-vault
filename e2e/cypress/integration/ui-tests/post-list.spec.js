@@ -6,6 +6,7 @@ describe("Post List", () => {
   });
 
   it("should display posts on post list element", () => {
+    // Wait for loading spinner to dissapear.
     cy.get("[data-test=spinner]")
       .should("not.exist").then(() => {
 
