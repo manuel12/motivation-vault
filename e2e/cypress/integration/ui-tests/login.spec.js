@@ -32,7 +32,7 @@ describe("Login", () => {
     cy.get("[data-test=homepage]").should("not.exist");
   });
 
-  it("should login when pressing ENTER from input field", () => {
+  it("should login when pressing ENTER when all form fields are filled", () => {
     cy.get("[data-test=username]").type(testuserData.username);
     cy.get("[data-test=password]").type(`${testuserData.password}{enter}`);
 
