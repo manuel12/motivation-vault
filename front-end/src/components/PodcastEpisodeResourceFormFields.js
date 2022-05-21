@@ -18,9 +18,10 @@ const PodcastEpisodeResourceFormFields = (props) => {
         data-test="select-podcast"
       >
         <option value="">Select podcast</option>
-        <option value="83">Impact Theory</option>
         <option value="81">School of Greatness</option>
         <option value="82">The Tim Ferris Show</option>
+        <option value="83">Impact Theory</option>
+        <option value="88">Empire Show</option>
       </select>
 
       <LabeledInput
