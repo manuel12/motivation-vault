@@ -2,7 +2,7 @@
 
 import { getResourceIdFromUrl } from "../../support/utils";
 
-const resourceData = require("../../fixtures/resource-api-data.json");
+const resourceAPIData = require("../../fixtures/resource-api-data.json");
 const tokenData = require("../../fixtures/tokens.json");
 
 let pages = [
@@ -38,10 +38,10 @@ const checkStars = (stars) => {
 describe("Create Ratings", () => {
   beforeEach(() => {
     cy.loginAndCleanUp();
-    cy.createResourceWithAPI("book", resourceData);
+    cy.createResourceWithAPI("book", resourceAPIData);
 
     cy.visit("/");
-    cy.contains("[Test Title]").click({ force: true });
+    cy.contains(resourceAPIData.title).click({ force: true });
   });
 
   it("should display ratings section on detail page", () => {
@@ -74,8 +74,8 @@ describe("Create Ratings", () => {
       cy.log(resourceType);
 
       // Change resource title, create resource and check on page section
-      resourceData.title = "[Test Title] - Ratings";
-      cy.createResourceWithAPI(resourceType, resourceData);
+      resourceAPIData.title = "[Test Title] - Ratings";
+      cy.createResourceWithAPI(resourceType, resourceAPIData);
       cy.visit(page);
 
       // Click on new resource, wait for heading to appear and
@@ -104,27 +104,21 @@ describe("Create Ratings", () => {
     });
   }
 
-  it("should display the text (0 ratings) in case of having more than 0 ratings", () => {
+  it("should display the text 'rating' or 'ratings' depending on how many ratings the resource has", () => {
+    // 0 ratings.
     cy.get("[data-test=num-ratings]").should("contain.text", "(0 ratings)");
-  });
 
-  it("should display the text (1 rating) in case of having only 1 rating", () => {
+    // 1 rating.
     cy.createRatingWithUI(5);
-
     cy.get("[data-test=num-ratings]").should("contain.text", "(1 rating)");
-  });
 
-  it("should display the text (2 ratings) in case of having 2 ratings", () => {
-    const testuser2Token = tokenData["testuser2"];
-    const testuser3Token = tokenData["testuser3"];
-
-    // Get resourceId and add 2 ratings from different user to said resourceId.
+    // Create 2nd ratings via API using a different testuser's token.
     cy.location().then((loc) => {
       const resourceId = getResourceIdFromUrl(loc);
-      cy.createRatingWithAPI(resourceId, 5, testuser2Token);
-      cy.createRatingWithAPI(resourceId, 5, testuser3Token);
+      cy.createRatingWithAPI(resourceId, 5, tokenData["testuser2"]);
     });
 
+    // 2 ratings.
     cy.reload();
     cy.get("[data-test=num-ratings]").should("contain.text", "(2 ratings)");
   });
