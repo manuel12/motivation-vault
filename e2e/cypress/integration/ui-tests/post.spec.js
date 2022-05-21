@@ -26,6 +26,7 @@ describe("Post", () => {
       it(`should display title, author, description, image and rating on post element`, () => {
         if (page !== "home") cy.visit(`/${page}/`);
 
+        // Wait for loading spinner to dissapear.
         cy.get("[data-test=spinner]")
           .should("not.exist")
           .then(() => {
