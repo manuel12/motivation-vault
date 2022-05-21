@@ -9,7 +9,7 @@ describe("Create Comments", () => {
     cy.createResourceWithAPI("book", resourceData);
 
     cy.visit("/");
-    cy.contains("[Test Title]").click({ force: true });
+    cy.contains(resourceData.title).click({force: true});
 
     const now = new Date(Date.UTC(2022, 1, 1)).getTime();
     cy.clock(now);
@@ -21,6 +21,16 @@ describe("Create Comments", () => {
     cy.get("[data-test=comment-container]")
       .first()
       .should("contain.text", "[Test comment]");
+  });
+
+  it("should create 5 comments", () => {
+    for (const comment of commentsData) {
+      cy.createCommentWithUI(comment.text);
+    }
+
+    cy.get("[data-test=comment-container]")
+      .should("be.visible")
+      .and("have.length", 5);
   });
 
   it("should clear comment input after clicking submit", () => {
@@ -36,16 +46,6 @@ describe("Create Comments", () => {
     cy.get("[data-test=comment-input]").type("[Test comment]");
     cy.get("[data-test=cancel-comment-button]").click();
     cy.get("[data-test=comment-input]").should("contain.value", "");
-  });
-
-  it("should create 5 comments", () => {
-    for (const comment of commentsData) {
-      cy.createCommentWithUI(comment.text);
-    }
-
-    cy.get("[data-test=comment-container]")
-      .should("be.visible")
-      .and("have.length", 5);
   });
 
   it("should have comments persist after page reload", () => {
