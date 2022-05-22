@@ -9,6 +9,9 @@
   "spotifyUrl": "spotify.com",
   "youtubeUrl": "youtube.com",
 
+  "spotifyEpUrl": "spotify.com",
+  "youtubeEpUrl": "youtube.com",
+
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   "imageUrl": "some-invalid-image-url",
 
