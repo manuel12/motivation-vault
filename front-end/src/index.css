@@ -63,7 +63,7 @@ textarea {
   font-family: 'Roboto';
 }
 
-button {
+/* button {
   background-color: rgb(2, 107, 255);
   border-color: rgb(2, 107, 255);
   color: white;
@@ -74,4 +74,4 @@ button {
   border-radius: 20px;
   font-size: 1.2rem;
   cursor: pointer;
-}
+} */
