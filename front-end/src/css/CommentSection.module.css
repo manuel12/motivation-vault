@@ -13,8 +13,6 @@
 .add-comment-btn {
   background-color: grey;
   border-radius: 5px;
-  width: 100px;
-  padding: 10px;
   margin: 0;
   display: inline-block;
   border: 0;
@@ -22,20 +20,23 @@
 
 .add-comment-btn-enabled {
   border-radius: 5px;
-  width: 100px;
-  padding: 10px;
   margin: 0;
   border: 0;
 }
 
 .cancel-button {
-  background-color: grey;
+  background-color: darkgrey;
+  border-color: darkgrey;
   border-radius: 5px;
   width: 100px;
-  padding: 10px;
   margin-left: 10px;
   display: inline-block;
   border: 0;
+}
+
+.cancel-button:hover {
+  background-color: grey;
+  border-color: grey;
 }
 
 .hidden {
