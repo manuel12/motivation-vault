@@ -1,12 +1,15 @@
 .app-navbar {
-  background-color: #1a161b;
+  /* background-color: #1a161b; */
+  background-color: #8F1100;
+  border-color: #8F1100;
 }
 
 .nav-list {
   list-style-type: none;
   margin: 0;
   overflow: hidden;
-  display: flex;;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .nav-item-link {
@@ -24,6 +27,9 @@
 }
 
 .nav-item-link:hover {
-  background-color: yellow;
-  color: black;
+  /* background-color: yellow; */
+  background-color: #00E072;
+  border-color: #00E072;
+  /* color: black; */
+  color: white;
 }
