@@ -1,5 +1,6 @@
-header {
-  background-color: #ff1616;
+.header {
+  /* background-color: #ff1616; */
+  background-color: #FF3319;
   display: flex;
   flex-direction: column;
   align-items: center;
