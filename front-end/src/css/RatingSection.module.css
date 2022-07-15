@@ -3,7 +3,7 @@ h2 {
 }
 
 .ratings-container {
-  margin: 10px 0;
+  margin: 10px 0 40px 0;
 }
 
 .ratings-container .fa-star {
@@ -42,11 +42,32 @@ h2 {
   display: inline;
 }
 
-.add-rating {
+.add-rating-button-container {
   display: inline;
+  margin: 0 20px;
+  padding: 5px;
+  background-color: #00E072;
+  border: 1px solid #00E072;
+  border-radius: 5px;
+  box-shadow: 0 4px #999;
   cursor: pointer;
-  color: red;
-  size: 1.3rem;
+}
+
+.add-rating-button-container:hover {
+  background-color: #00944B;
+  border-color: #00944B
+}
+
+.add-rating-button-container:active {
+  box-shadow: 0 2px #999;
+  transform: translateY(2px);
+}
+
+.add-rating {
+  position: relative;
+  top: 5px;
+  color: white;
+  font-size: 1.6rem;
 }
 
 .rate-container {
