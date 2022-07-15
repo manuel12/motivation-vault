@@ -1,0 +1,32 @@
+button {
+  background-color: #00E072;
+  border-color: #00E072;
+  color: white;
+  min-width: 100px;
+  margin: 0 35%;
+  padding: 15px 20px;
+  border: 2px solid #00E072;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: sans-serif;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 5px #999;
+}
+
+button:hover {
+  background-color: #00944B;
+  border-color: #00944B;
+}
+
+button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(3px);
+}
+
+button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+
