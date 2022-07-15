@@ -31,10 +31,14 @@ iframe {
   border-radius: 3px;
 }
 
+.description-section {
+  padding: 0 2%;
+}
+
 .paragraph-container {
   margin: 15px 0 15px 0;
   display: block;
-  width: 70%;
+  width: 100%;
   white-space: pre-line;
 }
 
@@ -43,28 +47,74 @@ iframe {
 }
 
 .crud-buttons-container {
+  background-color: rgb(225, 225, 225);
+  border: 2px solid grey;
+  border-radius: 10px;
+
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 20%;
-  margin: 20px 40%;
+  width: 25%;
+  margin: 20px 37.5%;
+  padding: 10px 0;
 }
 
+.edit-button-container {
+  margin: 0 10px;
+  border-radius: 15px;
+  background-color: #00e072;
+  border-color: #00944b;
+  box-shadow: 0 5px #999;
+  cursor: pointer;
+}
+
+.edit-button-container:hover {
+  background-color: #00944b;
+  border-color: #00944b;
+}
 
 .edit-button {
   margin: 10px;
+  padding: 1px;
   float: right;
-  color: orange;
+  color: white;
+  font-size: 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.edit-button-container:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(3px);
+}
+
+.delete-button-container {
+  margin: 0 10px;
+  border-radius: 15px;
+  /* background-color: grey; */
+  background-color: #00e072;
+  border-color: #00944b;
+  box-shadow: 0 5px #999;
+}
+
+.delete-button-container:hover {
+  /* background-color: darkgray; */
+  background-color: #00944b;
+  border-color: #00944b;
+}
+
+.delete-button {
+  padding: 1px;
+  margin: 10px;
+  float: right;
+  color: white;
   font-size: 2rem;
   cursor: pointer;
 }
 
-.delete-button {
-  margin: 10px;
-  float: right;
-  color: red;
-  font-size: 2rem;
-  cursor: pointer;
+.delete-button-container:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(3px);
 }
 
 .spinner {
