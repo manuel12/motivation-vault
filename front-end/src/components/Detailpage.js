@@ -12,6 +12,7 @@ import ValueSection from "./ValueSection";
 import NotFound from "./NotFound";
 
 import Modal from "./Modal";
+import AlertMessage from "./AlertMessage";
 
 import classes from "../css/Detailpage.module.css";
 
@@ -20,6 +21,8 @@ const DetailPage = () => {
   const { token } = useToken();
   const [resource, setResource] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
+  const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     API.fetchResource(id, token, setResource);
@@ -39,7 +42,7 @@ const DetailPage = () => {
   };
 
   const modalDeleteButtonClicked = () => {
-    API.deleteResource(resource.get_resource_type, id, token)
+    API.deleteResource(resource.get_resource_type, id, token);
     setDisplayModal(false);
   };
 
@@ -51,28 +54,35 @@ const DetailPage = () => {
     <Fragment>
       {displayModal && (
         <Modal
-          deleteButtonClicked={modalDeleteButtonClicked}
+          heading={"Delete Resource"}
+          question={"Are you sure you want to delete this resource?"}
+          acceptButtonClicked={modalDeleteButtonClicked}
           cancelButtonClicked={modalCancelButtonClicked}
         />
       )}
+      {displaySuccessMessage && <AlertMessage message={successMessage} />}
       <div
         className={classes["detail-page-container"]}
         data-test="detail-page-container"
       >
         <div className={classes["post-section-container"]}>
           <div className={classes["crud-buttons-container"]}>
-            <FontAwesomeIcon
-              icon={faEdit}
-              className={classes["edit-button"]}
-              data-test="edit-button"
-              onClick={editButtonClickedHandler}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              className={classes["delete-button"]}
-              data-test="delete-button"
-              onClick={deleteButtonClickedHandler}
-            />
+            <div className={classes["edit-button-container"]}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                className={classes["edit-button"]}
+                data-test="edit-button"
+                onClick={editButtonClickedHandler}
+              />
+            </div>
+            <div className={classes["delete-button-container"]}>
+              <FontAwesomeIcon
+                icon={faTrash}
+                className={classes["delete-button"]}
+                data-test="delete-button"
+                onClick={deleteButtonClickedHandler}
+              />
+            </div>
           </div>
 
           <h1 className={classes["heading"]} data-test="heading">
@@ -107,12 +117,12 @@ const DetailPage = () => {
               ))}
           </div>
           {resource.description && (
-            <>
+            <div className={classes["description-section"]}>
               <h3>Description</h3>
               <p className={classes["paragraph-container"]}>
                 {resource.description}
               </p>
-            </>
+            </div>
           )}
         </div>
 
