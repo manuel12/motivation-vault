@@ -19,10 +19,38 @@
 
 .modal {
   width: 30%;
-  background-color: grey;
+  background-color: white;
   border-radius: 15px;
 }
 
 .header {
-  height: 50px;
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.question {
+  padding: 0 15px;
+  font-weight: bold;
+}
+
+.accept-button {
+  background-color: #E01A00;
+  border-color: #E01A00;
+}
+
+.accept-button:hover {
+  background-color: #911100;
+  border-color: #911100;
+}
+
+.cancel-button {
+  background-color: darkgrey;
+  border-color: darkgrey;
+}
+
+.cancel-button:hover {
+  background-color: grey;
+  border-color: grey;
 }
