@@ -8,24 +8,27 @@ const Modal = (props) => {
       <div className={classes["modal-container"]}>
         <div className={classes["modal"]}>
           <header className={classes["header"]}>
-            <h2>Delete Resource</h2>
+            <h1>{props.heading}</h1>
           </header>
-          <div>
-            <p>Are you sure you want to delete this resource?</p>
+          <div className={classes["question"]}>
+            <p>{props.question}</p>
           </div>
           <footer>
             <button
-              onClick={props.deleteButtonClicked}
-              data-test="modal-delete-button"
+              className={classes["accept-button"]}
+              onClick={props.acceptButtonClicked}
+              data-test="modal-accept-button"
             >
               Delete
             </button>
-            <button
+            
+            {props.cancelButtonClicked && <button
+              className={classes["cancel-button"]}
               onClick={props.cancelButtonClicked}
               data-test="modal-cancel-button"
             >
               Cancel
-            </button>
+            </button>}
           </footer>
         </div>
       </div>
