@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Comment from "./Comment";
+import Button from "./Button";
 import useToken from "./useToken";
 
 import classes from "../css/CommentSection.module.css";
@@ -62,7 +63,7 @@ const CommentSection = (props) => {
           document.getElementsByClassName("comment-container");
         const lastCommentElem = commentElems[commentElems.length - 1];
         lastCommentElem.scrollIntoView();
-      })
+      });
 
       setSubmitBtnDisabled(true);
       setCommentText("");
@@ -84,9 +85,7 @@ const CommentSection = (props) => {
       className={classes["comment-section-container"]}
       data-test="comment-section-container"
     >
-      <h3>
-        Comments
-      </h3>
+      <h3>Comments</h3>
 
       <input
         className="add-comment"
@@ -100,25 +99,23 @@ const CommentSection = (props) => {
         data-test="comment-input"
       />
       <div className={classes["btn-container"]}>
-        <button
+        <Button
           disabled={submitBtnDisabled}
           className={submitBtnClassName}
           id="submit"
           type="submit"
+          text="Comment"
           onClick={submitClickedHandler}
           data-test="add-comment-button"
-        >
-          Comment
-        </button>
-        <button
+        />
+        <Button
           className={cancelBtnClassName}
           id="cancel"
           type="submit"
+          text="Cancel"
           onClick={cancelClickedHandler}
           data-test="cancel-comment-button"
-        >
-          Cancel
-        </button>
+        />
       </div>
       <br />
 
@@ -133,6 +130,6 @@ const CommentSection = (props) => {
         ))}
     </div>
   );
-}
+};
 
 export default CommentSection;
