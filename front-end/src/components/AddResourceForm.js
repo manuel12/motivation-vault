@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Validator } from "../utils";
 import { API } from "../api-service";
 import LabeledInput from "./LabeledInput";
-import BookResourceFormFields from "./BookResourceFormFields";
-import PodcastResourceFormFields from "./PodcastResourceFormFields";
-import PodcastEpisodeResourceFormFields from "./PodcastEpisodeResourceFormFields";
-import MotivationalSpeechResourceFormFields from "./MotivationalSpeechResourceFormFields";
+import BookFormFields from "./BookFormFields";
+import PodcastFormFields from "./PodcastFormFields";
+import PodcastEpisodeFormFields from "./PodcastEpisodeFormFields";
+import MotivationalSpeechFormFields from "./MotivationalSpeechFormFields";
 import useToken from "./useToken";
 
 const AddResourceForm = (props) => {
@@ -175,7 +175,7 @@ const AddResourceForm = (props) => {
       />
 
       {props.resourceType === "book" && (
-        <BookResourceFormFields
+        <BookFormFields
           isbn={isbn}
           setISBN={setISBN}
           isbnError={isbnError}
@@ -186,7 +186,7 @@ const AddResourceForm = (props) => {
       )}
 
       {props.resourceType === "podcast" && (
-        <PodcastResourceFormFields
+        <PodcastFormFields
           websiteUrl={websiteUrl}
           setWebsiteUrl={setWebsiteUrl}
           websiteUrlError={websiteUrlError}
@@ -200,7 +200,7 @@ const AddResourceForm = (props) => {
       )}
 
       {props.resourceType === "podcast-episode" && (
-        <PodcastEpisodeResourceFormFields
+        <PodcastEpisodeFormFields
           podcast={podcast}
           setPodcast={setPodcast}
           podcastError={podcastError}
@@ -214,7 +214,7 @@ const AddResourceForm = (props) => {
       )}
 
       {props.resourceType === "motivational-speech" && (
-        <MotivationalSpeechResourceFormFields
+        <MotivationalSpeechFormFields
           youtubeUrl={youtubeUrl}
           setYoutubeUrl={setYoutubeUrl}
           youtubeUrlError={youtubeUrlError}
