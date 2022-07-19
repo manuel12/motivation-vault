@@ -17,7 +17,7 @@ const Post = (props) => {
           ></img>
         </div>
         <div className={classes["text-container"]} data-test="text-container">
-          <h3 data-test="post-title">{props.title}</h3>
+          <h3 className={classes["post-title"]} data-test="post-title">{props.title}</h3>
           <div className={classes["author-text-container"]}>
             by{" "}
             <h5 className={classes["author-name"]} data-test="post-author">
