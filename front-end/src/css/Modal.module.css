@@ -10,24 +10,29 @@
 
 .modal-container {
   position: fixed;
-  margin: 50px 0 50px 0;
+  left: 0px;
+  right: 0px;
   width: 100%;
-  padding-left: 35%;
-  padding-right: 35%;
   z-index: 100;
 }
 
 .modal {
   width: 30%;
+  margin: 0 35%;
   background-color: white;
   border-radius: 15px;
 }
 
 .header {
-  background-color: red;
+  background-color: #ff3319;
   color: white;
   border-radius: 10px;
   text-align: center;
+}
+
+h3 {
+  font-size: 1.5rem;
+  padding: 15px;
 }
 
 .question {
@@ -35,9 +40,14 @@
   font-weight: bold;
 }
 
+footer {
+  height: fit-content;
+  padding: 15px 0;
+}
 .accept-button {
-  background-color: #E01A00;
-  border-color: #E01A00;
+  background-color: #ff3319;
+  border-color: #ff3319;
+  margin-bottom: 10px;
 }
 
 .accept-button:hover {
