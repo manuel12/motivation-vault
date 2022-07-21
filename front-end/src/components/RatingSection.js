@@ -99,23 +99,25 @@ const RatingSection = (props) => {
       {showRatingInput && (
         <div className={classes["rate-container"]}>
           <h2>Rate it!</h2>
-          {[...Array(5)].map((e, i) => {
-            return (
-              <FontAwesomeIcon
-                key={i}
-                icon={faStar}
-                className={
-                  hightlighted > i - 1
-                    ? classes["orange-pointer"]
-                    : classes["white"]
-                }
-                data-test={`add-star-icon-${i + 1}`}
-                onMouseEnter={highlightRate(i)}
-                onMouseLeave={highlightRate(-1)}
-                onClick={submitRatingHandler(i)}
-              />
-            );
-          })}
+          <div className={classes["stars-container"]}>
+            {[...Array(5)].map((e, i) => {
+              return (
+                <FontAwesomeIcon
+                  key={i}
+                  icon={faStar}
+                  className={
+                    hightlighted > i - 1
+                      ? classes["orange-pointer"]
+                      : classes["white"]
+                  }
+                  data-test={`add-star-icon-${i + 1}`}
+                  onMouseEnter={highlightRate(i)}
+                  onMouseLeave={highlightRate(-1)}
+                  onClick={submitRatingHandler(i)}
+                />
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
