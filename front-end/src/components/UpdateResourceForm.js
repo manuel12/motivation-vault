@@ -7,6 +7,7 @@ import BookFormFields from "./BookFormFields";
 import PodcastFormFields from "./PodcastFormFields";
 import PodcastEpisodeFormFields from "./PodcastEpisodeFormFields";
 import MotivationalSpeechFormFields from "./MotivationalSpeechFormFields";
+import Button from "./Button";
 import useToken from "./useToken";
 
 import classes from "../css/UpdateResourceForm.module.css";
@@ -301,17 +302,16 @@ const UpdateResourceForm = (props) => {
         }}
         dataAttr="value-three-input"
       />
-      <button
+      <Button
         className={
           classes[`submit-button-${submitEnabled ? "enabled" : "disabled"}`]
         }
         id="submit"
         type="submit"
+        text="Update Resource"
         data-test="submit"
         disabled={!submitEnabled}
-      >
-        Update Resource
-      </button>
+      />
     </form>
   );
 };
