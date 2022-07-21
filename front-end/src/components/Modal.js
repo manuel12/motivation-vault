@@ -8,7 +8,7 @@ const Modal = (props) => {
       <div className={classes["modal-container"]}>
         <div className={classes["modal"]}>
           <header className={classes["header"]}>
-            <h1>{props.heading}</h1>
+            <h3>{props.heading}</h3>
           </header>
           <div className={classes["question"]}>
             <p>{props.question}</p>
@@ -21,14 +21,16 @@ const Modal = (props) => {
             >
               Delete
             </button>
-            
-            {props.cancelButtonClicked && <button
-              className={classes["cancel-button"]}
-              onClick={props.cancelButtonClicked}
-              data-test="modal-cancel-button"
-            >
-              Cancel
-            </button>}
+
+            {props.cancelButtonClicked && (
+              <button
+                className={classes["cancel-button"]}
+                onClick={props.cancelButtonClicked}
+                data-test="modal-cancel-button"
+              >
+                Cancel
+              </button>
+            )}
           </footer>
         </div>
       </div>
