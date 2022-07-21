@@ -77,3 +77,7 @@ h2 {
   border-top: 3px solid orange;
   border-radius: 5px;
 }
+
+.stars-container {
+  padding: 0 35px 15px;
+}
