@@ -1,17 +1,25 @@
+::selection {
+  background-color: #00e072;
+  color: white;
+}
+
+:focus {
+  border-color: #00e072;
+}
+
+
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
-  -apple-system: "BlinkMacSystemFont", "Segoe UI",
-      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-      "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -apple-system: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  user-select: none;
   word-spacing: 0.1em;
-} 
+}
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -25,7 +33,7 @@ form {
 }
 
 .icon {
-  margin-right:5px;
+  margin-right: 5px;
   color: gray;
 }
 
@@ -35,43 +43,30 @@ select {
   padding: 10px;
   border: 2px solid #c7d0d2;
   border-radius: 5px;
-  font-family: inherit; 
+  font-family: inherit;
   font-size: inherit;
   font-weight: normal;
+  outline-color: #00e072;
 }
 
 select option {
   border-color: #c7d0d2;
   font-weight: normal;
+  outline-color: #00e072;
 }
 
-input, textarea {
-  color: grey; 
+input,
+textarea {
+  color: grey;
   width: 100%;
   padding: 10px;
   margin: 10px 0px;
   border: 2px solid #c7d0d2;
   border-radius: 20px;
   font-size: 1rem;
-}
-
-input[type=number] {
-  color: grey; 
+  outline-color: #00e072;
 }
 
 textarea {
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
-
-/* button {
-  background-color: rgb(2, 107, 255);
-  border-color: rgb(2, 107, 255);
-  color: white;
-  width: 50%;
-  margin: 0 25%;
-  padding: 8px 16px;
-  border: 1px solid;
-  border-radius: 20px;
-  font-size: 1.2rem;
-  cursor: pointer;
-} */
