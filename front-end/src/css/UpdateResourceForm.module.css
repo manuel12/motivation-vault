@@ -4,4 +4,10 @@
 
 .submit-button-disabled {
   background-color: grey;
+  border-color: grey;
+}
+
+.submit-button-disabled:hover {
+  background-color: grey;
+  border-color: grey;
 }
