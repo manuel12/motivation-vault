@@ -6,7 +6,7 @@ const AboutPage = () => {
       className={classes["about-page-container"]}
       data-test="about-page-container"
     >
-      <h2>About</h2>
+      <h2 className={classes["about-page-heading"]}>About</h2>
       <hr></hr>
       <p>
         This website is compilation of different resources that I've been
