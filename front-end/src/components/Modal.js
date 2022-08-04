@@ -8,7 +8,7 @@ const Modal = (props) => {
       <div className={classes["modal-container"]}>
         <div className={classes["modal"]}>
           <header className={classes["header"]}>
-            <h3>{props.heading}</h3>
+            <h3 className={classes["header-text"]}>{props.heading}</h3>
           </header>
           <div className={classes["question"]}>
             <p>{props.question}</p>
