@@ -67,20 +67,24 @@ const DetailPage = () => {
       >
         <div className={classes["post-section-container"]}>
           <div className={classes["crud-buttons-container"]}>
-            <div className={classes["edit-button-container"]}>
+            <div
+              className={classes["edit-button-container"]}
+              onClick={editButtonClickedHandler}
+              data-test="edit-button"
+            >
               <FontAwesomeIcon
                 icon={faEdit}
                 className={classes["edit-button"]}
-                data-test="edit-button"
-                onClick={editButtonClickedHandler}
               />
             </div>
-            <div className={classes["delete-button-container"]}>
+            <div
+              className={classes["delete-button-container"]}
+              data-test="delete-button"
+              onClick={deleteButtonClickedHandler}
+            >
               <FontAwesomeIcon
                 icon={faTrash}
                 className={classes["delete-button"]}
-                data-test="delete-button"
-                onClick={deleteButtonClickedHandler}
               />
             </div>
           </div>
@@ -118,7 +122,7 @@ const DetailPage = () => {
           </div>
           {resource.description && (
             <div className={classes["description-section"]}>
-              <h3>Description</h3>
+              <h3 className={classes["description-heading"]}>Description</h3>
               <p className={classes["paragraph-container"]}>
                 {resource.description}
               </p>
