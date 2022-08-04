@@ -85,7 +85,7 @@ const CommentSection = (props) => {
       className={classes["comment-section-container"]}
       data-test="comment-section-container"
     >
-      <h3>Comments</h3>
+      <h3 className={classes["comment-section-heading"]}>Comments</h3>
 
       <input
         className="add-comment"
