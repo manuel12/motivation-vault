@@ -86,12 +86,14 @@ const RatingSection = (props) => {
       </span>
 
       {props.addRatingBtn && (
-        <div className={classes["add-rating-button-container"]}>
+        <div
+          className={classes["add-rating-button-container"]}
+          onClick={addRatingClickedHandler}
+          data-test="add-rating-button"
+        >
           <FontAwesomeIcon
             icon={faPlusSquare}
             className={classes["add-rating"]}
-            onClick={addRatingClickedHandler}
-            data-test="add-rating-button"
           />
         </div>
       )}
