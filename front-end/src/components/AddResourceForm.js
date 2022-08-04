@@ -8,6 +8,8 @@ import PodcastEpisodeFormFields from "./PodcastEpisodeFormFields";
 import MotivationalSpeechFormFields from "./MotivationalSpeechFormFields";
 import useToken from "./useToken";
 
+import classes from "../css/AddResourceForm.module.css";
+
 const AddResourceForm = (props) => {
   const { token } = useToken();
 
@@ -128,7 +130,7 @@ const AddResourceForm = (props) => {
 
   return (
     <form className="add-resource-form" onSubmit={submitHandler}>
-      <h3>Add Resource Form</h3>
+      <h3 className={classes["add-resource-form-heading"]}>Add Resource Form</h3>
       <LabeledInput
         error={titleError}
         item="Title"
