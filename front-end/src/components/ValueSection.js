@@ -11,7 +11,7 @@ const ValueSection = (props) => {
         className={classes["value-container"]}
         data-test="value-section"
       >
-        <h3>What value does it bring you?</h3>
+        <h3 className={classes["values-heading"]}>What value does it bring you?</h3>
         <ul>
           {populatedValues.map((value, i) => {
             return (
