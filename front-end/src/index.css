@@ -1,10 +1,10 @@
 ::selection {
-  background-color: #00e072;
+  background-color: #FFC93D;
   color: white;
 }
 
 :focus {
-  border-color: #00e072;
+  border-color: #FFC93D;
 }
 
 
@@ -15,7 +15,9 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  word-spacing: 0.1em;
+  font-size: 1.1rem;
+  font-weight: 400;
+  word-spacing: 0.2em;
 }
 
 code {
@@ -24,7 +26,8 @@ code {
 }
 
 p {
-  line-height: 1.4em;
+  line-height: 1.6em;
+  font-weight: 400;
 }
 
 form {
@@ -46,13 +49,13 @@ select {
   font-family: inherit;
   font-size: inherit;
   font-weight: normal;
-  outline-color: #00e072;
+  outline-color: #FFC93D;
 }
 
 select option {
   border-color: #c7d0d2;
   font-weight: normal;
-  outline-color: #00e072;
+  outline-color: #FFC93D;
 }
 
 input,
@@ -64,7 +67,7 @@ textarea {
   border: 2px solid #c7d0d2;
   border-radius: 20px;
   font-size: 1rem;
-  outline-color: #00e072;
+  outline-color: #FFC93D;
 }
 
 textarea {
