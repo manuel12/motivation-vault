@@ -1,11 +1,11 @@
 button {
-  background-color: #00E072;
-  border-color: #00E072;
+  background-color: #FFC93D;
+  border-color: #FFC93D;
   color: white;
   min-width: 100px;
   margin: 0 35%;
   padding: 15px 20px;
-  border: 2px solid #00E072;
+  border: 2px solid #FFC93D;
   border-radius: 10px;
   font-size: 1rem;
   font-family: sans-serif;
@@ -15,8 +15,8 @@ button {
 }
 
 button:hover {
-  background-color: #00944B;
-  border-color: #00944B;
+  background-color: #E5A702;
+  border-color: #E5A702;
 }
 
 button:active {
