@@ -1,6 +1,5 @@
 .app-navbar {
-  /* background-color: #1a161b; */
-  background-color: #8F1100;
+  background-color:#8F1100;
   border-color: #8F1100;
 }
 
@@ -27,9 +26,7 @@
 }
 
 .nav-item-link:hover {
-  /* background-color: yellow; */
-  background-color: #00E072;
-  border-color: #00E072;
-  /* color: black; */
+  background-color: #FFC93D;
+  border-color: #FFC93D;
   color: white;
 }
