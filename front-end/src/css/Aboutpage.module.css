@@ -4,6 +4,10 @@
   margin-right: 15%;
 }
 
-h2 {
+.about-page-heading {
   text-align: center;
+  background-color: #E5A702;
+  border-radius: 4px;
+  color: white;
+  width: 100%;
 }
