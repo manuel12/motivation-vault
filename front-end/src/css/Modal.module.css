@@ -24,13 +24,13 @@
 }
 
 .header {
-  background-color: #ff3319;
+  background-color: #023BE6;
   color: white;
   border-radius: 10px;
   text-align: center;
 }
 
-h3 {
+.header-text {
   font-size: 1.5rem;
   padding: 15px;
 }
@@ -45,8 +45,8 @@ footer {
   padding: 15px 0;
 }
 .accept-button {
-  background-color: #ff3319;
-  border-color: #ff3319;
+  background-color: #023BE6;
+  border-color: #023BE6;
   margin-bottom: 10px;
 }
 
