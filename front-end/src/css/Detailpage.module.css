@@ -1,10 +1,14 @@
 .detail-page-container {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .heading {
   font-size: 3rem;
+  background-color: #E5A702;
+  border-radius: 4px;
+  color: white;
+  width: fit-content;
 }
 
 .author-container {
@@ -35,6 +39,13 @@ iframe {
   padding: 0 2%;
 }
 
+.description-heading {
+  background-color: #E5A702;
+  border-radius: 4px;
+  color: white;
+  width: fit-content;
+}
+
 .paragraph-container {
   margin: 15px 0 15px 0;
   display: block;
@@ -54,33 +65,33 @@ iframe {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 25%;
-  margin: 20px 37.5%;
+  width: 15%;
+  margin: 20px 42.5%;
   padding: 10px 0;
 }
 
 .edit-button-container {
-  margin: 0 10px;
+  margin: 0 5px;
   border-radius: 15px;
-  background-color: #00e072;
-  border-color: #00944b;
+  background-color: #FFC93D;
+  border-color: #E5A702;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
 
 .edit-button-container:hover {
-  background-color: #00944b;
-  border-color: #00944b;
+  background-color: #E5A702;
+  border-color: #E5A702;
 }
 
 .edit-button {
+  position: relative;
+  left: 2px;
   margin: 10px;
   padding: 1px;
   float: right;
   color: white;
-  font-size: 2rem;
-  border-radius: 10px;
-  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .edit-button-container:active {
@@ -89,18 +100,17 @@ iframe {
 }
 
 .delete-button-container {
-  margin: 0 10px;
+  margin: 0 5px;
   border-radius: 15px;
-  /* background-color: grey; */
-  background-color: #00e072;
-  border-color: #00944b;
+  background-color: #FFC93D;
+  border-color: #E5A702;
   box-shadow: 0 5px #999;
+  cursor: pointer;
 }
 
 .delete-button-container:hover {
-  /* background-color: darkgray; */
-  background-color: #00944b;
-  border-color: #00944b;
+  background-color: #E5A702;
+  border-color: #E5A702;
 }
 
 .delete-button {
@@ -108,8 +118,7 @@ iframe {
   margin: 10px;
   float: right;
   color: white;
-  font-size: 2rem;
-  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .delete-button-container:active {
