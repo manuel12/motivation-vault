@@ -27,7 +27,6 @@ Cypress.Commands.add("loginAdminWithUI", () => {
 });
 
 Cypress.Commands.add("loginWithUI", (username, password) =>
-  //username, password
   {
     /**
      * Login the a normal user by interacting with the UI
