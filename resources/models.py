@@ -12,7 +12,7 @@ default_data = get_default_data()
 
 
 class Resource(models.Model):
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, unique=True)
     author = models.CharField(max_length=100)
     description = models.TextField(
         blank=True, default=default_data["loremIpsumShort"])
