@@ -159,7 +159,7 @@ describe("Error labels", () => {
   });
 
   context("Login form input errors", () => {
-    it("should display error label when leaving username empty", () => {
+    it("should show an error message when leaving the username empty", () => {
       cy.loginWithUI("", testuserData.password);
 
       cy.get("[data-test=username-error]")
@@ -167,7 +167,7 @@ describe("Error labels", () => {
         .and("contain.text", "You need to provide a username.");
     });
 
-    it("should display error label when leaving password empty", () => {
+    it("should show an error message when leaving the password empty", () => {
       cy.loginWithUI(testuserData.username, "");
 
       cy.get("[data-test=password-error]")
@@ -175,7 +175,7 @@ describe("Error labels", () => {
         .and("contain.text", "You need to provide a password.");
     });
 
-    it("should display error labels when using valid username and invalid password", () => {
+    it("should show an error message when using valid username and invalid password", () => {
       cy.loginWithUI(testuserData.username, "fakepassword");
 
       cy.get("[data-test=username-error]")
@@ -195,7 +195,7 @@ describe("Error labels", () => {
       cy.get("[data-test=register-link]").click();
     });
     
-    it("should display error labels when leaving username empty", () => {
+    it("should show an error message when leaving the username empty", () => {
       cy.get("[data-test=password]").type(testuserData.password);
       cy.get("[data-test=submit-button]").click();
 
@@ -204,7 +204,7 @@ describe("Error labels", () => {
         .and("contain.text", "You need to provide a username.");
     });
 
-    it("should display error labels when leaving password empty", () => {
+    it("should show an error message when leaving the password empty", () => {
       cy.get("[data-test=username]").type(testuserData.username);
       cy.get("[data-test=submit-button]").click();
 
