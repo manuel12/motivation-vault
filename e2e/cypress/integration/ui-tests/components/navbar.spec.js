@@ -6,7 +6,7 @@ describe("Navbar", () => {
     cy.visit("/");
   });
 
-  it("should have home link active by default on navbar", () => {
+  it("should have the home link active by default on navbar", () => {
     cy.url().should("eq", Cypress.config().baseUrl);
 
     cy.get("[data-test=home-link]")
@@ -24,7 +24,7 @@ describe("Navbar", () => {
       .should("contain", "active");
   });
 
-  it("should go to 'Books' section when clicking on 'Books' on navbar", () => {
+  it("should go to the 'Books' section when clicking on 'Books' on navbar", () => {
     cy.get("[data-test=books-link]")
       .invoke("attr", "class")
       .should("not.contain", "active");
@@ -38,7 +38,7 @@ describe("Navbar", () => {
       .should("contain", "active");
   });
 
-  it("should go to 'Podcasts' section when clicking on 'Podcasts' on navbar", () => {
+  it("should go to the 'Podcasts' section when clicking on 'Podcasts' on navbar", () => {
     cy.get("[data-test=podcasts-link]")
       .invoke("attr", "class")
       .should("not.contain", "active");
@@ -52,7 +52,7 @@ describe("Navbar", () => {
       .should("contain", "active");
   });
 
-  it("should go to 'Podcasts Episodes' section when clicking on 'Podcasts Episodes' on navbar", () => {
+  it("should go to the 'Podcasts Episodes' section when clicking on 'Podcasts Episodes' on navbar", () => {
     cy.get("[data-test=podcast-episodes-link]")
       .invoke("attr", "class")
       .should("not.contain", "active");
@@ -66,7 +66,7 @@ describe("Navbar", () => {
       .should("contain", "active");
   });
 
-  it("should go to 'Motivational Speeches' section when clicking on 'Motivational Speeches' on navbar", () => {
+  it("should go to the 'Motivational Speeches' section when clicking on 'Motivational Speeches' on navbar", () => {
     cy.get("[data-test=motivational-speeches-link]").click();
 
     cy.url().should("contain", "motivational-speeches/");
@@ -76,7 +76,7 @@ describe("Navbar", () => {
       .should("contain", "active");
   });
 
-  it("should go to 'About' section when clicking on 'About' on navbar", () => {
+  it("should go to the 'About' section when clicking on 'About' on the navbar", () => {
     cy.get("[data-test=about-link]")
       .invoke("attr", "class")
       .should("not.contain", "active");
