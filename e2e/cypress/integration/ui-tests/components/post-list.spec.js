@@ -5,7 +5,7 @@ describe("Post List", () => {
     cy.loginAndCleanUp();
   });
 
-  it("should display posts on post list element", () => {
+  it("should display posts on post-list when post data is available", () => {
     // Wait for loading spinner to dissapear.
     cy.get("[data-test=spinner]")
       .should("not.exist").then(() => {
@@ -22,7 +22,7 @@ describe("Post List", () => {
     });
   });
 
-  it("should display loading spinner when there is no data", () => {
+  it("should display a loading spinner when there is no data", () => {
     cy.intercept("http://127.0.0.1:8000/api/", []);
     cy.visit("/");
     cy.get("[data-test=spinner]").should("be.visible");
