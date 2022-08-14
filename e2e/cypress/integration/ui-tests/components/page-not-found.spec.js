@@ -6,27 +6,23 @@ describe("404 Page not found", () => {
     cy.get("[data-test=app]").should("be.visible");
   });
 
-  it("should show 404 page not found on a non-existant url", () => {
+  it("should display a 404 page not found on a non-existent url the books, podcasts, podcast episodes and motivational speech sections", () => {
     cy.visit("/non-existant/url/");
     cy.get("[data-test=not-found]").should("be.visible");
-  });
 
-  it("should show 404 page not found on a non-existant url on books section", () => {
+    // Book section
     cy.visit("/books/non-existant/url/");
     cy.get("[data-test=not-found]").should("be.visible");
-  });
 
-  it("should show 404 page not found on a non-existant url on podcasts section", () => {
+    // Podcast section
     cy.visit("/podcasts/non-existant/url/");
     cy.get("[data-test=not-found]").should("be.visible");
-  });
 
-  it("should show 404 page not found on a non-existant url on podcasts episode section", () => {
+    // Podcast Episode section
     cy.visit("/podcasts-episodes/non-existant/url/");
     cy.get("[data-test=not-found]").should("be.visible");
-  });
 
-  it("should show 404 page not found on a non-existant url on motivational speeches section", () => {
+    // Motivational Speech section
     cy.visit("/motivational-speeches/non-existant/url/");
     cy.get("[data-test=not-found]").should("be.visible");
   });
