@@ -23,7 +23,7 @@ describe("Post", () => {
 
   for (const page of pages) {
     context(`Check first post on ${page} page`, () => {
-      it(`should display title, author, description, image and rating on post element`, () => {
+      it(`should display title, author, description, image and rating on the post element`, () => {
         if (page !== "home") cy.visit(`/${page}/`);
 
         // Wait for loading spinner to dissapear.
