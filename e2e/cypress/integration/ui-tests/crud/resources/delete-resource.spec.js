@@ -66,7 +66,7 @@ for (const resourceType of resourceTypes) {
       });
     });
 
-    it("should NOT delete resource after clicking cancel button on delete dialog", () => {
+    it("should NOT delete the resource after clicking the cancel button on delete dialog", () => {
       cy.url().then((detailpageUrl) => {
         cy.get("[data-test=delete-button]").click();
         cy.get("[data-test=modal-cancel-button]").click();
