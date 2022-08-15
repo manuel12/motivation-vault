@@ -9,23 +9,19 @@ describe("Create Comments", () => {
     cy.createResourceWithAPI("book", resourceData);
 
     cy.visit("/");
-    cy.contains(resourceData.title).click({force: true});
+    cy.contains(resourceData.title).click({ force: true });
 
     const now = new Date(Date.UTC(2022, 1, 1)).getTime();
     cy.clock(now);
   });
 
-  it("should create a comment", () => {
-    cy.createCommentWithUI("[Test comment]");
-    
-    cy.get("[data-test=comment-container]")
-      .first()
-      .should("contain.text", "[Test comment]");
-  });
-
-  it("should create 5 comments", () => {
+  it("should create 1, 2, 3, 4 and 5 comment(s)", () => {
     for (const comment of commentsData) {
       cy.createCommentWithUI(comment.text);
+
+      cy.get("[data-test=comment-container]")
+        .eq(0)
+        .should("contain.text", comment.text);
     }
 
     cy.get("[data-test=comment-container]")
@@ -33,16 +29,14 @@ describe("Create Comments", () => {
       .and("have.length", 5);
   });
 
-  it("should clear comment input after clicking submit", () => {
+  it("should clear comment input after clicking submit and after clicking the cancel button", () => {
     cy.createCommentWithUI("[Test comment]");
 
     cy.get("[data-test=comment-input]").should(
       "not.contain.value",
       "[Test comment]"
     );
-  });
 
-  it("should clear comment input form after clicking cancel button", () => {
     cy.get("[data-test=comment-input]").type("[Test comment]");
     cy.get("[data-test=cancel-comment-button]").click();
     cy.get("[data-test=comment-input]").should("contain.value", "");
