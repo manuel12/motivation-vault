@@ -25,7 +25,7 @@ for (const resourceType of resourceTypes) {
       cy.get("[data-test=app]").should("be.visible");
     });
 
-    it(`should create a ${resourceType} resource`, () => {
+    it(`should create a ${resourceType} resource and display it on the ${resourceType} section and detail page`, () => {
       cy.createResourceWithUI(resourceType, resourceData);
 
       cy.url().should("not.contain", "add/");
@@ -129,7 +129,7 @@ for (const resourceType of resourceTypes) {
       }
     });
 
-    it(`should create a ${resourceType} resource by pressing ENTER when all form fields are filled`, () => {
+    it(`should submit the ${resourceType} form by pressing ENTER when all required fields are filled`, () => {
       cy.visit("/add/");
       cy.get("[data-test=select-resource-type]").select(capitalizedResouceType);
 
