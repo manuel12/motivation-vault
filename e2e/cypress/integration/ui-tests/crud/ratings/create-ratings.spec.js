@@ -44,14 +44,9 @@ describe("Create Ratings", () => {
     cy.contains(resourceAPIData.title).click({ force: true });
   });
 
-  it("should display ratings section on detail page", () => {
-    cy.get("[data-test=ratings-container]").should("be.visible");
-  });
-
-  const stars = [1, 2, 3, 4, 5];
-  stars.forEach((star) => {
-    const starStr = star > 1 ? "stars" : "star";
-    it(`should create ratings with ${star} ${starStr} to a resource`, () => {
+  it(`should create ratings with 1, 2, 3, 4, 5 star(s)`, () => {
+    const stars = [1, 2, 3, 4, 5];
+    stars.forEach((star) => {
       cy.createRatingWithUI(star);
       checkStars(star);
 
