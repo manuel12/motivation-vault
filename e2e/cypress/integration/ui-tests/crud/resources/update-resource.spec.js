@@ -150,7 +150,7 @@ for (const resourceType of resourceTypes) {
       });
     });
 
-    it(`should update a ${resourceType} resource by pressing ENTER when all form fields are filled`, () => {
+    it(`should submit the ${resourceType} form by pressing ENTER when all required fields are filled`, () => {
       // Wait for loading spinner to dissapear.
       cy.get("[data-test=spinner]")
         .should("not.exist")
@@ -178,7 +178,7 @@ for (const resourceType of resourceTypes) {
       });
     });
 
-    it(`should not create a new ${resourceType} when updating a ${resourceType}`, () => {
+    it(`should not create a new ${resourceType} resource when updating a ${resourceType}`, () => {
       // Wait for loading spinner to dissapear.
       cy.get("[data-test=spinner]")
         .should("not.exist")
@@ -208,7 +208,7 @@ for (const resourceType of resourceTypes) {
         });
     });
 
-    it("should NOT display edit button when logged in as regular user", () => {
+    it("should NOT display the edit button when logged in as a regular user", () => {
       cy.logoutWithUI();
 
       // TODO: login with admin user.
