@@ -8,7 +8,7 @@ describe("Token", () => {
     cy.visit("/");
   });
 
-  it("should redirect logged in user to authentication after altering the token", () => {
+  it("should redirect the logged in user to authentication after altering the token", () => {
     cy.loginWithUI();
     cy.get("[data-test=homepage]").should(() => {
       cy.log("Altering the token...")
@@ -22,7 +22,7 @@ describe("Token", () => {
     cy.get("[data-test=login-container]").should("be.visible")
   });
 
-  it("should redirect logged in user to authentication after deleting the token", () => {
+  it("should redirect the logged in user to authentication after deleting the token", () => {
     cy.loginWithUI();
     cy.get("[data-test=homepage]").should(() => {
       cy.log("Deleting the token...")
@@ -36,7 +36,7 @@ describe("Token", () => {
     cy.get("[data-test=login-container]").should("be.visible")
   });
 
-  it("should redirect user with an invalid token to authentication", () => {
+  it("should redirect the user with an invalid token to authentication", () => {
     cy.get("[data-test=login-container]").then(() => {
       cy.log("Adding invalid token...")
 
