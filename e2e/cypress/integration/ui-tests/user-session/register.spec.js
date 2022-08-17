@@ -10,7 +10,7 @@ describe("Register", () => {
     cy.get("[data-test=register-link]").click();
   });
 
-  it("should register with valid username and password", () => {
+  it("should register with a valid username and password", () => {
     cy.get("[data-test=username]").type(testuser2Data.username);
     cy.get("[data-test=password]").type(testuser2Data.password);
     cy.get("[data-test=submit-button]").click();
@@ -20,7 +20,7 @@ describe("Register", () => {
     cy.get("[data-test=homepage]").should("be.visible");
   });
 
-  it("should NOT register with existing username and password", () => {
+  it("should NOT register with an existing username and password", () => {
     cy.get("[data-test=username]").type(testuserData.username);
     cy.get("[data-test=password]").type(testuserData.password);
     cy.get("[data-test=submit-button]").click();
