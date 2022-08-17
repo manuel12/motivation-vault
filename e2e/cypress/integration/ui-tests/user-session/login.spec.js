@@ -8,7 +8,7 @@ describe("Login", () => {
     cy.visit("/");
   });
 
-  it("should login with valid username and password", () => {
+  it("should login with a valid username and password", () => {
     cy.loginWithUI()
 
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
