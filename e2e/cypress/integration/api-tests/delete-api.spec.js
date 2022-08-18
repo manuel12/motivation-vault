@@ -31,43 +31,33 @@ for (const resourceType of resourceTypes) {
           Authorization: `Token  ${adminuserData.token}`,
         },
       }).then((response) => {
-        const firstBook = response.body[0];
-        ctx.id = firstBook.id;
+        const firstResource = response.body[0];
+
+        cy.request({
+          method: "DELETE",
+          url: `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/${
+            firstResource.id
+          }/`,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token  ${adminuserData.token}`,
+          },
+        }).then((response) => {
+          ctx.response = response;
+        });
       });
     });
   
-    it("should have status code 204", () => {
-      cy.request({
-        method: "DELETE",
-        url: `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/${
-          ctx.id
-        }/`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token  ${adminuserData.token}`,
-        },
-      }).then((response) => {
-        expect(response.status).to.eq(204);
-      });
-    });
-  
-    it("should display resource count back to original count after deleting", () => {
-      cy.request({
-        method: "DELETE",
-        url: `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/${
-          ctx.id
-        }/`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token  ${adminuserData.token}`,
-        },
-      });
-  
-      cy.request(
-        `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/`
-      ).then((response) => {
-        expect(response.body.length).to.eq(ctx.originalResourceCount);
-      });
+    it("should have status code 204 and display resource count back to original count after deleting", () => {
+        // Check status code 204
+        expect(ctx.response.status).to.eq(204);
+
+        /// Check resource count back to original
+        cy.request(
+          `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/`
+        ).then((response) => {
+          expect(response.body.length).to.eq(ctx.originalResourceCount);
+        });
     });
   });  
 }
