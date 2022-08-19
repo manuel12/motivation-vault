@@ -8,7 +8,7 @@ const Post = (props) => {
         href={`http://localhost:3000/${props.id}/`}
         className={classes["post-container-link"]}
       >
-        <div className={classes["image-container"]}>
+        <div className={classes["image-container"]} data-test="image-container">
           <img
             src={props.imageURL}
             className={classes["post-image"]}
@@ -29,8 +29,8 @@ const Post = (props) => {
             numRatings={props.numRatings}
           />
           <p className={classes["description-container"]} data-test="post-description">
-            {props.description && props.description.length > 300
-              ? `${props.description.substring(0, 300)}...`
+            {props.description && props.description.length > 150
+              ? `${props.description.substring(0, 150)}...`
               : props.description}
           </p>
         </div>
