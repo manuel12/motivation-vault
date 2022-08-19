@@ -17,6 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.1rem;
   font-weight: 400;
+  color: rgb(70, 70, 70);
   word-spacing: 0.2em;
 }
 
@@ -27,7 +28,6 @@ code {
 
 p {
   line-height: 1.6em;
-  font-weight: 400;
 }
 
 form {
@@ -48,13 +48,11 @@ select {
   border-radius: 5px;
   font-family: inherit;
   font-size: inherit;
-  font-weight: normal;
   outline-color: #FFC93D;
 }
 
 select option {
   border-color: #c7d0d2;
-  font-weight: normal;
   outline-color: #FFC93D;
 }
 
