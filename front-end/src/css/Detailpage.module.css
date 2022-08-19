@@ -59,13 +59,13 @@ iframe {
 
 .crud-buttons-container {
   background-color: rgb(225, 225, 225);
-  border: 2px solid grey;
+  border: 2px solid #E5A702;
   border-radius: 10px;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 15%;
+  width: fit-content; /*15%;*/
   margin: 20px 42.5%;
   padding: 10px 0;
 }
