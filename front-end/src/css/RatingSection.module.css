@@ -77,6 +77,14 @@ h2 {
   border-radius: 5px;
 }
 
+.rate-it-text {
+  color: white;
+  background-color: #E5A702;
+  border-radius: 5px;
+  width: 50%;
+  margin: 10% 25%;
+}
+
 .stars-container {
   padding: 0 35px 15px;
 }
