@@ -13,7 +13,6 @@ const AddPage = () => {
 
   return (
     <div className="add-container" data-test="add-container">
-      <h2 className={classes["add-container-heading"]}>Add a resource!</h2>
       <div className={classes["select-container"]}>
         <select
           name="resources"
