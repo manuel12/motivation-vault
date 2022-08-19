@@ -100,7 +100,7 @@ const RatingSection = (props) => {
 
       {showRatingInput && (
         <div className={classes["rate-container"]}>
-          <h2>Rate it!</h2>
+          <h2 className={classes["rate-it-text"]}>Rate it!</h2>
           <div className={classes["stars-container"]}>
             {[...Array(5)].map((e, i) => {
               return (
