@@ -1,6 +1,7 @@
 .app-navbar {
-  background-color:#8F1100;
-  border-color: #8F1100;
+  background-color: #8f1100;
+  border-color: #8f1100;
+  height: fit-content;
 }
 
 .nav-list {
@@ -12,21 +13,22 @@
 }
 
 .nav-item-link {
-  display: block;
-  font-size: 20px;
+  height: 100%;
+  display: inline-block;
+  font-size: 1.3rem;
   color: white;
-  text-align: center;
-  padding: 14px 30px;
+  padding: 0.8rem 0.4rem;
+  margin: 0 10px;
   text-decoration: none;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .active {
-  background-color: grey;
+  background-color: #e5a702;
 }
 
 .nav-item-link:hover {
-  background-color: #FFC93D;
-  border-color: #FFC93D;
+  background-color: #ffc93d;
+  border-color: #ffc93d;
   color: white;
 }
