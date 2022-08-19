@@ -24,7 +24,7 @@
 }
 
 .header {
-  background-color: #023BE6;
+  background-color: #ff1616;
   color: white;
   border-radius: 10px;
   text-align: center;
@@ -45,8 +45,8 @@ footer {
   padding: 15px 0;
 }
 .accept-button {
-  background-color: #023BE6;
-  border-color: #023BE6;
+  background-color: #ff1616;
+  border-color: #ff1616;
   margin-bottom: 10px;
 }
 
