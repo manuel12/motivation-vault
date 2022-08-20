@@ -32,3 +32,15 @@
   border-color: #ffc93d;
   color: white;
 }
+
+@media screen and (max-width: 600px) {
+  .nav-list {
+    display: block;
+    padding: 0px;
+  }
+
+  .nav-item-link {
+    width: 100%;
+    margin: 0;
+  }
+}
