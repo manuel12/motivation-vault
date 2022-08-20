@@ -3,14 +3,14 @@
 }
 
 .comment-section-heading {
-  background-color: #E5A702;
+  background-color: #e5a702;
   border-radius: 4px;
   color: white;
   width: fit-content;
 }
 
 .add-comment {
-  border-style:none
+  border-style: none;
 }
 
 .btn-container {
@@ -48,4 +48,11 @@
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .comment-section-heading {
+    width: 100%;
+    text-align: center;
+  }
 }
