@@ -4,7 +4,7 @@
 }
 
 .values-heading {
-  background-color: #E5A702;
+  background-color: #e5a702;
   border-radius: 4px;
   color: white;
   width: fit-content;
@@ -12,4 +12,14 @@
 
 .value-item {
   margin: 15px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .value-container {
+    padding: 0;
+  }
+  .values-heading {
+    width: 100%;
+    text-align: center;
+  }
 }
