@@ -1,12 +1,11 @@
 ::selection {
-  background-color: #FFC93D;
+  background-color: #ffc93d;
   color: white;
 }
 
 :focus {
-  border-color: #FFC93D;
+  border-color: #ffc93d;
 }
-
 
 body {
   margin: 0;
@@ -35,11 +34,6 @@ form {
   margin: 0 25%;
 }
 
-.icon {
-  margin-right: 5px;
-  color: gray;
-}
-
 select {
   background-color: white;
   color: black;
@@ -48,12 +42,12 @@ select {
   border-radius: 5px;
   font-family: inherit;
   font-size: inherit;
-  outline-color: #FFC93D;
+  outline-color: #ffc93d;
 }
 
 select option {
   border-color: #c7d0d2;
-  outline-color: #FFC93D;
+  outline-color: #ffc93d;
 }
 
 input,
@@ -65,9 +59,32 @@ textarea {
   border: 2px solid #c7d0d2;
   border-radius: 20px;
   font-size: 1rem;
-  outline-color: #FFC93D;
+  outline-color: #ffc93d;
 }
 
 textarea {
   font-family: "Roboto";
+}
+
+.icon {
+  margin-right: 5px;
+  color: gray;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 1.3rem;
+  }
+
+  form {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  input,
+  textarea {
+    width: 90%;
+    padding: 10px 5%;
+    margin:  0;
+  }
 }
