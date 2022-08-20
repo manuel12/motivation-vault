@@ -18,6 +18,7 @@
 
 .modal {
   width: 30%;
+  min-width: 250px;
   margin: 0 35%;
   background-color: white;
   border-radius: 15px;
@@ -48,6 +49,9 @@ footer {
   background-color: #ff1616;
   border-color: #ff1616;
   margin-bottom: 10px;
+
+  width: 40%;
+  margin: 5px 30%;
 }
 
 .accept-button:hover {
@@ -58,9 +62,32 @@ footer {
 .cancel-button {
   background-color: darkgrey;
   border-color: darkgrey;
+
+  width: 40%;
+  margin: 5px 30%;
 }
 
 .cancel-button:hover {
   background-color: grey;
   border-color: grey;
+}
+
+@media screen and (max-width: 600px) {
+  .modal-container {
+    top: 25%;
+  }
+
+  .modal {
+    width: 80%;
+    margin: 0 10%;
+    background-color: white;
+    border-radius: 15px;
+  }
+
+  .accept-button,
+  .cancel-button {
+    width: 90%;
+    margin: 10px 5%;
+    font-size: 1.3rem;
+  }
 }
