@@ -4,6 +4,19 @@
     padding-bottom: 30px;
 }
 
+@media screen and (max-width: 992px) {
+  .content {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .content {
