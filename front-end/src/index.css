@@ -37,17 +37,19 @@ form {
 select {
   background-color: white;
   color: black;
-  padding: 10px;
+  padding: 5px;
+  width: fit-content;
   border: 2px solid #c7d0d2;
   border-radius: 5px;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 1rem;
   outline-color: #ffc93d;
 }
 
 select option {
   border-color: #c7d0d2;
   outline-color: #ffc93d;
+  font-size: 1rem;
 }
 
 input,
@@ -85,6 +87,6 @@ textarea {
   textarea {
     width: 90%;
     padding: 10px 5%;
-    margin:  0;
+    margin: 0;
   }
 }
