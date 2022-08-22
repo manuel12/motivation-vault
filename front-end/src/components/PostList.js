@@ -6,7 +6,10 @@ import classes from "../css/PostList.module.css";
 
 const PostList = (props) => {
   return (
-    <div data-test="post-list-container">
+    <div
+      className={classes["post-list-container"]}
+      data-test="post-list-container"
+    >
       {props.resources && props.resources.length > 0 ? (
         props.resources.map((resource) => (
           <Post
