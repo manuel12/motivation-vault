@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { cleanLocPath } from "../utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import classes from "../css/Navbar.module.css";
 
 const Navbar = ({ deleteToken }) => {
-  
+  const [navbarClasses, setNavbarClasses] = useState(classes["nav-list"]);
+
   const [homeLinkClassName, setHomeLinkClassName] = useState(
     classes["nav-item-link"]
   );
@@ -41,8 +45,19 @@ const Navbar = ({ deleteToken }) => {
     window.location.href = "/";
   };
 
-  useEffect(() => {
+  const hamburgerBtnClickedHandler = () => {
+    const navbarOndDisplayOnPortraitMode = navbarClasses.includes(
+      "Navbar_nav-list-portrait-display"
+    );
 
+    navbarOndDisplayOnPortraitMode
+      ? setNavbarClasses(classes["nav-list"])
+      : setNavbarClasses(
+          `${classes["nav-list"]} ${classes["nav-list-portrait-display"]}`
+        );
+  };
+
+  useEffect(() => {
     const locPath = window.location.pathname;
     const cleanedLocPath = cleanLocPath(locPath);
 
@@ -70,7 +85,13 @@ const Navbar = ({ deleteToken }) => {
 
   return (
     <div className={classes["app-navbar"]}>
-      <ul className={classes["nav-list"]} data-test="nav-list">
+      <button
+        className={classes["hamburger-btn"]}
+        onClick={hamburgerBtnClickedHandler}
+      >
+        <FontAwesomeIcon icon={faBars} className={classes["hamburger-icon"]} />
+      </button>
+      <ul className={navbarClasses} data-test="nav-list">
         <li className={classes["nav-item"]}>
           <a className={homeLinkClassName} href="/" data-test="home-link">
             Home
@@ -138,6 +159,6 @@ const Navbar = ({ deleteToken }) => {
       </ul>
     </div>
   );
-}
+};
 
 export default Navbar;
