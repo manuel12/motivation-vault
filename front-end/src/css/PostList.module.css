@@ -1,3 +1,7 @@
+.post-list-container {
+  width: 100%;
+}
+
 .spinner {
   display: flex;
   justify-content: center;
