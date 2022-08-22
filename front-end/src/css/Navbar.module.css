@@ -1,7 +1,6 @@
 .app-navbar {
   background-color: #8f1100;
   border-color: #8f1100;
-  height: fit-content;
 }
 
 .nav-list {
@@ -33,10 +32,36 @@
   color: white;
 }
 
+.hamburger-btn {
+  display: none;
+  min-width: 60px;
+  padding: 10px;
+}
+
+.hamburger-icon {
+  font-size: 1.4rem;
+}
+
 @media screen and (max-width: 600px) {
-  .nav-list {
+  .app-navbar {
+    padding: 5px 0 10px 0;
+  }
+
+  .hamburger-btn {
     display: block;
+    width: 40px;
+    margin: 0 0 0 0.4rem;
+  }
+
+  .nav-list {
+    display: none;
     padding: 0px;
+  }
+
+  .nav-list-portrait-display {
+    display: block;
+    list-style-type: none;
+    padding: 0;
   }
 
   .nav-item-link {
