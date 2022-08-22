@@ -1,5 +1,4 @@
 .post-container {
-  width: 90%;
   min-height: 200px;
   margin: 20px 0 20px 0;
   overflow: hidden;
@@ -54,11 +53,11 @@
 @media screen and (max-width: 600px) {
   .post-container {
     max-height: 600px;
-    margin: 40px 0 40px 0;
+    margin: 40px 5% 40px 5%;
   }
 
   .image-container {
-    width: 100%;
+    width: 95%
   }
 
   .text-container {
