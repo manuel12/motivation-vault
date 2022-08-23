@@ -1,21 +1,32 @@
 .update-resource-form-heading {
   text-align: center;
-  background-color: #E5A702;
+  background-color: #e5a702;
   border-radius: 4px;
   color: white;
   width: 100%;
 }
 
+.btn-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .submit-button-enabled {
   background-color: auto;
+  margin: 0;
 }
 
 .submit-button-disabled {
   background-color: grey;
   border-color: grey;
+  margin: 0;
 }
 
 .submit-button-disabled:hover {
   background-color: grey;
   border-color: grey;
+}
+
+.cancel-button {
+  margin: 0;
 }
