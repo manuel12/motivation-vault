@@ -20,6 +20,10 @@ body {
   word-spacing: 0.2em;
 }
 
+a {
+  color: rgb(70, 70, 70);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
