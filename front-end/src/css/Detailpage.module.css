@@ -66,7 +66,7 @@ iframe {
   flex-direction: row;
   justify-content: space-evenly;
   width: fit-content;
-  min-width: 20%;
+  min-width: 125px;
   margin: 20px 40%;
   padding: 10px 0;
 }
@@ -87,10 +87,8 @@ iframe {
 
 .edit-button {
   position: relative;
-  left: 2px;
   margin: 10px;
   padding: 1px;
-  float: right;
   color: white;
   font-size: 1.5rem;
 }
@@ -115,9 +113,9 @@ iframe {
 }
 
 .delete-button {
-  padding: 1px;
+  position: relative;
   margin: 10px;
-  float: right;
+  padding: 1px;
   color: white;
   font-size: 1.5rem;
 }
@@ -159,27 +157,27 @@ iframe {
   }
 
   .crud-buttons-container {
-    min-width: 60%;
-    margin: 20px 20% 0 20%;
+    min-width: 150px;
+    margin: 20px 25% 0 25%;
   }
 
   .edit-button-container {
-    width: 40%;
+    width: 4rem;
   }
 
   .edit-button {
     position: relative;
-    left: -5px;
+    left: 5px;
     font-size: 2rem;
   }
 
   .delete-button-container {
-    width: 40%;
+    width: 4rem;
   }
 
   .delete-button {
     position: relative;
-    left: -12px;
+    left: 7px;
     font-size: 2rem;
   }
 }
