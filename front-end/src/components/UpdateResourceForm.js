@@ -139,6 +139,11 @@ const UpdateResourceForm = (props) => {
     }
   };
 
+  const cancelClickedHandler = (e) => {
+    e.preventDefault();
+    window.history.back();
+  };
+
   useEffect(() => {
     API.fetchResourceOfType(resourceType, id, token, setResource).then(
       (resp) => {
@@ -171,7 +176,9 @@ const UpdateResourceForm = (props) => {
 
   return (
     <form className="add-resource-form" onSubmit={submitHandler}>
-      <h3 className={classes["update-resource-form-heading"]}>Update Resource Form</h3>
+      <h3 className={classes["update-resource-form-heading"]}>
+        Update Resource Form
+      </h3>
       <LabeledInput
         error={titleError}
         item="Title"
@@ -302,16 +309,27 @@ const UpdateResourceForm = (props) => {
         }}
         dataAttr="value-three-input"
       />
-      <Button
-        className={
-          classes[`submit-button-${submitEnabled ? "enabled" : "disabled"}`]
-        }
-        id="submit"
-        type="submit"
-        text="Update Resource"
-        data-test="submit"
-        disabled={!submitEnabled}
-      />
+      <div className={classes["btn-container"]}>
+        <Button
+          className={
+            classes[`submit-button-${submitEnabled ? "enabled" : "disabled"}`]
+          }
+          id="submit"
+          type="submit"
+          text="Update Resource"
+          data-test="submit"
+          disabled={!submitEnabled}
+        />
+        <Button
+          className={
+            classes["cancel-button"]
+          }
+          id="cancel"
+          text="Cancel"
+          onClick={cancelClickedHandler}
+          data-test="cancel"
+        />
+      </div>
     </form>
   );
 };
