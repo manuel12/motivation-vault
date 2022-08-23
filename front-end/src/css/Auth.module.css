@@ -18,3 +18,11 @@ span {
   color: orange;
   cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+  .login-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
