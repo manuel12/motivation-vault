@@ -9,7 +9,7 @@ const Button = (props) => {
       id={props.id}
       type={props.type}
       onClick={props.onClick}
-      data-test={props["data-test"]}
+      data-test={props?.dataAttr}
     >{props.text}</button>
   );
 };
