@@ -8,7 +8,7 @@ const resourceTypes = [
   "book",
   "podcast",
   "podcast-episode",
-  "motivational-speech"
+  "motivational-speech",
 ];
 
 for (const resourceType of resourceTypes) {
@@ -43,7 +43,7 @@ for (const resourceType of resourceTypes) {
     });
 
     it(`Should update a ${resourceType} resource`, () => {
-      // Wait for loading spinner to dissapear.
+      // Wait for loading spinner to disappear.
       cy.get("[data-test=spinner]")
         .should("not.exist")
         .then(() => {
@@ -151,7 +151,7 @@ for (const resourceType of resourceTypes) {
     });
 
     it(`should submit the ${resourceType} form by pressing ENTER when all required fields are filled`, () => {
-      // Wait for loading spinner to dissapear.
+      // Wait for loading spinner to disappear.
       cy.get("[data-test=spinner]")
         .should("not.exist")
         .then(() => {
@@ -179,7 +179,7 @@ for (const resourceType of resourceTypes) {
     });
 
     it(`should not create a new ${resourceType} resource when updating a ${resourceType}`, () => {
-      // Wait for loading spinner to dissapear.
+      // Wait for loading spinner to disappear.
       cy.get("[data-test=spinner]")
         .should("not.exist")
         .then(() => {
@@ -197,7 +197,7 @@ for (const resourceType of resourceTypes) {
       cy.get("[data-test=submit]").should("be.enabled").click();
 
       cy.visit(`/${getResourceTypePlural(resourceType)}/`);
-      // Wait for loading spinner to dissapear.
+      // Wait for loading spinner to disappear.
       cy.get("[data-test=spinner]")
         .should("not.exist")
         .then(() => {
@@ -223,3 +223,36 @@ for (const resourceType of resourceTypes) {
     });
   });
 }
+
+describe("Update Resource Cancel Button", () => {
+  it("should go back to the previous page when clicking the cancel button", () => {
+    for (const resourceType of resourceTypes) {
+      cy.loginAndCleanUp();
+      cy.createResourceWithAPI(resourceType, resourceAPIData);
+      cy.visit("/");
+      cy.get("[data-test=app]").should("be.visible");
+
+      // Wait for loading spinner to disappear.
+      cy.get("[data-test=spinner]")
+        .should("not.exist")
+        .then(() => {
+          cy.get("[data-test=post-list-container]")
+            .children()
+            .first()
+            .should("contain.text", resourceAPIData.title)
+            .click();
+        });
+
+      cy.url().then((detailpageUrl) => {
+        cy.get("[data-test=edit-button]").should("be.visible").click();
+        cy.get("[data-test=cancel]").should("be.visible").click();
+
+        cy.url().should("contain", detailpageUrl);
+      });
+    }
+  });
+
+  afterEach(() => {
+    cy.deleteTestData();
+  });
+});
