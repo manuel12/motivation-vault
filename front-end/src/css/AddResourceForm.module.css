@@ -5,3 +5,10 @@
   color: white;
   width: 100%;
 }
+
+@media screen and (max-width: 992px) {
+  form {
+    width: 80%;
+    margin: 0 10%;
+  }
+}
