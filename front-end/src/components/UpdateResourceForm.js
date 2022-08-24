@@ -317,7 +317,7 @@ const UpdateResourceForm = (props) => {
           id="submit"
           type="submit"
           text="Update Resource"
-          data-test="submit"
+          dataAttr="submit"
           disabled={!submitEnabled}
         />
         <Button
@@ -327,7 +327,7 @@ const UpdateResourceForm = (props) => {
           id="cancel"
           text="Cancel"
           onClick={cancelClickedHandler}
-          data-test="cancel"
+          dataAttr="cancel"
         />
       </div>
     </form>
