@@ -106,7 +106,7 @@ const CommentSection = (props) => {
           type="submit"
           text="Comment"
           onClick={submitClickedHandler}
-          data-test="add-comment-button"
+          dataAttr="add-comment-button"
         />
         <Button
           className={cancelBtnClassName}
@@ -114,7 +114,7 @@ const CommentSection = (props) => {
           type="submit"
           text="Cancel"
           onClick={cancelClickedHandler}
-          data-test="cancel-comment-button"
+          dataAttr="cancel-comment-button"
         />
       </div>
       <br />
