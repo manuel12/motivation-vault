@@ -175,7 +175,7 @@ const UpdateResourceForm = (props) => {
   }, [id]);
 
   return (
-    <form className="add-resource-form" onSubmit={submitHandler}>
+    <form className={classes["update-resource-form"]} onSubmit={submitHandler}>
       <h3 className={classes["update-resource-form-heading"]}>
         Update Resource Form
       </h3>
