@@ -1,14 +1,28 @@
+.add-resource-form {
+  animation: open 0.25s;
+}
+
 .add-resource-form-heading {
   text-align: center;
-  background-color: #E5A702;
+  background-color: #A86800;
   border-radius: 4px;
   color: white;
   width: 100%;
 }
 
 @media screen and (max-width: 992px) {
-  form {
+  .add-resource-form {
     width: 80%;
     margin: 0 10%;
+    animation: open 0.25s;
+  }
+}
+
+@keyframes open {
+  0% {
+    transform: translateY(-400px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
