@@ -129,7 +129,7 @@ const AddResourceForm = (props) => {
   };
 
   return (
-    <form className="add-resource-form" onSubmit={submitHandler}>
+    <form className={classes["add-resource-form"]} id="add-resource-form" onSubmit={submitHandler}>
       <h3 className={classes["add-resource-form-heading"]}>Add Resource Form</h3>
       <LabeledInput
         error={titleError}
