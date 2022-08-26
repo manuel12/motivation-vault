@@ -1,6 +1,10 @@
+.update-resource-form {
+  animation: open 0.25s;
+}
+
 .update-resource-form-heading {
   text-align: center;
-  background-color: #e5a702;
+  background-color: #A86800;
   border-radius: 4px;
   color: white;
   width: 100%;
@@ -29,4 +33,13 @@
 
 .cancel-button {
   margin: 0;
+}
+
+@keyframes open {
+  0% {
+    transform: translateY(-400px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
