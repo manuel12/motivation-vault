@@ -3,7 +3,7 @@
 }
 
 .comment-section-heading {
-  background-color: #e5a702;
+  background-color: #A86800;
   border-radius: 4px;
   color: white;
   width: fit-content;
@@ -23,6 +23,7 @@
   margin: 0;
   display: inline-block;
   border: 0;
+  animation: open 0.25s;
 }
 
 .add-comment-btn-enabled {
@@ -39,6 +40,7 @@
   margin-left: 10px;
   display: inline-block;
   border: 0;
+  animation: open 0.25s;
 }
 
 .cancel-button:hover {
@@ -54,5 +56,15 @@
   .comment-section-heading {
     width: 100%;
     text-align: center;
+  }
+}
+
+
+@keyframes open {
+  0% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
