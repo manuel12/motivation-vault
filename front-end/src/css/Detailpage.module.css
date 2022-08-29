@@ -5,7 +5,7 @@
 
 .heading {
   font-size: 3rem;
-  background-color: #e5a702;
+  background-color: #A86800;
   border-radius: 4px;
   color: white;
   width: fit-content;
@@ -40,7 +40,7 @@ iframe {
 }
 
 .description-heading {
-  background-color: #e5a702;
+  background-color: #A86800;
   border-radius: 4px;
   color: white;
   width: fit-content;
@@ -59,7 +59,7 @@ iframe {
 
 .crud-buttons-container {
   background-color: rgb(225, 225, 225);
-  border: 2px solid #e5a702;
+  border: 2px solid #A86800;
   border-radius: 10px;
 
   display: flex;
@@ -74,15 +74,15 @@ iframe {
 .edit-button-container {
   margin: 0 5px;
   border-radius: 15px;
-  background-color: #ffc93d;
-  border-color: #e5a702;
+  background-color: #F59800;
+  border-color: #A86800;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
 
 .edit-button-container:hover {
-  background-color: #e5a702;
-  border-color: #e5a702;
+  background-color: #A86800;
+  border-color: #A86800;
 }
 
 .edit-button {
@@ -101,15 +101,15 @@ iframe {
 .delete-button-container {
   margin: 0 5px;
   border-radius: 15px;
-  background-color: #ffc93d;
-  border-color: #e5a702;
+  background-color: #F59800;
+  border-color: #A86800;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
 
 .delete-button-container:hover {
-  background-color: #e5a702;
-  border-color: #e5a702;
+  background-color: #A86800;
+  border-color: #A86800;
 }
 
 .delete-button {
