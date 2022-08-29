@@ -1,10 +1,10 @@
 ::selection {
-  background-color: #ffc93d;
+  background-color: #F59800;
   color: white;
 }
 
 :focus {
-  border-color: #ffc93d;
+  border-color: #F59800;
 }
 
 body {
@@ -47,12 +47,12 @@ select {
   border-radius: 5px;
   font-family: inherit;
   font-size: 1rem;
-  outline-color: #ffc93d;
+  outline-color: #F59800;
 }
 
 select option {
   border-color: #c7d0d2;
-  outline-color: #ffc93d;
+  outline-color: #F59800;
   font-size: 1rem;
 }
 
@@ -65,7 +65,7 @@ textarea {
   border: 2px solid #c7d0d2;
   border-radius: 20px;
   font-size: 1rem;
-  outline-color: #ffc93d;
+  outline-color: #F59800;
 }
 
 textarea {
