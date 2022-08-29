@@ -46,16 +46,16 @@ h2 {
   display: inline;
   margin: 0 10px;
   padding: 5px;
-  background-color: #ffc93d;
-  border: 1px solid #ffc93d;
+  background-color: #F59800;
+  border: 1px solid #F59800;
   border-radius: 5px;
   box-shadow: 0 4px #999;
   cursor: pointer;
 }
 
 .add-rating-button-container:hover {
-  background-color: #e5a702;
-  border-color: #e5a702;
+  background-color: #A86800;
+  border-color: #A86800;
 }
 
 .add-rating-button-container:active {
@@ -75,11 +75,12 @@ h2 {
   margin-top: 10px;
   border-top: 3px solid orange;
   border-radius: 5px;
+  animation: open 0.25s;
 }
 
 .rate-it-text {
   color: white;
-  background-color: #e5a702;
+  background-color: #A86800;
   border-radius: 5px;
   width: 50%;
   margin: 10% 25%;
@@ -112,5 +113,14 @@ h2 {
   .rate-container {
     width: 100%;
     margin-top: 20px;
+  }
+}
+
+@keyframes open {
+  0% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
