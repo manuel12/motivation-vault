@@ -1,7 +1,6 @@
 /* The alert message box */
 .alert {
   width: 80%;
-  /* position: fixed; */
   padding: 20px;
   background-color: #04AA6D;
   color: white;
