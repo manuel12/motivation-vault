@@ -57,9 +57,9 @@ iframe {
   border: 10px black;
 }
 
-.crud-buttons-container {
+.edit-delete-buttons-container {
   background-color: rgb(225, 225, 225);
-  border: 2px solid #A86800;
+  border: 2px solid #FFC93D;
   border-radius: 10px;
 
   display: flex;
@@ -74,8 +74,8 @@ iframe {
 .edit-button-container {
   margin: 0 5px;
   border-radius: 15px;
-  background-color: #F59800;
-  border-color: #A86800;
+  background-color: #FFC93D;
+  border-color: #FFC93D;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
@@ -101,8 +101,8 @@ iframe {
 .delete-button-container {
   margin: 0 5px;
   border-radius: 15px;
-  background-color: #F59800;
-  border-color: #A86800;
+  background-color: #FFC93D;
+  border-color: #FFC93D;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
@@ -156,7 +156,7 @@ iframe {
     text-align: center;
   }
 
-  .crud-buttons-container {
+  .edit-delete-buttons-container {
     min-width: 150px;
     margin: 20px 25% 0 25%;
   }
