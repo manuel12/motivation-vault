@@ -1,16 +1,5 @@
 .app-navbar {
-  background-color: #0059A8;
-  /* background-color: #0244e3;
-  border-color: #0244e3; */
-  /* background: rgb(171,171,171);
-  background: linear-gradient(90deg, rgba(171,171,171,1) 34%, rgba(0,0,0,1) 100%); */
-  /* background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(2, 68, 227, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  ); */
+  background-color: #0059a8;
 }
 
 .nav-list {
@@ -35,12 +24,12 @@
 }
 
 .active {
-  background-color: #A86800;
+  background-color: #ffc93d;
 }
 
 .nav-item-link:hover {
-  background-color: #F59800;
-  border-color: #F59800;
+  background-color: #f59800;
+  border-color: #f59800;
   color: white;
 }
 
