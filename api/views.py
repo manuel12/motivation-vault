@@ -1,3 +1,5 @@
+from multiprocessing import context
+import re
 from django.contrib.auth.models import User
 from resources import models
 from rest_framework import status, viewsets
@@ -104,30 +106,43 @@ class ResourceDetail(ResourceView):
             return False
 
     def get(self, request, pk):
+        print("Here on get!!! ----")
+        print(f"request.user: {request.user}")
+        print(f"request.user.is_staff: {request.user.is_staff}")
         resource = self.get_object(pk)
         if resource:
-            serializer_class = self.get_serializer_class()
-            serializer = serializer_class(resource)
-            return Response(serializer.data)
+            # serializer_class = self.get_serializer_class()
+            serializer = serializers.ResourceSerializer(
+                resource, context={'request': request})
+
+            # Flag to display edit/delete buttons on front-end.
+            data_with_edit_delete_flag = serializer.data
+            data_with_edit_delete_flag['can_edit_delete'] = request.user.is_staff
+            return Response(data_with_edit_delete_flag)
         return Response({"error": "Not found"})
 
     def put(self, request, pk):
-        resource = self.get_object(pk)
-        if resource:
-            serializer_class = self.get_serializer_class()
-            serializer = serializer_class(resource, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data,
-                                status=status.HTTP_200_OK)
-            return Response(serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+        if request.user.is_staff:
+            resource = self.get_object(pk)
+            if resource:
+                serializer_class = self.get_serializer_class()
+                serializer = serializer_class(resource, data=request.data)
+                if serializer.is_valid() and request.user.is_staff:
+                    serializer.save()
+                    return Response(serializer.data,
+                                    status=status.HTTP_200_OK)
+                return Response(serializer.errors,
+                                status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
     def delete(self, request, pk):
-        resource = self.get_object(pk)
-        if resource:
-            resource.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user.is_staff:
+            print("On delete!")
+            resource = self.get_object(pk)
+            if resource:
+                resource.delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 class BookList(ResourceList):
