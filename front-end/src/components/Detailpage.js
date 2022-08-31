@@ -23,9 +23,15 @@ const DetailPage = () => {
   const [displayModal, setDisplayModal] = useState(false);
   const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [
+    displayEditDeleteButtonsContainer,
+    setDisplayEditDeleteButtonsContainer,
+  ] = useState(true);
 
   useEffect(() => {
-    API.fetchResource(id, token, setResource);
+    API.fetchResource(id, token, setResource).then((resp) =>
+      setDisplayEditDeleteButtonsContainer(resp.can_edit_delete)
+    );
   }, [id]);
 
   if (resource.error && resource.error === "Not found") {
@@ -66,28 +72,30 @@ const DetailPage = () => {
         data-test="detail-page-container"
       >
         <div className={classes["post-section-container"]}>
-          <div className={classes["crud-buttons-container"]}>
-            <div
-              className={classes["edit-button-container"]}
-              onClick={editButtonClickedHandler}
-              data-test="edit-button"
-            >
-              <FontAwesomeIcon
-                icon={faEdit}
-                className={classes["edit-button"]}
-              />
+          {displayEditDeleteButtonsContainer && (
+            <div className={classes["edit-delete-buttons-container"]}>
+              <div
+                className={classes["edit-button-container"]}
+                onClick={editButtonClickedHandler}
+                data-test="edit-button"
+              >
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  className={classes["edit-button"]}
+                />
+              </div>
+              <div
+                className={classes["delete-button-container"]}
+                data-test="delete-button"
+                onClick={deleteButtonClickedHandler}
+              >
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  className={classes["delete-button"]}
+                />
+              </div>
             </div>
-            <div
-              className={classes["delete-button-container"]}
-              data-test="delete-button"
-              onClick={deleteButtonClickedHandler}
-            >
-              <FontAwesomeIcon
-                icon={faTrash}
-                className={classes["delete-button"]}
-              />
-            </div>
-          </div>
+          )}
 
           <h1 className={classes["heading"]} data-test="heading">
             {resource.title}

@@ -139,7 +139,6 @@ export class API {
       token,
       resourceData
     )
-      .then((resp) => resp.json())
       .then((resp) => {
         window.location.href = `http://localhost:3000/${id}/`;
       })
