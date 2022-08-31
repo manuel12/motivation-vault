@@ -106,19 +106,16 @@ class ResourceDetail(ResourceView):
             return False
 
     def get(self, request, pk):
-        print("Here on get!!! ----")
-        print(f"request.user: {request.user}")
-        print(f"request.user.is_staff: {request.user.is_staff}")
         resource = self.get_object(pk)
         if resource:
             # serializer_class = self.get_serializer_class()
             serializer = serializers.ResourceSerializer(
                 resource, context={'request': request})
 
-            # Flag to display edit/delete buttons on front-end.
-            data_with_edit_delete_flag = serializer.data
-            data_with_edit_delete_flag['can_edit_delete'] = request.user.is_staff
-            return Response(data_with_edit_delete_flag)
+            # Attach flag to display edit/delete buttons on front-end.
+            response_data = serializer.data
+            response_data['can_edit_delete'] = request.user.is_staff
+            return Response(response_data)
         return Response({"error": "Not found"})
 
     def put(self, request, pk):
