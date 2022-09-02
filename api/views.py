@@ -1,5 +1,3 @@
-from multiprocessing import context
-import re
 from django.contrib.auth.models import User
 from resources import models
 from rest_framework import status, viewsets
@@ -41,7 +39,7 @@ obtain_auth_token = CustomObtainAuthToken.as_view()
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
 
 class ResourceView(APIView):
@@ -107,10 +105,10 @@ class ResourceDetail(ResourceView):
 
     def get(self, request, pk):
         resource = self.get_object(pk)
+
         if resource:
-            # serializer_class = self.get_serializer_class()
-            serializer = serializers.ResourceSerializer(
-                resource, context={'request': request})
+            serializer_class = self.get_serializer_class()
+            serializer = serializer_class(resource)
 
             # Attach flag to display edit/delete buttons on front-end.
             response_data = serializer.data
