@@ -10,9 +10,7 @@ import CommentSection from "./CommentSection";
 import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
 import NotFound from "./NotFound";
-
 import Modal from "./Modal";
-import AlertMessage from "./AlertMessage";
 
 import classes from "../css/Detailpage.module.css";
 
@@ -21,18 +19,19 @@ const DetailPage = () => {
   const { token } = useToken();
   const [resource, setResource] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
-  const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
+  // const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
+  // const [successMessage, setSuccessMessage] = useState("");
   const [
     displayEditDeleteButtonsContainer,
     setDisplayEditDeleteButtonsContainer,
   ] = useState(true);
 
   useEffect(() => {
-    API.fetchResource(id, token, setResource).then((resp) =>
-      setDisplayEditDeleteButtonsContainer(resp.can_edit_delete)
+    API.fetchResource(id, token, setResource).then(
+      (resp) => setDisplayEditDeleteButtonsContainer(true)
+      //setDisplayEditDeleteButtonsContainer(resp.can_edit_delete)
     );
-  }, [id]);
+  }, [id, token]);
 
   if (resource.error && resource.error === "Not found") {
     return <NotFound />;
@@ -66,7 +65,7 @@ const DetailPage = () => {
           cancelButtonClicked={modalCancelButtonClicked}
         />
       )}
-      {displaySuccessMessage && <AlertMessage message={successMessage} />}
+      {/* {displaySuccessMessage && <AlertMessage message={successMessage} />} */}
       <div
         className={classes["detail-page-container"]}
         data-test="detail-page-container"
@@ -122,6 +121,7 @@ const DetailPage = () => {
                 ></iframe>
               ) : (
                 <img
+                  alt={`Cover from ${resource.title} `}
                   src={resource.imageURL}
                   className={classes["image"]}
                   data-test="image"

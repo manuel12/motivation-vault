@@ -172,7 +172,7 @@ const UpdateResourceForm = (props) => {
         setValueThree(resp.value_three);
       }
     );
-  }, [id]);
+  }, [id, token, resourceType]);
 
   return (
     <form className={classes["update-resource-form"]} onSubmit={submitHandler}>
@@ -321,9 +321,7 @@ const UpdateResourceForm = (props) => {
           disabled={!submitEnabled}
         />
         <Button
-          className={
-            classes["cancel-button"]
-          }
+          className={classes["cancel-button"]}
           id="cancel"
           text="Cancel"
           onClick={cancelClickedHandler}

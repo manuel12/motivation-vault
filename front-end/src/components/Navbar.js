@@ -36,9 +36,9 @@ const Navbar = ({ deleteToken }) => {
     classes["nav-item-link"]
   );
 
-  const [logoutLinkClassName, setLogoutLinkClassName] = useState(
-    classes["nav-item-link"]
-  );
+  // const [logoutLinkClassName, setLogoutLinkClassName] = useState(
+  //   classes["nav-item-link"]
+  // );
 
   const logoutClickedHandler = () => {
     deleteToken();
@@ -69,7 +69,7 @@ const Navbar = ({ deleteToken }) => {
       "podcast-episodes-link": setPodcastsEpisodesLinkClassName,
       "motivational-speeches-link": setMotivationalSpeechesLinkClassName,
       "about-link": setAboutLinkClassName,
-      "logout-link": setLogoutLinkClassName,
+      // "logout-link": setLogoutLinkClassName,
     };
 
     for (const link in linkClassNames) {

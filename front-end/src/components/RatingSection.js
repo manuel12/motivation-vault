@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import useToken from "./useToken";
@@ -8,12 +8,8 @@ import { API } from "../api-service";
 
 const RatingSection = (props) => {
   const { token } = useToken();
-
-  const [rating, setRating] = useState(-1);
   const [showRatingInput, setShowRatingInput] = useState(false);
   const [hightlighted, setHighlighted] = useState(-1);
-
-  useEffect(() => setRating(props.avgRating), [props.avgRating]);
 
   const addRatingClickedHandler = () => {
     setShowRatingInput(!showRatingInput);

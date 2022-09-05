@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import { getResourceTypePlural } from "../../../../support/utils";
+
 const resourceAPIData = require("../../../../fixtures/resource-api-data.json");
 const newResourceData = require("../../../../fixtures/resource-updated-data.json");
 

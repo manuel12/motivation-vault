@@ -40,7 +40,7 @@ const Auth = ({ setToken }) => {
     if (username && password) {
       API.registerUser({ username, password })
         .then((resp) => {
-          console.log(resp)
+          console.log(resp);
           const userCreatedId = resp["id"];
           if (userCreatedId) {
             loginClickedHandler();
@@ -65,7 +65,6 @@ const Auth = ({ setToken }) => {
   };
 
   const loginInput = useRef(null);
-  const registerInput = useRef(null);
 
   useEffect(() => {
     loginInput.current.focus();
@@ -91,7 +90,7 @@ const Auth = ({ setToken }) => {
       <div className={classes["login-container"]} data-test="login-container">
         <form onSubmit={submitHandler}>
           {usernameError && (
-            <div class="username-error" data-test="username-error">
+            <div className="username-error" data-test="username-error">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
               <label htmlFor="username">{usernameError}</label>
             </div>
@@ -106,7 +105,7 @@ const Auth = ({ setToken }) => {
             data-test="username"
           />
           {passwordError && (
-            <div div class="password-error" data-test="password-error">
+            <div div className="password-error" data-test="password-error">
               <FontAwesomeIcon icon={faLock} className="icon" />
               <label htmlFor="password">{passwordError}</label>
             </div>

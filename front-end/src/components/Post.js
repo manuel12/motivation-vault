@@ -5,7 +5,7 @@ const Post = (props) => {
   return (
     <div className={classes["post-container"]} data-test="post-container">
       <a
-        href={`http://localhost:3000/${props.id}/`}
+        href={`/${props.id}/`}
         className={classes["post-container-link"]}
       >
         <div className={classes["image-container"]} data-test="image-container">

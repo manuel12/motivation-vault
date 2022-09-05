@@ -1,5 +1,12 @@
 {
-    "editor.fontSize": 16,
-    "editor.tabSize": 2,
-    "git.ignoreLimitWarning": true
+"git.ignoreLimitWarning": true,
+"editor.fontSize": 12,
+"python.linting.flake8Enabled": true,
+"python.linting.enabled": true,
+"workbench.colorCustomizations": {
+    "activityBar.background": "#462513",
+    "titleBar.activeBackground": "#62331A",
+    "titleBar.activeForeground": "#FDFBF9"
+},
+"editor.tabSize": 2
 }

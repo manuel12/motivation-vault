@@ -32,7 +32,7 @@ const CommentSection = (props) => {
         setSubmitBtnClassName(classes["add-comment-btn"]);
       }
     }
-  }, [commentText]);
+  }, [commentText, cancelBtnClassName]);
 
   const inputClickedHandler = () => {
     if (commentText) {

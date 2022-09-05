@@ -1,3 +1,27 @@
+export const getResourceTypeData = (resourceType, resourceTypeData) => {
+  const resourceTypePlural = getResourceTypePlural(resourceType);
+  if (!JSON.parse(localStorage.getItem(`/${resourceTypePlural}`))) {
+    localStorage.setItem(
+      `/${resourceTypePlural}`,
+      JSON.stringify(resourceTypeData)
+    );
+  }
+  return JSON.parse(localStorage.getItem(`/${resourceTypePlural}`));
+};
+
+export const saveResourcesData = (
+  resourceType,
+  newResourceData,
+  resourceTypeData
+) => {
+  const resourceTypePlural = getResourceTypePlural(resourceType);
+  const newResourcesData = [newResourceData].concat(resourceTypeData);
+  localStorage.setItem(
+    `/${resourceTypePlural}`,
+    JSON.stringify(newResourcesData)
+  );
+};
+
 export const getResourceTypePlural = (resourceType) => {
   /**
    * Returns the plural form of any resource type.

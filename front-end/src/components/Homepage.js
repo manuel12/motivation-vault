@@ -9,7 +9,7 @@ const HomePage = () => {
 
   useEffect(() => {
     API.fetchAllResources(token, setResources);
-  }, []);
+  }, [token]);
 
   return (
     <div className="homepage" data-test="homepage">
