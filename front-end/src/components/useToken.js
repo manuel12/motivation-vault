@@ -6,7 +6,7 @@ export default function useToken() {
     const localStorageToken = localStorage.getItem("token");
 
     try {
-      if(!localStorageToken) return localStorageToken;
+      if (!localStorageToken) return localStorageToken;
       const userToken = JSON.parse(localStorageToken);
       return userToken;
     } catch (e) {
@@ -19,6 +19,10 @@ export default function useToken() {
   const saveToken = async (userToken) => {
     API.isValidToken(userToken, (validToken) => {
       let validatedToken = validToken ? userToken : false;
+      console.log(`userToken: ${userToken}`);
+      console.log(`validToken: ${validToken}`);
+      console.log(`validatedToken: ${validatedToken}`);
+
       localStorage.setItem("token", JSON.stringify(validatedToken));
       setToken(validatedToken);
     });
