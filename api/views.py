@@ -94,7 +94,7 @@ class ResourceDetail(ResourceView):
     Retrieve, update or delete a resource instance.
     """
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
     def get_object(self, pk):
         resource_class = self.get_resource_class()
@@ -214,7 +214,7 @@ class MotivationalSpeechDetail(ResourceDetail):
     """
 
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     resource_class = models.MotivationalSpeech
     serializer_class = serializers.MotivationalSpeechSerializer
 
@@ -312,10 +312,13 @@ def delete_test_data(request):
     """
     test_resources = models.Resource.objects.filter(
         title__contains="Test Title")
-    test_resources.delete()
+    if(test_resources):
+        test_resources.delete()
 
     test_users = models.User.objects.filter(username="newUser1")
-    test_users.delete()
+    if(test_users):
+        test_users.delete()
+
     return Response(
         "Test resources and their related comments deleted!",
         status=status.HTTP_204_NO_CONTENT,
