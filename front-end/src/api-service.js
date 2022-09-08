@@ -140,7 +140,7 @@ export class API {
       resourceData
     )
       .then((resp) => {
-        window.location.href = `http://localhost:8000/${id}/`;
+        window.location.href = `/${id}/`;
       })
       .catch((error) => console.error(error));
   }
@@ -151,7 +151,7 @@ export class API {
     _delete(`http://localhost:8000/api/${resourceType}/${id}/`, token)
       .then((resp) => {
         console.log(resp);
-        window.location.href = `/`;
+        window.location.href = "/";
       })
       .catch((error) => console.error(error));
   }
