@@ -152,9 +152,13 @@ if os.getcwd() == "/app":
     ALLOWED_HOSTS = ["*"]
 
     # Static asset configuration
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    #BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = "staticfiles"
     STATICFILES_DIRS = (os.path.join(
         BASE_DIR, 'front-end', 'build', 'static'),)
 
+print("**********************************************************************************************************************************8")
 print(f"Settings BASE_DIR: {BASE_DIR}")
+print(f"Settings BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))): {os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}")
+print(f"Settings BASE_DIR = os.path.dirname(os.path.abspath(__file__)): {os.path.dirname(os.path.abspath(__file__))}")
+print(f"Settings os.path.join(BASE_DIR, 'front-end', 'build', 'static'): {os.path.join(BASE_DIR, 'front-end', 'build', 'static')}")
