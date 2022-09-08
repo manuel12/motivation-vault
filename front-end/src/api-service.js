@@ -44,7 +44,7 @@ const _delete = (url, token) => {
 
 export class API {
   static loginUser(credentials) {
-    return fetch(`http://localhost:8000/auth/`, {
+    return fetch(`/auth/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export class API {
   }
 
   static registerUser(credentials) {
-    return fetch(`http://localhost:8000/api/users/`, {
+    return fetch(`/api/users/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export class API {
   }
 
   static isValidToken(token, callback) {
-    _fetch(`http://localhost:8000/api/`, token)
+    _fetch(`/api/`, token)
       .then((resp) => resp.status === 200)
       .then(callback);
   }
@@ -81,7 +81,7 @@ export class API {
   }
 
   static fetchAllResources(token, setResourceFunc) {
-    _fetch("http://localhost:8000/api/", token)
+    _fetch("/api/", token)
       .then((resp) => resp.json())
       .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => setResourceFunc(resp))
@@ -89,7 +89,7 @@ export class API {
   }
 
   static fetchAllResourcesOfType(resourceType, token, setResourceFunc) {
-    _fetch(`http://localhost:8000/api/${resourceType}/`, token)
+    _fetch(`/api/${resourceType}/`, token)
       .then((resp) => resp.json())
       .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => setResourceFunc(resp))
@@ -97,7 +97,7 @@ export class API {
   }
 
   static fetchResource(id, token, setResourceFunc) {
-    return _fetch(`http://localhost:8000/api/${id}/`, token)
+    return _fetch(`/api/${id}/`, token)
       .then((resp) => resp.json())
       .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => {
@@ -110,7 +110,7 @@ export class API {
   static fetchResourceOfType(resourceType, id, token, setResourceFunc) {
     resourceType = getResourceTypePlural(resourceType);
 
-    return _fetch(`http://localhost:8000/api/${resourceType}/${id}/`, token)
+    return _fetch(`/api/${resourceType}/${id}/`, token)
       .then((resp) => resp.json())
       .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => {
@@ -123,7 +123,7 @@ export class API {
   static createResource(resourceType, token, resourceData) {
     resourceType = getResourceTypePlural(resourceType);
 
-    _send(`http://localhost:8000/api/${resourceType}/`, token, resourceData)
+    _send(`/api/${resourceType}/`, token, resourceData)
       .then((resp) => resp.json())
       .then((resp) => {
         window.location.href = "/";
@@ -135,7 +135,7 @@ export class API {
     resourceType = getResourceTypePlural(resourceType);
 
     _update(
-      `http://localhost:8000/api/${resourceType}/${id}/`,
+      `/api/${resourceType}/${id}/`,
       token,
       resourceData
     )
@@ -148,7 +148,7 @@ export class API {
   static deleteResource(resourceType, id, token) {
     resourceType = getResourceTypePlural(resourceType);
 
-    _delete(`http://localhost:8000/api/${resourceType}/${id}/`, token)
+    _delete(`/api/${resourceType}/${id}/`, token)
       .then((resp) => {
         console.log(resp);
         window.location.href = "/";
@@ -157,14 +157,14 @@ export class API {
   }
 
   static createComment(token, commentData, callback) {
-    _send(`http://localhost:8000/api/comments/`, token, commentData)
+    _send(`/api/comments/`, token, commentData)
       .then((resp) => resp.json())
       .then((resp) => callback(resp))
       .catch((error) => console.error(error));
   }
 
   static postRating(token, ratingData, callback) {
-    _send(`http://localhost:8000/api/ratings/`, token, ratingData)
+    _send(`/api/ratings/`, token, ratingData)
       .then((resp) => resp.json())
       .then((resp) => callback(resp))
       .catch((error) => console.error(error));
