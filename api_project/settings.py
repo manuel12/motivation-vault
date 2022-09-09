@@ -56,8 +56,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = ["*"]
+# CORS_ALLOWED_ORIGINS = ["*"]
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = "api_project.urls"
 
@@ -135,8 +136,6 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'front-end', 'build', 'static'),
 )
-
-CORS_ORIGIN_ALLOW_ALL = True
 
 # Heroku settings
 if os.getcwd() == "/app":
