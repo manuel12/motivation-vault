@@ -319,7 +319,10 @@ def delete_test_data(request):
     if(test_users):
         test_users.delete()
 
+    response = {
+        "message": "Test resources and their related comments deleted!",
+    }
     return Response(
-        "Test resources and their related comments deleted!",
-        status=status.HTTP_204_NO_CONTENT,
+        response,
+        status=status.HTTP_200_OK,
     )
