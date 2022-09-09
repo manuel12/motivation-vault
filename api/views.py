@@ -324,5 +324,5 @@ def delete_test_data(request):
     }
     return Response(
         response,
-        status=status.HTTP_200_OK,
+        status=status.HTTP_204_NO_CONTENT,
     )
