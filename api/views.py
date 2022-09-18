@@ -39,7 +39,7 @@ obtain_auth_token = CustomObtainAuthToken.as_view()
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
 
 class ResourceView(APIView):
