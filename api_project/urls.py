@@ -9,5 +9,4 @@ urlpatterns = [
     path("auth/", obtain_auth_token),
     path("", include("resources.urls")),
     re_path(r'^(?:.*)/?$', include('resources.urls')),
-
 ]
