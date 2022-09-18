@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "3=0_@ac9jv!^lf)w7ik(rmhro&r+5(7@0zo$mw3m#rqpjduz3#"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -136,6 +136,7 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'front-end', 'build', 'static'),
 )
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Heroku settings
 if os.getcwd() == "/app":
@@ -151,6 +152,6 @@ if os.getcwd() == "/app":
     ALLOWED_HOSTS = ["*"]
 
     # Static asset configuration
-    STATIC_ROOT = "staticfiles"
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_DIRS = (os.path.join(
         BASE_DIR, 'front-end', 'build', 'static'),)
