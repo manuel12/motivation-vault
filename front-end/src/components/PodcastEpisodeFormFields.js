@@ -1,7 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { API } from "../api-service";
 import LabeledInput from "./LabeledInput";
 
 const PodcastEpisodeFormFields = (props) => {
+  const [podcastsTitlesAndIds, setPodcastsTitlesAndIds] = useState([]);
+
+  useEffect(() => {
+    API.getPodcastsTitlesAndIds(setPodcastsTitlesAndIds);
+  }, []);
+
   return (
     <Fragment>
       {props.podcastError ? (
@@ -13,15 +20,15 @@ const PodcastEpisodeFormFields = (props) => {
         value={props.podcast}
         onChange={(e) => {
           props.setPodcast(e.target.value);
-          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
+          props.resourceDataUpdatedHandler &&
+            props.resourceDataUpdatedHandler();
         }}
         data-test="select-podcast"
       >
         <option value="">Select podcast</option>
-        <option value="81">School of Greatness</option>
-        <option value="82">The Tim Ferris Show</option>
-        <option value="83">Impact Theory</option>
-        <option value="88">Empire Show</option>
+        {podcastsTitlesAndIds.map((podcast) => (
+          <option value={podcast.id}>{podcast.title}</option>
+        ))}
       </select>
 
       <LabeledInput
@@ -31,7 +38,8 @@ const PodcastEpisodeFormFields = (props) => {
         value={props.spotifyEpisodeUrl}
         onChange={(e) => {
           props.setSpotifyEpisodeUrl(e.target.value);
-          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
+          props.resourceDataUpdatedHandler &&
+            props.resourceDataUpdatedHandler();
         }}
         dataAttr="spotify-ep-url-input"
       />
@@ -43,12 +51,13 @@ const PodcastEpisodeFormFields = (props) => {
         value={props.youtubeEpisodeUrl}
         onChange={(e) => {
           props.setYoutubeEpisodeUrl(e.target.value);
-          props.resourceDataUpdatedHandler && props.resourceDataUpdatedHandler();
+          props.resourceDataUpdatedHandler &&
+            props.resourceDataUpdatedHandler();
         }}
         dataAttr="youtube-ep-url-input"
       />
     </Fragment>
   );
-}
+};
 
 export default PodcastEpisodeFormFields;
