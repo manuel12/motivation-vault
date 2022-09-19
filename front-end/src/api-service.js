@@ -120,6 +120,25 @@ export class API {
       .catch((error) => console.error(error));
   }
 
+  static getPodcastsAvailable(setPodcastAvailableFunc) {
+    fetch(`http://localhost:8000/api/podcasts/`)
+    .then((resp) => resp.json())
+    .then((resp) => {
+      setPodcastAvailableFunc(resp.length > 0);
+    });
+  }
+
+  static getPodcastsTitlesAndIds(setPodcastTitlesAndIdsFunc) {
+    fetch("http://localhost:8000/api/podcasts/")
+    .then((resp) => resp.json())
+    .then((resp) =>
+      resp.map((podcast) => {
+        return { title: podcast.title, id: podcast.id };
+      })
+    )
+    .then((resp) => setPodcastTitlesAndIdsFunc(resp));
+  }
+
   static createResource(resourceType, token, resourceData) {
     resourceType = getResourceTypePlural(resourceType);
 
@@ -134,11 +153,7 @@ export class API {
   static updateResource(resourceType, id, token, resourceData) {
     resourceType = getResourceTypePlural(resourceType);
 
-    _update(
-      `/api/${resourceType}/${id}/`,
-      token,
-      resourceData
-    )
+    _update(`/api/${resourceType}/${id}/`, token, resourceData)
       .then((resp) => {
         window.location.href = `/${id}/`;
       })
