@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddResourceForm from "./AddResourceForm";
 import classes from "../css/Addpage.module.css";
+import { API } from "../api-service";
 
 const AddPage = () => {
   const [resourceType, setResourceType] = useState(null);
+  const [podcastsAvailable, setPodcastsAvailable] = useState(false);
+
+  useEffect(() => {
+    API.getPodcastsAvailable(setPodcastsAvailable);
+  }, []);
 
   const selectResourceTypeHandler = (e) => {
     const selectedIndex = e.target.selectedIndex;
@@ -23,16 +29,20 @@ const AddPage = () => {
           <option value="">Select resource type</option>
           <option value="book">Book</option>
           <option value="podcast">Podcast</option>
-          <option value="podcast-episode">Podcast Episode</option>
+          {podcastsAvailable && (
+            <option value="podcast-episode">Podcast Episode</option>
+          )}
           <option value="motivational-speech">Motivational Speech</option>
         </select>
       </div>
 
-      {resourceType && <div>
-        <AddResourceForm resourceType={resourceType} />
-      </div>}
+      {resourceType && (
+        <div>
+          <AddResourceForm resourceType={resourceType} />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default AddPage;
