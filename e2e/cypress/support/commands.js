@@ -10,14 +10,13 @@ addMatchImageSnapshotCommand({
   failureThresholdType: "pixel",
 });
 
-
 Cypress.Commands.add("loginAdminWithUI", () => {
   /**
    * Login the admin user by interacting with the UI
    * and using credentials found on cypress.env.json
    */
 
-  cy.visit(Cypress.config().adminUrl);
+  cy.visit(Cypress.env("adminUrl"));
   cy.get("#id_username").type(Cypress.env("adminUser"));
   cy.get("#id_password").type(Cypress.env("adminPass"));
   cy.get("[type=submit]").click();
@@ -26,30 +25,28 @@ Cypress.Commands.add("loginAdminWithUI", () => {
   cy.get("#recent-actions-module").should("be.visible");
 });
 
-Cypress.Commands.add("loginWithUI", (username, password) =>
-  {
-    /**
-     * Login the a normal user by interacting with the UI
-     * if no credentials are provided credentials
-     * found on testuser.json will be used.
-     */
+Cypress.Commands.add("loginWithUI", (username, password) => {
+  /**
+   * Login the a normal user by interacting with the UI
+   * if no credentials are provided credentials
+   * found on testuser.json will be used.
+   */
 
-    cy.visit("/");
+  cy.visit("/");
 
-    if (!username && !password) {
-      cy.get("#username").type(testuserData.username);
-      cy.get("#password").type(testuserData.password);
-    } else {
-      // Add username or password to input only if present
-      // to accomodate for tests that require adding one
-      // and leaving the other empty.
-      username && cy.get("#username").type(username);
-      password && cy.get("#password").type(password);
-    }
-
-    cy.get("#submitButton").click();
+  if (!username && !password) {
+    cy.get("#username").type(Cypress.env("adminUser"));
+    cy.get("#password").type(Cypress.env("adminPass"));
+  } else {
+    // Add username or password to input only if present
+    // to accomodate for tests that require adding one
+    // and leaving the other empty.
+    username && cy.get("#username").type(username);
+    password && cy.get("#password").type(password);
   }
-);
+
+  cy.get("#submitButton").click();
+});
 
 Cypress.Commands.add("loginWithAPI", () => {
   /**
@@ -64,13 +61,13 @@ Cypress.Commands.add("loginWithAPI", () => {
   let token;
   cy.request({
     method: "POST",
-    url: "http://127.0.0.1:8000/auth/",
+    url: `${Cypress.env("baseUrl")}auth/`,
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: testuserData.username,
-      password: testuserData.password,
+      username: Cypress.env("adminUser"),
+      password: Cypress.env("adminPass"),
     }),
   }).then((response) => {
     token = response.body.token;
@@ -110,14 +107,14 @@ Cypress.Commands.add("deleteTestData", () => {
    */
 
   cy.request({
-    url: "http://localhost:8000/api/delete-test-data/",
+    url: `${Cypress.env("baseUrl")}api/delete-test-data/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${testuserData["token"]}`,
+      Authorization: `Token ${Cypress.env("adminToken")}`,
     },
   }).then((response) => {
-    expect(response.status).to.eq(204);
+    expect(response.status).to.eq(200);
   });
 });
 
@@ -179,7 +176,6 @@ Cypress.Commands.add(
     cy.get("[data-test=value-one-input]").type(testData.valueOne);
     cy.get("[data-test=value-two-input]").type(testData.valueTwo);
     cy.get("[data-test=value-three-input]").type(testData.valueThree);
-
     cy.get("[data-test=submit]").click();
   }
 );
@@ -201,11 +197,11 @@ Cypress.Commands.add("createResourceWithAPI", (resourceType, testData) => {
 
   const resourcePlural = getResourceTypePlural(resourceType);
   cy.request({
-    url: `http://127.0.0.1:8000/api/${resourcePlural}/`,
+    url: `${Cypress.env("baseUrl")}api/${resourcePlural}/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${testuserData["token"]}`,
+      Authorization: `Token ${Cypress.env("adminToken")}`,
     },
     body: JSON.stringify(testData),
   }).then((response) => {
@@ -348,7 +344,7 @@ Cypress.Commands.add("createRatingWithAPI", (resource, numStars, token) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${token ? token : testuserData["token"]}`,
+      Authorization: `Token ${token ? token : Cypress.env("adminToken")}`,
     },
     body: JSON.stringify(newRating),
   }).then((response) => {
