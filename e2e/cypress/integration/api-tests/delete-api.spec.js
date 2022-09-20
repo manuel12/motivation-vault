@@ -5,7 +5,7 @@ const adminuserData = require("../../fixtures/adminuser.json");
 const resourceTypes = [
   "book",
   "podcast",
-  "podcast-episode",
+  // "podcast-episode",
   "motivational-speech",
 ];
 
@@ -15,9 +15,10 @@ for (const resourceType of resourceTypes) {
   
     beforeEach(() => {
       cy.request(
-        `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/`
+        `${Cypress.env('baseUrl')}api/${getResourceTypePlural(resourceType)}/`
       ).then((response) => {
         ctx.originalResourceCount = response.body.length;
+        cy.log(`ctx.originalResourceCount: ${ctx.originalResourceCount}`)
       });
   
       cy.deleteTestData();
@@ -25,22 +26,22 @@ for (const resourceType of resourceTypes) {
   
       cy.request({
         method: "GET",
-        url: `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/`,
+        url: `${Cypress.env('baseUrl')}api/${getResourceTypePlural(resourceType)}/`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token  ${adminuserData.token}`,
+          Authorization: `Token  ${Cypress.env('adminToken')}`,
         },
       }).then((response) => {
         const firstResource = response.body[0];
 
         cy.request({
           method: "DELETE",
-          url: `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/${
+          url: `${Cypress.env('baseUrl')}api/${getResourceTypePlural(resourceType)}/${
             firstResource.id
           }/`,
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Token  ${adminuserData.token}`,
+            Authorization: `Token  ${Cypress.env('adminToken')}`,
           },
         }).then((response) => {
           ctx.response = response;
@@ -54,7 +55,7 @@ for (const resourceType of resourceTypes) {
 
         /// Check resource count back to original
         cy.request(
-          `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/`
+          `${Cypress.env('baseUrl')}api/${getResourceTypePlural(resourceType)}/`
         ).then((response) => {
           expect(response.body.length).to.eq(ctx.originalResourceCount);
         });
