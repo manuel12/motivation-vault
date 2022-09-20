@@ -7,7 +7,7 @@ describe("Navbar", () => {
   });
 
   it("should have the home link active by default on navbar", () => {
-    cy.url().should("eq", Cypress.config().baseUrl);
+    cy.url().should("eq", Cypress.env('baseUrl'));
 
     cy.get("[data-test=home-link]")
       .invoke("attr", "class")
