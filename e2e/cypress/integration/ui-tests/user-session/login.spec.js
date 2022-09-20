@@ -17,7 +17,7 @@ describe("Login", () => {
   });
 
   it("should NOT login with valid username and invalid password", () => {
-    cy.loginWithUI(testuserData.username, "fakepassword")
+    cy.loginWithUI(Cypress.env('adminUser'), "fakepassword")
 
     cy.get("[data-test=login-container]").should("be.visible");
     cy.get("[data-test=nav-list]").should("not.exist");
@@ -33,8 +33,8 @@ describe("Login", () => {
   });
 
   it("should login when pressing ENTER when all form fields are filled", () => {
-    cy.get("[data-test=username]").type(testuserData.username);
-    cy.get("[data-test=password]").type(`${testuserData.password}{enter}`);
+    cy.get("[data-test=username]").type(Cypress.env('adminUser'));
+    cy.get("[data-test=password]").type(`${Cypress.env('adminPass')}{enter}`);
 
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("be.visible");
