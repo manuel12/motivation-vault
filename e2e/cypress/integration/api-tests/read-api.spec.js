@@ -7,7 +7,7 @@ const testuserData = require("../../fixtures/testuser.json");
 const resourceTypes = [
   "book",
   "podcast",
-  "podcast-episode",
+  // "podcast-episode",
   "motivational-speech",
 ];
 
@@ -21,12 +21,12 @@ for (const resourceType of resourceTypes) {
 
       cy.request({
         method: "GET",
-        url: `http://localhost:8000/api/${getResourceTypePlural(
+        url: `${Cypress.env('baseUrl')}api/${getResourceTypePlural(
           resourceType
         )}/`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token  ${testuserData.token}`,
+          Authorization: `Token  ${Cypress.env('adminToken')}`,
         },
       }).then((response) => {
         ctx.response = response;
