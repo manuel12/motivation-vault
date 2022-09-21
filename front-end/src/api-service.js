@@ -121,22 +121,22 @@ export class API {
   }
 
   static getPodcastsAvailable(setPodcastAvailableFunc) {
-    fetch(`http://localhost:8000/api/podcasts/`)
-    .then((resp) => resp.json())
-    .then((resp) => {
-      setPodcastAvailableFunc(resp.length > 0);
-    });
+    fetch(`/api/podcasts/`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setPodcastAvailableFunc(resp.length > 0);
+      });
   }
 
   static getPodcastsTitlesAndIds(setPodcastTitlesAndIdsFunc) {
-    fetch("http://localhost:8000/api/podcasts/")
-    .then((resp) => resp.json())
-    .then((resp) =>
-      resp.map((podcast) => {
-        return { title: podcast.title, id: podcast.id };
-      })
-    )
-    .then((resp) => setPodcastTitlesAndIdsFunc(resp));
+    fetch("/api/podcasts/")
+      .then((resp) => resp.json())
+      .then((resp) =>
+        resp.map((podcast) => {
+          return { title: podcast.title, id: podcast.id };
+        })
+      )
+      .then((resp) => setPodcastTitlesAndIdsFunc(resp));
   }
 
   static createResource(resourceType, token, resourceData) {
