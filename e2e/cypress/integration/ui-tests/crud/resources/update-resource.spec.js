@@ -38,7 +38,13 @@ for (const resourceType of resourceTypes) {
     beforeEach(() => {
       // TODO: login with admin user.
       cy.loginAndCleanUp();
-      cy.createResourceWithAPI(resourceType, resourceAPIData);
+      cy.createPodcastForPodcastEpisodeTests(
+        resourceType,
+        resourceAPIData
+      ).then(() => {
+        cy.createResourceWithAPI(resourceType, resourceAPIData);
+      });
+
       cy.visit("/");
       cy.get("[data-test=app]").should("be.visible");
     });
@@ -56,6 +62,8 @@ for (const resourceType of resourceTypes) {
         });
 
       cy.url().then((detailpageUrl) => {
+        const detailpageUrlPathname = new URL(detailpageUrl).pathname;
+
         cy.get("[data-test=edit-button]").should("be.visible").click();
 
         cy.url().should("contain", "/update/");
@@ -141,7 +149,7 @@ for (const resourceType of resourceTypes) {
 
         cy.get("[data-test=submit]").should("be.enabled").click();
 
-        cy.url().should("contain", detailpageUrl);
+        cy.url().should("contain", detailpageUrlPathname);
 
         cy.get("[data-test=detail-page-container]")
           .should("contain", newResourceData.title)
@@ -164,13 +172,14 @@ for (const resourceType of resourceTypes) {
         });
 
       cy.url().then((detailpageUrl) => {
+        const detailpageUrlPathname = new URL(detailpageUrl).pathname;
         cy.get("[data-test=edit-button]").should("be.visible").click();
 
         cy.updateResourceFieldsWithUI(resourceType, newData);
 
         cy.get("[data-test=value-three-input]").type("{enter}");
 
-        cy.url().should("contain", detailpageUrl);
+        cy.url().should("contain", detailpageUrlPathname);
 
         cy.get("[data-test=detail-page-container]").should(
           "contain",
@@ -226,10 +235,16 @@ for (const resourceType of resourceTypes) {
 }
 
 describe("Update Resource Cancel Button", () => {
-  it("should go back to the previous page when clicking the cancel button", () => {
+  it.only("should go back to the previous page when clicking the cancel button", () => {
     for (const resourceType of resourceTypes) {
       cy.loginAndCleanUp();
-      cy.createResourceWithAPI(resourceType, resourceAPIData);
+      cy.createPodcastForPodcastEpisodeTests(
+        resourceType,
+        resourceAPIData
+      ).then(() => {
+        cy.createResourceWithAPI(resourceType, resourceAPIData);
+      });
+
       cy.visit("/");
       cy.get("[data-test=app]").should("be.visible");
 
@@ -245,10 +260,11 @@ describe("Update Resource Cancel Button", () => {
         });
 
       cy.url().then((detailpageUrl) => {
+        const detailpageUrlPathname = new URL(detailpageUrl).pathname;
         cy.get("[data-test=edit-button]").should("be.visible").click();
         cy.get("[data-test=cancel]").should("be.visible").click();
 
-        cy.url().should("contain", detailpageUrl);
+        cy.url().should("contain", detailpageUrlPathname);
       });
     }
   });
