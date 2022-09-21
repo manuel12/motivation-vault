@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
@@ -5,12 +6,25 @@ import Post from "./Post";
 import classes from "../css/PostList.module.css";
 
 const PostList = (props) => {
+  console.log(props.resources);
+  const [showNoResourcesText, setShowNoResourcesText] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (props.resources.length < 1) {
+        setShowNoResourcesText(true);
+      }
+    }, 5000);
+  });
+
   return (
     <div
       className={classes["post-list-container"]}
       data-test="post-list-container"
     >
-      {props.resources && props.resources.length > 0 ? (
+      {showNoResourcesText ? (
+        <h3 className={classes["no-resources"]}>No resources to show</h3>
+      ) : props.resources && props.resources.length > 0 ? (
         props.resources.map((resource) => (
           <Post
             key={resource.id}
