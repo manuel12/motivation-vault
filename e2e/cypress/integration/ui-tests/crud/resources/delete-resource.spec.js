@@ -15,7 +15,12 @@ for (const resourceType of resourceTypes) {
     beforeEach(() => {
       // TODO: login with admin user.
       cy.loginAndCleanUp();
-      cy.createResourceWithAPI(resourceType, resourceAPIData);
+      cy.createPodcastForPodcastEpisodeTests(
+        resourceType,
+        resourceAPIData
+      ).then(() => {
+        cy.createResourceWithAPI(resourceType, resourceAPIData);
+      });
       cy.visit("/");
       cy.get("[data-test=app]").should("be.visible");
 
@@ -36,7 +41,7 @@ for (const resourceType of resourceTypes) {
         cy.get("[data-test=delete-button]").click();
         cy.get("[data-test=modal-accept-button]").click();
 
-        cy.url().should("eq", Cypress.env('baseUrl'));
+        cy.url().should("eq", Cypress.env("baseUrl"));
 
         // Wait for loading spinner to disappear.
         cy.get("[data-test=spinner]")
@@ -58,7 +63,10 @@ for (const resourceType of resourceTypes) {
             cy.get("[data-test=post-list-container]")
               .should("not.contain", resourceAPIData.title)
               .and("not.contain", resourceAPIData.author)
-              .and("not.contain", resourceAPIData.description.substring(0, 300));
+              .and(
+                "not.contain",
+                resourceAPIData.description.substring(0, 300)
+              );
           });
 
         cy.visit(detailpageUrl);
@@ -80,4 +88,8 @@ for (const resourceType of resourceTypes) {
       });
     });
   });
+
+  after(() => {
+    cy.deleteTestData();
+  })
 }
