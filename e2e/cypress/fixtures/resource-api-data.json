@@ -4,7 +4,7 @@
   "subtitle": "[Test Subtitle]",
   "isbn": 9781544507873,
 
-  "from_podcast": 88,
+  "from_podcast": 100,
   "website_url": "http://wwww.google.com/",
   "spotify_page_url": "http://open.spotify.com/",
   "youtube_page_url": "https://www.youtube.com/",
@@ -15,8 +15,9 @@
   "youtube_episode_url": "https://www.youtube.com/podcast-episode/1",
   "spotify_episode_url": "https://open.spotify.com/podcast-episode/1",
 
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris\nnisi ut aliquip ex ea commodo consequat.",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   "imageURL": "https://bin.snmmd.nl/m/78x73ij2tm1d_1200x600.jpg/blog_podcastboeken.jpg",
+  "imageUrl": "https://bin.snmmd.nl/m/78x73ij2tm1d_1200x600.jpg/blog_podcastboeken.jpg",
   
   "value_one": "[Test value one]",
   "value_two": "[Test value two]",
