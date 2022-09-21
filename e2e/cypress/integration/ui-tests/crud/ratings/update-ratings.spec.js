@@ -44,7 +44,12 @@ describe("Update Ratings", () => {
 
       // Change resource title, create resource and check on page section
       resourceAPIData.title = "[Test Title] - Ratings";
-      cy.createResourceWithAPI(resourceType, resourceAPIData);
+      cy.createPodcastForPodcastEpisodeTests(
+        resourceType,
+        resourceAPIData
+      ).then(() => {
+        cy.createResourceWithAPI(resourceType, resourceAPIData);
+      });
       cy.visit(page);
 
       // Click on new resource, wait for heading to appear and
