@@ -3,14 +3,12 @@
 import { getResourceTypePlural } from "../../support/utils";
 const resourceAPIData = require("../../fixtures/resource-api-data.json");
 const newResourceData = require("../../fixtures/resource-updated-api-data.json");
-const testuserData = require("../../fixtures/testuser.json");
-const adminuserData = require("../../fixtures/adminuser.json");
 
 const resourceTypes = [
-  "book",
-  "podcast",
+  // "book",
+  // "podcast",
   "podcast-episode",
-  "motivational-speech",
+  // "motivational-speech",
 ];
 
 for (const resourceType of resourceTypes) {
@@ -19,28 +17,39 @@ for (const resourceType of resourceTypes) {
 
     before(() => {
       cy.deleteTestData();
-      cy.createResourceWithAPI(resourceType, resourceAPIData);
+      cy.createPodcastForPodcastEpisodeTests(
+        resourceType,
+        resourceAPIData
+      ).then(() => {
+        console.log(resourceAPIData)
+
+        // Make sure newResourceData uses the same podcast id from
+        // resourceAPIData, instead of a hardcoded id from the json
+        // that could be non-existing.
+        newResourceData["from_podcast"] = resourceAPIData["from_podcast"]
+        cy.createResourceWithAPI(resourceType, resourceAPIData);
+      });
 
       cy.request({
         method: "GET",
-        url: `http://localhost:8000/api/${getResourceTypePlural(
+        url: `${Cypress.env("baseUrl")}api/${getResourceTypePlural(
           resourceType
         )}/`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token  ${adminuserData.token}`,
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
       }).then((response) => {
         const newestResource = response.body[0];
 
         cy.request({
           method: "PUT",
-          url: `http://localhost:8000/api/${getResourceTypePlural(
+          url: `${Cypress.env("baseUrl")}api/${getResourceTypePlural(
             resourceType
           )}/${newestResource.id}/`,
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Token  ${adminuserData.token}`,
+            Authorization: `Token  ${Cypress.env("adminToken")}`,
           },
           body: JSON.stringify(newResourceData),
         }).then((response) => {
