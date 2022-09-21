@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 import { getResourceTypePlural } from "../../support/utils";
 const resourceAPIData = require("../../fixtures/resource-api-data.json");
-const testuserData = require("../../fixtures/testuser.json");
 
 const resourceTypes = [
   "book",
@@ -15,34 +14,33 @@ for (const resourceType of resourceTypes) {
     const ctx = {};
 
     before(() => {
+      cy.deleteTestData();
+
       cy.request(
-        `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/`
+        `${Cypress.env("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
       ).then((response) => {
         ctx.bookResourceCount = response.body.length;
       });
 
-      cy.request({
-        method: "POST",
-        url: `http://localhost:8000/api/${getResourceTypePlural(
-          resourceType
-        )}/`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token  ${testuserData.token}`,
-        },
-        body: JSON.stringify(resourceAPIData),
-      }).then((response) => {
-        ctx.response = response;
+      cy.createPodcastForPodcastEpisodeTests(
+        resourceType,
+        resourceAPIData
+      ).then(() => {
+        cy.createResourceWithAPI(resourceType, resourceAPIData).then(
+          (response) => {
+            ctx.response = response;
+          }
+        );
       });
     });
 
-    it(`should have status code 201, add 1 to the book resource count, return JSON and have correct ${resourceType} fields`, () => {
+    it(`should have status code 201, add 1 to the ${resourceType} resource count, return JSON and have correct ${resourceType} fields`, () => {
       // Check status code 200
       expect(ctx.response.status).to.eq(201);
 
       // Check resource count increased by 1
       cy.request(
-        `http://localhost:8000/api/${getResourceTypePlural(resourceType)}/`
+        `${Cypress.env("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
       ).then((response) => {
         expect(response.body.length).to.eq(ctx.bookResourceCount + 1);
       });
@@ -58,8 +56,14 @@ for (const resourceType of resourceTypes) {
       expect(newestResource).to.have.property("id");
       expect(newestResource).to.have.property("title", resourceAPIData.title);
       expect(newestResource).to.have.property("author", resourceAPIData.author);
-      expect(newestResource).to.have.property("description");
-      expect(newestResource).to.have.property("imageURL");
+      expect(newestResource).to.have.property(
+        "description",
+        resourceAPIData.description
+      );
+      expect(newestResource).to.have.property(
+        "imageURL",
+        resourceAPIData.imageURL
+      );
 
       // Check ResourceType fields are correct
       if (resourceType === "book") {
