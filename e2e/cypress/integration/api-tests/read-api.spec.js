@@ -2,12 +2,11 @@
 
 import { getResourceTypePlural } from "../../support/utils";
 const resourceAPIData = require("../../fixtures/resource-api-data.json");
-const testuserData = require("../../fixtures/testuser.json");
 
 const resourceTypes = [
   "book",
   "podcast",
-  // "podcast-episode",
+  "podcast-episode",
   "motivational-speech",
 ];
 
@@ -17,16 +16,21 @@ for (const resourceType of resourceTypes) {
 
     before(() => {
       cy.deleteTestData();
-      cy.createResourceWithAPI(resourceType, resourceAPIData);
+      cy.createPodcastForPodcastEpisodeTests(
+        resourceType,
+        resourceAPIData
+      ).then(() => {
+        cy.createResourceWithAPI(resourceType, resourceAPIData);
+      });
 
       cy.request({
         method: "GET",
-        url: `${Cypress.env('baseUrl')}api/${getResourceTypePlural(
+        url: `${Cypress.env("baseUrl")}api/${getResourceTypePlural(
           resourceType
         )}/`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token  ${Cypress.env('adminToken')}`,
+          Authorization: `Token  ${Cypress.env("adminToken")}`,
         },
       }).then((response) => {
         ctx.response = response;
