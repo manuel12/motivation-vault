@@ -206,7 +206,6 @@ Cypress.Commands.add("createResourceWithAPI", (resourceType, testData) => {
     body: JSON.stringify(testData),
   }).then((response) => {
     expect(response.status).to.eq(201);
-    console.log(JSON.stringify(testData));
   });
 });
 
@@ -217,6 +216,11 @@ Cypress.Commands.add(
      * Updates a resource by updating it's values on the
      * update resource form.
      */
+
+    // Checking that value Test Title appears before performing any operation
+    // writting on the form fields as sometimes the api can take a while to respond
+    // and the data fetched can overwrite the form fields that were already updated.
+    cy.get("[data-test=title-input]").should("contain.value", "Test Title");
 
     updateData.title &&
       cy.get("[data-test=title-input]").clear().type(updateData.title);
@@ -340,7 +344,7 @@ Cypress.Commands.add("createRatingWithAPI", (resource, numStars, token) => {
   };
 
   cy.request({
-    url: "http://127.0.0.1:8000/api/ratings/",
+    url: `${Cypress.env("baseUrl")}api/ratings/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -351,3 +355,30 @@ Cypress.Commands.add("createRatingWithAPI", (resource, numStars, token) => {
     expect(response.status).to.eq(201);
   });
 });
+
+Cypress.Commands.add(
+  "createPodcastForPodcastEpisodeTests",
+  (resourceType, resourceData) => {
+    if (resourceType == "podcast-episode") {
+      // For podcast-episodes test we first need to make sure podcast are created
+      // first, so that the podcast-episodes select option is present on the Addpage form.
+      cy.request("/api/podcasts").then((resp) => {
+        if (resp.body.length === 0) {
+          // Create podcasts if there arent any.
+          resourceData.title = "[Test Podcast Title]";
+          resourceData.author = "[Test Podcast Author]";
+          cy.createResourceWithAPI("podcast", resourceData);
+        }
+      });
+
+      // Make sure to fetch and use current existing podcast ids and replace them
+      // on resourceAPIData for podcast-episodes before running tests.
+      cy.request("/api/podcasts/").then((resp) => {
+        // Replaces the hardcoded from_podcast number with the first
+        // existing podcast id retrieved.
+        resourceData.from_podcast = resp.body[0].id;
+        console.log(resourceData);
+      });
+    }
+  }
+);
