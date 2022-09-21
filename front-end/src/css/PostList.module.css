@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.no-resources {
+  text-align: center;
+}
+
 .spinner {
   display: flex;
   justify-content: center;
