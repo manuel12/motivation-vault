@@ -5,6 +5,9 @@ import { getResourceIdFromUrl } from "../../../../support/utils";
 const resourceAPIData = require("../../../../fixtures/resource-api-data.json");
 const tokenData = require("../../../../fixtures/tokens.json");
 
+if (Cypress.config("baseUrl") === "http://react-django-api16.herokuapp.com/")
+  tokenData["testuser2"] = "6c18e495c5e86b7594a75bbfa0647c0bf86b67a6";
+
 let pages = [
   "home",
   "books",
