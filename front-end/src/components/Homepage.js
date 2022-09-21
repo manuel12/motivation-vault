@@ -5,7 +5,7 @@ import useToken from "./useToken";
 
 const HomePage = () => {
   const { token } = useToken();
-  const [resources, setResources] = useState([]);
+  const [resources, setResources] = useState(null);
 
   useEffect(() => {
     API.fetchAllResources(token, setResources);

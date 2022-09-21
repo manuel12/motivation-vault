@@ -5,7 +5,7 @@ import useToken from "./useToken";
 
 const PodcastPage = () => {
   const { token } = useToken();
-  const [resources, setResources] = useState([]);
+  const [resources, setResources] = useState(null);
 
   useEffect(() => {
     API.fetchAllResourcesOfType("podcasts", token, setResources);
