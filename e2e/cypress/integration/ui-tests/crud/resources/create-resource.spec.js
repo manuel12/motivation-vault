@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 import { getResourceTypePlural } from "../../../../support/utils";
+
 const resourceData = require("../../../../fixtures/resource-data.json");
 const invalidResourceData = require("../../../../fixtures/invalid-resource-data.json");
 
@@ -26,6 +27,7 @@ for (const resourceType of resourceTypes) {
     });
 
     it(`should create a ${resourceType} resource and display it on the ${resourceType} section and detail page`, () => {
+      cy.visit("/");
       cy.createResourceWithUI(resourceType, resourceData);
 
       cy.url().should("not.contain", "add/");
@@ -39,7 +41,9 @@ for (const resourceType of resourceTypes) {
         .and("contain", resourceData.description);
 
       // Check resource is displayed first on resource type page.
-      cy.visit(`/${getResourceTypePlural(resourceType)}/`);
+      cy.visit(
+        `${Cypress.env("baseUrl")}${getResourceTypePlural(resourceType)}/`
+      );
       cy.get("[data-test=post-container]")
         .first()
         .should("contain", resourceData.title)
@@ -182,4 +186,3 @@ for (const resourceType of resourceTypes) {
     });
   });
 }
-
