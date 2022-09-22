@@ -3,8 +3,6 @@
 import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
 import { getResourceTypePlural } from "./utils";
 
-const testuserData = require("../fixtures/testuser.json");
-
 addMatchImageSnapshotCommand({
   failureThreshold: 0.05,
   failureThresholdType: "pixel",
@@ -48,7 +46,7 @@ Cypress.Commands.add("loginWithUI", (username, password) => {
   cy.get("#submitButton").click();
 });
 
-Cypress.Commands.add("loginWithAPI", () => {
+Cypress.Commands.add("loginWithAPI", (username, password) => {
   /**
    * Login programatically using the API. if no credentials
    * are provided credentials found on testuser.json
@@ -66,8 +64,8 @@ Cypress.Commands.add("loginWithAPI", () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: Cypress.env("adminUser"),
-      password: Cypress.env("adminPass"),
+      username: username ? username : Cypress.env("adminUser"),
+      password: password ? password : Cypress.env("adminPass"),
     }),
   }).then((response) => {
     token = response.body.token;
@@ -81,12 +79,12 @@ Cypress.Commands.add("loginWithAPI", () => {
   });
 });
 
-Cypress.Commands.add("loginAndCleanUp", () => {
+Cypress.Commands.add("loginAndCleanUp", (username, password) => {
   /**
    * Deletes any previous data left from tests and logs in.
    */
   cy.deleteTestData();
-  cy.loginWithAPI();
+  cy.loginWithAPI(username, password);
 });
 
 Cypress.Commands.add("logoutWithUI", () => {
