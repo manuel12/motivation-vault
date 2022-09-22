@@ -1,8 +1,8 @@
 [![django-api-reac](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
 
-# API Resource
+# Motivation Vault
 
-The API Resource is an application that hosts optimistic, inspiring, motivational and educational content.
+The Motivation Vault is an application that hosts optimistic, inspiring, motivational and educational content.
 
 ## Usage
 
@@ -10,7 +10,9 @@ The API Resource is an application that hosts optimistic, inspiring, motivationa
 
 You can add a new resource by clicking the "+Add" link on the navigation bar. 
 
-Select the resource type from the dropdown, the resource available resource types are: Book, Podcast, Podcast Episode and Motivational Speech.
+Select the resource type from the dropdown, the available resource types are: Book, Podcast, Podcast Episode and Motivational Speech. 
+
+**Note:** *In case you want to add a Podcast Episode you will need to add a Podcast first, otherwise Podcast Episode won't appear as an option on the dropdown.*
 
 Fill in the resource form and click "Add Resource".
 
@@ -22,11 +24,14 @@ After submitting the form your resource will appear first on the home page list 
 ![Display gif clicking Add Resource button, filling and submitting resource form and displaying resource on hoomepage list and detail page](demo/add-resource-demo.gif)
 
 ### Visiting a Resource's Detail Page.
-To check more information on a resource, leave a rating or a comment, visit said resource detail page by clicking on the resource's image or text on the home page list or on any category list.
+To check more information on a resource, leave a rating or a comment, visit said resource's detail page by clicking on the resource's image or text on the home page list or on any category list.
 
 On the detail page the full information of the resource is displayed, including full description and value section, which is basically a list of points on the benefits of consuming said resource.
 
 Also the poster image(for books or podcasts) or embedded youtube video(for podcast episodes or motivational speeches) will be displayed.
+
+On top of each resource's detail page you can find the Edit and Delete resource buttons.
+At the moment any user can edit or delete any resource.
 
 ### Leave a Rating or Comment.
 You can leave a rating on a resource by clicking the "+" next to the ratings counter.
@@ -94,10 +99,6 @@ For installing Cypress run go to the e2e folder and run:
 
 ## Running tests
 
-### Unit tests
-For running the tests run:
-
-    python manage.py test
 
 ### E2E tests
 For running the tests go to the e2e folder and run:
@@ -109,6 +110,12 @@ For running the tests on headless mode run:
 For opening cypress client run:
 
     npm run test:open
+
+### Unit tests
+For running the tests run:
+
+    python manage.py test
+
     
 ## Uses
  - Django.
