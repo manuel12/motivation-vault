@@ -235,7 +235,7 @@ for (const resourceType of resourceTypes) {
 }
 
 describe("Update Resource Cancel Button", () => {
-  it.only("should go back to the previous page when clicking the cancel button", () => {
+  it("should go back to the previous page when clicking the cancel button", () => {
     for (const resourceType of resourceTypes) {
       cy.loginAndCleanUp();
       cy.createPodcastForPodcastEpisodeTests(
