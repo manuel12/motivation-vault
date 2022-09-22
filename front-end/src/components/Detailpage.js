@@ -27,9 +27,8 @@ const DetailPage = () => {
   ] = useState(true);
 
   useEffect(() => {
-    API.fetchResource(id, token, setResource).then(
-      (resp) => setDisplayEditDeleteButtonsContainer(true)
-      //setDisplayEditDeleteButtonsContainer(resp.can_edit_delete)
+    API.fetchResource(id, token, setResource).then((resp) =>
+      setDisplayEditDeleteButtonsContainer(resp.can_edit_delete)
     );
   }, [id, token]);
 
@@ -72,7 +71,10 @@ const DetailPage = () => {
       >
         <div className={classes["post-section-container"]}>
           {displayEditDeleteButtonsContainer && (
-            <div className={classes["edit-delete-buttons-container"]}>
+            <div
+              className={classes["edit-delete-buttons-container"]}
+              data-test="edit-delete-buttons-container"
+            >
               <div
                 className={classes["edit-button-container"]}
                 onClick={editButtonClickedHandler}
