@@ -11,11 +11,11 @@ const PostList = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (props.resources.length < 1) {
+      if (props.resources && props.resources.length < 1) {
         setShowNoResourcesText(true);
       }
-    }, 5000);
-  });
+    }, 1000);
+  }, [props.resources]);
 
   return (
     <div
@@ -23,7 +23,7 @@ const PostList = (props) => {
       data-test="post-list-container"
     >
       {showNoResourcesText ? (
-        <h3 className={classes["no-resources"]}>No resources to show</h3>
+        <h3 className={classes["no-resources"]} data-test="no-resources-text">No resources to show</h3>
       ) : props.resources && props.resources.length > 0 ? (
         props.resources.map((resource) => (
           <Post
