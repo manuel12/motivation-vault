@@ -30,7 +30,6 @@ const App = () => {
   return (
     <div className={classes["App"]} data-test="app">
       <Header />
-      <Navbar deleteToken={deleteToken} />
       <div className={classes["content"]}>
         <Router>
           <Switch>
