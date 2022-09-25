@@ -59,8 +59,8 @@ select option {
 input,
 textarea {
   color: grey;
-  width: 100%;
-  padding: 10px;
+  width: 95%;
+  padding: 10px 2%;
   margin: 10px 0px;
   border: 2px solid #c7d0d2;
   border-radius: 20px;
