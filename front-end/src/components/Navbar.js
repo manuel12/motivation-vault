@@ -84,9 +84,10 @@ const Navbar = ({ deleteToken }) => {
   }, []);
 
   return (
-    <div className={classes["app-navbar"]}>
+    <div className={classes["app-navbar"]} data-test="app-navbar">
       <button
         className={classes["hamburger-btn"]}
+        data-test="hamburger-btn"
         onClick={hamburgerBtnClickedHandler}
       >
         <FontAwesomeIcon icon={faBars} className={classes["hamburger-icon"]} />
