@@ -5,7 +5,7 @@ const Modal = (props) => {
   return (
     <Fragment>
       <div className={classes["backdrop"]}></div>
-      <div className={classes["modal-container"]}>
+      <div className={classes["modal-container"]} data-test="modal-container">
         <div className={classes["modal"]}>
           <header className={classes["header"]}>
             <h3 className={classes["header-text"]}>{props.heading}</h3>
