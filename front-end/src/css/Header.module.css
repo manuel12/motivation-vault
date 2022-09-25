@@ -1,5 +1,8 @@
 .header {
   background-color: #1992ff;
+}
+
+.header-title {
   display: flex;
   flex-direction: column;
   align-items: center;
