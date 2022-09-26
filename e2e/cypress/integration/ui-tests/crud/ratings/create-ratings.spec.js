@@ -8,25 +8,6 @@ const tokenData = require("../../../../fixtures/tokens.json");
 if (Cypress.config("baseUrl") === "http://react-django-api16.herokuapp.com/")
   tokenData["testuser2"] = "6c18e495c5e86b7594a75bbfa0647c0bf86b67a6";
 
-let pages = [
-  "home",
-  "books",
-  "podcasts",
-  "podcast-episodes",
-  "motivational-speeches",
-];
-
-const getResourceTypeFromPage = (page) => {
-  const resourceTypes = {
-    books: "book",
-    podcasts: "podcast",
-    "podcast-episodes": "podcast-episode",
-    "motivational-speeches": "motivational-speech",
-  };
-  cy.log(`page: ${page} - resourceTypes[page]: ${resourceTypes[page]}`);
-  return resourceTypes[page];
-};
-
 const checkStars = (stars) => {
   let i = 1;
   while (i <= stars) {
@@ -57,15 +38,21 @@ describe("Create Ratings", () => {
         .should("contain.text", "1")
         .and("contain.text", "rating");
     });
+
+    cy.get("[data-test=ratings-container]").matchImageSnapshot();
   });
 
   it("should display the text 'rating' or 'ratings' depending on how many ratings the resource has", () => {
     // 0 ratings.
-    cy.get("[data-test=num-ratings]").should("contain.text", "(0 ratings)");
+    cy.get("[data-test=num-ratings]")
+      .should("contain.text", "(0 ratings)")
+      .matchImageSnapshot("(0 ratings)");
 
     // 1 rating.
     cy.createRatingWithUI(5);
-    cy.get("[data-test=num-ratings]").should("contain.text", "(1 rating)");
+    cy.get("[data-test=num-ratings]")
+      .should("contain.text", "(1 rating)")
+      .matchImageSnapshot("(1 rating)");
 
     // Create 2nd ratings via API using a different testuser's token.
     cy.location().then((loc) => {
@@ -75,7 +62,9 @@ describe("Create Ratings", () => {
 
     // 2 ratings.
     cy.reload();
-    cy.get("[data-test=num-ratings]").should("contain.text", "(2 ratings)");
+    cy.get("[data-test=num-ratings]")
+      .should("contain.text", "(2 ratings)")
+      .matchImageSnapshot("(2 ratings)");
   });
 
   after(() => {
