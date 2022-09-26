@@ -18,6 +18,7 @@ describe("Register", () => {
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("be.visible");
     cy.get("[data-test=homepage]").should("be.visible");
+    cy.matchImageSnapshot();
   });
 
   it("should NOT register with an existing username and password", () => {
@@ -28,6 +29,7 @@ describe("Register", () => {
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
+    cy.get("[data-test=login-container]").matchImageSnapshot();
   });
 
   it("should NOT register with empty username and password fields", () => {
@@ -36,6 +38,7 @@ describe("Register", () => {
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
+    cy.get("[data-test=login-container]").matchImageSnapshot();
   });
 
   afterEach(() => {

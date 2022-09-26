@@ -10,5 +10,6 @@ describe("Logout", () => {
     cy.get("[data-test=header]").should("contain.text", "Motivation Vault");
     cy.get("[data-test=nav-list]").should("not.exist");
     cy.get("[data-test=homepage]").should("not.exist");
+    cy.get("[data-test=login-container]").matchImageSnapshot();
   });
 });
