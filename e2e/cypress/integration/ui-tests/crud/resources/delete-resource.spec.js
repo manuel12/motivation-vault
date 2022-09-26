@@ -39,6 +39,8 @@ for (const resourceType of resourceTypes) {
     it(`should delete a ${resourceType} resource`, () => {
       cy.url().then((detailpageUrl) => {
         cy.get("[data-test=delete-button]").click();
+
+        cy.get("[data-test=modal-container]").matchImageSnapshot();
         cy.get("[data-test=modal-accept-button]").click();
 
         cy.url().should("eq", Cypress.env("baseUrl"));
@@ -91,5 +93,5 @@ for (const resourceType of resourceTypes) {
 
   after(() => {
     cy.deleteTestData();
-  })
+  });
 }
