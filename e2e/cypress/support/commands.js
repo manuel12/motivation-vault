@@ -4,8 +4,8 @@ import { addMatchImageSnapshotCommand } from "cypress-image-snapshot/command";
 import { getResourceTypePlural } from "./utils";
 
 addMatchImageSnapshotCommand({
-  failureThreshold: 0.05,
-  failureThresholdType: "pixel",
+  failureThreshold: 0.9,
+  failureThresholdType: "percent",
 });
 
 Cypress.Commands.add("loginAdminWithUI", () => {
