@@ -20,6 +20,9 @@ describe("Edit/Delete Buttons", () => {
     cy.get("[data-test=edit-delete-buttons-container]").should("be.visible");
     cy.get("[data-test=edit-button]").should("be.visible");
     cy.get("[data-test=delete-button]").should("be.visible");
+
+    cy.get("[data-test=edit-delete-buttons-container]").matchImageSnapshot();
+
   });
 
   // Add checks for resource detailpages for every resource type.
@@ -39,5 +42,6 @@ describe("Edit/Delete Buttons", () => {
     cy.get("[data-test=edit-delete-buttons-container]").should("not.exist");
     cy.get("[data-test=edit-button]").should("not.exist");
     cy.get("[data-test=delete-button]").should("not.exist");
+    cy.matchImageSnapshot();
   });
 });
