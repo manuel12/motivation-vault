@@ -27,6 +27,8 @@ describe("Create Comments", () => {
     cy.get("[data-test=comment-container]")
       .should("be.visible")
       .and("have.length", 5);
+
+      cy.get("[data-test=comment-section-container]").matchImageSnapshot();
   });
 
   it("should clear comment input after clicking submit and after clicking the cancel button", () => {
@@ -40,6 +42,8 @@ describe("Create Comments", () => {
     cy.get("[data-test=comment-input]").type("[Test comment]");
     cy.get("[data-test=cancel-comment-button]").click();
     cy.get("[data-test=comment-input]").should("contain.value", "");
+
+    cy.get("[data-test=comment-section-container]").matchImageSnapshot();
   });
 
   it("should have comments persist after page reload", () => {
