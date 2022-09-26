@@ -60,6 +60,8 @@ for (const resourceType of resourceTypes) {
         .and("contain", resourceData.valueOne)
         .and("contain", resourceData.valueTwo)
         .and("contain", resourceData.valueThree);
+
+      cy.get("[data-test=detail-page-container]").matchImageSnapshot();
     });
 
     it(`should create a ${resourceType} resource filling required fields only`, () => {
