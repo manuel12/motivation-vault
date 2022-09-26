@@ -7,11 +7,13 @@ describe("Navbar", () => {
   });
 
   it("should have the home link active by default on navbar", () => {
-    cy.url().should("eq", Cypress.env('baseUrl'));
+    cy.url().should("eq", Cypress.env("baseUrl"));
 
     cy.get("[data-test=home-link]")
       .invoke("attr", "class")
       .should("contain", "active");
+
+    cy.get("[data-test=app-navbar]").matchImageSnapshot();
   });
 
   it("should go to 'Add' section when clicking on 'Add+ on navbar", () => {
@@ -22,6 +24,8 @@ describe("Navbar", () => {
     cy.get("[data-test=add-link]")
       .invoke("attr", "class")
       .should("contain", "active");
+
+    cy.get("[data-test=app-navbar]").matchImageSnapshot();
   });
 
   it("should go to the 'Books' section when clicking on 'Books' on navbar", () => {
@@ -36,6 +40,8 @@ describe("Navbar", () => {
     cy.get("[data-test=books-link]")
       .invoke("attr", "class")
       .should("contain", "active");
+
+    cy.get("[data-test=app-navbar]").matchImageSnapshot();
   });
 
   it("should go to the 'Podcasts' section when clicking on 'Podcasts' on navbar", () => {
@@ -50,6 +56,8 @@ describe("Navbar", () => {
     cy.get("[data-test=podcasts-link]")
       .invoke("attr", "class")
       .should("contain", "active");
+
+    cy.get("[data-test=app-navbar]").matchImageSnapshot();
   });
 
   it("should go to the 'Podcasts Episodes' section when clicking on 'Podcasts Episodes' on navbar", () => {
@@ -64,6 +72,8 @@ describe("Navbar", () => {
     cy.get("[data-test=podcast-episodes-link]")
       .invoke("attr", "class")
       .should("contain", "active");
+
+    cy.get("[data-test=app-navbar]").matchImageSnapshot();
   });
 
   it("should go to the 'Motivational Speeches' section when clicking on 'Motivational Speeches' on navbar", () => {
@@ -74,6 +84,8 @@ describe("Navbar", () => {
     cy.get("[data-test=motivational-speeches-link]")
       .invoke("attr", "class")
       .should("contain", "active");
+
+    cy.get("[data-test=app-navbar]").matchImageSnapshot();
   });
 
   it("should go to the 'About' section when clicking on 'About' on the navbar", () => {
@@ -88,5 +100,7 @@ describe("Navbar", () => {
     cy.get("[data-test=about-link]")
       .invoke("attr", "class")
       .should("contain", "active");
+
+    cy.get("[data-test=app-navbar]").matchImageSnapshot();
   });
 });
