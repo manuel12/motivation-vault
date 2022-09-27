@@ -3,11 +3,11 @@
   "adminUrl": "http://localhost:8000/admin/",
   "retries": {
     "openMode": 0,
-    "runMode": 0
+    "runMode": 1
   },
 
   "defaultCommandTimeout": 5000,
-  "integrationFolder": "cypress/integration/ui-tests/crud/",
+  "integrationFolder": "cypress/integration/",
   "ignoreTestFiles": ["sandbox.spec.js"],
   "video": false,
   "projectId": "3i7tdw",
