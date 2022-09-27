@@ -1,4 +1,4 @@
-[![django-api-reac](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
+[![django-api-react](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
 
 # Motivation Vault
 
@@ -19,7 +19,7 @@ Fill in the resource form and click "Add Resource".
 **Note:**
 *If any required fields aren't filled or the added data is invalid the form will display validation errors.*
 
-After submitting the form your resource will appear first on the home page list and on it's own category list(If resource is a motivational speech it will appear on motivational speeches page).
+After submitting the form your resource will appear first on the home page list and on it's own category list (If the resource is a motivational speech it will appear on motivational speeches page).
 
 ![Display gif clicking Add Resource button, filling and submitting resource form and displaying resource on hoomepage list and detail page](demo/add-resource-demo.gif)
 
