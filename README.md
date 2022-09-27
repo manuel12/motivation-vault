@@ -94,7 +94,7 @@ For installing Cypress run go to the e2e folder and run:
 | Type | Location                                 |
 | ---- | ---------------------------------------- |
 | api  | [e2e/cypress/integration/api-tests](e2e/cypress/integration/api-tests) |
-| ui   | [e2e/cypress/integration/ui-tests](e2e/cypress/integration/ui-tests)   |
+| ui/visual   | [e2e/cypress/integration/ui-tests](e2e/cypress/integration/ui-tests)   |
 | unit | [resources/tests](resources/tests)       |
 
 ## Running tests
@@ -110,6 +110,8 @@ For running the tests on headless mode run:
 For opening cypress client run:
 
     npm run test:open
+
+**Note:** *E2E tests involve API, UI and Visual tests. Visual tests are integrated along UI tests flow and will take snapshots at certain points of the such flow.*
 
 ### Unit tests
 For running the tests run:
