@@ -81,7 +81,7 @@ export class API {
   }
 
   static fetchAllResources(token, setResourceFunc) {
-    _fetch("/api/", token)
+    _fetch(`/api/`, token)
       .then((resp) => resp.json())
       .then((resp) => API._clearInvalidToken(resp))
       .then((resp) => setResourceFunc(resp))
