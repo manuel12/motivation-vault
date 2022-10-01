@@ -5,17 +5,18 @@ import useToken from "./useToken";
 
 const HomePage = () => {
   const { token } = useToken();
-  const [resources, setResources] = useState(null);
+  const [resources, setResources] = useState([]);
 
   useEffect(() => {
+    console.log(token);
     API.fetchAllResources(token, setResources);
   }, [token]);
 
   return (
     <div className="homepage" data-test="homepage">
-      <PostList resources={resources} />
+      <PostList resources={[]} /> 
     </div>
   );
-}
+};
 
 export default HomePage;
