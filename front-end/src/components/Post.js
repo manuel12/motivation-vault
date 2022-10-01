@@ -29,8 +29,8 @@ const Post = (props) => {
             numRatings={props.numRatings}
           />
           <p className={classes["description-container"]} data-test="post-description">
-            {props.description && props.description.length > 150
-              ? `${props.description.substring(0, 150)}...`
+            {props.description && props.description.length > 260
+              ? `${props.description.substring(0, 260)}...`
               : props.description}
           </p>
         </div>
