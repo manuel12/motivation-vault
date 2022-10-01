@@ -1,31 +1,51 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import Post from "./Post";
+import Spinner from "./Spinner";
+
 import classes from "../css/PostList.module.css";
 
 const PostList = (props) => {
-  console.log(props.resources);
-  const [showNoResourcesText, setShowNoResourcesText] = useState(false);
+  const [currentResources, setCurrentResources] = useState(null);
+
+  const [postPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (props.resources && props.resources.length < 1) {
-        setShowNoResourcesText(true);
-      }
-    }, 1000);
-  }, [props.resources]);
+    const lastPostIndex = currentPage * postPerPage;
+    const firstPostIndex = lastPostIndex - postPerPage;
+    const newCurrentResources = props.resources.slice(
+      firstPostIndex,
+      lastPostIndex
+    );
+
+    setCurrentResources(newCurrentResources);
+    setPageCount(Math.ceil(props.resources.length / postPerPage));
+
+    console.log(currentPage);
+    console.log(pageCount);
+  }, [props.resources, currentPage]);
+
+  const prevResources = () => {
+    const newCurrentPage = currentPage - 1;
+    setCurrentPage(newCurrentPage < 1 ? currentPage : newCurrentPage);
+  };
+
+  const nextResources = () => {
+    const newCurrentPage = currentPage + 1;
+    setCurrentPage(newCurrentPage > pageCount ? currentPage : newCurrentPage);
+  };
 
   return (
     <div
       className={classes["post-list-container"]}
       data-test="post-list-container"
     >
-      {showNoResourcesText ? (
-        <h3 className={classes["no-resources"]} data-test="no-resources-text">No resources to show</h3>
-      ) : props.resources && props.resources.length > 0 ? (
-        props.resources.map((resource) => (
+      {currentResources && props.resources.length > 0 ? (
+        currentResources.map((resource) => (
           <Post
             key={resource.id}
             id={resource.id}
@@ -38,12 +58,29 @@ const PostList = (props) => {
           />
         ))
       ) : (
-        <FontAwesomeIcon
-          icon={faSpinner}
-          className={classes.spinner}
-          data-test="spinner"
-        />
+        <Spinner resources={currentResources} />
       )}
+
+      <div className={classes["pagination-buttons-container"]}>
+        <button
+          className={`${classes["pagination-button"]} ${
+            currentPage - 1 > 0 ?  classes["visible"] : classes["invisible"]
+          }`}
+          onClick={prevResources}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>
+
+        <button
+          className={`${classes["pagination-button"]} ${
+            currentPage + 1 <= pageCount
+              ? classes["visible"] : classes["invisible"]
+          }`}
+          onClick={nextResources}
+        >
+          <FontAwesomeIcon icon={faArrowRight} />
+        </button>
+      </div>
     </div>
   );
 };
