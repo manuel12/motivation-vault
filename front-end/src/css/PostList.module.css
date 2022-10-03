@@ -2,27 +2,38 @@
   width: 100%;
 }
 
-.no-resources {
-  text-align: center;
+.pagination-buttons-container {
+  width: 200px;
+  margin: 0 40%;
 }
 
-.spinner {
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-  margin-left: 45%;
-  margin-right: 45%;
-  font-size: 2.5rem;
-  color: silver;
-
-  animation: spin infinite 1s linear;
+.pagination-button {
+  min-width: 70px;
+  padding: 10px;
+  margin: 0 10px;
+  font-size: 1rem;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+.invisible {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+@media screen and (max-width: 600px) {
+  .pagination-buttons-container {
+    width: 25%;
+    margin: 0 37.5%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .pagination-button {
+    min-width: 7.5%;
+    padding: 10px;
+    margin: 0 2.5%;
+    font-size: 1rem;
   }
+
+
 }
