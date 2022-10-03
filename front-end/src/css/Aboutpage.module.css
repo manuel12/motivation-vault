@@ -4,10 +4,18 @@
   margin-right: 15%;
 }
 
-.about-page-heading {
+.page-heading {
   text-align: center;
   background-color: #A86800;
   border-radius: 4px;
   color: white;
   width: 100%;
+}
+
+.section-heading {
+  text-align: center;
+  background-color: #A86800;
+  border-radius: 4px;
+  color: white;
+  width: fit-content;
 }
