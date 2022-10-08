@@ -40,31 +40,33 @@ const PostList = (props) => {
   };
 
   return (
-    <div
-      className={classes["post-list-container"]}
-      data-test="post-list-container"
-    >
-      {currentResources && props.resources.length > 0 ? (
-        currentResources.map((resource) => (
-          <Post
-            key={resource.id}
-            id={resource.id}
-            title={resource.title}
-            author={resource.author}
-            description={resource.description}
-            imageURL={resource.imageURL}
-            avgRating={resource.avg_rating}
-            numRatings={resource.num_ratings}
-          />
-        ))
-      ) : (
-        <Spinner resources={currentResources} />
-      )}
+    <>
+      <div
+        className={classes["post-list-container"]}
+        data-test="post-list-container"
+      >
+        {currentResources && props.resources.length > 0 ? (
+          currentResources.map((resource) => (
+            <Post
+              key={resource.id}
+              id={resource.id}
+              title={resource.title}
+              author={resource.author}
+              description={resource.description}
+              imageURL={resource.imageURL}
+              avgRating={resource.avg_rating}
+              numRatings={resource.num_ratings}
+            />
+          ))
+        ) : (
+          <Spinner resources={currentResources} />
+        )}
+      </div>
 
       <div className={classes["pagination-buttons-container"]}>
         <button
           className={`${classes["pagination-button"]} ${
-            currentPage - 1 > 0 ?  classes["visible"] : classes["invisible"]
+            currentPage - 1 > 0 ? classes["visible"] : classes["invisible"]
           }`}
           onClick={prevResources}
         >
@@ -74,14 +76,15 @@ const PostList = (props) => {
         <button
           className={`${classes["pagination-button"]} ${
             currentPage + 1 <= pageCount
-              ? classes["visible"] : classes["invisible"]
+              ? classes["visible"]
+              : classes["invisible"]
           }`}
           onClick={nextResources}
         >
           <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
