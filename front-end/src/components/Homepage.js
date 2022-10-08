@@ -14,7 +14,7 @@ const HomePage = () => {
 
   return (
     <div className="homepage" data-test="homepage">
-      <PostList resources={[]} /> 
+      <PostList resources={resources} />
     </div>
   );
 };
