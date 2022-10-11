@@ -130,6 +130,7 @@ For running the tests run:
 ## Features
 - Token authentication.
 - Form validation.
+- Pagination.
 - Rating section.
 - Comment setion.
 - Unit tests.

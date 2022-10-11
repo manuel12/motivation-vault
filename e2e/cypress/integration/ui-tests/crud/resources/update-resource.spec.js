@@ -49,7 +49,7 @@ for (const resourceType of resourceTypes) {
       cy.get("[data-test=app]").should("be.visible");
     });
 
-    it(`Should update a ${resourceType} resource`, () => {
+    it(`should update a ${resourceType} resource`, () => {
       // Wait for loading spinner to disappear.
       cy.get("[data-test=spinner]")
         .should("not.exist")
