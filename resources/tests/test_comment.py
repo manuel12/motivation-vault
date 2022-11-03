@@ -11,7 +11,7 @@ class CommentModelTests(TestCase):
     """Creates a comment and tests the fields."""
 
     def setUp(self):
-        self.test_date = datetime(2022, 1, 1, 0, 0, 0, tzinfo=pytz.UTC)
+        self.test_date = datetime(2022, 1, 1, 0, 0, 0)
         self.test_resource = Book.objects.create(
             title="12 Rules for Life",
             author="Jordan B. Peterson",
