@@ -12,5 +12,9 @@
   "video": false,
   "projectId": "3i7tdw",
 
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+
+  "adminUser": "testuser1",
+  "adminPass": "testpass1",
+  "adminToken": "4044a7dfd19e9d41c585b388af32cba151c6cd36"
 }
