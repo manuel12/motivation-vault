@@ -14,9 +14,9 @@ Cypress.Commands.add("loginAdminWithUI", () => {
    * and using credentials found on cypress.env.json
    */
 
-  cy.visit(Cypress.env("adminUrl"));
-  cy.get("#id_username").type(Cypress.env("adminUser"));
-  cy.get("#id_password").type(Cypress.env("adminPass"));
+  cy.visit(Cypress.config("adminUrl"));
+  cy.get("#id_username").type(Cypress.config("adminUser"));
+  cy.get("#id_password").type(Cypress.config("adminPass"));
   cy.get("[type=submit]").click();
 
   cy.get("#content-main").should("be.visible");
@@ -33,8 +33,8 @@ Cypress.Commands.add("loginWithUI", (username, password) => {
   cy.visit("/");
 
   if (!username && !password) {
-    cy.get("#username").type(Cypress.env("adminUser"));
-    cy.get("#password").type(Cypress.env("adminPass"));
+    cy.get("#username").type(Cypress.config("adminUser"));
+    cy.get("#password").type(Cypress.config("adminPass"));
   } else {
     // Add username or password to input only if present
     // to accomodate for tests that require adding one
@@ -59,13 +59,13 @@ Cypress.Commands.add("loginWithAPI", (username, password) => {
   let token;
   cy.request({
     method: "POST",
-    url: `${Cypress.env("baseUrl")}auth/`,
+    url: `${Cypress.config("baseUrl")}auth/`,
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: username ? username : Cypress.env("adminUser"),
-      password: password ? password : Cypress.env("adminPass"),
+      username: username ? username : Cypress.config("adminUser"),
+      password: password ? password : Cypress.config("adminPass"),
     }),
   }).then((response) => {
     token = response.body.token;
@@ -105,11 +105,11 @@ Cypress.Commands.add("deleteTestData", () => {
    */
 
   cy.request({
-    url: `${Cypress.env("baseUrl")}api/delete-test-data/`,
+    url: `${Cypress.config("baseUrl")}api/delete-test-data/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${Cypress.env("adminToken")}`,
+      Authorization: `Token ${Cypress.config("adminToken")}`,
     },
   }).then((response) => {
     expect(response.status).to.eq(200);
@@ -195,11 +195,11 @@ Cypress.Commands.add("createResourceWithAPI", (resourceType, testData) => {
 
   const resourcePlural = getResourceTypePlural(resourceType);
   cy.request({
-    url: `${Cypress.env("baseUrl")}api/${resourcePlural}/`,
+    url: `${Cypress.config("baseUrl")}api/${resourcePlural}/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${Cypress.env("adminToken")}`,
+      Authorization: `Token ${Cypress.config("adminToken")}`,
     },
     body: JSON.stringify(testData),
   }).then((response) => {
@@ -342,11 +342,11 @@ Cypress.Commands.add("createRatingWithAPI", (resource, numStars, token) => {
   };
 
   cy.request({
-    url: `${Cypress.env("baseUrl")}api/ratings/`,
+    url: `${Cypress.config("baseUrl")}api/ratings/`,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${token ? token : Cypress.env("adminToken")}`,
+      Authorization: `Token ${token ? token : Cypress.config("adminToken")}`,
     },
     body: JSON.stringify(newRating),
   }).then((response) => {
