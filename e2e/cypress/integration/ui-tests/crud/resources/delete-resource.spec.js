@@ -43,7 +43,7 @@ for (const resourceType of resourceTypes) {
         cy.get("[data-test=modal-container]").matchImageSnapshot();
         cy.get("[data-test=modal-accept-button]").click();
 
-        cy.url().should("eq", Cypress.env("baseUrl"));
+        cy.url().should("eq", Cypress.config("baseUrl"));
 
         // Wait for loading spinner to disappear.
         cy.get("[data-test=spinner]")

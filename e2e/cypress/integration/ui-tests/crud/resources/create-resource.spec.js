@@ -42,7 +42,7 @@ for (const resourceType of resourceTypes) {
 
       // Check resource is displayed first on resource type page.
       cy.visit(
-        `${Cypress.env("baseUrl")}${getResourceTypePlural(resourceType)}/`
+        `${Cypress.config("baseUrl")}${getResourceTypePlural(resourceType)}/`
       );
       cy.get("[data-test=post-container]")
         .first()
