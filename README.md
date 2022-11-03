@@ -1,4 +1,4 @@
-[![django-api-react](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
+[![django-api-react](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
 
 # Motivation Vault
 
