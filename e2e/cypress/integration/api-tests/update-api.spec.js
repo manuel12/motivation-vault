@@ -32,24 +32,24 @@ for (const resourceType of resourceTypes) {
 
       cy.request({
         method: "GET",
-        url: `${Cypress.env("baseUrl")}api/${getResourceTypePlural(
+        url: `${Cypress.config("baseUrl")}api/${getResourceTypePlural(
           resourceType
         )}/`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token  ${Cypress.env("adminToken")}`,
+          Authorization: `Token  ${Cypress.config("adminToken")}`,
         },
       }).then((response) => {
         const newestResource = response.body[0];
 
         cy.request({
           method: "PUT",
-          url: `${Cypress.env("baseUrl")}api/${getResourceTypePlural(
+          url: `${Cypress.config("baseUrl")}api/${getResourceTypePlural(
             resourceType
           )}/${newestResource.id}/`,
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Token  ${Cypress.env("adminToken")}`,
+            Authorization: `Token  ${Cypress.config("adminToken")}`,
           },
           body: JSON.stringify(newResourceData),
         }).then((response) => {

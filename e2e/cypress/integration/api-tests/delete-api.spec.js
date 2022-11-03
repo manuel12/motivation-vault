@@ -14,7 +14,7 @@ for (const resourceType of resourceTypes) {
 
     beforeEach(() => {
       cy.request(
-        `${Cypress.env("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
+        `${Cypress.config("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
       ).then((response) => {
         ctx.originalResourceCount = response.body.length;
         cy.log(`ctx.originalResourceCount: ${ctx.originalResourceCount}`);
@@ -31,24 +31,24 @@ for (const resourceType of resourceTypes) {
 
       cy.request({
         method: "GET",
-        url: `${Cypress.env("baseUrl")}api/${getResourceTypePlural(
+        url: `${Cypress.config("baseUrl")}api/${getResourceTypePlural(
           resourceType
         )}/`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token  ${Cypress.env("adminToken")}`,
+          Authorization: `Token  ${Cypress.config("adminToken")}`,
         },
       }).then((response) => {
         const firstResource = response.body[0];
 
         cy.request({
           method: "DELETE",
-          url: `${Cypress.env("baseUrl")}api/${getResourceTypePlural(
+          url: `${Cypress.config("baseUrl")}api/${getResourceTypePlural(
             resourceType
           )}/${firstResource.id}/`,
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Token  ${Cypress.env("adminToken")}`,
+            Authorization: `Token  ${Cypress.config("adminToken")}`,
           },
         }).then((response) => {
           ctx.response = response;
@@ -62,7 +62,7 @@ for (const resourceType of resourceTypes) {
 
       /// Check resource count back to original
       cy.request(
-        `${Cypress.env("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
+        `${Cypress.config("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
       ).then((response) => {
         expect(response.body.length).to.eq(ctx.originalResourceCount);
       });

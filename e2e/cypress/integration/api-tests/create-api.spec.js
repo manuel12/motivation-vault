@@ -17,7 +17,7 @@ for (const resourceType of resourceTypes) {
       cy.deleteTestData();
 
       cy.request(
-        `${Cypress.env("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
+        `${Cypress.config("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
       ).then((response) => {
         ctx.bookResourceCount = response.body.length;
       });
@@ -40,7 +40,7 @@ for (const resourceType of resourceTypes) {
 
       // Check resource count increased by 1
       cy.request(
-        `${Cypress.env("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
+        `${Cypress.config("baseUrl")}api/${getResourceTypePlural(resourceType)}/`
       ).then((response) => {
         expect(response.body.length).to.eq(ctx.bookResourceCount + 1);
       });
