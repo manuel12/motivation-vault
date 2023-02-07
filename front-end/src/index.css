@@ -14,7 +14,7 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 400;
   color: rgb(70 70 70);
   word-spacing: 0.2em;
@@ -29,8 +29,8 @@ p {
 }
 
 form {
-  width: 50%;
-  margin: 0 25%;
+  width: 90%;
+  margin: 0 5%;
 }
 
 select {
@@ -53,14 +53,14 @@ select option {
 
 input,
 textarea {
-  color: grey;
-  width: 95%;
-  padding: 10px 2%;
-  margin: 10px 0;
   border: 2px solid #c7d0d2;
   border-radius: 20px;
-  font-size: 1rem;
   outline-color: #f59800;
+  width: 90%;
+  padding: 10px 5%;
+  margin: 0;
+  color: grey;
+  font-size: 1rem;
 }
 
 textarea {
@@ -72,20 +72,20 @@ textarea {
   color: gray;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) {
   body {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   form {
-    width: 90%;
-    margin: 0 5%;
+    width: 50%;
+    margin: 0 25%;
   }
 
   input,
   textarea {
-    width: 90%;
-    padding: 10px 5%;
-    margin: 0;
+    width: 95%;
+    padding: 10px 2%;
+    margin: 10px 0;
   }
 }
