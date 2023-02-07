@@ -1,27 +1,27 @@
 ::selection {
-  background-color: #F59800;
+  background-color: #f59800;
   color: white;
 }
 
 :focus {
-  border-color: #F59800;
+  border-color: #f59800;
 }
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
   -apple-system: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.1rem;
   font-weight: 400;
-  color: rgb(70, 70, 70);
+  color: rgb(70 70 70);
   word-spacing: 0.2em;
 }
 
 a {
-  color: rgb(70, 70, 70);
+  color: rgb(70 70 70);
 }
 
 code {
@@ -47,12 +47,12 @@ select {
   border-radius: 5px;
   font-family: inherit;
   font-size: 1rem;
-  outline-color: #F59800;
+  outline-color: #f59800;
 }
 
 select option {
   border-color: #c7d0d2;
-  outline-color: #F59800;
+  outline-color: #f59800;
   font-size: 1rem;
 }
 
@@ -61,15 +61,15 @@ textarea {
   color: grey;
   width: 95%;
   padding: 10px 2%;
-  margin: 10px 0px;
+  margin: 10px 0;
   border: 2px solid #c7d0d2;
   border-radius: 20px;
   font-size: 1rem;
-  outline-color: #F59800;
+  outline-color: #f59800;
 }
 
 textarea {
-  font-family: "Roboto";
+  font-family: Roboto, sans-serif;
 }
 
 .icon {
