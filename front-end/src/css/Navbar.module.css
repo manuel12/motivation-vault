@@ -1,25 +1,46 @@
 .app-navbar {
   background-color: #0059a8;
+  padding: 5px 0;
+}
+
+.hamburger-btn {
+  display: block;
+  width: 40px;
+  margin: 0 0 0 0.4rem;
+  padding: 10px;
+}
+
+.hamburger-icon {
+  font-size: 1.4rem;
 }
 
 .nav-list {
+  display: none;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  display: flex;
-  justify-content: space-evenly;
+  animation: close 0.3s;
+}
+
+.nav-list-portrait-display {
+  margin-top: 10px;
+  display: block;
+  list-style-type: none;
+  padding: 0;
+  animation: open 0.25s;
 }
 
 .nav-item-link {
-  height: 100%;
   display: inline-block;
-  font-size: 1.3rem;
-  color: white;
+  height: 100%;
+  width: 100%;
   padding: 0.8rem 0.4rem;
-  margin: 0 5px;
+  margin: 0;
   text-decoration: none;
   text-align: center;
+  font-size: 1.3rem;
+  color: white;
   cursor: pointer;
 }
 
@@ -33,66 +54,40 @@
   color: white;
 }
 
-.hamburger-btn {
-  display: none;
-  min-width: 60px;
-  padding: 10px;
-}
+@keyframes open {
+  0% {
+    transform: translateY(-500px);
+  }
 
-.hamburger-icon {
-  font-size: 1.4rem;
-}
-
-@media screen and (max-width: 992px) {
-  .nav-item-link {
-    margin-left: 0;
-    margin-right: 0;
+  100% {
+    transform: translateY(0);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 600px) {
   .nav-item-link {
     margin-left: 5px;
     margin-right: 5px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 768px) {
   .app-navbar {
-    padding: 5px 0 10px 0;
+    padding: 0;
   }
 
   .hamburger-btn {
-    display: block;
-    width: 40px;
-    margin: 0 0 0 0.4rem;
+    display: none;
   }
 
   .nav-list {
-    display: none;
-    padding: 0px;
-    animation: close 0.3s;
-  }
-
-  .nav-list-portrait-display {
-    margin-top: 10px;
-    display: block;
-    list-style-type: none;
-    padding: 0;
-    animation: open 0.25s;
-  }
-
-  @keyframes open {
-    0% {
-      transform: translateY(-500px);
-    }
-    100% {
-      transform: translateY(0);
-    }
+    display: flex;
+    justify-content: space-evenly;
   }
 
   .nav-item-link {
-    width: 100%;
-    margin: 0;
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
