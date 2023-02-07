@@ -1,9 +1,9 @@
 .comment-section-container {
-  margin: 105px 0 105px 0;
+  margin: 105px 0;
 }
 
 .comment-section-heading {
-  background-color: #A86800;
+  background-color: #a86800;
   border-radius: 4px;
   color: white;
   width: fit-content;
@@ -59,11 +59,11 @@
   }
 }
 
-
 @keyframes open {
   0% {
     transform: translateY(-30px);
   }
+
   100% {
     transform: translateY(0);
   }

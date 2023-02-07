@@ -4,7 +4,7 @@
 
 .update-resource-form-heading {
   text-align: center;
-  background-color: #A86800;
+  background-color: #a86800;
   border-radius: 4px;
   color: white;
   width: 100%;
@@ -39,6 +39,7 @@
   0% {
     transform: translateY(-400px);
   }
+
   100% {
     transform: translateY(0);
   }

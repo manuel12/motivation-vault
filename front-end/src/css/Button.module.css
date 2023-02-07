@@ -1,11 +1,11 @@
 button {
-  background-color: #FFC93D;
-  border-color: #FFC93D;
+  background-color: #ffc93d;
+  border-color: #ffc93d;
   color: white;
   min-width: 100px;
   margin: 0 35%;
   padding: 15px 20px;
-  border: 2px solid #FFC93D;
+  border: 2px solid #ffc93d;
   border-radius: 10px;
   font-size: 1rem;
   font-family: sans-serif;
@@ -15,8 +15,8 @@ button {
 }
 
 button:hover {
-  background-color: #A86800;
-  border-color: #A86800;
+  background-color: #a86800;
+  border-color: #a86800;
 }
 
 button:active {
@@ -28,5 +28,3 @@ button:disabled {
   background-color: grey;
   cursor: not-allowed;
 }
-
-

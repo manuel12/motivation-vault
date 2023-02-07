@@ -4,7 +4,7 @@
 }
 
 .values-heading {
-  background-color: #A86800;
+  background-color: #a86800;
   border-radius: 4px;
   color: white;
   width: fit-content;
@@ -19,6 +19,7 @@
   .value-container {
     padding: 0;
   }
+
   .values-heading {
     width: 100%;
     text-align: center;
