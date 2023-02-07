@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Auth from "./components/Auth";
 import Header from "./components/Header";
-import Navbar from "./components/Navbar";
 
 import HomePage from "./components/Homepage";
 import AddPage from "./components/Addpage";
@@ -35,7 +34,11 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/add/" component={AddPage} />
-            <Route exact path="/update/:resourceType/:id/" component={UpdateResourceForm} />
+            <Route
+              exact
+              path="/update/:resourceType/:id/"
+              component={UpdateResourceForm}
+            />
             <Route exact path="/books/" component={BookPage} />
             <Route exact path="/books/:id/" component={DetailPage} />
             <Route exact path="/podcasts/" component={PodcastPage} />
