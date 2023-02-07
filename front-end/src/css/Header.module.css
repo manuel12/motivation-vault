@@ -1,12 +1,13 @@
 .header {
+  position: relative;
   background-color: #1992ff;
+  height: 200px;
 }
 
 .header-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  height: 120px;
+  padding-top: 40px;
+  text-align: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -14,4 +15,8 @@
 .header-link {
   color: inherit;
   text-decoration: none;
+}
+
+.header-link > h1 {
+  margin: 0;
 }
