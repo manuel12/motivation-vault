@@ -1,6 +1,6 @@
 .add-container-heading {
   text-align: center;
-  background-color: #A86800;
+  background-color: #a86800;
   border-radius: 4px;
   color: white;
   width: 100%;
@@ -13,11 +13,11 @@
 }
 
 .resources {
-  width: 100%;
+  width: auto;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) {
   .resources {
-    width: auto;
+    width: 100%;
   }
 }
