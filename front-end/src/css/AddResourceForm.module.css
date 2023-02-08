@@ -1,4 +1,7 @@
 .add-resource-form {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
   animation: open 0.25s;
 }
 
@@ -8,14 +11,6 @@
   border-radius: 4px;
   color: white;
   width: 100%;
-}
-
-@media screen and (max-width: 992px) {
-  .add-resource-form {
-    width: 80%;
-    margin: 0 10%;
-    animation: open 0.25s;
-  }
 }
 
 @keyframes open {
