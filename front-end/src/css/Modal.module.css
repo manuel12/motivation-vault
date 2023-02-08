@@ -5,23 +5,23 @@
   width: 100%;
   height: 100vh;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0 0 0 / 75%);
 }
 
 .modal-container {
   position: fixed;
-  top: 40px;
-  left: 0px;
-  right: 0px;
+  top: 25%;
+  left: 0;
+  right: 0;
   width: 100%;
   z-index: 100;
   animation: open 0.25s;
 }
 
 .modal {
-  width: 30%;
   min-width: 300px;
-  margin: 0 35%;
+  width: 80%;
+  margin: 0 10%;
   background-color: white;
   border-radius: 15px;
 }
@@ -47,13 +47,14 @@ footer {
   height: fit-content;
   padding: 15px 0;
 }
+
 .accept-button {
   background-color: #ff1616;
   border-color: #ff1616;
+  width: 90%;
+  margin: 10px 5%;
   margin-bottom: 10px;
-
-  width: 40%;
-  margin: 5px 30%;
+  font-size: 1.3rem;
 }
 
 .accept-button:hover {
@@ -64,9 +65,9 @@ footer {
 .cancel-button {
   background-color: darkgrey;
   border-color: darkgrey;
-
-  width: 40%;
-  margin: 5px 30%;
+  width: 90%;
+  margin: 10px 5%;
+  font-size: 1.3rem;
 }
 
 .cancel-button:hover {
@@ -74,31 +75,28 @@ footer {
   border-color: grey;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) {
   .modal-container {
-    top: 25%;
+    top: 40px;
   }
 
   .modal {
-    width: 80%;
-    margin: 0 10%;
-    background-color: white;
-    border-radius: 15px;
+    width: 30%;
+    margin: 0 35%;
   }
 
   .accept-button,
   .cancel-button {
-    width: 90%;
-    margin: 10px 5%;
-    font-size: 1.3rem;
+    width: 40%;
+    margin: 5px 30%;
   }
 }
-
 
 @keyframes open {
   0% {
     transform: translateY(-400px);
   }
+
   100% {
     transform: translateY(0);
   }

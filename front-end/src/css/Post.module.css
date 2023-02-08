@@ -1,9 +1,7 @@
 .post-container {
-  min-height: 200px;
-  margin: 20px 0 20px 0;
-  overflow: hidden;
+  max-height: 600px;
+  margin: 40px 5%;
 }
- 
 
 .image-container {
   display: flex;
@@ -12,7 +10,7 @@
   background-color: #f4f4f4;
   border: 5px solid f4f4f4;
   border-radius: 5px;
-  width: 50%;
+  width: 95%;
   height: 300px;
   padding: 10px;
   text-align: center;
@@ -26,18 +24,19 @@
 }
 
 .text-container {
+  display: inline-block;
   margin-top: -10px;
-  width: 40%;
+  width: 100%;
   float: right;
   white-space: pre-line;
 }
 
 .post-title {
   margin-bottom: 10px;
-  background-color: #A86800;
+  background-color: #a86800;
   border-radius: 4px;
   color: white;
-  width: fit-content;
+  width: 100%;
 }
 
 .author-name {
@@ -46,30 +45,31 @@
 }
 
 .description-container {
+  display: none;
   max-height: 150px;
   font-size: 1rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) {
   .post-container {
-    max-height: 600px;
-    margin: 40px 5% 40px 5%;
+    min-height: 200px;
+    margin: 20px 0;
+    overflow: hidden;
   }
 
   .image-container {
-    width: 95%
+    width: 50%;
   }
 
   .text-container {
-    width: 100%;
-    display: inline-block;
+    width: 40%;
   }
 
   .post-title {
-    width: 100%;
+    width: fit-content;
   }
 
   .description-container {
-    display: none;
+    display: block;
   }
 }
