@@ -5,8 +5,9 @@
 .comment-section-heading {
   background-color: #a86800;
   border-radius: 4px;
+  text-align: center;
   color: white;
-  width: fit-content;
+  width: 100%;
 }
 
 .add-comment {
@@ -52,10 +53,9 @@
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) {
   .comment-section-heading {
-    width: 100%;
-    text-align: center;
+    width: fit-content;
   }
 }
 
