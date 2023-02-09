@@ -6,8 +6,17 @@ h2 {
   margin: 10px 0 20px;
 }
 
+.ratings-icon-panel {
+  width: 300px;
+  display: flex;
+}
+
+.star-container {
+  margin-right: 15px;
+}
+
 .ratings-container .fa-star {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 .orange {
@@ -35,8 +44,9 @@ h2 {
 }
 
 .num-ratings {
-  margin: 0;
   display: inline;
+  margin-right: 15px;
+  padding-top: 5px;
   font-weight: bold;
   font-size: 1.2rem;
   color: rgb(105 105 105);
@@ -44,7 +54,7 @@ h2 {
 
 .add-rating-button-container {
   display: inline;
-  margin: 0 10px;
+  margin: 0;
   padding: 5px;
   background-color: #ffc93d;
   border: 1px solid #ffc93d;
@@ -74,7 +84,8 @@ h2 {
   border-top: 3px solid orange;
   border-radius: 5px;
   width: 100%;
-  margin-top: 20px;
+  max-width: 300px;
+  margin: 20px 0;
   animation: open 0.25s;
 }
 
@@ -87,29 +98,11 @@ h2 {
 }
 
 .stars-container {
-  width: 60%;
-  padding: 10px 20%;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
   display: flex;
-  justify-content: space-evenly;
-}
-
-@media screen and (min-width: 600px) {
-  .num-ratings {
-    margin: 0 5px;
-  }
-
-  .orange-pointer {
-    font-size: 1.6rem;
-  }
-
-  .white {
-    font-size: 1.55rem;
-  }
-
-  .rate-container {
-    width: 200px;
-    margin-top: 10px;
-  }
+  justify-content: space-around;
 }
 
 @keyframes open {
