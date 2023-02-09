@@ -21,9 +21,9 @@ input {
   max-width: 400px;
 }
 
-button {
+.submit-button {
   width: 200px;
-  margin: 10px auto 20px !important;
+  margin: 10px auto 20px;
 }
 
 span {
