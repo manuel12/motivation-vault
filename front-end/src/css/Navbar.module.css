@@ -1,23 +1,25 @@
 .app-navbar {
   background-color: #0059a8;
-  padding: 5px 0;
+  padding: 5px 0 10px;
 }
 
 .hamburger-btn {
   display: block;
-  width: 40px;
+  min-width: auto;
+  width: 70px;
   margin: 0 0 0 0.4rem;
-  padding: 10px;
+  padding: 5px;
 }
 
 .hamburger-icon {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 .nav-list {
   display: none;
   list-style-type: none;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 1080px;
   padding: 0;
   overflow: hidden;
   animation: close 0.3s;
@@ -25,7 +27,7 @@
 
 .nav-list-portrait-display {
   margin-top: 10px;
-  display: block;
+  display: list-item;
   list-style-type: none;
   padding: 0;
   animation: open 0.25s;
@@ -33,7 +35,6 @@
 
 .nav-item-link {
   display: inline-block;
-  height: 100%;
   width: 100%;
   padding: 0.8rem 0.4rem;
   margin: 0;
