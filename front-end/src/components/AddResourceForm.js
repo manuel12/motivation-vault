@@ -129,8 +129,14 @@ const AddResourceForm = (props) => {
   };
 
   return (
-    <form className={classes["add-resource-form"]} id="add-resource-form" onSubmit={submitHandler}>
-      <h3 className={classes["add-resource-form-heading"]}>Add Resource Form</h3>
+    <form
+      className={classes["add-resource-form"]}
+      id="add-resource-form"
+      onSubmit={submitHandler}
+    >
+      <h3 className={classes["add-resource-form-heading"]}>
+        Add Resource Form
+      </h3>
       <LabeledInput
         error={titleError}
         item="Title"
@@ -250,7 +256,12 @@ const AddResourceForm = (props) => {
         }}
         dataAttr="value-three-input"
       />
-      <button id="submit" type="submit" data-test="submit">
+      <button
+        className={classes["submit-button"]}
+        id="submit"
+        type="submit"
+        data-test="submit"
+      >
         Add Resource
       </button>
     </form>
