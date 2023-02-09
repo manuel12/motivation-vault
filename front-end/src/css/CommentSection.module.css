@@ -1,4 +1,6 @@
 .comment-section-container {
+  overflow: scroll;
+  width: 100%;
   margin: 105px 0;
 }
 
@@ -11,18 +13,20 @@
 }
 
 .add-comment {
-  border-style: none;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .btn-container {
   display: flex;
+  max-width: 400px;
 }
 
 .add-comment-btn {
   background-color: grey;
   border-radius: 5px;
   margin: 0;
-  display: inline-block;
+  margin-right: 20px;
   border: 0;
   animation: open 0.25s;
 }
@@ -37,9 +41,7 @@
   background-color: darkgrey;
   border-color: darkgrey;
   border-radius: 5px;
-  width: 100px;
-  margin-left: 10px;
-  display: inline-block;
+  margin: 0;
   border: 0;
   animation: open 0.25s;
 }
