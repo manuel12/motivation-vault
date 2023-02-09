@@ -119,7 +119,12 @@ const Auth = ({ setToken }) => {
             data-test="password"
           ></input>
           <br />
-          <button id="submitButton" type="submit" data-test="submit-button">
+          <button
+            className={classes["submit-button"]}
+            id="submitButton"
+            type="submit"
+            data-test="submit-button"
+          >
             {isLoginView ? "Login" : "Register"}
           </button>
           {isLoginView ? (
