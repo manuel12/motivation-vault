@@ -11,29 +11,31 @@
   text-align: center;
 }
 
+.value-container > ul {
+  padding: 0;
+}
+
 .value-item {
   list-style-type: none;
   counter-increment: step-counter;
   position: relative;
-  margin: 15px 0;
+  margin: 20px 0;
   line-height: 1.6em;
 }
 
 .value-item::before {
   content: counter(step-counter);
   display: block;
-  position: absolute;
   background-color: #ffa500;
   border: 1px solid white;
   border-radius: 15px;
-  top: 2px;
-  left: -30px;
   width: 1.5rem;
   height: 1.5rem;
-  text-align: center;
+  margin: 20px auto;
   line-height: 1.65rem;
   font-weight: bold;
   font-size: 1rem;
+  text-align: center;
   color: white;
 }
 
@@ -44,5 +46,15 @@
 
   .values-heading {
     width: fit-content;
+  }
+
+  .value-container > ul {
+    padding-left: 20px;
+  }
+
+  .value-item::before {
+    position: absolute;
+    top: -18px;
+    left: -30px;
   }
 }
