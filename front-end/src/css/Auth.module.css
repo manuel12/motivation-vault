@@ -16,7 +16,8 @@
   text-align: center;
 }
 
-input {
+.username-input,
+.password-input {
   width: 100%;
   max-width: 400px;
 }
