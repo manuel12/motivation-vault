@@ -97,6 +97,7 @@ const Auth = ({ setToken }) => {
           )}
           <input
             ref={loginInput}
+            className={classes["username-input"]}
             id="username"
             type="text"
             placeholder="Enter your username"
@@ -111,6 +112,7 @@ const Auth = ({ setToken }) => {
             </div>
           )}
           <input
+            className={classes["password-input"]}
             id="password"
             type="password"
             placeholder="Enter your password"
