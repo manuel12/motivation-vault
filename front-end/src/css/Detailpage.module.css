@@ -1,14 +1,15 @@
 .detail-page-container {
-  margin-left: 10%;
-  margin-right: 10%;
+  max-width: 768px;
+  margin: 0 auto;
 }
 
 .heading {
-  font-size: 3rem;
   background-color: #a86800;
   border-radius: 4px;
-  color: white;
   width: fit-content;
+  text-align: center;
+  font-size: 3rem;
+  color: white;
 }
 
 .author-container {
@@ -37,14 +38,15 @@ iframe {
 }
 
 .description-section {
-  padding: 0 2%;
+  padding: 0;
 }
 
 .description-heading {
   background-color: #a86800;
   border-radius: 4px;
+  width: 100%;
+  text-align: center;
   color: white;
-  width: fit-content;
 }
 
 .paragraph-container {
@@ -54,28 +56,25 @@ iframe {
   white-space: pre-line;
 }
 
-.post-section-container {
-  border: 10px black;
-}
-
 .edit-delete-buttons-container {
   background-color: rgb(225 225 225);
   border: 2px solid #ffc93d;
-  border-radius: 10px;
+  border-radius: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: fit-content;
-  min-width: 125px;
-  margin: 20px 40%;
+  width: 160px;
+  min-width: 150px;
+  margin: 20px auto;
   padding: 10px 0;
 }
 
 .edit-button-container {
-  margin: 0 5px;
-  border-radius: 15px;
   background-color: #ffc93d;
   border-color: #ffc93d;
+  border-radius: 15px;
+  margin: 0 5px;
+  width: 60px;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
@@ -87,10 +86,11 @@ iframe {
 
 .edit-button {
   position: relative;
+  left: 6px;
   margin: 10px;
   padding: 1px;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .edit-button-container:active {
@@ -100,9 +100,10 @@ iframe {
 
 .delete-button-container {
   margin: 0 5px;
-  border-radius: 15px;
   background-color: #ffc93d;
   border-color: #ffc93d;
+  border-radius: 15px;
+  width: 60px;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
@@ -114,10 +115,11 @@ iframe {
 
 .delete-button {
   position: relative;
+  left: 6px;
   margin: 10px;
   padding: 1px;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .delete-button-container:active {
@@ -146,38 +148,25 @@ iframe {
   }
 }
 
-@media screen and (max-width: 600px) {
-  .description-section {
-    padding: 0;
-  }
-
+@media screen and (min-width: 600px) {
   .description-heading {
-    width: 100%;
-    text-align: center;
+    width: fit-content;
   }
+}
 
+@media screen and (min-width: 768px) {
   .edit-delete-buttons-container {
-    min-width: 150px;
-    margin: 20px 25%;
+    width: 120px;
   }
 
-  .edit-button-container {
-    width: 4rem;
-  }
-
-  .edit-button {
-    position: relative;
-    left: 5px;
-    font-size: 2rem;
-  }
-
+  .edit-button-container,
   .delete-button-container {
-    width: 4rem;
+    width: 55px;
   }
 
+  .edit-button,
   .delete-button {
-    position: relative;
-    left: 7px;
-    font-size: 2rem;
+    left: 5px;
+    font-size: 1.8rem;
   }
 }
