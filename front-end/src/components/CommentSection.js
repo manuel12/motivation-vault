@@ -88,7 +88,7 @@ const CommentSection = (props) => {
       <h3 className={classes["comment-section-heading"]}>Comments</h3>
 
       <input
-        className="add-comment"
+        className={classes["add-comment"]}
         type="text"
         value={commentText}
         placeholder="Write a comment..."
