@@ -1,21 +1,23 @@
 .about-page-container {
-  width: 70%;
-  margin-left: 15%;
-  margin-right: 15%;
+  width: 100%;
+  max-width: 768px;
+  margin: auto;
 }
 
 .page-heading {
-  text-align: center;
   background-color: #a86800;
   border-radius: 4px;
+  margin: 50px auto 30px;
+  width: 100px;
+  text-align: center;
   color: white;
-  width: 100%;
 }
 
 .section-heading {
-  text-align: center;
   background-color: #a86800;
   border-radius: 4px;
-  color: white;
+  margin-top: 10vh;
   width: fit-content;
+  text-align: left;
+  color: white;
 }
