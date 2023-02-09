@@ -3,10 +3,10 @@ label {
   color: #ff1616;
   font-style: italic;
   font-weight: 600;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 input {
-  margin: 5px 0px;
+  margin: 5px 0;
 }
