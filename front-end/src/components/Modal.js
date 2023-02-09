@@ -13,7 +13,7 @@ const Modal = (props) => {
           <div className={classes["question"]}>
             <p>{props.question}</p>
           </div>
-          <div class={classes["button-panel"]}>
+          <div class={classes["button-container"]}>
             <button
               className={classes["accept-button"]}
               onClick={props.acceptButtonClicked}
