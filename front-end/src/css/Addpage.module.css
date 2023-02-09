@@ -1,23 +1,9 @@
-.add-container-heading {
-  text-align: center;
-  background-color: #a86800;
-  border-radius: 4px;
-  color: white;
-  width: 100%;
-}
-
 .select-container {
-  margin: 15px 30%;
-  width: fit-content;
-  min-width: 40%;
+  margin: 15px auto;
+  width: 100%;
+  max-width: 300px;
 }
 
 .resources {
-  width: auto;
-}
-
-@media screen and (min-width: 600px) {
-  .resources {
-    width: 100%;
-  }
+  width: 100%;
 }
