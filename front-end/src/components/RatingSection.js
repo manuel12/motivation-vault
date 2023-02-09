@@ -39,60 +39,64 @@ const RatingSection = (props) => {
 
   return (
     <div className={classes["ratings-container"]} data-test="ratings-container">
-      <FontAwesomeIcon
-        icon={faStar}
-        className={`${
-          avgRating > 0 ? classes["orange"] : classes["no-display"]
-        } ${classes["fa-star"]}`}
-        data-test="star-icon-1"
-      />
-      <FontAwesomeIcon
-        icon={faStar}
-        className={`${
-          avgRating > 1 ? classes["orange"] : classes["no-display"]
-        } ${classes["fa-star"]}`}
-        data-test="star-icon-2"
-      />
-      <FontAwesomeIcon
-        icon={faStar}
-        className={`${
-          avgRating > 2 ? classes["orange"] : classes["no-display"]
-        } ${classes["fa-star"]}`}
-        data-test="star-icon-3"
-      />
-      <FontAwesomeIcon
-        icon={faStar}
-        className={`${
-          avgRating > 3 ? classes["orange"] : classes["no-display"]
-        } ${classes["fa-star"]}`}
-        data-test="star-icon-4"
-      />
-      <FontAwesomeIcon
-        icon={faStar}
-        className={`${
-          avgRating > 4 ? classes["orange"] : classes["no-display"]
-        } ${classes["fa-star"]}`}
-        data-test="star-icon-5"
-      />
-
-      <span className={classes["num-ratings"]} data-test="num-ratings">
-        {numRatings !== 1
-          ? `(${numRatings} ratings)`
-          : `(${numRatings} rating)`}
-      </span>
-
-      {props.addRatingBtn && (
-        <div
-          className={classes["add-rating-button-container"]}
-          onClick={addRatingClickedHandler}
-          data-test="add-rating-button"
-        >
+      <div className={classes["ratings-icon-panel"]}>
+        <div className={classes["star-container"]}>
           <FontAwesomeIcon
-            icon={faPlusSquare}
-            className={classes["add-rating"]}
+            icon={faStar}
+            className={`${
+              avgRating > 0 ? classes["orange"] : classes["no-display"]
+            } ${classes["fa-star"]}`}
+            data-test="star-icon-1"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className={`${
+              avgRating > 1 ? classes["orange"] : classes["no-display"]
+            } ${classes["fa-star"]}`}
+            data-test="star-icon-2"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className={`${
+              avgRating > 2 ? classes["orange"] : classes["no-display"]
+            } ${classes["fa-star"]}`}
+            data-test="star-icon-3"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className={`${
+              avgRating > 3 ? classes["orange"] : classes["no-display"]
+            } ${classes["fa-star"]}`}
+            data-test="star-icon-4"
+          />
+          <FontAwesomeIcon
+            icon={faStar}
+            className={`${
+              avgRating > 4 ? classes["orange"] : classes["no-display"]
+            } ${classes["fa-star"]}`}
+            data-test="star-icon-5"
           />
         </div>
-      )}
+
+        <span className={classes["num-ratings"]} data-test="num-ratings">
+          {numRatings !== 1
+            ? `(${numRatings} ratings)`
+            : `(${numRatings} rating)`}
+        </span>
+
+        {props.addRatingBtn && (
+          <div
+            className={classes["add-rating-button-container"]}
+            onClick={addRatingClickedHandler}
+            data-test="add-rating-button"
+          >
+            <FontAwesomeIcon
+              icon={faPlusSquare}
+              className={classes["add-rating"]}
+            />
+          </div>
+        )}
+      </div>
 
       {showRatingInput && (
         <div className={classes["rate-container"]}>
