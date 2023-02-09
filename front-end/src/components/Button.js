@@ -1,6 +1,5 @@
 import "../css/Button.module.css";
 
-
 const Button = (props) => {
   return (
     <button
@@ -10,7 +9,9 @@ const Button = (props) => {
       type={props.type}
       onClick={props.onClick}
       data-test={props?.dataAttr}
-    >{props.text}</button>
+    >
+      {props.text}
+    </button>
   );
 };
 
