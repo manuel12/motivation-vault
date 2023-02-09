@@ -1,18 +1,12 @@
 .content {
-  margin: 0;
-  padding-bottom: 30px;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  width: 90%;
+  max-width: 1080px;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1200px) {
   .content {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .content {
-    margin-left: 12.5%;
-    margin-right: 12.5%;
+    width: 80%;
   }
 }
