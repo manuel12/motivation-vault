@@ -2,6 +2,7 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+  text-align: center;
   animation: open 0.25s;
 }
 
