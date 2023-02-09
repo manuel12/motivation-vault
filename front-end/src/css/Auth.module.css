@@ -9,28 +9,25 @@
 }
 
 .login-container {
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  width: 100%;
+  max-width: 768px;
+  margin: auto;
+  padding: 50px 0;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  max-width: 400px;
+}
+
+button {
+  width: 200px;
+  margin: 10px auto 20px !important;
 }
 
 span {
   font-weight: bold;
   color: orange;
   cursor: pointer;
-}
-
-@media screen and (min-width: 768px) {
-  .login-container {
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .login-container {
-    width: 50%;
-    margin: 20px 25%;
-  }
 }
