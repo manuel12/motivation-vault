@@ -3,14 +3,18 @@
 }
 
 .pagination-buttons-container {
-  width: 25%;
-  margin: 0 37.5%;
+  height: 40px;
+  width: 200px;
+  max-width: 200px;
+  margin: 0 auto;
+  margin-bottom: 30px;
 }
 
 .pagination-button {
-  min-width: 7.5%;
+  min-width: 70px;
   padding: 10px;
-  margin: 0 2.5%;
+  margin: 0 10px;
+  margin-bottom: 30px;
   font-size: 1rem;
 }
 
@@ -23,15 +27,8 @@
 }
 
 @media screen and (min-width: 600px) {
-  .pagination-buttons-container {
-    width: 200px;
-    margin: 0 40%;
-  }
-
   .pagination-button {
-    min-width: 70px;
     padding: 10px;
-    margin: 0 10px;
     font-size: 1rem;
   }
 }
