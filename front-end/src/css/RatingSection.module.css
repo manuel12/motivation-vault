@@ -6,7 +6,7 @@ h2 {
   margin: 10px 0 20px;
 }
 
-.ratings-icon-panel {
+.ratings-icon-container {
   width: 300px;
   display: flex;
 }

@@ -39,7 +39,7 @@ const RatingSection = (props) => {
 
   return (
     <div className={classes["ratings-container"]} data-test="ratings-container">
-      <div className={classes["ratings-icon-panel"]}>
+      <div className={classes["ratings-icon-container"]}>
         <div className={classes["star-container"]}>
           <FontAwesomeIcon
             icon={faStar}
