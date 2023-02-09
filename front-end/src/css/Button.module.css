@@ -1,15 +1,15 @@
 button {
   background-color: #ffc93d;
-  border-color: #ffc93d;
-  color: white;
-  min-width: 100px;
-  margin: 0 35%;
-  padding: 15px 20px;
   border: 2px solid #ffc93d;
   border-radius: 10px;
+  min-width: 100px;
+  margin: 0 auto;
+  padding: 15px 20px;
   font-size: 1rem;
   font-family: sans-serif;
+  font-weight: bold;
   text-align: center;
+  color: white;
   cursor: pointer;
   box-shadow: 0 5px #999;
 }
