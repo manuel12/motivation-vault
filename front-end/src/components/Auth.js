@@ -71,7 +71,7 @@ const Auth = ({ setToken }) => {
     loginInput.current.focus();
   }, []);
 
-  const submitHandler = (e) => {
+  const submitClickedHandler = (e) => {
     e.preventDefault();
     isLoginView ? loginClickedHandler() : registerClickedHandler();
   };
@@ -86,7 +86,7 @@ const Auth = ({ setToken }) => {
     <div>
       <HeaderTitle />
       <div className={classes["login-container"]} data-test="login-container">
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitClickedHandler}>
           {usernameError && (
             <div className="username-error" data-test="username-error">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
