@@ -24,6 +24,12 @@ body {
   word-spacing: 0.2em;
 }
 
+h1,
+h2,
+h3 {
+  padding: 5px;
+}
+
 a {
   color: rgb(70 70 70);
 }
@@ -79,17 +85,5 @@ textarea {
 @media screen and (min-width: 600px) {
   body {
     font-size: 1.1rem;
-  }
-
-  form {
-    width: 50%;
-    margin: 0 25%;
-  }
-
-  input,
-  textarea {
-    width: 95%;
-    padding: 10px 2%;
-    margin: 10px 0;
   }
 }
