@@ -1,4 +1,7 @@
 .update-resource-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   animation: open 0.25s;
 }
 
@@ -7,6 +10,11 @@
   background-color: #a86800;
   border-radius: 4px;
   color: white;
+  width: 100%;
+}
+
+.update-resource-form input,
+.update-resource-form textarea {
   width: 100%;
 }
 
