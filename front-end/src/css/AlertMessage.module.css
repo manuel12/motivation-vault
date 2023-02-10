@@ -1,11 +1,24 @@
 /* The alert message box */
 .alert {
-  width: 80%;
-  padding: 20px;
   background-color: #04aa6d;
-  color: white;
+  border-radius: 3px;
+  position: absolute;
+  top: -200px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  padding: 20px 30px;
+  text-align: center;
   font-weight: bold;
-  margin-bottom: 15px;
+  color: white;
+  z-index: 20;
+  transition: all 0.25s ease-in-out;
+}
+
+.alert-displayed {
+  top: 200px;
 }
 
 .no-display {
@@ -21,10 +34,10 @@
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
-  color: black;
+  color: #a1a1a1;
 }
