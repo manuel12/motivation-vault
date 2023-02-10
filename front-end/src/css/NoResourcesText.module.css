@@ -1,3 +1,7 @@
+.no-resources-container {
+  padding-top: 12vh;
+}
+
 .no-resources {
   text-align: center;
 }
