@@ -43,7 +43,8 @@ const CommentSection = (props) => {
     setCancelBtnClassName(classes["cancel-button"]);
   };
 
-  const submitClickedHandler = () => {
+  const submitClickedHandler = (e) => {
+    e.preventDefault();
     if (commentText) {
       const newComment = {
         resource: props.resourceId,
@@ -85,39 +86,40 @@ const CommentSection = (props) => {
       className={classes["comment-section-container"]}
       data-test="comment-section-container"
     >
-      <h3 className={classes["comment-section-heading"]}>Comments</h3>
+      <form onSubmit={submitClickedHandler}>
+        <h3 className={classes["comment-section-heading"]}>Comments</h3>
 
-      <input
-        className={classes["add-comment"]}
-        type="text"
-        value={commentText}
-        placeholder="Write a comment..."
-        onChange={(e) => {
-          setCommentText(e.target.value);
-        }}
-        onClick={inputClickedHandler}
-        data-test="comment-input"
-      />
-      <div className={classes["btn-container"]}>
-        <Button
-          disabled={submitBtnDisabled}
-          className={submitBtnClassName}
-          id="submit"
-          type="submit"
-          text="Comment"
-          onClick={submitClickedHandler}
-          dataAttr="add-comment-button"
+        <input
+          className={classes["add-comment"]}
+          type="text"
+          value={commentText}
+          placeholder="Write a comment..."
+          onChange={(e) => {
+            setCommentText(e.target.value);
+          }}
+          onClick={inputClickedHandler}
+          data-test="comment-input"
         />
-        <Button
-          className={cancelBtnClassName}
-          id="cancel"
-          type="submit"
-          text="Cancel"
-          onClick={cancelClickedHandler}
-          dataAttr="cancel-comment-button"
-        />
-      </div>
-      <br />
+        <div className={classes["btn-container"]}>
+          <Button
+            disabled={submitBtnDisabled}
+            className={submitBtnClassName}
+            id="submit"
+            type="submit"
+            text="Comment"
+            dataAttr="add-comment-button"
+          />
+          <Button
+            className={cancelBtnClassName}
+            id="cancel"
+            type="submit"
+            text="Cancel"
+            onClick={cancelClickedHandler}
+            dataAttr="cancel-comment-button"
+          />
+        </div>
+        <br />
+      </form>
 
       {comments &&
         comments.map((comment) => (
