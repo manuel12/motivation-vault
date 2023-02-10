@@ -11,6 +11,7 @@ import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
 import NotFound from "./NotFound";
 import Modal from "./Modal";
+// import AlertMessage from "./AlertMessage";
 
 import classes from "../css/Detailpage.module.css";
 
@@ -19,7 +20,7 @@ const DetailPage = () => {
   const { token } = useToken();
   const [resource, setResource] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
-  // const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
+  const [displaySuccessMessage, setDisplaySuccessMessage] = useState(true);
   // const [successMessage, setSuccessMessage] = useState("");
   const [
     displayEditDeleteButtonsContainer,
