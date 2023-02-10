@@ -18,14 +18,18 @@ const Spinner = (props) => {
     }, 3000);
   }, [props.resources]);
 
-  return showNoResourcesText ? (
-    <NoResourcesText />
-  ) : (
-    <FontAwesomeIcon
-      icon={faSpinner}
-      className={classes.spinner}
-      data-test="spinner"
-    />
+  return (
+    <div className={classes["spinner-container"]}>
+      {showNoResourcesText ? (
+        <NoResourcesText />
+      ) : (
+        <FontAwesomeIcon
+          icon={faSpinner}
+          className={classes.spinner}
+          data-test="spinner"
+        />
+      )}
+    </div>
   );
 };
 
