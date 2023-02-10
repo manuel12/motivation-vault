@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { API } from "../api-service";
 
+import HeaderTitle from "./HeaderTitle";
 import classes from "../css/Auth.module.css";
 
 const Auth = ({ setToken }) => {
@@ -83,10 +84,7 @@ const Auth = ({ setToken }) => {
 
   return (
     <div>
-      <div className={classes["header"]} data-test="header">
-        <h1>Motivation Vault</h1>
-      </div>
-
+      <HeaderTitle />
       <div className={classes["login-container"]} data-test="login-container">
         <form onSubmit={submitHandler}>
           {usernameError && (

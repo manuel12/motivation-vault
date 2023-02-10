@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import useToken from "./useToken";
+import HeaderTitle from "./HeaderTitle";
 
 import classes from "../css/Header.module.css";
 
@@ -8,11 +9,7 @@ const Header = (props) => {
 
   return (
     <div className={classes["header"]} data-test="header">
-      <div className={classes["header-title"]} data-test="header-title">
-        <a className={classes["header-link"]} href="/">
-          <h1>Motivation Vault</h1>
-        </a>
-      </div>
+      <HeaderTitle />
       <Navbar deleteToken={deleteToken} />
     </div>
   );
