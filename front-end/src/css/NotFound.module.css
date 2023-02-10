@@ -1,7 +1,13 @@
+.not-found-container {
+  background-color: red;
+  border-radius: 3px;
+  width: 100%;
+}
+
 .not-found {
   min-height: 80px;
-  color: white;
-  background-color: red;
   text-align: center;
-  font-size: 60px
+  font-size: 50px;
+  line-height: 80px;
+  color: white;
 }
