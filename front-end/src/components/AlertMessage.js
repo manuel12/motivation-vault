@@ -1,12 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { cleanUpUrl, getUrlSearchParam } from "../utils";
 import classes from "../css/AlertMessage.module.css";
 
-const AlertMessage = (props) => {
-  const [display, setDisplay] = useState(props.display);
+const AlertMessage = () => {
+  const resourceUpdated = getUrlSearchParam("updated");
+  const resourceDeleted = getUrlSearchParam("deleted");
+
+  let successMessage = "";
+
+  if (resourceUpdated) {
+    successMessage = "Resource successfully updated!";
+  } else if (resourceDeleted) {
+    successMessage = "Resource successfully deleted!";
+  }
+
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
-    setDisplay(props.display);
-  }, [props.display]);
+    setTimeout(() => {
+      setDisplay(successMessage);
+      cleanUpUrl();
+    }, 500);
+  }, []);
 
   const closeButtonClickedHandler = () => {
     setDisplay(false);
@@ -20,11 +35,13 @@ const AlertMessage = (props) => {
           : `${classes["alert"]}`
       }
     >
-      <span className={classes["closebtn"]} onClick={closeButtonClickedHandler}>
+      <span
+        className={classes["close-btn"]}
+        onClick={closeButtonClickedHandler}
+      >
         &times;
       </span>
-      Resource updated successfully!
-      {/*props.message*/}
+      {successMessage}
     </div>
   );
 };
