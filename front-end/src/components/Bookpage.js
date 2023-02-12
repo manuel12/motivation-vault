@@ -12,7 +12,7 @@ const BookPage = () => {
   }, [token]);
 
   return (
-    <div>
+    <div className="book-page">
       <PostList resources={resources} />
     </div>
   );
