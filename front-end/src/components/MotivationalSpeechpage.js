@@ -12,10 +12,10 @@ const MotivationalSpeechPage = () => {
   }, [token]);
 
   return (
-    <div>
+    <div className="motivational-speech-page">
       <PostList resources={resources} />
     </div>
   );
-}
+};
 
 export default MotivationalSpeechPage;

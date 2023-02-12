@@ -12,10 +12,10 @@ const PodcastEpisodePage = () => {
   }, [token]);
 
   return (
-    <div>
+    <div className="podcast-episode-page">
       <PostList resources={resources} />
     </div>
   );
-}
+};
 
 export default PodcastEpisodePage;
