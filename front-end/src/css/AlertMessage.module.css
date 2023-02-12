@@ -1,8 +1,7 @@
-/* The alert message box */
 .alert {
   background-color: #04aa6d;
   border-radius: 3px;
-  position: absolute;
+  position: fixed;
   top: -200px;
   left: 0;
   right: 0;
@@ -18,15 +17,14 @@
 }
 
 .alert-displayed {
-  top: 200px;
+  top: 250px;
 }
 
 .no-display {
   display: none;
 }
 
-/* The close button */
-.closebtn {
+.close-btn {
   margin-left: 15px;
   color: white;
   font-weight: bold;
@@ -37,7 +35,6 @@
   transition: 0.25s;
 }
 
-/* When moving the mouse over the close button */
 .closebtn:hover {
   color: #a1a1a1;
 }
