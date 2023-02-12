@@ -13,7 +13,7 @@ const HomePage = () => {
   }, [token]);
 
   return (
-    <div className="homepage" data-test="homepage">
+    <div className="home-page" data-test="homepage">
       <PostList resources={resources} />
     </div>
   );
