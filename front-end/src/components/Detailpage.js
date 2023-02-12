@@ -2,8 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-import { getUrlSearchParams, getEmbedYoutubeUrl } from "../utils";
 import { useParams } from "react-router-dom";
+import { getEmbedYoutubeUrl } from "../utils";
 import { API } from "../api-service";
 import useToken from "./useToken";
 import CommentSection from "./CommentSection";
@@ -16,15 +16,13 @@ import AlertMessage from "./AlertMessage";
 import classes from "../css/Detailpage.module.css";
 
 const DetailPage = () => {
-  const resourceUpdated = getUrlSearchParams().get("updated");
-
   const { id } = useParams();
   const { token } = useToken();
 
   const [resource, setResource] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
   const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
+
   const [
     displayEditDeleteButtonsContainer,
     setDisplayEditDeleteButtonsContainer,
@@ -34,10 +32,6 @@ const DetailPage = () => {
     API.fetchResource(id, token, setResource).then((resp) =>
       setDisplayEditDeleteButtonsContainer(resp.can_edit_delete)
     );
-
-    setTimeout(() => {
-      resourceUpdated && setDisplaySuccessMessage(true);
-    }, 500);
   }, [id, token]);
 
   if (resource.error && resource.error === "Not found") {
@@ -64,13 +58,6 @@ const DetailPage = () => {
 
   return resource ? (
     <Fragment>
-      {resourceUpdated && (
-        <AlertMessage
-          message={successMessage}
-          display={displaySuccessMessage}
-        />
-      )}
-
       {displayModal && (
         <Modal
           heading={"Delete Resource"}
