@@ -1,3 +1,7 @@
+export const getUrlSearchParam = (param) => {
+  return new URLSearchParams(window.location.search).get(param);
+};
+
 export const getResourceTypeData = (resourceType, resourceTypeData) => {
   const resourceTypePlural = getResourceTypePlural(resourceType);
   if (!JSON.parse(localStorage.getItem(`/${resourceTypePlural}`))) {
