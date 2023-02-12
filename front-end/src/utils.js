@@ -1,3 +1,20 @@
+export const getCleanUrl = () => {
+  /**
+   * Returns a url without search params.
+   */
+
+  return window.location.href.split("?")[0];
+};
+
+export const cleanUpUrl = () => {
+  /**
+   * Removes any search params from the current url.
+   */
+
+  const cleanUrl = getCleanUrl();
+  window.history.replaceState(null, "", cleanUrl);
+};
+
 export const getUrlSearchParam = (param) => {
   return new URLSearchParams(window.location.search).get(param);
 };
