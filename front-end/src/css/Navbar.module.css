@@ -22,7 +22,7 @@
   max-width: 1080px;
   padding: 0;
   overflow: hidden;
-  animation: close 0.3s;
+  animation: close 0.25s ease-in-out;
 }
 
 .nav-list-portrait-display {
@@ -30,7 +30,7 @@
   display: list-item;
   list-style-type: none;
   padding: 0;
-  animation: open 0.25s;
+  animation: open 0.25s ease-in-out;
 }
 
 .nav-item-link {
@@ -43,6 +43,7 @@
   font-size: 1.3rem;
   color: white;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 }
 
 .active {
