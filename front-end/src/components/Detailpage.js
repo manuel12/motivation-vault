@@ -11,7 +11,6 @@ import RatingSection from "./RatingSection";
 import ValueSection from "./ValueSection";
 import NotFound from "./NotFound";
 import Modal from "./Modal";
-import AlertMessage from "./AlertMessage";
 
 import classes from "../css/Detailpage.module.css";
 
@@ -77,7 +76,7 @@ const DetailPage = () => {
               className={classes["edit-delete-buttons-container"]}
               data-test="edit-delete-buttons-container"
             >
-              <div
+              <button
                 className={classes["edit-button-container"]}
                 onClick={editButtonClickedHandler}
                 data-test="edit-button"
@@ -86,8 +85,8 @@ const DetailPage = () => {
                   icon={faEdit}
                   className={classes["edit-button"]}
                 />
-              </div>
-              <div
+              </button>
+              <button
                 className={classes["delete-button-container"]}
                 data-test="delete-button"
                 onClick={deleteButtonClickedHandler}
@@ -96,7 +95,7 @@ const DetailPage = () => {
                   icon={faTrash}
                   className={classes["delete-button"]}
                 />
-              </div>
+              </button>
             </div>
           )}
 
