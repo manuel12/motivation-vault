@@ -27,7 +27,7 @@
   margin: 0;
   margin-right: 20px;
   border: 0;
-  animation: open 0.25s;
+  animation: open 0.25s ease-in-out;
 }
 
 .add-comment-btn-enabled {
@@ -43,7 +43,7 @@
   border-radius: 5px;
   margin: 0;
   border: 0;
-  animation: open 0.25s;
+  animation: open 0.25s ease-in-out;
 }
 
 .cancel-button:hover {
