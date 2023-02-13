@@ -75,6 +75,8 @@ iframe {
   border-radius: 15px;
   margin: 0 5px;
   width: 60px;
+  min-width: initial;
+  padding: unset;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
@@ -86,7 +88,7 @@ iframe {
 
 .edit-button {
   position: relative;
-  left: 6px;
+  left: 4px;
   margin: 10px;
   padding: 1px;
   color: white;
@@ -104,6 +106,8 @@ iframe {
   border-color: #ffc93d;
   border-radius: 15px;
   width: 60px;
+  min-width: initial;
+  padding: unset;
   box-shadow: 0 5px #999;
   cursor: pointer;
 }
@@ -115,7 +119,7 @@ iframe {
 
 .delete-button {
   position: relative;
-  left: 6px;
+  left: 1px;
   margin: 10px;
   padding: 1px;
   color: white;
@@ -166,7 +170,7 @@ iframe {
 
   .edit-button,
   .delete-button {
-    left: 5px;
+    left: 1px;
     font-size: 1.8rem;
   }
 }
