@@ -3,7 +3,7 @@
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
-  animation: open 0.25s;
+  animation: open 0.25s ease-in-out;
 }
 
 .add-resource-form-heading {
