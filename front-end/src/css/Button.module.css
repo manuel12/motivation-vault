@@ -12,7 +12,7 @@ button {
   color: white;
   cursor: pointer;
   box-shadow: 0 5px #999;
-  transition: all 0.125s ease-in-out;
+  transition: all var(--fast-animation-time);
 }
 
 button:hover {

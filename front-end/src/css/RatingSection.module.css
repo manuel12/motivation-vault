@@ -87,7 +87,7 @@ h2 {
   width: 100%;
   max-width: 300px;
   margin: 20px 0;
-  animation: open 0.25s ease-in-out;
+  animation: open var(--animation-time);
 }
 
 .rate-it-text {

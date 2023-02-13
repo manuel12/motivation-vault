@@ -19,10 +19,10 @@
   display: none;
   list-style-type: none;
   margin: 0 auto;
-  max-width: 1080px;
+  max-width: var(--max-width);
   padding: 0;
   overflow: hidden;
-  animation: close 0.25s ease-in-out;
+  animation: close var(--animation-time);
 }
 
 .nav-list-portrait-display {
@@ -30,7 +30,7 @@
   display: list-item;
   list-style-type: none;
   padding: 0;
-  animation: open 0.25s ease-in-out;
+  animation: open var(--animation-time);
 }
 
 .nav-item-link {
@@ -43,7 +43,7 @@
   font-size: 1.3rem;
   color: white;
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
+  transition: all var(--fast-animation-time);
 }
 
 .active {

@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  animation: open 0.25s ease-in-out;
+  animation: open var(--animation-time);
 }
 
 .update-resource-form-heading {
