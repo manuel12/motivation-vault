@@ -85,7 +85,7 @@ const RatingSection = (props) => {
         </span>
 
         {props.addRatingBtn && (
-          <div
+          <button
             className={classes["add-rating-button-container"]}
             onClick={addRatingClickedHandler}
             data-test="add-rating-button"
@@ -94,7 +94,7 @@ const RatingSection = (props) => {
               icon={faPlusSquare}
               className={classes["add-rating"]}
             />
-          </div>
+          </button>
         )}
       </div>
 

@@ -11,7 +11,6 @@ const Spinner = (props) => {
   useEffect(() => {
     setTimeout(() => {
       console.log(`props.resources?.length: ${props.resources?.length}`);
-
       props.resources?.length < 1
         ? setShowNoResourcesText(true)
         : setShowNoResourcesText(false);
