@@ -60,20 +60,22 @@ form {
 
 select {
   background-color: white;
-  color: black;
-  padding: 5px;
-  width: fit-content;
+  outline-color: #f59800;
   border: 2px solid #c7d0d2;
   border-radius: 5px;
+  padding: 5px;
+  width: fit-content;
   font-family: inherit;
   font-size: 1rem;
-  outline-color: #f59800;
+  color: black;
+  cursor: pointer;
 }
 
 select option {
   border-color: #c7d0d2;
   outline-color: #f59800;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 input,
