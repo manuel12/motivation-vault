@@ -6,6 +6,9 @@
   --animation-time: 0.25s ease-in-out;
   --fast-animation-time: 0.1s ease-in-out;
   --max-width: 1080px;
+  --border-radius-small: 5px;
+  --border-radius-container: 15px;
+  --border-radius-button: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -68,7 +71,7 @@ select {
   background-color: white;
   outline-color: #f59800;
   border: 2px solid #c7d0d2;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   padding: 5px;
   width: fit-content;
   font-family: inherit;
