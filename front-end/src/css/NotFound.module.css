@@ -1,6 +1,6 @@
 .not-found-container {
   background-color: red;
-  border-radius: 3px;
+  border-radius: var(--border-radius-small);
   width: 100%;
 }
 

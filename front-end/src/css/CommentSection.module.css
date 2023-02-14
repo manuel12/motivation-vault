@@ -5,7 +5,7 @@
 
 .comment-section-heading {
   background-color: #a86800;
-  border-radius: 4px;
+  border-radius: var(--border-radius-small);
   text-align: center;
   color: white;
   width: 100%;
@@ -23,7 +23,7 @@
 
 .add-comment-btn {
   background-color: grey;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   margin: 0;
   margin-right: 20px;
   border: 0;
@@ -31,7 +31,7 @@
 }
 
 .add-comment-btn-enabled {
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   margin: 0;
   margin-right: 20px;
   border: 0;
@@ -40,7 +40,7 @@
 .cancel-button {
   background-color: darkgrey;
   border-color: darkgrey;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   margin: 0;
   border: 0;
   animation: open var(--animation-time);

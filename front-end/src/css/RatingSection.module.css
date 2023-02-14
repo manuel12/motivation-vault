@@ -56,7 +56,7 @@ h2 {
   display: inline;
   background-color: #ffc93d;
   border: 1px solid #ffc93d;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   margin: 0;
   padding: 5px;
   min-width: unset;
@@ -83,7 +83,7 @@ h2 {
 .rate-container {
   background-color: lightgray;
   border-top: 3px solid orange;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   width: 100%;
   max-width: 300px;
   margin: 20px 0;
@@ -93,7 +93,7 @@ h2 {
 .rate-it-text {
   color: white;
   background-color: #a86800;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   width: 50%;
   margin: 10% 25%;
 }

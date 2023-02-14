@@ -1,6 +1,6 @@
 .alert {
   background-color: #04aa6d;
-  border-radius: 3px;
+  border-radius: var(--border-radius-small);
   position: fixed;
   top: -200px;
   left: 0;

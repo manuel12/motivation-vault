@@ -20,7 +20,7 @@
 
 .modal {
   background-color: white;
-  border-radius: 15px;
+  border-radius: var(--border-radius-container);
   min-width: 300px;
   width: 80%;
   max-width: 350px;

@@ -6,7 +6,7 @@
 
 .page-heading {
   background-color: #a86800;
-  border-radius: 4px;
+  border-radius: var(--border-radius-small);
   margin: 50px auto 30px;
   width: 100px;
   text-align: center;
@@ -15,7 +15,7 @@
 
 .section-heading {
   background-color: #a86800;
-  border-radius: 4px;
+  border-radius: var(--border-radius-small);
   margin-top: 10vh;
   width: fit-content;
   text-align: left;

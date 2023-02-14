@@ -1,7 +1,7 @@
 button {
   background-color: #ffc93d;
   border: 2px solid #ffc93d;
-  border-radius: 10px;
+  border-radius: var(--border-radius-button);
   min-width: 100px;
   margin: 0 auto;
   padding: 15px 20px;
