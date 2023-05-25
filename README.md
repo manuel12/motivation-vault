@@ -2,7 +2,15 @@
 
 # Motivation Vault
 
-The Motivation Vault is an application that hosts optimistic, inspiring, motivational and educational content. It allows user to create, update read and delete such content, along adding comments and ratings for such content.
+Motivation Vault is an application that hosts optimistic, inspiring, motivational and educational content.
+
+It allows user to create, read, update and delete resource of such content, along with adding comments and ratings to them. The content is in the form of 4 types of 'resources', which can be either books, podcasts, podcast episodes or motivational speech videos.
+
+Each of these resources will contain a title, a description, an image(or video) and a 'learnings' section. The learnings section is a list of points on things learned after consuming said resource. In the case of a book or podcast episode, for example, you can see what was learned after reading the book or listening to the episode.
+
+Users can also leave a rating or add a commnet on each resource, this is achieved through authentication, so that users cannot leave more than 1 rating per resource and so that their names appear on the comments.
+
+
 
   <h2>Desktop</h2>
   <img src="https://user-images.githubusercontent.com/4129325/221205796-109b3a7a-a102-46f0-b4f2-3711a883b5fe.png" title="Motivation Vault Desktop" alt="Motivation Vault Desktop" width="650" height="357" style="display: inline"/>
