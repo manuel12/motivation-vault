@@ -4,10 +4,12 @@
 
 The Motivation Vault is an application that hosts optimistic, inspiring, motivational and educational content. It allows user to create, update read and delete such content, along adding comments and ratings for such content.
 
-<div float="left">
+  <h2>Desktop</h2>
   <img src="https://user-images.githubusercontent.com/4129325/221205796-109b3a7a-a102-46f0-b4f2-3711a883b5fe.png" title="Motivation Vault Desktop" alt="Motivation Vault Desktop" width="650" height="357" style="display: inline"/>
+  
+  <h2>Mobile</h2>
   <img src="https://user-images.githubusercontent.com/4129325/221207023-de613790-db09-4513-ae9e-ba893a575d54.png" title="Motivation Vault Mobile" alt="Motivation Vault Mobile" width="165" height="357"/>
-</div>
+
 
 ## Usage
 
