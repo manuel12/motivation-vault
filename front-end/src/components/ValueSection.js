@@ -7,10 +7,8 @@ const ValueSection = (props) => {
 
   return (
     populatedValues.length > 0 && (
-      <div className={classes["value-container"]} data-test="value-section">
-        <h3 className={classes["values-heading"]}>
-          What value does it bring you?
-        </h3>
+      <div className={classes["value-container"]} data-test='value-section'>
+        <h3 className={classes["values-heading"]}>What did you learn?</h3>
         <ul>
           {populatedValues.map((value, i) => {
             return (

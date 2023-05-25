@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     <div
       className={classes["about-page-container"]}
-      data-test="about-page-container"
+      data-test='about-page-container'
     >
       <h2 className={classes["page-heading"]}>About</h2>
       <p>
@@ -39,9 +39,9 @@ const AboutPage = () => {
         select element there has to be at least 1 podcast already created.
       </p>
       <p>
-        When filling the form you can also add up to 3 "values". This means you
-        can add what you learned, whether an idea or a knowledge gem you got
-        from such resource. The values section is the same for all resource
+        When filling the form you can also add up to 3 "learnings". This means
+        you can add what you learned, whether an idea or a knowledge gem you got
+        from such resource. The learnings section is the same for all resource
         types.
       </p>
       <h3 className={classes["section-heading"]}>
