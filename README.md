@@ -32,7 +32,7 @@ After submitting the form your resource will appear first on the home page list 
 
 To check more information on a resource, leave a rating or a comment, visit said resource's detail page by clicking on the resource's image or text on the home page list or on any category list.
 
-On the detail page the full information of the resource is displayed, including full description and value section, which is basically a list of points on the benefits of consuming said resource.
+On the detail page the full information of the resource is displayed, including full description and learnings section, which is basically a list of points on the benefits of consuming said resource.
 
 Also the poster image(for books or podcasts) or embedded youtube video(for podcast episodes or motivational speeches) will be displayed.
 
