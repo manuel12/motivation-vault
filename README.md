@@ -1,6 +1,6 @@
-[![django-api-react](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
+[![django-api-react](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/3i7tdw&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/3i7tdw/runs)
 
-# Motivation Vault
+![Motivation Vault](hero.png)
 
 Motivation Vault is an application that hosts optimistic, inspiring, motivational and educational content.
 
@@ -10,14 +10,11 @@ Each of these resources will contain a title, a description, an image(or video) 
 
 Users can also leave a rating or add a commnet on each resource, this is achieved through authentication, so that users cannot leave more than 1 rating per resource and so that their names appear on the comments.
 
-
-
   <h2>Desktop</h2>
   <img src="https://user-images.githubusercontent.com/4129325/221205796-109b3a7a-a102-46f0-b4f2-3711a883b5fe.png" title="Motivation Vault Desktop" alt="Motivation Vault Desktop" width="650" height="357" style="display: inline"/>
   
   <h2>Mobile</h2>
   <img src="https://user-images.githubusercontent.com/4129325/221207023-de613790-db09-4513-ae9e-ba893a575d54.png" title="Motivation Vault Mobile" alt="Motivation Vault Mobile" width="165" height="357"/>
-
 
 ## Usage
 
